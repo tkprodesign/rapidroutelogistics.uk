@@ -11,7 +11,7 @@ $exception_summary_total_due = $exception_base_amount + $exception_summary_proce
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exception Payment | Veteran Logistics Group</title>
+    <title>Exception Payment | Rapid Route Logistics</title>
     <link rel="shortcut icon" href="/assets/images/branding/mark-only.png?v=<?php echo time(); ?>" type="image/png">
     <link rel="stylesheet" href="/assets/stylesheets/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="/assets/stylesheets/shipping.css?v=<?php echo time(); ?>">
@@ -199,9 +199,9 @@ $exception_summary_total_due = $exception_base_amount + $exception_summary_proce
 
                 var invoiceHtml = invoiceCard.outerHTML;
                 var styles = [
-                    'body{font-family:Segoe UI,Arial,sans-serif;color:#351c15;margin:0;padding:32px;background:#fff;}',
+                    'body{font-family:Segoe UI,Arial,sans-serif;color:#14232b;margin:0;padding:32px;background:#fff;}',
                     '.print-wrap{max-width:820px;margin:0 auto;}',
-                    '.print-title{font-size:28px;font-weight:700;margin:0 0 18px;color:#351c15;}',
+                    '.print-title{font-size:28px;font-weight:700;margin:0 0 18px;color:#14232b;}',
                     '.invoice-card{border:1px solid #d8d3cf;border-radius:14px;padding:24px;background:#fff;}',
                     '.invoice-head{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid #e7e2dd;margin-bottom:22px;}',
                     '.invoice-kicker,.invoice-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7a6f67;font-weight:700;margin:0 0 8px;}',
@@ -220,7 +220,7 @@ $exception_summary_total_due = $exception_base_amount + $exception_summary_proce
                 ].join('');
 
                 printWindow.document.open();
-                printWindow.document.write('<!DOCTYPE html><html><head><title>Exception Invoice | Veteran Logistics Group</title><style>' + styles + '</style></head><body><div class="print-wrap"><h1 class="print-title">Exception Payment Invoice</h1>' + invoiceHtml + '</div></body></html>');
+                printWindow.document.write('<!DOCTYPE html><html><head><title>Exception Invoice | Rapid Route Logistics</title><style>' + styles + '</style></head><body><div class="print-wrap"><h1 class="print-title">Exception Payment Invoice</h1>' + invoiceHtml + '</div></body></html>');
                 printWindow.document.close();
                 printWindow.focus();
                 printWindow.onload = function () {

@@ -18,6 +18,6 @@ Open `/email-templates/index.php` in your browser to review each template.
 - newsletter-thank-you.html
 
 All templates now use the shared header logo linked to the site homepage:
-- Link: `https://veteranlogisticsgroup.us/`
-- Image: `https://veteranlogisticsgroup.us/assets/images/branding/logo-horizontal-dark.png`
+- Link: `https://rapidroutelogistics.uk/`
+- Image: `https://rapidroutelogistics.uk/assets/images/branding/logo-horizontal-dark.png`
 

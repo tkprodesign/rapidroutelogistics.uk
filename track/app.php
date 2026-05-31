@@ -109,7 +109,7 @@ if (empty($history)) {
     $history = [
         ["time" => "10:30 AM", "date" => "Mar 2, 2026", "location" => "Port Harcourt, NG", "activity" => "Arrived at Facility", "is_negative" => false, "issue_note" => ""],
         ["time" => "08:15 AM", "date" => "Mar 2, 2026", "location" => "Lagos, NG", "activity" => "Departed from Facility", "is_negative" => false, "issue_note" => ""],
-        ["time" => "04:00 PM", "date" => "Mar 1, 2026", "location" => "Lagos, NG", "activity" => "Processed at UPS Facility", "is_negative" => false, "issue_note" => ""],
+        ["time" => "04:00 PM", "date" => "Mar 1, 2026", "location" => "Lagos, NG", "activity" => "Processed at Rapid Route Facility", "is_negative" => false, "issue_note" => ""],
         ["time" => "11:00 AM", "date" => "Mar 1, 2026", "location" => "Lagos, NG", "activity" => "Shipped / Picked Up", "is_negative" => false, "issue_note" => ""]
     ];
 }

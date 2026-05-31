@@ -6,7 +6,7 @@ include('../app.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Payment Method | Veteran Logistics Group</title>
+    <title>Add Payment Method | Rapid Route Logistics</title>
 
     <link rel="stylesheet" href="/assets/stylesheets/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="/assets/stylesheets/dashboard.css?v=<?php echo time(); ?>">

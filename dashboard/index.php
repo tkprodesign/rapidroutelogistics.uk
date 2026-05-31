@@ -7,7 +7,7 @@ include('app.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Veteran Logistics Group</title>
+    <title>Dashboard | Rapid Route Logistics</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/assets/stylesheets/main.css?v=<?php echo time(); ?>">
@@ -137,7 +137,7 @@ include('app.php');
                         <div class="quick-grid">
                     <a href="/shipping/create/" class="q-item"><img src="<?= htmlspecialchars(asset_url('/assets/images/ups/3d-icons/ups-create-shipment.png')); ?>" alt="Start a Shipment icon">Start a Shipment</a>
                     <a href="/shipping/create/?service=pickup" class="q-item"><img src="<?= htmlspecialchars(asset_url('/assets/images/ups/3d-icons/ups-seasonal-variable-volume.png')); ?>" alt="Schedule a Pickup icon">Schedule a Pickup</a>
-                    <a href="https://www.ups.com/osa/orderSupplies?loc=en_US" target="_blank" rel="noopener noreferrer" class="q-item"><img src="<?= htmlspecialchars(asset_url('/assets/images/ups/3d-icons/ups-free-supplies.png')); ?>" alt="Order Supplies icon">Order Supplies</a>
+                    <a href="/support/shipping-tools/" target="_blank" rel="noopener noreferrer" class="q-item"><img src="<?= htmlspecialchars(asset_url('/assets/images/ups/3d-icons/ups-free-supplies.png')); ?>" alt="Order Supplies icon">Order Supplies</a>
                     <a href="/dashboard/?t=upsmc" class="q-item"><img src="<?= htmlspecialchars(asset_url('/assets/images/ups/3d-icons/ups-account.png')); ?>" alt="Preferences icon">Preferences</a>
                         </div>
                     </section>
@@ -294,7 +294,7 @@ include('app.php');
 
                     <article class="card upsmc-card">
                         <h3>Hold Packages</h3>
-                        <p class="card-copy">We can hold your packages for up to seven days if you send them to a UPS Access Point<sup>®</sup>. You can pick them up when you return. For hold requests up to 14 days, we will hold on to your packages and deliver them to your home on your new selected delivery date.</p>
+                        <p class="card-copy">We can hold your packages for up to seven days if you send them to a Rapid Route Pickup Point<sup>®</sup>. You can pick them up when you return. For hold requests up to 14 days, we will hold on to your packages and deliver them to your home on your new selected delivery date.</p>
                         <p class="upsmc-subhead">Delivery Hold Dates:</p>
                         <p class="card-copy">There are no current requests.</p>
                         <a href="#" class="link-blue">Request a Hold <i class="material-symbols-outlined">chevron_right</i></a>

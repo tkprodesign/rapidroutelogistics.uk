@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up | Veteran Logistics Group</title>
+    <title>Sign Up | Rapid Route Logistics</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     
     <link rel="stylesheet" href="/assets/stylesheets/main.css?v=<?php echo time(); ?>">
@@ -74,10 +74,10 @@
                     <input type="checkbox" name="accept_terms" required>
                     <p>
                         I agree to the
-                        <a href="/legal/terms-and-conditions/">Veteran Logistics Group Terms and Conditions of Service</a>
+                        <a href="/legal/terms-and-conditions/">Rapid Route Logistics Terms and Conditions of Service</a>
                         and the
-                        <a href="/legal/website-terms-of-use/">Veteran Logistics Group Website Terms of Use</a>,
-                        which contain important terms about my shipping activity and my use of Veteran Logistics Group services,
+                        <a href="/legal/website-terms-of-use/">Rapid Route Logistics Website Terms of Use</a>,
+                        which contain important terms about my shipping activity and my use of Rapid Route Logistics services,
                         including limitations of liability and how disputes will be handled.
                     </p>
                 </div>

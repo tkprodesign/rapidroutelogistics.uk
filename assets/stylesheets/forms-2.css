@@ -58,7 +58,7 @@ body.login-page {
   box-sizing: border-box;
 }
 .container .content .input-box input:focus {
-  outline: 2px solid #351c15;
+  outline: 2px solid #14232b;
   border-color: transparent;
 }
 .container .content .input-box .forgot-link {
@@ -90,7 +90,7 @@ body.login-page {
   gap: 4px;
   /* Style */
   background-color: #ffb500;
-  color: #351c15;
+  color: #14232b;
   border: none;
   border-radius: 50px;
   padding: 14px 0;

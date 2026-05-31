@@ -7,7 +7,7 @@ include("app.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shipping Services | Veteran Logistics Group</title>
+    <title>Shipping Services | Rapid Route Logistics</title>
 
     <link rel="stylesheet" href="/assets/stylesheets/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="/assets/stylesheets/services.css?v=<?php echo time(); ?>">
@@ -36,7 +36,7 @@ include("app.php");
 
         <section class="services-hero">
             <div class="hero-copy">
-                <h1>Veteran Logistics Group Shipping Services</h1>
+                <h1>Rapid Route Logistics Shipping Services</h1>
                 <p>Whether you are shipping across the street or across the world, we have several service options to help you find the right balance of speed and cost.</p>
                 <div class="hero-cta-row">
                     <a href="/shipping/" class="btn-gold">Ship Now <span class="material-symbols-outlined">chevron_right</span></a>
@@ -44,7 +44,7 @@ include("app.php");
                 </div>
             </div>
             <div class="hero-media">
-                <img src="<?= htmlspecialchars(asset_url('/assets/images/home/mc2.jpg')); ?>" alt="UPS delivery specialist standing in front of delivery vehicle">
+                <img src="<?= htmlspecialchars(asset_url('/assets/images/home/mc2.jpg')); ?>" alt="Rapid Route delivery specialist standing in front of delivery vehicle">
             </div>
         </section>
     </div>
@@ -54,7 +54,7 @@ include("app.php");
             <div class="service-tabs">
                 <a class="active" href="#panel-domestic" data-service-panel="panel-domestic">Domestic Shipping Services</a>
                 <a href="#panel-international" data-service-panel="panel-international">International Shipping Services</a>
-                    <a href="#panel-additional" data-service-panel="panel-additional">Additional Veteran Logistics Group Services</a>
+                    <a href="#panel-additional" data-service-panel="panel-additional">Additional Rapid Route Logistics Services</a>
             </div>
         </div>
     </section>
@@ -67,12 +67,12 @@ include("app.php");
                     <p>We offer flexible <a href="/shipping/">Domestic Shipping Services</a> ready to meet your business needs.</p>
                 </div>
                 <div class="cards-grid three-up">
-                    <article class="service-card"><h3>Budget-Friendly Shipping</h3><p>For shipments looking for reliable delivery without breaking the bank, choose UPS Ground or UPS SurePost options.</p></article>
-                    <article class="service-card"><h3>Accelerated Shipping</h3><p>For important, but not critical shipments. Meet your deadlines with UPS 2nd Day Air or UPS 3 Day Select.</p></article>
-                    <article class="service-card"><h3>Overnight Shipping</h3><p>Get guaranteed, time-definite next-day delivery to urgent shipments with UPS Next Day Air.</p></article>
-                    <article class="service-card"><h3>Same-Day Delivery</h3><p>Get seamless same day delivery for local and shipping with Roadie and same day freight shipping with UPS Express Critical.</p></article>
-                    <article class="service-card"><h3>Freight Shipping</h3><p><a href="/shipping/">UPS Supply Chain Solutions</a> offers a variety of services to simplify freight shipping and maximize your supply chain.</p></article>
-                    <article class="service-card"><h3>Bulk Shipping</h3><p><a href="/shipping/">UPS Ground with Freight Pricing</a> offers savings on 150+ lb shipments being sent to facilities not designed to handle pallets.</p></article>
+                    <article class="service-card"><h3>Budget-Friendly Shipping</h3><p>For shipments looking for reliable delivery without breaking the bank, choose route-economy or consolidated ground options.</p></article>
+                    <article class="service-card"><h3>Accelerated Shipping</h3><p>For important, but not critical shipments. Meet your deadlines with accelerated two-day or three-day route options.</p></article>
+                    <article class="service-card"><h3>Overnight Shipping</h3><p>Get guaranteed, time-definite next-day delivery to urgent shipments with Rapid Route next-day priority service.</p></article>
+                    <article class="service-card"><h3>Same-Day Delivery</h3><p>Get seamless same day delivery for local and shipping with Rapid Route same-day courier and urgent freight dispatch.</p></article>
+                    <article class="service-card"><h3>Freight Shipping</h3><p><a href="/shipping/">Rapid Route Supply Chain Solutions</a> offers a variety of services to simplify freight shipping and maximize your supply chain.</p></article>
+                    <article class="service-card"><h3>Bulk Shipping</h3><p><a href="/shipping/">Rapid Route Freight Pricing</a> offers savings on 150+ lb shipments being sent to facilities not designed to handle pallets.</p></article>
                 </div>
             </div>
 
@@ -82,23 +82,23 @@ include("app.php");
                     <p>See our variety of <a href="/shipping/">International Shipping Services</a> to help you reach new markets.</p>
                 </div>
                 <div class="cards-grid three-up">
-                    <article class="service-card"><h3>Economical Shipping</h3><p><a href="/shipping/">UPS Worldwide Economy</a> is our most economical cross-border option, with delivery in 5-12 days.</p></article>
-                    <article class="service-card"><h3>Standard Shipping</h3><p>UPS Standard offers day-definite delivery in 2-7 days with Saturday delivery available for most regions.</p></article>
-                    <article class="service-card"><h3>Expedited Shipping</h3><p>For important but not critical shipments, UPS Worldwide Expedited delivers in 2-5 business days.</p></article>
+                    <article class="service-card"><h3>Economical Shipping</h3><p><a href="/shipping/">Rapid Route Worldwide Economy</a> is our most economical cross-border option, with delivery in 5-12 days.</p></article>
+                    <article class="service-card"><h3>Standard Shipping</h3><p>Rapid Route Standard offers day-definite delivery in 2-7 days with Saturday delivery available for most regions.</p></article>
+                    <article class="service-card"><h3>Expedited Shipping</h3><p>For important but not critical shipments, Rapid Route Worldwide Expedited delivers in 2-5 business days.</p></article>
                     <article class="service-card"><h3>Express Shipping</h3><p>1-3 day delivery is available with Worldwide Express and Worldwide Saver by end of day.</p></article>
-                    <article class="service-card"><h3>Same Day Shipping</h3><p>For urgent freight shipments, <a href="/shipping/">UPS Express Critical</a> is available for next flight out.</p></article>
+                    <article class="service-card"><h3>Same Day Shipping</h3><p>For urgent freight shipments, <a href="/shipping/">Rapid Route Express Critical</a> is available for next flight out.</p></article>
                 </div>
             </div>
 
             <div class="service-panel" id="panel-additional">
                 <div class="section-heading">
-                    <h2>Additional Veteran Logistics Group Services</h2>
-                    <p>Explore how UPS can help your business beyond delivery.</p>
+                    <h2>Additional Rapid Route Logistics Services</h2>
+                    <p>Explore how Rapid Route Logistics can help your business beyond delivery.</p>
                 </div>
                 <div class="cards-grid three-up additional-grid">
-                    <article class="service-card with-icon"><i class="material-symbols-outlined">storefront</i><h3>The UPS Store</h3><p>Pack, ship, print, rent mailboxes and more at neighborhood locations.</p><a href="/shipping/">Learn About The UPS Store <span class="material-symbols-outlined">chevron_right</span></a></article>
-                    <article class="service-card with-icon"><i class="material-symbols-outlined">health_and_safety</i><h3>UPS Healthcare</h3><p>Access responsive and agile logistics that help patients get critical support when needed.</p><a href="/shipping/">Learn About UPS Healthcare <span class="material-symbols-outlined">open_in_new</span></a></article>
-                    <article class="service-card with-icon"><i class="material-symbols-outlined">local_shipping</i><h3>UPS Supply Chain Solutions</h3><p>Manage global supply chain operations including logistics, distribution and transportation.</p><a href="/shipping/">Learn About UPS Supply Chain Solutions <span class="material-symbols-outlined">open_in_new</span></a></article>
+                    <article class="service-card with-icon"><i class="material-symbols-outlined">storefront</i><h3>Rapid Route Service Points</h3><p>Pack, ship, print, rent mailboxes and more at neighborhood locations.</p><a href="/shipping/">Learn About Rapid Route Service Points <span class="material-symbols-outlined">chevron_right</span></a></article>
+                    <article class="service-card with-icon"><i class="material-symbols-outlined">health_and_safety</i><h3>Rapid Route Healthcare</h3><p>Access responsive and agile logistics that help patients get critical support when needed.</p><a href="/shipping/">Learn About Rapid Route Healthcare <span class="material-symbols-outlined">open_in_new</span></a></article>
+                    <article class="service-card with-icon"><i class="material-symbols-outlined">local_shipping</i><h3>Rapid Route Supply Chain Solutions</h3><p>Manage global supply chain operations including logistics, distribution and transportation.</p><a href="/shipping/">Learn About Rapid Route Supply Chain Solutions <span class="material-symbols-outlined">open_in_new</span></a></article>
                     <article class="service-card with-icon"><i class="material-symbols-outlined">check_box</i><h3>Roadie Same-Day Delivery</h3><p>A crowdsourced platform for same-day and local next-day delivery of nearly anything.</p><a href="/shipping/">Learn About Roadie <span class="material-symbols-outlined">open_in_new</span></a></article>
                     <article class="service-card with-icon"><i class="material-symbols-outlined">package_2</i><h3>Happy Returns</h3><p>With no box required and thousands of return locations, shoppers can return quickly.</p><a href="/shipping/">Learn About Happy Returns <span class="material-symbols-outlined">open_in_new</span></a></article>
                     <article class="service-card with-icon"><i class="material-symbols-outlined">warehouse</i><h3>Industry-Specific Logistics Solutions</h3><p>Optimize every facet of your business with specialized logistics programs.</p><a href="/shipping/">See Logistics Solutions <span class="material-symbols-outlined">chevron_right</span></a></article>
@@ -126,10 +126,10 @@ include("app.php");
                         <ul>
                             <li><strong>Signature Required</strong><span>We capture a signature at delivery so you can have the peace of mind it was delivered successfully.</span></li>
                             <li><strong>Adult Signature Required</strong><span>21+ recipient signature to release shipment when needed.</span></li>
-                            <li><strong>UPS Collect on Delivery (C.O.D.)</strong><span>Give your customers more flexibility by allowing them to make payments at delivery.</span></li>
-                            <li><strong>Ship to a UPS Access Point</strong><span>Allow your customers to pick up their package at a secure and convenient location near them.</span></li>
+                            <li><strong>Collect on Delivery (C.O.D.)</strong><span>Give your customers more flexibility by allowing them to make payments at delivery.</span></li>
+                            <li><strong>Ship to a Rapid Route Pickup Point</strong><span>Allow your customers to pick up their package at a secure and convenient location near them.</span></li>
                             <li><strong>Direct Delivery Only</strong><span>Avoid package reroutes and send to the exact address provided.</span></li>
-                            <li><strong>Hold for Pickup</strong><span>Customers can pick up packages at a secure UPS location center at a time convenient for them.</span></li>
+                            <li><strong>Hold for Pickup</strong><span>Customers can pick up packages at a secure Rapid Route pickup point at a time convenient for them.</span></li>
                         </ul>
                     </div>
 
@@ -180,7 +180,7 @@ include("app.php");
             </div>
             <div class="resource-links">
                 <a href="#" class="js-open-support-chat" data-chat-message="I need help to make a quote.">Get a Quote <span class="material-symbols-outlined">chevron_right</span></a>
-                <a href="/support/">UPS Rate Guide <span class="material-symbols-outlined">chevron_right</span></a>
+                <a href="/support/">Rapid Route Rate Guide <span class="material-symbols-outlined">chevron_right</span></a>
                 <a href="/shipping/">Order Supplies <span class="material-symbols-outlined">chevron_right</span></a>
                 <a href="/support/">Find a Location <span class="material-symbols-outlined">chevron_right</span></a>
                 <a href="/dashboard/?t=overview&a=outgoing#shipment-activity">View Shipping History <span class="material-symbols-outlined">chevron_right</span></a>
@@ -217,7 +217,7 @@ include("app.php");
                 <h2>Talk to an Expert</h2>
             </div>
             <div class="cards-grid two-up">
-                <article class="service-card"><h3>Free Virtual Consultation</h3><p>Request this cost, 15 minute consultation to discuss how UPS can help improve your business with smarter shipping decisions.</p><a href="/support/">Request Free Consultation</a></article>
+                <article class="service-card"><h3>Free Virtual Consultation</h3><p>Request this cost, 15 minute consultation to discuss how Rapid Route Logistics can help improve your business with smarter shipping decisions.</p><a href="/support/">Request Free Consultation</a></article>
                 <article class="service-card"><h3>Expert Supply Chain Consulting</h3><p>From evolving warehouse operations to endpoint visibility systems, get in touch with an expert consultant team.</p><a href="/support/">Let's Dive Deeper</a></article>
             </div>
         </div>

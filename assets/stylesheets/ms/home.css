@@ -180,7 +180,7 @@ section.services-alt .container .content .g2 .col a {
 
 section.banner-1 .container {
   color: #ffffff;
-  background-image: linear-gradient(304.78deg, #152457 -12.16%, #2A4D8F 61.1%);
+  background-image: linear-gradient(304.78deg, #0c191f -12.16%, #0aa391 61.1%);
   padding: 60px 64px;
   display: flex;
   align-items: center;
@@ -204,7 +204,7 @@ section.banner-1 .container .left a .icon {
   font-size: 12px;
 }
 section.banner-1 .container .right a {
-  background: #E1AE2A;
+  background: #008d7c;
   display: flex;
   align-items: center;
   padding: 10px 24px;
@@ -217,7 +217,7 @@ section.banner-1 .container .right a {
   cursor: pointer;
 }
 section.banner-1 .container .right a:hover {
-  background: #F2CB4D;
+  background: #20b7a4;
 }
 
 section.about-us {

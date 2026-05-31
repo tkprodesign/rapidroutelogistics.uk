@@ -91,14 +91,14 @@ if (!$dbconn) {
             // Data inserted successfully, now prepare and send the email to admin
             $mail = new PHPMailer;
             $mail->isSMTP();
-            $mail->Host = 'mail.upsexpressservices.us'; // SMTP server
+            $mail->Host = 'mail.rapidroutelogistics.uk'; // SMTP server
             $mail->SMTPAuth = true; // Enable SMTP authentication
-            $mail->Username = 'quotes@upsexpressservices.us'; // SMTP username
+            $mail->Username = 'quotes@rapidroutelogistics.uk'; // SMTP username
             $mail->Password = 'D0iIxWiWg}hw'; // SMTP password
             $mail->SMTPSecure = 'tls'; // Enable TLS encryption
             $mail->Port = 587; // SMTP port (use 465 for SSL)
-            $mail->setFrom('quotes@upsexpressservices.us', 'Quotes | UPS Express Services ');
-            $email = 'admin@upsexpressservices.us';
+            $mail->setFrom('quotes@rapidroutelogistics.uk', 'Quotes | Rapid Route Logistics ');
+            $email = 'admin@rapidroutelogistics.uk';
             $mail->addAddress($email); // Recipient's email
             $mail->isHTML(true);
 

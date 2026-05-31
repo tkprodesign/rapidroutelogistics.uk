@@ -717,9 +717,9 @@ function shipping_send_html_email(string $toEmail, string $fromEmail, string $su
         $mail->Port = $smtpPort;
         $mail->CharSet = 'UTF-8';
 
-        $mail->setFrom($fromEmail, 'Veteran Logistics Group');
+        $mail->setFrom($fromEmail, 'Rapid Route Logistics');
         $mail->addAddress($toEmail);
-        $mail->addReplyTo('support@veteranlogisticsgroup.us', 'Veteran Logistics Group Support');
+        $mail->addReplyTo('support@rapidroutelogistics.uk', 'Rapid Route Logistics Support');
         $mail->isHTML(true);
         $mail->Subject = $subject;
         $mail->Body = $htmlBody;
@@ -742,8 +742,8 @@ function shipping_build_customer_shipment_email_html(array $payload): string {
     $weight = htmlspecialchars((string)($payload['weight'] ?? '0'));
     $dimensions = htmlspecialchars((string)($payload['length'] ?? '0') . ' x ' . (string)($payload['width'] ?? '0') . ' x ' . (string)($payload['height'] ?? '0') . ' in');
     $estimatedDelivery = htmlspecialchars(date('M j, Y', time() + 3 * 86400));
-    $trackUrl = 'https://veteranlogisticsgroup.us/track/?id=' . rawurlencode((string)($payload['tracking_number'] ?? ''));
-    $dashboardUrl = 'https://veteranlogisticsgroup.us/dashboard/';
+    $trackUrl = 'https://rapidroutelogistics.uk/track/?id=' . rawurlencode((string)($payload['tracking_number'] ?? ''));
+    $dashboardUrl = 'https://rapidroutelogistics.uk/dashboard/';
 
     return '<!doctype html>
 <html lang="en">
@@ -757,8 +757,8 @@ function shipping_build_customer_shipment_email_html(array $payload): string {
 <tr><td align="center">
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="640" style="max-width:640px;background:#ffffff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;">
 <tr><td style="background:#0f172a;padding:16px 28px;">
-<a href="https://veteranlogisticsgroup.us/" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;">
-<img src="https://veteranlogisticsgroup.us/assets/images/branding/logo-horizontal-dark.png" alt="Veteran Logistics Group" width="220" style="display:block;border:0;max-width:220px;height:auto;">
+<a href="https://rapidroutelogistics.uk/" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;">
+<img src="https://rapidroutelogistics.uk/assets/images/branding/logo-horizontal-dark.png" alt="Rapid Route Logistics" width="220" style="display:block;border:0;max-width:220px;height:auto;">
 </a>
 </td></tr>
 <tr><td style="padding:28px 40px 6px 40px;"><h1 style="margin:0;font-size:26px;line-height:1.3;color:#0f172a;">Your shipment is confirmed</h1></td></tr>
@@ -777,8 +777,8 @@ function shipping_build_customer_shipment_email_html(array $payload): string {
 <a href="' . htmlspecialchars($trackUrl) . '" style="display:inline-block;background:#1d4ed8;color:#fff;text-decoration:none;padding:12px 20px;border-radius:6px;font-size:14px;font-weight:bold;margin-right:10px;">Track Shipment</a>
 <a href="' . htmlspecialchars($dashboardUrl) . '" style="display:inline-block;background:#fff;color:#1d4ed8;text-decoration:none;padding:12px 20px;border-radius:6px;font-size:14px;font-weight:bold;border:1px solid #1d4ed8;">Open Dashboard</a>
 </td></tr>
-<tr><td style="padding:0 40px 18px 40px;"><p style="margin:0;font-size:12px;line-height:1.6;color:#6b7280;">Need help? Contact support@veteranlogisticsgroup.us.</p></td></tr>
-<tr><td style="background:#f8fafc;border-top:1px solid #e5e7eb;padding:16px 24px;"><p style="margin:0;font-size:11px;line-height:1.5;color:#6b7280;">© 2026 Veteran Logistics Group. This is an automated shipment confirmation email.</p></td></tr>
+<tr><td style="padding:0 40px 18px 40px;"><p style="margin:0;font-size:12px;line-height:1.6;color:#6b7280;">Need help? Contact support@rapidroutelogistics.uk.</p></td></tr>
+<tr><td style="background:#f8fafc;border-top:1px solid #e5e7eb;padding:16px 24px;"><p style="margin:0;font-size:11px;line-height:1.5;color:#6b7280;">© 2026 Rapid Route Logistics. This is an automated shipment confirmation email.</p></td></tr>
 </table>
 </td></tr>
 </table>
@@ -803,7 +803,7 @@ function shipping_build_customer_invoice_email_html(array $payload): string {
     $cryptoProcessingFeeAmount = shipping_money($cryptoProcessingFee);
     $totalAmount = shipping_money((float)($payload['total_charges'] ?? 0));
     $invoiceDate = htmlspecialchars(date('M j, Y'));
-    $invoiceUrl = 'https://veteranlogisticsgroup.us/shipping/create/?s=5&created=1';
+    $invoiceUrl = 'https://rapidroutelogistics.uk/shipping/create/?s=5&created=1';
 
     return '<!doctype html>
 <html lang="en">
@@ -817,8 +817,8 @@ function shipping_build_customer_invoice_email_html(array $payload): string {
 <tr><td align="center">
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="640" style="max-width:640px;background:#ffffff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;">
 <tr><td style="background:#0f172a;padding:16px 28px;">
-<a href="https://veteranlogisticsgroup.us/" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;">
-<img src="https://veteranlogisticsgroup.us/assets/images/branding/logo-horizontal-dark.png" alt="Veteran Logistics Group" width="220" style="display:block;border:0;max-width:220px;height:auto;">
+<a href="https://rapidroutelogistics.uk/" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;">
+<img src="https://rapidroutelogistics.uk/assets/images/branding/logo-horizontal-dark.png" alt="Rapid Route Logistics" width="220" style="display:block;border:0;max-width:220px;height:auto;">
 </a>
 </td></tr>
 <tr><td style="padding:28px 40px 6px 40px;"><h1 style="margin:0;font-size:26px;line-height:1.3;color:#0f172a;">Your shipment invoice</h1></td></tr>
@@ -848,9 +848,9 @@ function shipping_build_customer_invoice_email_html(array $payload): string {
 <tr><td style="padding:0 40px 22px 40px;">
 <a href="' . htmlspecialchars($invoiceUrl) . '" style="display:inline-block;background:#1d4ed8;color:#fff;text-decoration:none;padding:12px 20px;border-radius:6px;font-size:14px;font-weight:bold;">View Invoice</a>
 </td></tr>
-<tr><td style="padding:0 40px 8px 40px;"><p style="margin:0;font-size:12px;line-height:1.6;color:#6b7280;">For billing questions, contact billing@veteranlogisticsgroup.us.</p></td></tr>
+<tr><td style="padding:0 40px 8px 40px;"><p style="margin:0;font-size:12px;line-height:1.6;color:#6b7280;">For billing questions, contact billing@rapidroutelogistics.uk.</p></td></tr>
 <tr><td style="padding:0 40px 18px 40px;"><p style="margin:0;font-size:12px;line-height:1.6;color:#6b7280;">Blockchain miner/validator transaction fees may still apply separately at transfer time.</p></td></tr>
-<tr><td style="background:#f8fafc;border-top:1px solid #e5e7eb;padding:16px 24px;"><p style="margin:0;font-size:11px;line-height:1.5;color:#6b7280;">© 2026 Veteran Logistics Group. This is an automated invoice email.</p></td></tr>
+<tr><td style="background:#f8fafc;border-top:1px solid #e5e7eb;padding:16px 24px;"><p style="margin:0;font-size:11px;line-height:1.5;color:#6b7280;">© 2026 Rapid Route Logistics. This is an automated invoice email.</p></td></tr>
 </table>
 </td></tr>
 </table>
@@ -875,10 +875,10 @@ function shipping_send_customer_post_create_emails(array $shipmentData): void {
         'invoice_number' => $invoiceNumber
     ]));
 
-    if (!shipping_send_html_email($senderEmail, 'shipments@veteranlogisticsgroup.us', $shipmentSubject, $shipmentHtml)) {
+    if (!shipping_send_html_email($senderEmail, 'shipments@rapidroutelogistics.uk', $shipmentSubject, $shipmentHtml)) {
         error_log('shipping-create: failed sending shipment confirmation email for tracking ' . $trackingNumber . ' recipient=' . $senderEmail);
     }
-    if (!shipping_send_html_email($senderEmail, 'billing@veteranlogisticsgroup.us', $invoiceSubject, $invoiceHtml)) {
+    if (!shipping_send_html_email($senderEmail, 'billing@rapidroutelogistics.uk', $invoiceSubject, $invoiceHtml)) {
         error_log('shipping-create: failed sending invoice email for tracking ' . $trackingNumber . ' recipient=' . $senderEmail);
     }
 }

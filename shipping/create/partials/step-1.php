@@ -109,7 +109,7 @@
                                 <div class="segmented js-packaging-toggle">
                                     <input type="hidden" name="packaging_type" class="js-packaging-input" value="<?= htmlspecialchars($packaging_value) ?>">
                                     <button type="button" class="seg-btn <?= ($packaging_value === 'standard') ? 'active' : '' ?>" data-packaging-value="standard">Standard</button>
-                                    <button type="button" class="seg-btn <?= ($packaging_value === 'ups_packaging') ? 'active' : '' ?>" data-packaging-value="ups_packaging">UPS Packaging</button>
+                                    <button type="button" class="seg-btn <?= ($packaging_value === 'ups_packaging') ? 'active' : '' ?>" data-packaging-value="ups_packaging">Rapid Route Packaging</button>
                                 </div>
                                 <p class="pack-note">For most accurate pricing and service selection variety provide all 4 measurements.</p>
                                 <label class="check-row">

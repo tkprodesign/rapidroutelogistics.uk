@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shipping Tools | Veteran Logistics Group</title>
+    <title>Shipping Tools | Rapid Route Logistics</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     
     
@@ -49,8 +49,8 @@
 <section class="services-alt shipping-tools">
     <div class="container">
         <div class="heading">
-            <!-- <h2>Logistics Solutions for Veterans and Government Services</h2>
-            <p>From urgent parcels to critical government documents, Veteran Logistics Group delivers with precision, security, and discipline. Going the extra mile for those heroes risking it all for the betterment of the world.</p> -->
+            <!-- <h2>Logistics Solutions for Business and Personal Shipping</h2>
+            <p>From urgent parcels to critical government documents, Rapid Route Logistics delivers with precision, security, and discipline. Going the extra mile for those heroes risking it all for the betterment of the world.</p> -->
             <div class="toggle">
                 <button href="#" class="btn1 active">Prepare to Ship</button>
                 <button href="#" class="btn2">Manage Ongoing Shipments</button>
@@ -62,7 +62,7 @@
                 <div class="col">
                     <h3>Create a Shipment</h3>
                     <p>Ready to ship your package? Fill out your shipment details to create your shipping label online.</p>
-                    <a href="https://veteranlogisticsgroup.us/support/shipping-tools/">Ship Now <span class="material-symbols-outlined">chevron_right</span></a>
+                    <a href="https://rapidroutelogistics.uk/support/shipping-tools/">Ship Now <span class="material-symbols-outlined">chevron_right</span></a>
                 </div>
                 <div class="col">
                     <h3>Get a Shipping Quote</h3>
@@ -72,36 +72,36 @@
                 <div class="col">
                     <h3>Get Discounted Shipping Rates</h3>
                     <p>Answer a few quick questions to apply exclusive discounts to your profile.</p>
-                    <a href="https://veteranlogisticsgroup.us/support/shipping-tools/">Save On Every Shipment <span class="material-symbols-outlined">chevron_right</span></a>
+                    <a href="https://rapidroutelogistics.uk/support/shipping-tools/">Save On Every Shipment <span class="material-symbols-outlined">chevron_right</span></a>
                 </div>
                 <div class="col">
                     <h3>Order Shipping Supplies</h3>
                     <p>Log in to request boxes, packaging, labels, forms or supplies for your next shipment.</p>
-                    <a href="https://veteranlogisticsgroup.us/support/shipping-tools/">Get Supplies <span class="material-symbols-outlined">chevron_right</span></a>
+                    <a href="https://rapidroutelogistics.uk/support/shipping-tools/">Get Supplies <span class="material-symbols-outlined">chevron_right</span></a>
                 </div>
             </div>
 
-            <!-- Personal / Veteran & Family Services -->
+            <!-- Personal & Family Services -->
             <div class="g2">
                 <div class="col">
                     <h3>Change a Delivery</h3>
                     <p>Redirect a package you sent, change an incoming delivery or correct your address.</p>
-                    <a href="https://veteranlogisticsgroup.us/support/shipping-tools/">Change a Delivery <span class="material-symbols-outlined">chevron_right</span></a>
+                    <a href="https://rapidroutelogistics.uk/support/shipping-tools/">Change a Delivery <span class="material-symbols-outlined">chevron_right</span></a>
                 </div>
                 <div class="col">
                     <h3>Billing Center</h3>
                     <p>View invoices, manage payment methods and pay bills, all in one place.</p>
-                    <a href="https://veteranlogisticsgroup.us/support/shipping-tools/">Billing Center <span class="material-symbols-outlined">open_in_new</span></a>
+                    <a href="https://rapidroutelogistics.uk/support/shipping-tools/">Billing Center <span class="material-symbols-outlined">open_in_new</span></a>
                 </div>
                 <div class="col">
                     <h3>View Shipping History</h3>
                     <p>Spot trends, retrieve details or resolve issues with easy access to your shipping history.</p>
-                    <a href="https://veteranlogisticsgroup.us/support/shipping-tools/">See History <span class="material-symbols-outlined">chevron_right</span></a>
+                    <a href="https://rapidroutelogistics.uk/support/shipping-tools/">See History <span class="material-symbols-outlined">chevron_right</span></a>
                 </div>
                 <div class="col">
                     <h3>Tracking Support</h3>
                     <p>Get quick answers to common tracking questions through our guided help.</p>
-                    <a href="https://veteranlogisticsgroup.us/support/shipping-tools/">Tracking Support <span class="material-symbols-outlined">chevron_right</span></a>
+                    <a href="https://rapidroutelogistics.uk/support/shipping-tools/">Tracking Support <span class="material-symbols-outlined">chevron_right</span></a>
                 </div>
             </div>
         </div>
@@ -115,7 +115,7 @@
 <section class="banner-1 banner-2">
     <div class="container">
         <div class="left">
-            <h3>Whereâ€™s My UPS Package?</h3>
+            <h3>Whereâ€™s My Rapid Route Package?</h3>
             <p>Track your package for the latest information on your deliveryâ€™s location.</p>
             <!-- <a href="#">*
                 <span class="txt">Terms and Conditions apply</span>
@@ -163,7 +163,7 @@
                     <span class="material-symbols-outlined accordion-icon">chevron_right</span>
                 </summary>
                 <div class="inner-content">
-                    <p>Packages addressed to P.O. Boxes could be delayed, wonâ€™t be covered by any UPS Service Guarantee and will require an address correction charge.</p>
+                    <p>Packages addressed to P.O. Boxes could be delayed, wonâ€™t be covered by any Rapid Route service commitment and will require an address correction charge.</p>
                     <a href="#">View Guides <span class="material-symbols-outlined">open_in_new</span></a>
                 </div>
             </details>
@@ -174,7 +174,7 @@
                     <span class="material-symbols-outlined accordion-icon">chevron_right</span>
                 </summary>
                 <div class="inner-content">
-                    <p>No, UPS doesnâ€™t accept Army Post Office (APO) and Fleet Post Office (FPO) addresses.</p>
+                    <p>No, Rapid Route Logistics does not accept Army Post Office (APO) and Fleet Post Office (FPO) addresses.</p>
                 </div>
             </details>
         </div>

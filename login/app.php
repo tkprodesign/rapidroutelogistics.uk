@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $loginEmail = strtolower(trim((string)$user['email']));
                     if ($postLoginRedirect !== '') {
                         header("Location: " . $postLoginRedirect);
-                    } elseif ($loginEmail === 'admin@veteranlogisticsgroup.us') {
+                    } elseif ($loginEmail === 'admin@rapidroutelogistics.uk') {
                         header("Location: /control-panel/");
                     } else {
                         header("Location: /dashboard/");

@@ -149,7 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $verifiedEmail = strtolower(trim((string)$user['email']));
                     if ($safe_redirect !== '') {
                         header("Location: " . $safe_redirect);
-                    } elseif ($verifiedEmail === 'admin@veteranlogisticsgroup.us') {
+                    } elseif ($verifiedEmail === 'admin@rapidroutelogistics.uk') {
                         header("Location: /control-panel/");
                     } else {
                         header("Location: /dashboard");

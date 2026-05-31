@@ -26,7 +26,7 @@ section:not(.hero) .container .heading h2::after {
   bottom: -1px;
   width: 80px;
   height: 4px;
-  background-color: #E1AE2A;
+  background-color: #008d7c;
   display: block;
 }
 section:not(.hero) .container .heading-1-1 {
@@ -136,7 +136,7 @@ section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading {
   font-weight: 700;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading .accent {
-  color: #E1AE2A;
+  color: #008d7c;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .heading .sub-heading {
   font-size: 20px;
@@ -168,7 +168,7 @@ section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box input:focus
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .pri {
   color: #121212;
-  background: #E1AE2A;
+  background: #008d7c;
   display: flex;
   align-items: center;
   padding: 10px 24px;
@@ -186,13 +186,13 @@ section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .sec {
   padding: 0 32px;
   display: inline-flex;
   align-items: center;
-  background-color: #1D2E6F;
+  background-color: #14232b;
 }
 
 section.ups-branch-context .container .ups-branch-card {
-  background: #f8f5ec;
-  border: 1px solid #e6dcc7;
-  border-left: 6px solid #351c15;
+  background: linear-gradient(135deg, #f4fbfa 0%, #ffffff 100%);
+  border: 1px solid rgba(0, 141, 124, 0.18);
+  border-left: 6px solid #008d7c;
   border-radius: 6px;
   padding: 36px;
   display: grid;
@@ -205,7 +205,7 @@ section.ups-branch-context .container .ups-branch-card .content .eyebrow {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 700;
-  color: #7a5a00;
+  color: #008d7c;
   margin-bottom: 10px;
 }
 section.ups-branch-context .container .ups-branch-card .content h2 {
@@ -225,8 +225,8 @@ section.ups-branch-context .container .ups-branch-card .content ul li {
   font-size: 16px;
 }
 section.ups-branch-context .container .ups-branch-card .visual {
-  background: #fff;
-  border-radius: 4px;
+  background: #14232b;
+  border-radius: 24px;
   padding: 20px;
   display: flex;
   align-items: center;
@@ -234,7 +234,7 @@ section.ups-branch-context .container .ups-branch-card .visual {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 12px -3px, rgba(0, 0, 0, 0.14) 0px 2px 5px 0px;
 }
 section.ups-branch-context .container .ups-branch-card .visual img {
-  width: min(280px, 100%);
+  width: min(240px, 100%);
   height: auto;
   -o-object-fit: contain;
      object-fit: contain;
@@ -292,7 +292,7 @@ section.tools .container .right .heading p {
 }
 section.tools .container .right .heading a {
   margin-top: 20px;
-  background: #E1AE2A;
+  background: #008d7c;
   display: flex;
   align-items: center;
   padding: 10px 24px;
@@ -305,7 +305,7 @@ section.tools .container .right .heading a {
   cursor: pointer;
 }
 section.tools .container .right .heading a:hover {
-  background: #F2CB4D;
+  background: #20b7a4;
 }
 
 section.services-alt .container .heading {
@@ -318,7 +318,7 @@ section.services-alt .container .heading h2::after {
 section.services-alt .container .heading .toggle {
   margin: 1rem auto;
   display: inline-block;
-  border: 1px solid #1D2E6F;
+  border: 1px solid #14232b;
   border-radius: 4rem;
   display: flex;
   align-items: center;
@@ -344,7 +344,7 @@ section.services-alt .container .heading .toggle::after {
   top: 50%;
   width: 100px;
   height: 48px;
-  background-color: #377686;
+  background-color: #008d7c;
   display: inline-block;
   border-radius: 4rem;
   transition: left 0.2s;
@@ -383,7 +383,7 @@ section.services-alt .container .content .g1 .col a,
 section.services-alt .container .content .g2 .col a {
   font-weight: 500;
   font-size: 16px;
-  color: #0662bb;
+  color: #008d7c;
   display: flex;
   align-items: center;
   gap: 2px;
@@ -391,7 +391,7 @@ section.services-alt .container .content .g2 .col a {
 
 section.banner-1 .container {
   color: #ffffff;
-  background-image: linear-gradient(304.78deg, #152457 -12.16%, #2A4D8F 61.1%);
+  background-image: linear-gradient(304.78deg, #0c191f -12.16%, #0aa391 61.1%);
   padding: 60px 64px;
   display: flex;
   align-items: center;
@@ -415,7 +415,7 @@ section.banner-1 .container .left a .icon {
   font-size: 12px;
 }
 section.banner-1 .container .right a {
-  background: #E1AE2A;
+  background: #008d7c;
   display: flex;
   align-items: center;
   padding: 10px 24px;
@@ -428,7 +428,7 @@ section.banner-1 .container .right a {
   cursor: pointer;
 }
 section.banner-1 .container .right a:hover {
-  background: #F2CB4D;
+  background: #20b7a4;
 }
 
 section.cards-container .container .heading {
@@ -484,7 +484,7 @@ section.cards-container .container .content .col .card-content p {
   margin-bottom: 16px;
 }
 section.cards-container .container .content .col .card-content a {
-  color: #0662bb;
+  color: #008d7c;
   display: flex;
   align-items: center;
   gap: 2px;
@@ -600,7 +600,7 @@ section.about-us .content p {
   margin-bottom: 20px;
 }
 section.about-us .content a {
-  background: #E1AE2A;
+  background: #008d7c;
   display: flex;
   align-items: center;
   padding: 10px 24px;
@@ -727,7 +727,7 @@ section.services-alt .container .heading .toggle::after {
   left: 6px;
   width: calc(50% - 6px);
   transform: translateY(-50%);
-  background: linear-gradient(135deg, #1d2e6f 0%, #2a4d8f 100%);
+  background: linear-gradient(135deg, #14232b 0%, #2a4d8f 100%);
   box-shadow: 0 12px 22px rgba(29, 46, 111, 0.18);
 }
 

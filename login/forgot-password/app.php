@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
-// Set UPS HQ timezone
+// Set Rapid Route Logistics timezone
 date_default_timezone_set('America/New_York');
 
 require_once __DIR__ . '/../../common-sections/globals.php';
@@ -21,9 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Check in database if username/email exists
         $stmt = $conn->prepare(
-            "SELECT id, email, username 
-             FROM users 
-             WHERE email = ? OR username = ? 
+            "SELECT id, email, username
+             FROM users
+             WHERE email = ? OR username = ?
              LIMIT 1"
         );
         $stmt->bind_param("ss", $login_input, $login_input);

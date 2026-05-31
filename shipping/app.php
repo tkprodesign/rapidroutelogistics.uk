@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
-// Set UPS HQ timezone
+// Set Rapid Route Logistics timezone
 date_default_timezone_set('America/New_York');
 
 /* -------------------------
@@ -37,8 +37,8 @@ if (isset($_COOKIE['user_email']) && !empty($_COOKIE['user_email'])) {
    FETCH USER DATA
 -------------------------- */
 $stmt = $conn->prepare(
-    "SELECT id, name, email, country_code, phone_number, username, created_at 
-     FROM users 
+    "SELECT id, name, email, country_code, phone_number, username, created_at
+     FROM users
      WHERE email = ?"
 );
 $stmt->bind_param("s", $_SESSION['email']);
@@ -64,10 +64,10 @@ if ($user) {
    FETCH LAST LOGIN
 -------------------------- */
 $stmtLogin = $conn->prepare(
-    "SELECT login_at 
-     FROM user_logins 
-     WHERE user_id = ? 
-     ORDER BY login_at DESC 
+    "SELECT login_at
+     FROM user_logins
+     WHERE user_id = ?
+     ORDER BY login_at DESC
      LIMIT 1"
 );
 $stmtLogin->bind_param("i", $user_id);
