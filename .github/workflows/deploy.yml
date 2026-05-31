@@ -1,13 +1,13 @@
-name: Download server files to repository
+name: Deploy repo changes to htdocs
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
-  ftp-download:
+  ftp-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,46 +16,72 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install FTP sync tool
-        run: sudo apt-get update && sudo apt-get install -y lftp
-
-      - name: Download all server files into repo
+      - name: Upload changed repo files to server
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           REMOTE_DIR: /rapidroutelogistics.uk/htdocs
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+        shell: bash
         run: |
           set -euo pipefail
 
-          echo "Downloading all files from $REMOTE_DIR into the repository workspace..."
-          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" <<LFTP_COMMANDS
-          set ftp:ssl-allow no
-          set net:max-retries 3
-          set net:timeout 20
-          mirror --verbose --parallel=4 \
-            --exclude-glob .git/ \
-            --exclude-glob .github/ \
-            "$REMOTE_DIR" .
-          bye
-          LFTP_COMMANDS
-
-          echo "Downloaded files now present in workspace:"
-          find . -path ./.git -prune -o -type f -print | sort | sed 's#^./##'
-
-      - name: Commit downloaded server files
-        run: |
-          set -euo pipefail
-
-          git add -A
-          git status --short
-
-          if git diff --cached --quiet; then
-            echo "No server file changes to commit."
-            exit 0
+          if [ -z "$BEFORE_SHA" ]; then
+            BEFORE_SHA="$(git rev-parse "$AFTER_SHA^")"
+            echo "Manual run detected; deploying changes from $BEFORE_SHA to $AFTER_SHA"
           fi
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Download server files into repo"
-          git push
+          if [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
+            echo "New branch push detected; deploying all tracked repo files."
+            git ls-files -z > changed-files.txt
+          else
+            echo "Deploying repo changes from $BEFORE_SHA to $AFTER_SHA"
+            git diff --name-only -z --diff-filter=ACMRT "$BEFORE_SHA" "$AFTER_SHA" > changed-files.txt
+            git diff --name-only -z --diff-filter=D "$BEFORE_SHA" "$AFTER_SHA" > deleted-files.txt
+          fi
+
+          touch changed-files.txt deleted-files.txt
+
+          while IFS= read -r -d '' file; do
+            case "$file" in
+              .github/*|.git/*|github/workflows/*|node_modules/*|changed-files.txt|deleted-files.txt)
+                echo "Skipping $file"
+                continue
+                ;;
+            esac
+
+            if [ ! -f "$file" ]; then
+              echo "Skipping missing file $file"
+              continue
+            fi
+
+            remote_dir="$REMOTE_DIR/$(dirname "$file")"
+            if [ "$remote_dir" = "$REMOTE_DIR/." ]; then
+              remote_dir="$REMOTE_DIR"
+            fi
+
+            echo "Uploading $file to $remote_dir/"
+            curl --silent --show-error --fail \
+              --user "$FTP_USERNAME:$FTP_PASSWORD" \
+              --ftp-create-dirs \
+              -T "$file" \
+              "ftp://$FTP_SERVER$remote_dir/"
+          done < changed-files.txt
+
+          while IFS= read -r -d '' file; do
+            case "$file" in
+              .github/*|.git/*|github/workflows/*|node_modules/*)
+                echo "Skipping delete for $file"
+                continue
+                ;;
+            esac
+
+            remote_path="$REMOTE_DIR/$file"
+            echo "Deleting $remote_path from server"
+            curl --silent --show-error --fail \
+              --user "$FTP_USERNAME:$FTP_PASSWORD" \
+              -Q "-DELE $remote_path" \
+              "ftp://$FTP_SERVER/" || true
+          done < deleted-files.txt
