@@ -9,6 +9,7 @@ channel = "stable-25_05"
 [[ports]]
 localPort = 3306
 externalPort = 3000
+exposeLocalhost = true
 
 [[ports]]
 localPort = 5000

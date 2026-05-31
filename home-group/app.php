@@ -94,7 +94,7 @@ if (!$dbconn) {
             $mail->Host = 'mail.rapidroutelogistics.uk'; // SMTP server
             $mail->SMTPAuth = true; // Enable SMTP authentication
             $mail->Username = 'quotes@rapidroutelogistics.uk'; // SMTP username
-            $mail->Password = 'D0iIxWiWg}hw'; // SMTP password
+            $mail->Password = ';,js%RxY8GSynZJ'; // SMTP password
             $mail->SMTPSecure = 'tls'; // Enable TLS encryption
             $mail->Port = 587; // SMTP port (use 465 for SSL)
             $mail->setFrom('quotes@rapidroutelogistics.uk', 'Quotes | Rapid Route Logistics ');

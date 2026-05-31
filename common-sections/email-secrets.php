@@ -7,11 +7,11 @@ return [
     'SMTP_SECURE' => 'ssl',
 
     // Mailbox passwords (used by shipping/create/app.php)
-    'SHIPMENTS_EMAIL_PASSWORD' => '2*,%5?kK%Qsns',
-    'BILLING_EMAIL_PASSWORD' => '2*,%5?kK%Qsns',
-    'ADMIN_EMAIL_PASSWORD' => '2*,%5?kK%Qsns',
-    'SUPPORT_EMAIL_PASSWORD' => '2*,%5?kK%Qsns',
-    'TRACKING_EMAIL_PASSWORD' => '2*,%5?kK%Qsns',
-    'NOREPLY_EMAIL_PASSWORD' => '2*,%5?kK%Qsns',
+    'SHIPMENTS_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
+    'BILLING_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
+    'ADMIN_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
+    'SUPPORT_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
+    'TRACKING_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
+    'NOREPLY_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
 ];
 ?>
