@@ -1,57 +1,61 @@
-name: Deploy changed files to htdocs
+name: Download server files to repository
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
-  ftp-deploy:
+  ftp-download:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
-      - name: Upload only changed files
+      - name: Install FTP sync tool
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Download all server files into repo
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           REMOTE_DIR: /rapidroutelogistics.uk/htdocs
         run: |
-          echo "Changed files:"
-          git diff --name-status HEAD^ HEAD
+          set -euo pipefail
 
-          git diff --name-status HEAD^ HEAD | while IFS=$'\t' read -r status file; do
-            [ -z "$file" ] && continue
+          echo "Downloading all files from $REMOTE_DIR into the repository workspace..."
+          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" <<LFTP_COMMANDS
+          set ftp:ssl-allow no
+          set net:max-retries 3
+          set net:timeout 20
+          mirror --verbose --parallel=4 \
+            --exclude-glob .git/ \
+            --exclude-glob .github/ \
+            "$REMOTE_DIR" .
+          bye
+          LFTP_COMMANDS
 
-            case "$file" in
-              .github/*|.git/*|node_modules/*)
-                echo "Skipping $file"
-                continue
-                ;;
-            esac
+          echo "Downloaded files now present in workspace:"
+          find . -path ./.git -prune -o -type f -print | sort | sed 's#^./##'
 
-            remote_path="$REMOTE_DIR/$file"
-            remote_dir="$(dirname "$remote_path")"
+      - name: Commit downloaded server files
+        run: |
+          set -euo pipefail
 
-            if [ "$status" = "D" ]; then
-              echo "Deleting remote file: $remote_path"
-              curl --silent --show-error --fail \
-                --user "$FTP_USERNAME:$FTP_PASSWORD" \
-                --ftp-create-dirs \
-                -Q "-DELE $remote_path" \
-                "ftp://$FTP_SERVER/" || true
-            else
-              echo "Uploading: $file -> $remote_path"
-              curl --silent --show-error --fail \
-                --user "$FTP_USERNAME:$FTP_PASSWORD" \
-                --ftp-create-dirs \
-                -T "$file" \
-                "ftp://$FTP_SERVER$remote_dir/"
-            fi
-          done
-          done
+          git add -A
+          git status --short
+
+          if git diff --cached --quiet; then
+            echo "No server file changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Download server files into repo"
+          git push
