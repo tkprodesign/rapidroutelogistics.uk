@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Help and Support Center | Veteran Logistics Group</title>
+    <title>Help and Support Center | Rapid Route Logistics</title>
 
     <link rel="stylesheet" href="/assets/stylesheets/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="/assets/stylesheets/support.css?v=<?php echo time(); ?>">
@@ -168,8 +168,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var chatCtas = document.querySelectorAll('.js-open-support-chat');
 
     function openSupportChat(message) {
-        if (typeof window.vlgOpenSupportChat === 'function') {
-            return window.vlgOpenSupportChat(message || '');
+        if (typeof window.rrlOpenSupportChat === 'function') {
+            return window.rrlOpenSupportChat(message || '');
         }
         if (typeof window.smartsupp === 'function') {
             window.smartsupp('chat:open');

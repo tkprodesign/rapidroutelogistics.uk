@@ -13,7 +13,7 @@ $cpNavItems = [
     <div class="container">
         <div class="left">
             <a href="/control-panel/page/" id="logo">
-                <img src="/assets/images/branding/logo-horizontal-light.png?v=<?php echo time(); ?>" alt="Veteran Logistics Group Logo">
+                <img src="/assets/images/branding/logo-horizontal-light.png?v=<?php echo time(); ?>" alt="Rapid Route Logistics Logo">
             </a>
             <nav>
                 <ul class="pri-nav">

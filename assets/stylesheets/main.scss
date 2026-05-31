@@ -592,6 +592,19 @@ footer {
     footer {
         padding: 36px 0 16px;
 
+        .footer-brand {
+            margin-bottom: 18px;
+            padding: 0 16px 24px;
+            align-items: flex-start;
+            flex-direction: column;
+
+            img {
+                width: 72px;
+                height: 72px;
+                border-radius: 18px;
+            }
+        }
+
         .footer-container {
             flex-direction: column;
             padding: 0 16px;
@@ -656,8 +669,8 @@ footer {
 
 /* UX refresh overrides */
 body {
-    background: linear-gradient(180deg, #f8f6f1 0%, #ffffff 220px);
-    color: #13203f;
+    background: linear-gradient(180deg, #f3fbfa 0%, #ffffff 220px);
+    color: #14232b;
     padding-top: 60px;
 }
 
@@ -679,7 +692,7 @@ header::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, #15192f 0%, #1b2240 100%);
+    background: linear-gradient(180deg, #14232b 0%, #0d1a20 100%);
     opacity: 0;
     pointer-events: none;
     transition: opacity .32s ease;
@@ -691,7 +704,7 @@ header > .container {
 }
 
 header.is-scrolled {
-    border-bottom-color: rgba(248, 226, 122, 0.18);
+    border-bottom-color: rgba(32, 183, 164, 0.22);
     box-shadow: 0 16px 40px rgba(6, 12, 31, 0.24);
 }
 
@@ -729,8 +742,8 @@ header.is-scrolled #menuToggleBtn span {
 }
 
 header.is-scrolled .container .right .cta .dtp {
-    background: #e1ae2a;
-    color: #10204c;
+    background: #008d7c;
+    color: #ffffff;
 }
 
 header .container .right .cta .dtp {
@@ -740,7 +753,7 @@ header .container .right .cta .dtp {
 }
 
 header .container .right .cta .mb {
-    background: #1d2e6f;
+    background: #14232b;
     color: #fff;
 }
 
@@ -753,19 +766,77 @@ header .container .right .l-child {
 }
 
 header .container .right .l-child .l-cta .pri {
-    background: #e1ae2a;
-    color: #10204c;
+    background: #008d7c;
+    color: #ffffff;
     font-weight: 700;
 }
 
 header .container .right .l-child .l-cta .sec {
     border-color: rgba(29, 46, 111, 0.25);
-    color: #1d2e6f;
-    background: #f8faff;
+    color: #008d7c;
+    background: #f4fbfa;
 }
 
 footer {
-    background: linear-gradient(180deg, #07122e 0%, #0d1b44 100%);
+    background: linear-gradient(135deg, rgba(15, 27, 34, .97) 0%, rgba(10, 22, 28, .97) 52%, rgba(0, 98, 87, .94) 100%), url("/assets/images/branding/logo-stacked-dark.png") right -120px center / 560px auto no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+
+footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 84% 20%, rgba(32, 183, 164, .24), transparent 34%);
+    pointer-events: none;
+}
+
+footer .footer-brand,
+footer .footer-container,
+footer .footer-bottom {
+    position: relative;
+    z-index: 1;
+}
+
+footer .footer-brand {
+    max-width: 1200px;
+    margin: 0 auto 42px;
+    padding: 0 40px 34px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, .16);
+}
+
+footer .footer-brand img {
+    width: 88px;
+    height: 88px;
+    object-fit: cover;
+    border-radius: 22px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, .28);
+}
+
+footer .footer-brand .footer-kicker {
+    margin: 0 0 8px;
+    color: #20b7a4;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+footer .footer-brand h2 {
+    margin: 0 0 8px;
+    color: #fff;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.12;
+}
+
+footer .footer-brand p:last-child {
+    max-width: 720px;
+    color: rgba(255, 255, 255, .78);
 }
 
 footer .footer-container {
@@ -801,7 +872,7 @@ footer .footer-bottom .copyright {
     }
 
     header.is-scrolled .container .left nav {
-        background: #08142f;
+        background: #0d1a20;
     }
 
     header.is-scrolled .container .left nav ul a {
@@ -840,7 +911,7 @@ header .right .cta .dtp-secondary {
   border-radius: 999px;
   border: 1px solid rgba(29, 46, 111, 0.18);
   background: rgba(255, 255, 255, 0.92);
-  color: #1d2e6f;
+  color: #14232b;
   box-shadow: none;
 }
 

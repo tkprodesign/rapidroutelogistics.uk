@@ -1,4 +1,13 @@
 <footer class="footer">
+    <div class="footer-brand">
+        <img src="<?= htmlspecialchars(asset_url('/assets/images/branding/rapid-route-logistics-icon-dark.png')); ?>" alt="Rapid Route Logistics icon">
+        <div>
+            <p class="footer-kicker">Rapid Route Logistics</p>
+            <h2>Forward-moving delivery support for every route.</h2>
+            <p>Secure parcels, priority documents, scheduled freight, and customer-first tracking support from pickup to final mile.</p>
+        </div>
+    </div>
+
     <div class="footer-container">
 
         <div class="footer-section">
@@ -18,30 +27,30 @@
 
         <div class="footer-section">
             <h3 class="footer-heading">
-                Partner Resources
+                Shipping Services
                 <span class="material-symbols-outlined mobile-toggle-icon">keyboard_arrow_down</span>
             </h3>
             <ul class="footer-links">
-                <li><a href="https://about.ups.com/us/en/home.html" target="_blank" rel="noopener noreferrer">About Our Network <span class="material-symbols-outlined">open_in_new</span></a></li>
-                <li><a href="https://www.jobs-ups.com/" target="_blank" rel="noopener noreferrer">Careers <span class="material-symbols-outlined">open_in_new</span></a></li>
-                <li><a href="https://www.ups.com/us/en/ups-healthcare" target="_blank" rel="noopener noreferrer">Healthcare Logistics</a></li>
-                <li><a href="https://www.ups.com/us/en/ups-supplychain" target="_blank" rel="noopener noreferrer">Supply Chain Solutions</a></li>
-                <li><a href="https://www.theupsstore.com/" target="_blank" rel="noopener noreferrer">Retail Shipping Stores <span class="material-symbols-outlined">open_in_new</span></a></li>
-                <li><a href="https://developer.ups.com/" target="_blank" rel="noopener noreferrer">Developer Resources <span class="material-symbols-outlined">open_in_new</span></a></li>
+                <li><a href="/shipping/create/">Create a Shipment</a></li>
+                <li><a href="/track/">Track a Shipment</a></li>
+                <li><a href="/services/">Business Logistics</a></li>
+                <li><a href="/services/">Personal Shipping</a></li>
+                <li><a href="/services/">International Delivery</a></li>
+                <li><a href="#" class="js-open-support-chat" data-chat-message="I need help to make a quote.">Request a Quote</a></li>
             </ul>
         </div>
 
         <div class="footer-section">
             <h3 class="footer-heading">
-                Network Companies
+                Company
                 <span class="material-symbols-outlined mobile-toggle-icon">keyboard_arrow_down</span>
             </h3>
             <ul class="footer-links">
-                <li><a href="https://www.happyreturns.com/" target="_blank" rel="noopener noreferrer">Happy Returns (UPS-owned) <span class="material-symbols-outlined">open_in_new</span></a></li>
-                <li><a href="https://www.roadie.com/" target="_blank" rel="noopener noreferrer">Roadie (UPS-owned) <span class="material-symbols-outlined">open_in_new</span></a></li>
-                <li><a href="https://upscapital.com/products/insureshield-shipping-insurance/" target="_blank" rel="noopener noreferrer">InsureShield Shipping Insurance <span class="material-symbols-outlined">open_in_new</span></a></li>
-                <li><a href="https://www.parcelpro.com/" target="_blank" rel="noopener noreferrer">Parcel Pro (UPS-owned) <span class="material-symbols-outlined">open_in_new</span></a></li>
-                <li><a href="https://www.deliverysolutions.co/" target="_blank" rel="noopener noreferrer">Delivery Solutions (UPS-owned) <span class="material-symbols-outlined">open_in_new</span></a></li>
+                <li><a href="/partner-resources/about-our-network/">About Our Network</a></li>
+                <li><a href="/partner-resources/careers/">Careers</a></li>
+                <li><a href="/partner-resources/supply-chain-solutions/">Supply Chain Solutions</a></li>
+                <li><a href="/partner-resources/healthcare-logistics/">Healthcare Logistics</a></li>
+                <li><a href="/partner-resources/developer-resources/">Developer Resources</a></li>
             </ul>
         </div>
 
@@ -51,16 +60,9 @@
                 <span class="material-symbols-outlined mobile-toggle-icon">keyboard_arrow_down</span>
             </h3>
             <ul class="footer-links social-links">
-                <li><a href="https://www.facebook.com/UPS" target="_blank" rel="noopener noreferrer"><i class="icon-facebook"></i> Facebook (UPS Official) <span
-                            class="material-symbols-outlined">open_in_new</span></a></li>
-                <li><a href="https://x.com/UPS" target="_blank" rel="noopener noreferrer"><i class="icon-x"></i> X (UPS Official) <span class="material-symbols-outlined">open_in_new</span></a>
-                </li>
-                <li><a href="https://www.instagram.com/ups/" target="_blank" rel="noopener noreferrer"><i class="icon-instagram"></i> Instagram (UPS Official) <span
-                            class="material-symbols-outlined">open_in_new</span></a></li>
-                <li><a href="https://www.linkedin.com/company/ups/" target="_blank" rel="noopener noreferrer"><i class="icon-linkedin"></i> LinkedIn (UPS Official) <span
-                            class="material-symbols-outlined">open_in_new</span></a></li>
-                <li><a href="https://www.youtube.com/@UPS" target="_blank" rel="noopener noreferrer"><i class="icon-youtube"></i> YouTube (UPS Official) <span
-                            class="material-symbols-outlined">open_in_new</span></a></li>
+                <li><a href="/support/"><i class="icon-support"></i> Customer Support</a></li>
+                <li><a href="#" class="js-open-support-chat" data-chat-message="I need help from Rapid Route Logistics."><i class="icon-chat"></i> Live Chat</a></li>
+                <li><a href="/support/communication-preferences/"><i class="icon-email"></i> Communication Preferences</a></li>
             </ul>
         </div>
 
@@ -74,17 +76,15 @@
                 <li><a href="/legal/protect-against-fraud/">Protect Against Fraud</a></li>
                 <li><a href="/legal/terms-and-conditions/">Terms and Conditions</a></li>
                 <li><a href="/legal/website-terms-of-use/">Website Terms of Use</a></li>
-                <li><a href="/legal/california-privacy-rights/">Your California Privacy Rights</a></li>
                 <li><a href="/legal/privacy-notice/">Privacy Notice</a></li>
                 <li><a href="/legal/cookie-settings/">Cookie Settings</a></li>
-                <li><a href="/legal/do-not-sell/">Do Not Sell or Share My Personal Information</a></li>
             </ul>
         </div>
 
     </div>
 
     <div class="footer-bottom">
-        <p class="copyright">Copyright ©2026 Veteran Logistics Group. All rights reserved.</p>
+        <p class="copyright">Copyright ©2026 Rapid Route Logistics. All rights reserved.</p>
     </div>
 </footer>
 <!-- Smartsupp Live Chat script -->
@@ -132,7 +132,7 @@ window.smartsupp||(function(d) {
         return opened;
     }
 
-    window.vlgOpenSupportChat = openSupportChat;
+    window.rrlOpenSupportChat = openSupportChat;
 
     document.addEventListener('click', function (event) {
         var trigger = event.target.closest('.js-open-support-chat');

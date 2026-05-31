@@ -78,7 +78,7 @@ body {
   transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .dashboard-tabs .tab.active, .dashboard-tabs a.active, .activity-tabs .tab.active, .activity-tabs a.active {
-  border-color: #E1AE2A;
+  border-color: #008d7c;
   color: #ffffff;
 }
 .dashboard-tabs .tab:hover:not(.active), .dashboard-tabs a:hover:not(.active), .activity-tabs .tab:hover:not(.active), .activity-tabs a:hover:not(.active) {
@@ -119,7 +119,7 @@ body {
   color: inherit;
 }
 .shipment-list .shipment-item:hover {
-  border-color: #E1AE2A;
+  border-color: #008d7c;
   background: #fffcf5;
   transform: scale(1.01);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
@@ -151,8 +151,8 @@ body {
   font-size: 0.65rem;
   font-weight: 800;
   padding: 4px 10px;
-  border: 1px solid #1D2E6F;
-  color: #1D2E6F;
+  border: 1px solid #14232b;
+  color: #14232b;
   border-radius: 4px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -245,12 +245,12 @@ body {
   transition: border-color 0.2s;
 }
 .track-form input:focus {
-  border-color: #E1AE2A;
+  border-color: #008d7c;
   outline: none;
 }
 
 .btn-gold {
-  background: #E1AE2A;
+  background: #008d7c;
   display: flex;
   align-items: center;
   padding: 10px 24px;
@@ -270,8 +270,8 @@ body {
 
 .btn-outline, .btn-outline-small {
   background: transparent;
-  border: 1.5px solid #1D2E6F;
-  color: #1D2E6F;
+  border: 1.5px solid #14232b;
+  color: #14232b;
   padding: 10px 24px;
   border-radius: var(--btn-radius-pill);
   font-weight: 500;
@@ -283,7 +283,7 @@ body {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .btn-outline:hover, .btn-outline-small:hover {
-  background: #1D2E6F;
+  background: #14232b;
   color: #ffffff;
 }
 .btn-outline.w-100, .w-100.btn-outline-small {
@@ -379,7 +379,7 @@ body {
 .quick-grid .q-item i {
   display: block;
   margin-bottom: 12px;
-  color: #E1AE2A;
+  color: #008d7c;
   font-size: 2.2rem;
   font-variation-settings: "FILL" 0, "wght" 300;
 }
@@ -392,13 +392,13 @@ body {
   margin: 0 auto 12px;
 }
 .quick-grid .q-item:hover {
-  border-color: #E1AE2A;
+  border-color: #008d7c;
   transform: translateY(-4px);
   box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.05);
 }
 
 .link-blue {
-  color: #1D2E6F;
+  color: #14232b;
   text-decoration: none;
   font-weight: 600;
   display: inline-flex;
@@ -494,7 +494,7 @@ body {
 .profile-phone-row select:focus,
 .profile-phone-row input[type=tel]:focus {
   outline: none;
-  border-color: #E1AE2A;
+  border-color: #008d7c;
 }
 
 .profile-inline-error {
@@ -767,7 +767,7 @@ body {
 
 /* UX refresh overrides */
 .dashboard-hero {
-  background: linear-gradient(135deg, #07122e 0%, #1d2e6f 58%, #2a4d8f 100%);
+  background: linear-gradient(135deg, #07122e 0%, #14232b 58%, #2a4d8f 100%);
   padding: 48px 20px 72px;
   box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.08);
 }

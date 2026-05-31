@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veteran Logistics Group Verification Email</title>
+    <title>Rapid Route Logistics Verification Email</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f4f4f4; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f4f4f4; padding: 40px 0;">
@@ -13,7 +13,7 @@
                     
                     <tr>
                         <td align="center" style="padding: 40px 40px 20px 40px;">
-                            <img src="https://veteranlogisticsgroup.us/assets/images/branding/logo-stacked-light.png" alt="Veteran Logistics Group" width="60" style="display: block; border: 0;">
+                            <img src="https://rapidroutelogistics.uk/assets/images/branding/logo-stacked-light.png" alt="Rapid Route Logistics" width="60" style="display: block; border: 0;">
                         </td>
                     </tr>
 
@@ -34,7 +34,7 @@
                     <tr>
                         <td align="center" style="background-color: #f9f9f9; padding: 30px 40px; border-top: 1px solid #eeeeee;">
                             <p style="font-size: 11px; color: #999999; line-height: 1.5; margin: 0 0 15px 0;">
-                                �&copy;2026 Veteran Logistics Group. All rights reserved.
+                                �&copy;2026 Rapid Route Logistics. All rights reserved.
                             </p>
                             <p style="font-size: 11px; color: #999999; margin: 0 0 15px 0;">Please do not reply to this email.</p>
                             <p style="font-size: 11px; margin: 0;">

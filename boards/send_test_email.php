@@ -4,7 +4,7 @@ $apiKey = 're_AzyocZ26_Lx4bpNbTyHtUFxpikY4mBjjE';
 
 // Email details
 $data = [
-    "from" => "noreply@veteranlogisticsgroup.us",
+    "from" => "noreply@rapidroutelogistics.uk",
     "to" => ["tkprodesign96@gmail.com"],
     "subject" => "Test Email from Resend",
     "text" => "Hello! This is a test email sent via Resend API on page load.",

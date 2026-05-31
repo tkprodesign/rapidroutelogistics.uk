@@ -6,35 +6,35 @@
 $font-main:         'Inter', sans-serif;
 
 // Primary Brand Colors
-$ups-brown:         #00204A; 
-$ups-gold:          #E1AE2A; 
-$ups-blue:          #1D2E6F;
-$ups-teal:          #2A4D8F;
+$ups-brown:         #14232b;
+$ups-gold:          #008d7c;
+$ups-blue:          #12313a;
+$ups-teal:          #0aa391;
 
 // Accents & Actions
-$acc:               #E1AE2A; 
-$acc-alt:           #F2CB4D;
-$acc-sec:           #1D2E6F;
+$acc:               #008d7c;
+$acc-alt:           #20b7a4;
+$acc-sec:           #14232b;
 
-$accent-color:      #E1AE2A;
-$accent-color-2:    #1D2E6F;
-$accent-color-3:    #152457;
+$accent-color:      #008d7c;
+$accent-color-2:    #14232b;
+$accent-color-3:    #0c191f;
 
-$secondary-color:   #F2CB4D;
-$secondary-color-2: #F8E27A;
-$secondary-color-3: #FFF4C4;
+$secondary-color:   #20b7a4;
+$secondary-color-2: #7de4d8;
+$secondary-color-3: #d9fbf6;
 
-$blue-gradient:     linear-gradient(304.78deg, #152457 -12.16%, #2A4D8F 61.1%);
+$blue-gradient:     linear-gradient(304.78deg, #111f27 -12.16%, #008d7c 61.1%);
 
 // --- 2. SURFACE & NEUTRALS ---
 $wh:                #ffffff;
-$wh-alt:            #fcfaf8; 
+$wh-alt:            #f4fbfa;
 
 $dk:                #121212;
 $dk-alt:            $acc; // Tied to brand accent for consistency
 
 // Footer Specifics
-$footer-bg:         $ups-brown; 
+$footer-bg:         $ups-brown;
 $footer-text:       $wh;
 $footer-link-hover: $ups-gold;
 
@@ -55,7 +55,7 @@ $text-dark:         #333333;
 $text-muted:        #666666;
 $text-subtle:       #888888;
 $icon-muted:        #cccccc;
-$link-blue:         #1D2E6F;
+$link-blue:         #008d7c;
 $text-faint:        #777777;
 $text-disabled:     #e0e0e0;
 $surface-hover:     #fffcf5;
@@ -72,20 +72,20 @@ $t-md:              20px;
 
 // --- 4. SPACING SYSTEM ---
 // Absolute Scale
-$g-8:               8px; 
-$g-10:              10px; 
-$g-12:              12px; 
-$g-16:              16px; 
-$g-20:              20px; 
+$g-8:               8px;
+$g-10:              10px;
+$g-12:              12px;
+$g-16:              16px;
+$g-20:              20px;
 $g-24:              24px;
-$g-32:              32px; 
+$g-32:              32px;
 $g-40:              40px;
 $g-48:              48px;
 $g-60:              60px;
-$g-64:              64px; 
+$g-64:              64px;
 
 // Semantic Scale (Aliases)
-$g-s:               $g-16; 
+$g-s:               $g-16;
 $g-md:              $g-20;
 $g-l:               $g-32;
 $g-xl:              $g-64;
@@ -95,6 +95,6 @@ $bd-r-m:            2.5rem;
 $bd-r-l:            4rem;
 
 $bx-s-1:            rgba(0, 0, 0, 0.05) 0px 4px 12px -3px, rgba(0, 0, 0, 0.14) 0px 2px 5px 0px;
-$bx-s-2:            0 15px 32px -3px #{"rgba(0 0 0 / 7.8%)"}, 
-                    0 4px 12px -2px #{"rgba(0 0 0 / 7.8%)"}, 
+$bx-s-2:            0 15px 32px -3px #{"rgba(0 0 0 / 7.8%)"},
+                    0 4px 12px -2px #{"rgba(0 0 0 / 7.8%)"},
                     0 2px 6px 0 #{"rgba(0 0 0 / 5.9%)"};

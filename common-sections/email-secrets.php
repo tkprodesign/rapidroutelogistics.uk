@@ -1,7 +1,7 @@
 <?php
 return [
     'RESEND_API_KEY' => 're_dBdLwGs9_5BJL4PX8ZePHuz3w9UttrwYd',
-    'NOREPLY_FROM_EMAIL' => 'noreply@veteranlogisticsgroup.us',
+    'NOREPLY_FROM_EMAIL' => 'noreply@rapidroutelogistics.uk',
     'SMTP_HOST' => 'mail.spacemail.com',
     'SMTP_PORT' => '465',
     'SMTP_SECURE' => 'ssl',

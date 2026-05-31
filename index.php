@@ -7,7 +7,7 @@ include('./app.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veteran Logistics Group | Shipping, Tracking, Freight & Logistics Solutions</title>
+    <title>Rapid Route Logistics | Shipping, Tracking, Freight & Logistics Solutions</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     
     
@@ -54,12 +54,12 @@ include('./app.php');
                 <div class="container">
                     <div class="heading">
                         <!-- <p class="pre-heading">Courier & Logistics Solution</p> -->
-                        <h1 class="main-heading">Reliable Logistics. Trusted Delivery. Serving Those Who <span class="accent">Served.</span> </h1>
-                        <p class="sub-heading">Veteran Logistics Group provides secure, fast, and reliable delivery solutions for veterans, their families, and government agencies, while operating within a broader carrier support network that includes UPS.</p>
+                        <h1 class="main-heading">Rapid Routes. Trusted Delivery. Built to <span class="accent">Move Forward.</span> </h1>
+                        <p class="sub-heading">Rapid Route Logistics delivers secure, fast, and reliable transport for businesses, families, and time-critical operations with clear tracking and hands-on support from pickup to final mile.</p>
                     </div>
                     <form class="c-t-a" action="/track/" method="get">
                         <div class="input-box">
-                            <input type="text" name="id" placeholder="Tracking Number or InfoNoticeÂ®">
+                            <input type="text" name="id" placeholder="Tracking Number">
                         </div>
                         <button type="submit" class="pri">Track <span class="material-symbols-outlined">chevron_right</span></button>
                     </form>
@@ -69,12 +69,12 @@ include('./app.php');
                 <div class="dark-bg"></div>
                 <div class="container">
                     <div class="heading">
-                        <h1 class="main-heading">Engineered for Precision. <span class="accent">Built for Duty.</span></h1>
-                        <p class="sub-heading">A specialized courier division delivering disciplined logistics for official operations, secure transport, and mission-critical movements.</p>
+                        <h1 class="main-heading">Engineered for Precision. <span class="accent">Ready for Every Route.</span></h1>
+                        <p class="sub-heading">A modern courier and freight team coordinating scheduled routes, urgent dispatches, secure parcels, and mission-critical movements across domestic and international lanes.</p>
                     </div>
                     <form class="c-t-a" action="/track/" method="get">
                         <div class="input-box">
-                            <input type="text" name="id" placeholder="Tracking Number or InfoNoticeÂ®">
+                            <input type="text" name="id" placeholder="Tracking Number">
                         </div>
                         <button type="submit" class="pri">Track<span class="material-symbols-outlined">chevron_right</span></button>
                     </form>
@@ -88,26 +88,26 @@ include('./app.php');
 
 
 
-<section class="ups-branch-context">
+<section class="ups-branch-context brand-context">
     <div class="container">
         <div class="ups-branch-card">
             <div class="content">
-                <p class="eyebrow">UPS Network Relationship</p>
-                <h2>Veteran Logistics Group Operates as a UPS Branch Service Partner</h2>
+                <p class="eyebrow">Updated Rapid Route Logistics Brand</p>
+                <h2>Built Around Speed, Visibility, and Reliable Route Control</h2>
                 <p>
-                    Veteran Logistics Group serves as a UPS branch service partner, providing day-to-day customer support, shipment processing, and delivery coordination under UPS-aligned standards.
+                    Rapid Route Logistics combines responsive dispatch, careful handling, and proactive shipment updates to keep every delivery moving with confidence.
                 </p>
                 <p>
-                    This gives our customers branch-level help from a dedicated team while benefiting from UPS-compatible routing, tracking visibility, and dependable delivery coverage across domestic and international lanes.
+                    Our refreshed identity reflects the way we work: sharp planning, forward momentum, and dependable support for customers who need logistics to stay simple.
                 </p>
                 <ul>
-                    <li>Official branch-style customer assistance for veterans, families, and agencies.</li>
-                    <li>UPS-aligned handling, tracking, and transit workflow standards.</li>
-                    <li>Reliable escalation paths through broader UPS support channels when required.</li>
+                    <li>Dedicated support for parcels, documents, freight, and specialty deliveries.</li>
+                    <li>Time-definite routing with clear checkpoints from pickup to delivery.</li>
+                    <li>Secure handling standards for valuable, sensitive, and urgent shipments.</li>
                 </ul>
             </div>
             <div class="visual">
-                <img src="https://www.ups.com/assets/resources/webcontent/images/ups-logo.svg" alt="Official UPS logo">
+                <img src="<?= htmlspecialchars(asset_url('/assets/images/branding/rapid-route-logistics-icon-dark.png')); ?>" alt="Rapid Route Logistics icon">
             </div>
         </div>
     </div>
@@ -118,7 +118,7 @@ include('./app.php');
     <div class="container">
         <div class="heading .heading-1">
             <h2>Precision in Motion. Deliveries You Can Count On</h2>
-            <p>From urgent parcels to secure government deliveries, Veteran Logistics Group handles every shipment with <b>care, speed, and reliability</b>. Our team turns complex logistics into <b>smooth, dependable solutions</b>, so you can focus on what matters most.</p>
+            <p>From urgent parcels to scheduled freight, Rapid Route Logistics handles every shipment with <b>care, speed, and reliability</b>. Our team turns complex logistics into <b>smooth, dependable solutions</b>, so you can focus on what matters most.</p>
         </div>
         <div class="content">
             <div class="col">
@@ -175,8 +175,8 @@ include('./app.php');
 <section class="services-alt">
     <div class="container">
         <div class="heading">
-            <h2>Logistics Solutions for Veterans and Government Services</h2>
-            <p>From urgent parcels to critical government documents, Veteran Logistics Group delivers with precision, security, and discipline, with network support that includes UPS services where needed. Going the extra mile for those who served.</p>
+            <h2>Logistics Solutions for Business and Personal Shipping</h2>
+            <p>From urgent parcels to critical business documents, Rapid Route Logistics delivers with precision, security, and discipline. Going the extra mile for every customer, every route, every time.</p>
             <div class="toggle">
                 <button href="#" class="btn1 active">Business</button>
                 <button href="#" class="btn2">Personal</button>
@@ -186,8 +186,8 @@ include('./app.php');
             <!-- Business / Government Services -->
             <div class="g1 active">
                 <div class="col">
-                    <h3>Government Logistics</h3>
-                    <p>Compliance & Security. Time-sensitive and confidential deliveries for government agencies & personnel.</p>
+                    <h3>Business Logistics</h3>
+                    <p>Compliance & Security. Time-sensitive and confidential deliveries for companies, teams, and professionals.</p>
                     <a href="/shipping">Start Order <span class="material-symbols-outlined">chevron_right</span></a>
                 </div>
                 <div class="col">
@@ -197,21 +197,21 @@ include('./app.php');
                 </div>
                 <div class="col">
                     <h3>Inter-City & Regional Delivery</h3>
-                    <p>Coverage. Shipments reach cities and regions on schedule, supporting official operations.</p>
+                    <p>Coverage. Shipments reach cities and regions on schedule, supporting daily operations.</p>
                     <a href="/shipping">Ship Route <span class="material-symbols-outlined">chevron_right</span></a>
                 </div>
                 <div class="col">
-                    <h3>Document & Official Parcel Delivery</h3>
+                    <h3>Document & Priority Parcel Delivery</h3>
                     <p>Confidentiality. Critical documents and packages are transported securely at every stage.</p>
                     <a href="/shipping">Send Docs <span class="material-symbols-outlined">chevron_right</span></a>
                 </div>
             </div>
 
-            <!-- Personal / Veteran & Family Services -->
+            <!-- Personal & Family Services -->
             <div class="g2">
                 <div class="col">
                     <h3>Same-Day Delivery</h3>
-                    <p>Urgency. Critical packages for veterans and families are picked up and delivered the same day.</p>
+                    <p>Urgency. Critical packages for families and individuals are picked up and delivered the same day.</p>
                     <a href="/shipping">Ship Today <span class="material-symbols-outlined">chevron_right</span></a>
                 </div>
                 <div class="col">
@@ -221,7 +221,7 @@ include('./app.php');
                 </div>
                 <div class="col">
                     <h3>Assisted Pickup & Delivery</h3>
-                    <p>Convenience. Pickups and deliveries for elderly or mobility-challenged veterans are supported efficiently.</p>
+                    <p>Convenience. Pickups and deliveries for elderly or mobility-challenged customers are supported efficiently.</p>
                     <a href="/shipping">Book Pickup <span class="material-symbols-outlined">chevron_right</span></a>
                 </div>
                 <div class="col">
@@ -241,15 +241,15 @@ include('./app.php');
 <section class="banner-1">
     <div class="container">
         <div class="left">
-            <h3>Save up to 65%* When You Ship International</h3>
-            <p>Start your discounted international shipment with this link to automatically apply discount code â€œGoIntL2026.â€</p>
+            <h3>Move Faster With Route-Ready Shipping</h3>
+            <p>Plan domestic, regional, and international shipments with a support team ready to quote, route, and track your delivery.</p>
             <a href="#">*
                 <span class="txt">Terms and Conditions apply</span>
                 <span class="material-symbols-outlined icon">open_in_new</span>
             </a>
         </div>
         <div class="right">
-            <a href="/shipping?coupon=GoIntL2026">Ship Here to Save<span class="material-symbols-outlined">chevron_right</span></a>
+            <a href="/shipping?coupon=GoIntL2026">Start Shipping<span class="material-symbols-outlined">chevron_right</span></a>
         </div>
     </div>
 </section>
@@ -260,32 +260,32 @@ include('./app.php');
 <section class="cards-container">
     <div class="container">
         <div class="heading heading-1-1-1">
-            <h2>World-Class Services You Can Count On</h2>
-            <p>Customer first, people led, innovation driven.</p>
+            <h2>Rapid Route Services You Can Count On</h2>
+            <p>Fast routing, careful handling, and support-led delivery.</p>
         </div>
         <div class="content">
             <div class="col">
                 <div class="img-wrapper">
-                    <img src="<?= htmlspecialchars(asset_url('/assets/images/home/cd1.jpg')); ?>" alt="Ship and Scale With High Standards">
+                    <img src="<?= htmlspecialchars(asset_url('/assets/images/home/cd1.jpg')); ?>" alt="Ship and Scale With Rapid Route">
                 </div>
                 <div class="card-content">
-                    <h4>Ship and Scale With High Standards</h3>
-                    <p>When demand grows, you need the right shipping partner. Luxury brand Anima Iris turned to a major carrier network to deliver around the globe.</p>
-                    <a target="_blank" href="https://about.ups.com/us/en/our-stories/customer-first/see-how-ups-delivers-for-one-luxury-bag-brand-crafted-by-african.html">
-                        <span class="text">See the Success Story</span>
+                    <h4>Ship and Scale With Rapid Route</h3>
+                    <p>When demand grows, you need a delivery partner that can coordinate parcels, documents, and freight without slowing your operation down.</p>
+                    <a target="_blank" href="/services/">
+                        <span class="text">Explore Services</span>
                         <span class="material-symbols-outlined icon">open_in_new</span>
                     </a>
                 </div>
             </div>
             <div class="col">
                 <div class="img-wrapper">
-                    <img src="<?= htmlspecialchars(asset_url('/assets/images/home/cd2.jpg')); ?>" alt="5 Things Every Business Should Know About Returns">
+                    <img src="<?= htmlspecialchars(asset_url('/assets/images/home/cd2.jpg')); ?>" alt="Returns, Re-Delivery, and Customer Care">
                 </div>
                 <div class="card-content">
-                    <h4>5 Things Every Business Should Know About Returns</h4>
-                    <p>Yes, shoppers do read your return policy, and having a good one can make or break customer loyalty.</p>
-                    <a target="_blank" href="https://about.ups.com/us/en/our-stories/customer-first/5-things-every-business-should-know-about-returns-in-2025-and-be.html">
-                        <span class="text">Learn How</span>
+                    <h4>Returns, Re-Delivery, and Customer Care</h4>
+                    <p>Make reverse logistics easier with clear support for returns, re-delivery requests, and shipment issue resolution.</p>
+                    <a target="_blank" href="/support/">
+                        <span class="text">Get Support</span>
                         <span class="material-symbols-outlined icon">open_in_new</span>
                     </a>
                 </div>
@@ -305,74 +305,31 @@ include('./app.php');
         <div class="content">
             <details open>
                 <summary>
-                    Fuel Surcharge
+                    New Rapid Route Logistics Branding
                     <span class="material-symbols-outlined accordion-icon">keyboard_arrow_down</span>
                 </summary>
                 <div class="inner-content">
-                    <p>Effective March 2, 2026, the U.S. International Ground Export Import Fuel Surcharge will change.</p>
-                    <a href="https://assets.ups.com/adobe/assets/urn:aaid:aem:13ea22a9-bd18-49ee-a87c-c3b6f761a002/original/as/us-domestic-fuel-flyer.pdf" target="_blank" rel="noopener noreferrer">Read More About the Rate Change <span class="material-symbols-outlined">open_in_new</span></a>
+                    <p>Our website has been refreshed with the new Rapid Route Logistics identity, colors, logo system, and customer-first messaging.</p>
                 </div>
             </details>
 
             <details>
                 <summary>
-                    Information about Flight 2976 Accident
+                    Faster Quote Support
                     <span class="material-symbols-outlined accordion-icon">chevron_right</span>
                 </summary>
                 <div class="inner-content">
-                    <p>Read more on the <a href="https://about.ups.com/us/en/newsroom/ups-aircraft-accident.html" target="_blank" rel="noopener noreferrer">UPS aircraft accident <span class="material-symbols-outlined">open_in_new</span></a></p>
+                    <p>Use the quote option or support chat to share pickup, destination, and item details so our team can recommend the right route.</p>
                 </div>
             </details>
 
             <details>
                 <summary>
-                    Updated Tariff and Rate and Service Guides
+                    Shipment Visibility
                     <span class="material-symbols-outlined accordion-icon">chevron_right</span>
                 </summary>
                 <div class="inner-content">
-                    <p>Carrier tariff, service guide, and network terms were updated effective January 26, 2026.</p>
-                    <a href="https://www.ups.com/us/en/support/shipping-support/shipping-costs-rates" target="_blank" rel="noopener noreferrer">View Guides <span class="material-symbols-outlined">open_in_new</span></a>
-                </div>
-            </details>
-
-            <details>
-                <summary>
-                    Domestic Fuel Surcharge
-                    <span class="material-symbols-outlined accordion-icon">chevron_right</span>
-                </summary>
-                <div class="inner-content">
-                    <p>Effective January 5, 2026, the U.S. Ground Domestic and the UPS Ground SaverÂ® Fuel Surcharge will change. <a href="https://assets.ups.com/adobe/assets/urn:aaid:aem:13ea22a9-bd18-49ee-a87c-c3b6f761a002/original/as/us-domestic-fuel-flyer.pdf" target="_blank" rel="noopener noreferrer">Read More About the Rate Change <span class="material-symbols-outlined">open_in_new</span></a></p>
-                </div>
-            </details>
-
-            <details>
-                <summary>
-                    Effective January 26, 2026: Large Package and Additional Handling Changes
-                    <span class="material-symbols-outlined accordion-icon">chevron_right</span>
-                </summary>
-                <div class="inner-content">
-                    <p>Changes previously scheduled for December 22, 2025, have been delayed until January 26, 2026...</p>
-                </div>
-            </details>
-
-            <details>
-                <summary>
-                    Demand Surcharge Update
-                    <span class="material-symbols-outlined accordion-icon">chevron_right</span>
-                </summary>
-                <div class="inner-content">
-                    <p>Updated Demand Surcharge information is now available for review... effective September 28, 2025.</p>
-                    <a href="https://assets.ups.com/adobe/assets/urn:aaid:aem:2c542692-de10-4fa3-b507-3b4f181e0953/original/as/demand-surcharges-us-en.pdf" target="_blank" rel="noopener noreferrer">Read more on applicable Demand Surcharges <span class="material-symbols-outlined">open_in_new</span></a>
-                </div>
-            </details>
-
-            <details>
-                <summary>
-                    Learn More About Recent Trade Policy and Tariff Changes
-                    <span class="material-symbols-outlined accordion-icon">chevron_right</span>
-                </summary>
-                <div class="inner-content">
-                    <p>Weâ€™ll help you stay informed about the <a href="https://www.ups.com/us/en/shipping/international-shipping/tariffs" target="_blank" rel="noopener noreferrer">impacts of the new tariffs <span class="material-symbols-outlined">open_in_new</span></a></p>
+                    <p>Keep your tracking number handy to check delivery progress, exception updates, and important shipment milestones.</p>
                 </div>
             </details>
         </div>

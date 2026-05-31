@@ -159,7 +159,7 @@ if (!$has_error && isset($conn) && $conn instanceof mysqli) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shipment Exception | Veteran Logistics Group</title>
+    <title>Shipment Exception | Rapid Route Logistics</title>
     <link rel="shortcut icon" href="/assets/images/branding/mark-only.png?v=<?php echo time(); ?>" type="image/png">
     <link rel="stylesheet" href="/assets/stylesheets/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="/assets/stylesheets/tracking.css?v=<?php echo time(); ?>">

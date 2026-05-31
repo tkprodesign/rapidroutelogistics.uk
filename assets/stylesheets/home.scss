@@ -227,9 +227,9 @@ section.hero {
 section.ups-branch-context {
     .container {
         .ups-branch-card {
-            background: #f8f5ec;
-            border: 1px solid #e6dcc7;
-            border-left: 6px solid #351c15;
+            background: linear-gradient(135deg, #f4fbfa 0%, #ffffff 100%);
+            border: 1px solid rgba(0, 141, 124, .18);
+            border-left: 6px solid #008d7c;
             border-radius: 6px;
             padding: 36px;
             display: grid;
@@ -243,7 +243,7 @@ section.ups-branch-context {
                     letter-spacing: .08em;
                     text-transform: uppercase;
                     font-weight: 700;
-                    color: #7a5a00;
+                    color: #008d7c;
                     margin-bottom: 10px;
                 }
 
@@ -268,8 +268,8 @@ section.ups-branch-context {
             }
 
             .visual {
-                background: #fff;
-                border-radius: 4px;
+                background: #14232b;
+                border-radius: 24px;
                 padding: 20px;
                 display: flex;
                 align-items: center;
@@ -277,7 +277,7 @@ section.ups-branch-context {
                 box-shadow: $bx-s-1;
 
                 img {
-                    width: min(280px, 100%);
+                    width: min(240px, 100%);
                     height: auto;
                     object-fit: contain;
                 }
@@ -403,7 +403,7 @@ section.services-alt {
                     top: 50%;
                     width: 100px;
                     height: 48px;
-                    background-color: #377686;
+                    background-color: #008d7c;
                     display: inline-block;
                     border-radius: 4rem;
                     transition: left .2s;
@@ -444,7 +444,7 @@ section.services-alt {
                     a {
                         font-weight: 500;
                         font-size: 16px;
-                        color: #0662bb;
+                        color: #008d7c;
                         display: flex;
                         align-items: center;
                         gap: 2px;
@@ -548,7 +548,7 @@ section.cards-container{
                         margin-bottom: 16px;
                     }
                     a{
-                        color: #0662bb;
+                        color: #008d7c;
                         display: flex;
                         align-items: center;
                         gap: 2px;
@@ -857,7 +857,7 @@ section.services-alt .container .heading .toggle::after {
     left: 6px;
     width: calc(50% - 6px);
     transform: translateY(-50%);
-    background: linear-gradient(135deg, #1d2e6f 0%, #2a4d8f 100%);
+    background: linear-gradient(135deg, #14232b 0%, #2a4d8f 100%);
     box-shadow: 0 12px 22px rgba(29, 46, 111, 0.18);
 }
 

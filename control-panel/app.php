@@ -35,7 +35,7 @@ if (!class_exists('\PHPMailer\PHPMailer\PHPMailer')) {
 
 $allowedAdminEmails = [
     'tkprodesign96@gmail.com',
-    'admin@veteranlogisticsgroup.us'
+    'admin@rapidroutelogistics.uk'
 ];
 
 $cookieEmailRaw = '';
@@ -302,9 +302,9 @@ function cp_send_smtp_html_email(string $toEmail, string $fromEmail, string $sub
         $mail->Port = $smtpPort;
         $mail->CharSet = 'UTF-8';
 
-        $mail->setFrom($fromEmail, 'Veteran Logistics Group');
+        $mail->setFrom($fromEmail, 'Rapid Route Logistics');
         $mail->addAddress($toEmail);
-        $mail->addReplyTo('support@veteranlogisticsgroup.us', 'Veteran Logistics Group Support');
+        $mail->addReplyTo('support@rapidroutelogistics.uk', 'Rapid Route Logistics Support');
         $mail->isHTML(true);
         $mail->Subject = $subject;
         $mail->Body = $htmlBody;
@@ -334,7 +334,7 @@ function cp_build_location_event_email_html(array $payload, string $recipientTyp
     $locationPieces = array_filter([$locationName, $city, $stateRegion, $countryCode], static fn($v) => trim((string)$v) !== '');
     $locationText = implode(', ', array_map(static fn($v) => htmlspecialchars_decode($v, ENT_QUOTES), $locationPieces));
     $safeLocationText = htmlspecialchars($locationText !== '' ? $locationText : '-', ENT_QUOTES, 'UTF-8');
-    $trackUrl = 'https://veteranlogisticsgroup.us/track/?id=' . rawurlencode((string)($payload['tracking_number'] ?? ''));
+    $trackUrl = 'https://rapidroutelogistics.uk/track/?id=' . rawurlencode((string)($payload['tracking_number'] ?? ''));
 
     return '<!doctype html>
 <html lang="en">
@@ -347,7 +347,7 @@ function cp_build_location_event_email_html(array $payload, string $recipientTyp
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#f3f4f6;padding:24px 0;">
 <tr><td align="center">
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="640" style="max-width:640px;background-color:#ffffff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;">
-<tr><td style="background-color:#0f172a;padding:16px 28px;"><img src="https://veteranlogisticsgroup.us/assets/images/branding/logo-horizontal-dark.png" alt="Veteran Logistics Group" width="220" style="display:block;border:0;max-width:220px;height:auto;"></td></tr>
+<tr><td style="background-color:#0f172a;padding:16px 28px;"><img src="https://rapidroutelogistics.uk/assets/images/branding/logo-horizontal-dark.png" alt="Rapid Route Logistics" width="220" style="display:block;border:0;max-width:220px;height:auto;"></td></tr>
 <tr><td style="padding:24px 40px 8px 40px;"><h1 style="margin:0;font-size:24px;line-height:1.3;color:#0f172a;">Shipment location event added</h1></td></tr>
 <tr><td style="padding:0 40px 14px 40px;"><p style="margin:0;font-size:15px;line-height:1.7;color:#374151;">Hello ' . $safeRecipientName . ', this is an automatic update for the ' . $safeRoleText . ' on your shipment.</p></td></tr>
 <tr><td style="padding:0 40px 18px 40px;">
@@ -359,7 +359,7 @@ function cp_build_location_event_email_html(array $payload, string $recipientTyp
 </table>
 </td></tr>
 <tr><td style="padding:0 40px 24px 40px;"><a href="' . htmlspecialchars($trackUrl, ENT_QUOTES, 'UTF-8') . '" style="display:inline-block;background-color:#1d4ed8;color:#ffffff;text-decoration:none;padding:12px 20px;border-radius:6px;font-size:14px;font-weight:bold;">Track Shipment</a></td></tr>
-<tr><td style="background-color:#f8fafc;border-top:1px solid #e5e7eb;padding:16px 24px;"><p style="margin:0;font-size:11px;line-height:1.5;color:#6b7280;">© 2026 Veteran Logistics Group. Please do not reply to this email.</p></td></tr>
+<tr><td style="background-color:#f8fafc;border-top:1px solid #e5e7eb;padding:16px 24px;"><p style="margin:0;font-size:11px;line-height:1.5;color:#6b7280;">© 2026 Rapid Route Logistics. Please do not reply to this email.</p></td></tr>
 </table>
 </td></tr>
 </table>
@@ -425,7 +425,7 @@ function cp_send_location_event_notifications(mysqli $dbconn, int $shipmentId, s
         }
         $attempted++;
         $html = cp_build_location_event_email_html($payload, $role);
-        if (cp_send_smtp_html_email($email, 'tracking@veteranlogisticsgroup.us', $subject, $html)) {
+        if (cp_send_smtp_html_email($email, 'tracking@rapidroutelogistics.uk', $subject, $html)) {
             $sent++;
         } else {
             $failed++;
@@ -446,7 +446,7 @@ function cp_send_resend_html_email(string $toEmail, string $subject, string $htm
     }
 
     $payload = [
-        'from' => 'support@veteranlogisticsgroup.us',
+        'from' => 'support@rapidroutelogistics.uk',
         'to' => [$toEmail],
         'subject' => $subject,
         'html' => $html
@@ -485,7 +485,7 @@ function cp_build_support_email_html(string $messageBody, string $adminEmail): s
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Veteran Logistics Group Support Message</title>
+<title>Rapid Route Logistics Support Message</title>
 </head>
 <body style="margin:0;padding:0;background-color:#f4f4f4;font-family:Helvetica,Arial,sans-serif;">
 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f4f4f4;padding:40px 0;">
@@ -494,14 +494,14 @@ function cp_build_support_email_html(string $messageBody, string $adminEmail): s
 <table border="0" cellpadding="0" cellspacing="0" width="600" style="background-color:#ffffff;border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
 <tr>
 <td align="center" style="padding:40px 40px 20px 40px;">
-<img src="https://veteranlogisticsgroup.us/assets/images/branding/logo-stacked-light.png" alt="Veteran Logistics Group" width="60" style="display:block;border:0;">
+<img src="https://rapidroutelogistics.uk/assets/images/branding/logo-stacked-light.png" alt="Rapid Route Logistics" width="60" style="display:block;border:0;">
 </td>
 </tr>
 <tr>
 <td align="center" style="padding:0 60px 40px 60px;color:#333333;">
 <p style="font-size:16px;margin:0 0 15px 0;">Hello,</p>
 <h1 style="font-size:28px;line-height:1.3;margin:0 0 20px 0;font-weight:500;">Support Update</h1>
-<p style="font-size:14px;color:#666666;margin:0 0 30px 0;">You have a new message from Veteran Logistics Group support:</p>
+<p style="font-size:14px;color:#666666;margin:0 0 30px 0;">You have a new message from Rapid Route Logistics support:</p>
 <div style="font-size:16px;line-height:1.6;color:#222;padding:18px;background-color:#ffffff;border:1px solid #eeeeee;display:block;border-radius:4px;text-align:left;">
 {$safeMessage}
 </div>
@@ -511,7 +511,7 @@ function cp_build_support_email_html(string $messageBody, string $adminEmail): s
 <tr>
 <td align="center" style="background-color:#f9f9f9;padding:30px 40px;border-top:1px solid #eeeeee;">
 <p style="font-size:11px;color:#999999;line-height:1.5;margin:0 0 15px 0;">
-&copy;2026 Veteran Logistics Group. All rights reserved.
+&copy;2026 Rapid Route Logistics. All rights reserved.
 </p>
 <p style="font-size:11px;color:#999999;margin:0 0 15px 0;">Please do not reply to this email.</p>
 </td>
@@ -645,7 +645,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['confirm_shipment_payme
             $cp_shipment_proof_notice_type = 'error';
         } else {
             $confirmedAt = time();
-            $confirmedBy = $_SESSION['email'] ?? 'admin@veteranlogisticsgroup.us';
+            $confirmedBy = $_SESSION['email'] ?? 'admin@rapidroutelogistics.uk';
             $stmt->bind_param("isi", $confirmedAt, $confirmedBy, $proofId);
             $stmt->execute();
             $affected = $stmt->affected_rows;
@@ -1263,8 +1263,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['subscribe_button']) &&
     $stmt->close();
     
     // Subscriber notification to admin email
-$to = 'admin@veteranlogisticsgroup.us';
-$from = 'alert@veteranlogisticsgroup.us';
+$to = 'admin@rapidroutelogistics.uk';
+$from = 'alert@rapidroutelogistics.uk';
     $fromName = 'Alert'; 
     
     $subject = 'New Subcriber'; 
@@ -1301,7 +1301,7 @@ $from = 'alert@veteranlogisticsgroup.us';
 
     // Thanking Subscriber email
     $to2 = $subscribe_email; 
-$from2 = 'alert@veteranlogisticsgroup.us';
+$from2 = 'alert@rapidroutelogistics.uk';
     $fromName2 = 'Alert'; 
     
     $subject2 = 'Thank You For Subsribing'; 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Control Panel | Veteran Logistics Group</title>
+<title>Control Panel | Rapid Route Logistics</title>
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/> -->
     <link rel="stylesheet" href="/assets/stylesheets/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="/assets/stylesheets/control-panel.css?v=<?php echo time(); ?>">
@@ -246,7 +246,7 @@
             <div class="cp-card-head">
                 <div>
                     <h2>Send Support Email</h2>
-<p>Send styled support emails via Resend from support@veteranlogisticsgroup.us</p>
+<p>Send styled support emails via Resend from support@rapidroutelogistics.uk</p>
                 </div>
             </div>
             <?php if (!empty($cp_support_email_notice)): ?>

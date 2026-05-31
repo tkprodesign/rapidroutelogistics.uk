@@ -97,7 +97,7 @@
 }
 .track-container .tracking-visual .progress-line .fill {
   height: 100%;
-  background: #2A4D8F;
+  background: #0aa391;
   transition: 1s ease-in-out;
 }
 .track-container .tracking-visual .nodes {
@@ -131,12 +131,12 @@
   text-align: center;
 }
 .track-container .tracking-visual .nodes .node.done, .track-container .tracking-visual .nodes .node.active {
-  color: #2A4D8F;
+  color: #0aa391;
 }
 .track-container .tracking-visual .nodes .node.done i, .track-container .tracking-visual .nodes .node.active i {
-  border-color: #2A4D8F;
+  border-color: #0aa391;
   color: #ffffff;
-  background: #2A4D8F;
+  background: #0aa391;
 }
 .track-container .tracking-visual .nodes .node.active i {
   box-shadow: 0 0 0 5px rgba(42, 77, 143, 0.15);
@@ -194,7 +194,7 @@
   color: #b42318;
 }
 .track-container .timeline .timeline-item:first-child {
-  color: #2A4D8F;
+  color: #0aa391;
 }
 .track-container .timeline .timeline-item.is-negative {
   background: #fff7f7;
@@ -472,7 +472,7 @@
 }
 .track-container.exception-pay-container .exception-pay-loading .material-symbols-outlined {
   font-size: 28px;
-  color: #2A4D8F;
+  color: #0aa391;
 }
 .track-container.exception-pay-container .exception-pay-loading strong {
   display: block;

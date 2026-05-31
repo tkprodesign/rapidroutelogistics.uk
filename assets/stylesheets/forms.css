@@ -51,7 +51,7 @@ section.form-section form .container .heading h2::after {
   bottom: -1px;
   width: 80px;
   height: 4px;
-  background-color: #E1AE2A;
+  background-color: #008d7c;
   display: block;
 }
 section.form form .container .heading p,
@@ -354,7 +354,7 @@ body.login-page section.form-section form .container .content .input-box .forgot
 body.login-page section.form form .container .content .input-box .forgot-link a,
 body.login-page section.form-section form .container .content .input-box .forgot-link a {
   font-size: 14px;
-  color: #1D2E6F;
+  color: #14232b;
   text-decoration: underline;
 }
 body.login-page section.form form .container .content .terms-box,
@@ -369,7 +369,7 @@ body.login-page section.form-section form .container .content .terms-box p {
 }
 body.login-page section.form form .container .content .terms-box p a,
 body.login-page section.form-section form .container .content .terms-box p a {
-  color: #1D2E6F;
+  color: #14232b;
   text-decoration: underline;
 }
 body.login-page section.form form .container .content .action-box .btn-primary,
@@ -378,7 +378,7 @@ body.login-page section.form-section form .container .content .action-box .btn-p
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background-color: #E1AE2A;
+  background-color: #008d7c;
   color: #00204A;
   border: none;
   border-radius: 50px;
@@ -419,7 +419,7 @@ body.login-page section.form-section form .container .content .action-box .signu
 }
 body.login-page section.form form .container .content .action-box .signup-text a,
 body.login-page section.form-section form .container .content .action-box .signup-text a {
-  color: #1D2E6F;
+  color: #14232b;
   text-decoration: underline;
 }
 body.login-page section.form form .container .content .social-login,
@@ -483,7 +483,7 @@ body.login-page section.form-section form .container .content .input-box select 
 
 body.login-page section.form form .container .content .action-box .btn-primary,
 body.login-page section.form-section form .container .content .action-box .btn-primary {
-  background: linear-gradient(135deg, #1d2e6f 0%, #2a4d8f 100%);
+  background: linear-gradient(135deg, #14232b 0%, #2a4d8f 100%);
   color: #fff;
   min-height: 56px;
   box-shadow: 0 18px 32px rgba(21, 36, 87, 0.18);
