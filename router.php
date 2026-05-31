@@ -8,21 +8,26 @@ if ($uri !== '/' && file_exists($filePath) && !is_dir($filePath)) {
     return false;
 }
 
+function serve_php($path) {
+    chdir(dirname($path));
+    require $path;
+}
+
 if (is_dir($filePath)) {
     $index = rtrim($filePath, '/') . '/index.php';
     if (file_exists($index)) {
-        require $index;
+        serve_php($index);
         return true;
     }
 }
 
 if (file_exists($filePath . '.php')) {
-    require $filePath . '.php';
+    serve_php($filePath . '.php');
     return true;
 }
 
 if (file_exists($filePath . '/index.php')) {
-    require $filePath . '/index.php';
+    serve_php($filePath . '/index.php');
     return true;
 }
 

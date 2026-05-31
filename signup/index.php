@@ -22,7 +22,14 @@
     
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://kit.fontawesome.com/79b279a6c9.js" crossorigin="anonymous"></script>
+    <?php
+    $signupDevMode = (function() {
+        $h = strtolower($_SERVER['HTTP_HOST'] ?? '');
+        return str_contains($h,'replit.dev')||str_contains($h,'replit.app')||str_contains($h,'localhost')||str_contains($h,'127.0.0.1')||$h==='';
+    })();
+    if (!$signupDevMode): ?>
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <?php endif; ?>
 </head>
 
 <body>
@@ -33,7 +40,7 @@
         <div class="container">
             <div class="heading">
                 <h2>Sign Up</h2>
-                <p>Already have a profile? <a href="/">Log In</a></p>
+                <p>Already have a profile? <a href="/login/">Log In</a></p>
             </div>
 
             <div class="content">
@@ -82,9 +89,11 @@
                     </p>
                 </div>
 
+                <?php if (!$signupDevMode): ?>
                 <div class="input-box">
                     <div class="cf-turnstile" data-sitekey="0x4AAAAAACwnvMl9sbRLv3K2"></div>
                 </div>
+                <?php endif; ?>
 
                 <div class="input-box">
                     <button type="submit">

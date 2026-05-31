@@ -24,6 +24,18 @@ if (file_exists($signupEmailConfigPath)) {
    TURNSTILE VERIFY
 -------------------------- */
 function signup_verify_turnstile(string $token, string $remoteIp): bool {
+    // Bypass Turnstile on dev / Replit preview environments
+    $host = strtolower($_SERVER['HTTP_HOST'] ?? '');
+    if (
+        str_contains($host, 'replit.dev') ||
+        str_contains($host, 'replit.app') ||
+        str_contains($host, 'localhost') ||
+        str_contains($host, '127.0.0.1') ||
+        $host === ''
+    ) {
+        return true;
+    }
+
     $secretKey = '0x4AAAAAACwnvIudy3lvL60Re4JVpWPk5Ks';
 
     if ($token === '') return false;
