@@ -2,10 +2,12 @@
 if (!defined('COMMON_SECTIONS_GLOBALS_LOADED')) {
     define('COMMON_SECTIONS_GLOBALS_LOADED', true);
 
-    $global_db_host = "sql300.byethost18.com";
-    $global_db_user = "b18_41230477";
-    $global_db_pass = "Wateva06@";
-    $global_db_name = "b18_41230477_db";
+    $global_db_host = getenv('DB_HOST') ?: '127.0.0.1';
+    $global_db_user = getenv('DB_USER') ?: 'logistics_user';
+    $global_db_pass = getenv('DB_PASS') ?: 'logistics_pass_2024';
+    $global_db_name = getenv('DB_NAME') ?: 'logistics_db';
+    $global_db_port = (int)(getenv('DB_PORT') ?: 3306);
+    $global_db_sock = getenv('DB_SOCK') ?: '/home/runner/mysql-run/mysql.sock';
 
     $globalConn = null;
 
@@ -14,7 +16,7 @@ if (!defined('COMMON_SECTIONS_GLOBALS_LOADED')) {
     } elseif (isset($dbconn) && $dbconn instanceof mysqli && empty($dbconn->connect_error)) {
         $globalConn = $dbconn;
     } else {
-        $globalConn = new mysqli($global_db_host, $global_db_user, $global_db_pass, $global_db_name);
+        $globalConn = new mysqli($global_db_host, $global_db_user, $global_db_pass, $global_db_name, $global_db_port, $global_db_sock);
         if (!empty($globalConn->connect_error)) {
             die("Connection failed: " . $globalConn->connect_error);
         }
