@@ -1,0 +1,87 @@
+name: Deploy repo changes to htdocs
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Upload changed repo files to server
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          REMOTE_DIR: /rapidroutelogistics.uk/htdocs
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ -z "$BEFORE_SHA" ]; then
+            BEFORE_SHA="$(git rev-parse "$AFTER_SHA^")"
+            echo "Manual run detected; deploying changes from $BEFORE_SHA to $AFTER_SHA"
+          fi
+
+          if [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
+            echo "New branch push detected; deploying all tracked repo files."
+            git ls-files -z > changed-files.txt
+          else
+            echo "Deploying repo changes from $BEFORE_SHA to $AFTER_SHA"
+            git diff --name-only -z --diff-filter=ACMRT "$BEFORE_SHA" "$AFTER_SHA" > changed-files.txt
+            git diff --name-only -z --diff-filter=D "$BEFORE_SHA" "$AFTER_SHA" > deleted-files.txt
+          fi
+
+          touch changed-files.txt deleted-files.txt
+
+          while IFS= read -r -d '' file; do
+            case "$file" in
+              .github/*|.git/*|github/workflows/*|node_modules/*|changed-files.txt|deleted-files.txt)
+                echo "Skipping $file"
+                continue
+                ;;
+            esac
+
+            if [ ! -f "$file" ]; then
+              echo "Skipping missing file $file"
+              continue
+            fi
+
+            remote_dir="$REMOTE_DIR/$(dirname "$file")"
+            if [ "$remote_dir" = "$REMOTE_DIR/." ]; then
+              remote_dir="$REMOTE_DIR"
+            fi
+
+            echo "Uploading $file to $remote_dir/"
+            curl --silent --show-error --fail \
+              --user "$FTP_USERNAME:$FTP_PASSWORD" \
+              --ftp-create-dirs \
+              -T "$file" \
+              "ftp://$FTP_SERVER$remote_dir/"
+          done < changed-files.txt
+
+          while IFS= read -r -d '' file; do
+            case "$file" in
+              .github/*|.git/*|github/workflows/*|node_modules/*)
+                echo "Skipping delete for $file"
+                continue
+                ;;
+            esac
+
+            remote_path="$REMOTE_DIR/$file"
+            echo "Deleting $remote_path from server"
+            curl --silent --show-error --fail \
+              --user "$FTP_USERNAME:$FTP_PASSWORD" \
+              -Q "-DELE $remote_path" \
+              "ftp://$FTP_SERVER/" || true
+          done < deleted-files.txt
