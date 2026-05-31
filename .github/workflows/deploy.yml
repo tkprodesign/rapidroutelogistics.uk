@@ -54,3 +54,4 @@ jobs:
                 "ftp://$FTP_SERVER$remote_dir/"
             fi
           done
+          done
