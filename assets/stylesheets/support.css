@@ -57,7 +57,7 @@
   color: #3f3f3f;
 }
 .support-page .signin-strip a {
-  color: #005dad;
+  color: #1A9B82;
   text-decoration: underline;
 }
 .support-page .assistant-wrap {
@@ -159,7 +159,7 @@
   margin-bottom: 12px;
 }
 .support-page .support-categories .support-card > a {
-  color: #005dad;
+  color: #1A9B82;
   font-size: 14px;
   text-decoration: none;
   display: inline-flex;
@@ -185,7 +185,7 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background: #ffc400;
+  background: #1A9B82;
   color: #121212;
   font-size: 14px;
   font-weight: 600;
@@ -265,7 +265,7 @@
 .support-page .support-resources .resource-grid a {
   border-bottom: 1px solid #dbdbdb;
   padding: 10px 0;
-  color: #005dad;
+  color: #1A9B82;
   font-size: 14px;
   display: inline-flex;
   align-items: center;

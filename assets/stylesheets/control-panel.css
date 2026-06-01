@@ -166,7 +166,7 @@ body {
 .cp-table-link {
   display: inline-flex;
   align-items: center;
-  color: #005dad;
+  color: #1A9B82;
   font-weight: 600;
   text-decoration: none;
 }
@@ -229,8 +229,8 @@ body {
 
 .cp-btn-secondary {
   background: #fff;
-  color: #005dad;
-  border-color: #005dad;
+  color: #1A9B82;
+  border-color: #1A9B82;
 }
 
 .cp-btn-secondary:hover {
@@ -314,7 +314,7 @@ body {
 .cp-quote-grid input:focus,
 .cp-quote-grid select:focus,
 .cp-quote-grid textarea:focus {
-  border-color: #005dad;
+  border-color: #1A9B82;
   box-shadow: 0 0 0 3px rgba(0, 93, 173, 0.15);
 }
 
@@ -362,7 +362,7 @@ body {
 
 .cp-location-grid input:focus,
 .cp-location-grid select:focus {
-  border-color: #005dad;
+  border-color: #1A9B82;
   box-shadow: 0 0 0 3px rgba(0, 93, 173, 0.15);
 }
 

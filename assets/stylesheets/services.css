@@ -35,20 +35,20 @@
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 .services-page .btn-gold {
-  background: #ffc400;
+  background: #1A9B82;
   color: #121212;
   border: 1px solid transparent;
 }
 .services-page .btn-gold:hover {
-  background: #ffd64c;
+  background: #22B496;
 }
 .services-page .btn-outline {
   background: transparent;
-  color: #005dad;
-  border: 1.5px solid #005dad;
+  color: #1A9B82;
+  border: 1.5px solid #1A9B82;
 }
 .services-page .btn-outline:hover {
-  background: #005dad;
+  background: #1A9B82;
   color: #fff;
 }
 .services-page .services-breadcrumb {
@@ -151,7 +151,7 @@
   margin: 0 auto;
 }
 .services-page .section-heading a {
-  color: #005dad;
+  color: #1A9B82;
   text-decoration: underline;
 }
 .services-page .cards-grid {
@@ -185,7 +185,7 @@
   margin-bottom: 8px;
 }
 .services-page .service-card a {
-  color: #005dad;
+  color: #1A9B82;
   text-decoration: underline;
   font-size: 14px;
 }
@@ -304,7 +304,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #005dad;
+  color: #1A9B82;
   font-size: 14px;
 }
 .services-page .resource-links a:hover {
@@ -396,7 +396,7 @@
 
 .services-page .promo-strip .promo-inner {
   border-radius: 28px;
-  background: linear-gradient(135deg, #10204c 0%, #2a4d8f 100%);
+  background: linear-gradient(135deg, #14232b 0%, #1A9B82 100%);
   box-shadow: 0 24px 52px rgba(13, 27, 68, 0.18);
 }
 

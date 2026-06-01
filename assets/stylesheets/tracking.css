@@ -3,7 +3,7 @@
   margin: 40px auto;
   padding: 0 20px;
   font-family: "Segoe UI", sans-serif;
-  color: #00204A;
+  color: #14232b;
 }
 .track-container .track-header {
   margin-bottom: 40px;
@@ -28,7 +28,7 @@
   font-size: 1rem;
 }
 .track-container .track-header .search-bar .btn-track {
-  background: #00204A;
+  background: #14232b;
   color: #ffffff;
   border: none;
   padding: 10px 30px;
@@ -281,7 +281,7 @@
 .track-container.exception-container .exception-meta-grid strong {
   display: block;
   font-size: 15px;
-  color: #00204A;
+  color: #14232b;
   margin-bottom: 2px;
 }
 .track-container.exception-container .exception-meta-grid span {
@@ -428,7 +428,7 @@
 .track-container.exception-pay-container .exception-pay-summary-card h3 {
   margin: 0 0 14px;
   font-size: 1.45rem;
-  color: #00204A;
+  color: #14232b;
 }
 .track-container.exception-pay-container .exception-pay-detail-grid {
   display: grid;
@@ -452,7 +452,7 @@
 }
 .track-container.exception-pay-container .exception-pay-detail-item strong {
   display: block;
-  color: #00204A;
+  color: #14232b;
   font-size: 0.98rem;
   line-height: 1.4;
   word-break: break-word;
@@ -477,7 +477,7 @@
 .track-container.exception-pay-container .exception-pay-loading strong {
   display: block;
   margin-bottom: 4px;
-  color: #00204A;
+  color: #14232b;
 }
 .track-container.exception-pay-container .exception-pay-loading p {
   margin: 0;

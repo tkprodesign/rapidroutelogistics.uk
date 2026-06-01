@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
 *,
 *::before,
@@ -96,21 +96,25 @@ header .container .right .l-child .l-cta .sec .material-symbols-outlined,
 }
 
 h1, h2, h3, h4 {
-  line-height: 1.3;
+  line-height: 1.2;
+  font-family: 'Barlow Condensed', 'Barlow', 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 h2 {
   font-size: 40px;
-  line-height: 1.3;
+  line-height: 1.2;
 }
 
 h3 {
   font-size: 32px;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 h4 {
   font-size: 24px;
+  font-weight: 700;
 }
 
 h4 {
@@ -836,4 +840,69 @@ footer .footer-brand p:last-child {
     border-radius: 18px;
   }
 }
+/* ============================================================
+   BRAND DESIGN SYSTEM — Rapid Route Logistics
+   Precision geometry, controlled shadows, on-brand type
+   ============================================================ */
+
+/* ── Heading type system ── */
+h1 {
+  font-family: 'Barlow Condensed', 'Barlow', 'Inter', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-family: 'Barlow Condensed', 'Barlow', 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h3, h4 {
+  font-family: 'Barlow Condensed', 'Barlow', 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+/* ── Body type ── */
+body {
+  font-family: 'Barlow', 'Inter', 'Roboto', sans-serif;
+  color: #1e2c38;
+}
+
+/* ── Scrolled header: tighter gradient ── */
+header::before {
+  background: linear-gradient(180deg, #14232b 0%, #0d1b23 100%);
+}
+
+/* ── Footer kicker color ── */
+footer .footer-brand .footer-kicker {
+  color: #1A9B82;
+}
+
+/* ── Footer brand icon radius ── */
+footer .footer-brand img {
+  border-radius: 14px;
+}
+
+/* ── Header nav links ── */
+header .container .left nav ul a {
+  font-family: 'Barlow', 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+/* ── Login button ── */
+header .container .right .cta .dtp {
+  background: #14232b;
+  font-family: 'Barlow', 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 8px rgba(14,35,43,0.18);
+}
+
+/* ── Tighter section card shadows (global) ── */
+.shadow-card {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(18,35,43,0.08);
+}
+
 /*# sourceMappingURL=main.css.map */

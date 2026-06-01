@@ -28,7 +28,7 @@ body {
 }
 
 .dashboard-hero {
-  background: #00204A;
+  background: #14232b;
   color: #ffffff;
   padding: 40px 20px 56px;
 }
@@ -94,8 +94,8 @@ body {
   font-size: 0.9rem;
 }
 .activity-tabs a.active {
-  color: #00204A;
-  border-bottom: 4px solid #00204A;
+  color: #14232b;
+  border-bottom: 4px solid #14232b;
 }
 
 .shipment-list {
@@ -131,7 +131,7 @@ body {
 .shipment-list .shipment-item .ship-details .ship-id {
   font-family: "Courier New", Courier, monospace;
   font-weight: 700;
-  color: #00204A;
+  color: #14232b;
   letter-spacing: 0.5px;
   font-size: 0.95rem;
 }
@@ -189,7 +189,7 @@ body {
 .card h3 {
   margin: 0 0 20px 0;
   font-size: 1.25rem;
-  color: #00204A;
+  color: #14232b;
   font-weight: 600;
 }
 .card.center-text {
@@ -203,7 +203,7 @@ body {
   height: 60px;
   opacity: 0.03;
   z-index: 0;
-  background-image: radial-gradient(#00204A 1px, transparent 1px);
+  background-image: radial-gradient(#14232b 1px, transparent 1px);
   background-size: 15px 15px;
 }
 
@@ -767,7 +767,7 @@ body {
 
 /* UX refresh overrides */
 .dashboard-hero {
-  background: linear-gradient(135deg, #07122e 0%, #14232b 58%, #2a4d8f 100%);
+  background: linear-gradient(135deg, #14232b 0%, #14232b 58%, #1A9B82 100%);
   padding: 48px 20px 72px;
   box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.08);
 }

@@ -177,7 +177,7 @@ section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .pri {
   transition: all 0.25s ease;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .pri:hover {
-  background-color: #ffd64c;
+  background-color: #22B496;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .sec {
   color: #fff;
@@ -529,7 +529,7 @@ section.important-updates details summary {
   padding: 22px;
   cursor: pointer;
   font-weight: bold;
-  color: #00204A;
+  color: #14232b;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -546,7 +546,7 @@ section.important-updates details .inner-content {
   line-height: 1.6;
 }
 section.important-updates details .inner-content a {
-  color: #005a8c;
+  color: #1A9B82;
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -588,7 +588,7 @@ section.about-us .heading h2::after {
   bottom: -4px;
   width: 80px;
   height: 4px;
-  background-color: #ffc400;
+  background-color: #1A9B82;
   display: block;
 }
 section.about-us .content {
@@ -612,7 +612,7 @@ section.about-us .content a {
   color: #121212;
 }
 section.about-us .content a:hover {
-  background-color: #ffd64c;
+  background-color: #22B496;
 }
 
 /* UX refresh overrides */
@@ -727,7 +727,7 @@ section.services-alt .container .heading .toggle::after {
   left: 6px;
   width: calc(50% - 6px);
   transform: translateY(-50%);
-  background: linear-gradient(135deg, #14232b 0%, #2a4d8f 100%);
+  background: linear-gradient(135deg, #14232b 0%, #1A9B82 100%);
   box-shadow: 0 12px 22px rgba(29, 46, 111, 0.18);
 }
 
@@ -848,4 +848,191 @@ section.services-alt .container .heading .toggle button {
   padding: 10px 16px;
   justify-content: center;
   transition: color 0.2s ease;
-}/*# sourceMappingURL=home.css.map */
+}
+
+/* ============================================================
+   BRAND GEOMETRY SYSTEM — Rapid Route Logistics
+   Sharp, precise geometry matching logo's angular language
+   ============================================================ */
+
+/* ── Hero: diagonal bottom cut replaces organic wave ── */
+section.hero .custom-shape-divider-bottom-1771138429 {
+  display: none !important;
+}
+section.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 72px;
+  background: #fff;
+  clip-path: polygon(0 100%, 100% 0%, 100% 100%);
+  z-index: 89;
+}
+
+/* ── Hero type: Barlow Condensed for max impact ── */
+section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading {
+  font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* ── Hero CTA: precise geometry matching logo ── */
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box input {
+  border-radius: 6px;
+  border: 1.5px solid rgba(255,255,255,0.22);
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .pri {
+  border-radius: 6px;
+  background: #1A9B82;
+  color: #fff;
+  font-family: 'Barlow', 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .pri:hover {
+  background: #22B496;
+}
+
+/* ── Section headings: precise underline accent ── */
+section:not(.hero) .container .heading h2 {
+  font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ── Brand context card ── */
+section.ups-branch-context .container .ups-branch-card {
+  border-radius: 10px;
+  border-left-width: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05), 0 6px 18px rgba(18,35,43,0.08);
+}
+section.ups-branch-context .container .ups-branch-card .visual {
+  border-radius: 10px;
+}
+
+/* ── Why Choose Us feature cards ── */
+section.why-choose-us .container .content .col {
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 14px rgba(18,35,43,0.07);
+  border: 1px solid rgba(18,35,43,0.07);
+  position: relative;
+  overflow: hidden;
+}
+section.why-choose-us .container .content .col::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 100%;
+  background: #1A9B82;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+section.why-choose-us .container .content .col:hover::before {
+  opacity: 1;
+}
+section.why-choose-us .container .content .col h4 {
+  font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.01em;
+  color: #14232b;
+}
+
+/* ── Services cards ── */
+section.services-alt .container .content .g1 .col,
+section.services-alt .container .content .g2 .col {
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 14px rgba(18,35,43,0.07);
+  border: 1px solid rgba(18,35,43,0.07);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+section.services-alt .container .content .g1 .col:hover,
+section.services-alt .container .content .g2 .col:hover {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07), 0 10px 24px rgba(18,35,43,0.11);
+  transform: translateY(-2px);
+}
+section.services-alt .container .content .g1 .col h3,
+section.services-alt .container .content .g2 .col h3 {
+  font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.01em;
+  color: #14232b;
+}
+
+/* ── Toggle: brand-aligned pill ── */
+section.services-alt .container .heading .toggle {
+  border: 1.5px solid rgba(18,35,43,0.15);
+  background: #f4f6f8;
+}
+section.services-alt .container .heading .toggle::after {
+  background: #14232b;
+  box-shadow: 0 2px 8px rgba(18,35,43,0.18);
+}
+
+/* ── Tools section image ── */
+section.tools .container .left {
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(14,24,52,0.10);
+}
+
+/* ── Banner ── */
+section.banner-1 .container {
+  border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(13,27,68,0.14);
+  background-image: linear-gradient(135deg, #0c191f 0%, #1A9B82 100%);
+}
+section.banner-1 .container .right a {
+  background: #fff;
+  color: #14232b;
+  font-family: 'Barlow', 'Inter', sans-serif;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 14px 28px;
+}
+section.banner-1 .container .right a:hover {
+  background: #f0faf8;
+}
+
+/* ── Cards container ── */
+section.cards-container .container .content .col {
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 14px rgba(18,35,43,0.07);
+  border: 1px solid rgba(18,35,43,0.07);
+}
+section.cards-container .container .content .col:hover {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07), 0 10px 28px rgba(18,35,43,0.11);
+  transform: translateY(-2px);
+}
+section.cards-container .container .content .col .card-content h4 {
+  font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* ── Important updates accordion ── */
+section.important-updates details summary {
+  color: #14232b;
+  font-family: 'Barlow', 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+/* ── About us underline: use brand teal ── */
+section.about-us .heading h2::after {
+  background-color: #1A9B82;
+}
+section.about-us .content a {
+  background: #14232b;
+  color: #fff;
+  border-radius: 6px;
+  font-family: 'Barlow', 'Inter', sans-serif;
+  font-weight: 700;
+}
+section.about-us .content a:hover {
+  background: #1A9B82;
+}
+
+/*# sourceMappingURL=home.css.map */
