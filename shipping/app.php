@@ -9,16 +9,7 @@ date_default_timezone_set('America/New_York');
 /* -------------------------
    DATABASE CONNECTION
 -------------------------- */
-$host = "sql300.byethost18.com";
-$user = "b18_41230477";
-$pass = "Wateva06@";
-$db   = "b18_41230477_db";
-
-$conn = new mysqli($host, $user, $pass, $db);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require_once __DIR__ . '/../common-sections/globals.php';
 
 // Start session
 session_start();

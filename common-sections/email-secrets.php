@@ -1,17 +1,33 @@
 <?php
-return [
-    'RESEND_API_KEY' => 're_dBdLwGs9_5BJL4PX8ZePHuz3w9UttrwYd',
-    'NOREPLY_FROM_EMAIL' => 'noreply@rapidroutelogistics.uk',
-    'SMTP_HOST' => 'mail.spacemail.com',
-    'SMTP_PORT' => '465',
-    'SMTP_SECURE' => 'ssl',
+if (!function_exists('rrl_email_env')) {
+    function rrl_email_env(string $name, string $default = ''): string {
+        $value = getenv($name);
+        if ($value !== false && trim((string)$value) !== '') {
+            return trim((string)$value);
+        }
+        if (isset($_ENV[$name]) && trim((string)$_ENV[$name]) !== '') {
+            return trim((string)$_ENV[$name]);
+        }
+        if (isset($_SERVER[$name]) && trim((string)$_SERVER[$name]) !== '') {
+            return trim((string)$_SERVER[$name]);
+        }
+        return $default;
+    }
+}
 
-    // Mailbox passwords (used by shipping/create/app.php)
-    'SHIPMENTS_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
-    'BILLING_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
-    'ADMIN_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
-    'SUPPORT_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
-    'TRACKING_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
-    'NOREPLY_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
+return [
+    'RESEND_API_KEY' => rrl_email_env('RESEND_API_KEY'),
+    'NOREPLY_FROM_EMAIL' => rrl_email_env('NOREPLY_FROM_EMAIL', 'noreply@rapidroutelogistics.uk'),
+    'SMTP_HOST' => rrl_email_env('SMTP_HOST', 'mail.spacemail.com'),
+    'SMTP_PORT' => rrl_email_env('SMTP_PORT', '465'),
+    'SMTP_SECURE' => rrl_email_env('SMTP_SECURE', 'ssl'),
+
+    // Mailbox passwords are intentionally read from environment / repo secrets.
+    'SHIPMENTS_EMAIL_PASSWORD' => rrl_email_env('SHIPMENTS_EMAIL_PASSWORD'),
+    'BILLING_EMAIL_PASSWORD' => rrl_email_env('BILLING_EMAIL_PASSWORD'),
+    'ADMIN_EMAIL_PASSWORD' => rrl_email_env('ADMIN_EMAIL_PASSWORD'),
+    'SUPPORT_EMAIL_PASSWORD' => rrl_email_env('SUPPORT_EMAIL_PASSWORD'),
+    'TRACKING_EMAIL_PASSWORD' => rrl_email_env('TRACKING_EMAIL_PASSWORD'),
+    'NOREPLY_EMAIL_PASSWORD' => rrl_email_env('NOREPLY_EMAIL_PASSWORD'),
 ];
 ?>
