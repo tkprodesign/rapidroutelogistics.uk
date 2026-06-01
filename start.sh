@@ -7,6 +7,12 @@ MYSQL_SOCK="$MYSQL_RUN/mysql.sock"
 MYSQL_PID="$MYSQL_RUN/mysql.pid"
 MYSQL_LOG="$MYSQL_DATA/mysql.err"
 
+export DATABASE_HOST="${DATABASE_HOST:-127.0.0.1}"
+export DATABASE_NAME="${DATABASE_NAME:-logistics_db}"
+export DATABASE_USERNAME="${DATABASE_USERNAME:-${DB_USER:-logistics_user}}"
+export DATABASE_PASSWORD="${DATABASE_PASSWORD:-${DB_PASS:-local_dev_password}}"
+export DATABASE_SOCKET="${DATABASE_SOCKET:-$MYSQL_SOCK}"
+
 mkdir -p "$MYSQL_DATA" "$MYSQL_RUN"
 
 # Kill any stale mysqld processes
@@ -48,11 +54,19 @@ for i in $(seq 1 30); do
     sleep 1
 done
 
+mysql_escape() {
+    printf "%s" "$1" | sed "s/'/''/g"
+}
+
+DATABASE_NAME_SQL=$(mysql_escape "$DATABASE_NAME")
+DATABASE_USERNAME_SQL=$(mysql_escape "$DATABASE_USERNAME")
+DATABASE_PASSWORD_SQL=$(mysql_escape "$DATABASE_PASSWORD")
+
 # Set up database, user, and schema if not already done
-mysql -u root --socket="$MYSQL_SOCK" <<'SQL'
-CREATE DATABASE IF NOT EXISTS logistics_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER IF NOT EXISTS 'logistics_user'@'localhost' IDENTIFIED BY 'logistics_pass_2024';
-GRANT ALL PRIVILEGES ON logistics_db.* TO 'logistics_user'@'localhost';
+mysql -u root --socket="$MYSQL_SOCK" <<SQL
+CREATE DATABASE IF NOT EXISTS \`$DATABASE_NAME_SQL\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS '$DATABASE_USERNAME_SQL'@'localhost' IDENTIFIED BY '$DATABASE_PASSWORD_SQL';
+GRANT ALL PRIVILEGES ON \`$DATABASE_NAME_SQL\`.* TO '$DATABASE_USERNAME_SQL'@'localhost';
 FLUSH PRIVILEGES;
 SQL
 

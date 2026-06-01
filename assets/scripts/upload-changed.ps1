@@ -1,7 +1,7 @@
 param(
   [string]$FtpHost = "server48.shared.spaceship.host",
   [string]$FtpUser = "admin@rapidroutelogistics.uk",
-  [string]$FtpPass = "Wateva06@",
+  [string]$FtpPass = $env:FTP_PASSWORD,
   # IMPORTANT: set this to your REAL web root on the server (see step 2 below)
   [string]$RemotePath = "/htdocs"
 )
@@ -9,6 +9,11 @@ param(
 # Go to project root (scripts/ is inside project/scripts)
 $projectRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
 Set-Location $projectRoot
+
+if ([string]::IsNullOrWhiteSpace($FtpPass)) {
+  Write-Error "Set FTP_PASSWORD in your environment before running this script."
+  exit 1
+}
 
 if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
   Write-Error "git is not installed or not in PATH."

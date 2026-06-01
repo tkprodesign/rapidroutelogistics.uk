@@ -44,17 +44,7 @@ if (file_exists('./PHPMailer/src/PHPMailer.php')) {
 
 
 // Connecting To Database
-$servername = "localhost";
-$dbusername = "tyimttsm_dev2";
-$dbpassword = "5Es~,+K@-&d6";
-$dbname = "tyimttsm_dcs";
-$dbconn = mysqli_connect($servername, $dbusername, $dbpassword, $dbname);
-if (!$dbconn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
-
-
-
+require_once __DIR__ . '/../common-sections/globals.php';
 
 
 
