@@ -90,7 +90,7 @@ section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading {
   font-weight: 600;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading .accent {
-  color: #008d7c;
+  color: #1A9B82;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .heading .sub-heading {
   display: none;
@@ -116,7 +116,7 @@ section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .pri {
   display: inline-flex;
   align-items: center;
   font-weight: 500;
-  background-color: #008d7c;
+  background-color: #1A9B82;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .sec {
   color: #fff;
@@ -220,7 +220,7 @@ section.services-alt .container .content .g1 .col a,
 section.services-alt .container .content .g2 .col a {
   font-weight: 500;
   font-size: 16px;
-  color: #0662bb;
+  color: #1A9B82;
   display: flex;
   align-items: center;
   gap: 2px;

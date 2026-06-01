@@ -138,7 +138,7 @@
   content: "";
   width: 54px;
   height: 3px;
-  background: #008d7c;
+  background: #1A9B82;
   position: absolute;
   left: 50%;
   bottom: 0;
@@ -198,7 +198,7 @@
   margin-bottom: 10px;
   border-radius: 12px;
   background: #fff8e2;
-  color: #008d7c;
+  color: #1A9B82;
   font-size: 28px;
 }
 .services-page .additional-grid .service-card {
@@ -327,7 +327,7 @@
 .services-page .tool-card i {
   font-size: 34px;
   margin-bottom: 8px;
-  color: #008d7c;
+  color: #1A9B82;
   display: inline-block;
 }
 .services-page .tool-card h3 {

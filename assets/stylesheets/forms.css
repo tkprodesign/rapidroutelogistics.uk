@@ -51,7 +51,7 @@ section.form-section form .container .heading h2::after {
   bottom: -1px;
   width: 80px;
   height: 4px;
-  background-color: #008d7c;
+  background-color: #1A9B82;
   display: block;
 }
 section.form form .container .heading p,
@@ -60,7 +60,7 @@ section.form-section form .container .heading p {
 }
 section.form form .container .heading p a,
 section.form-section form .container .heading p a {
-  color: #0662bb;
+  color: #1A9B82;
   text-decoration: underline;
   font-weight: 500;
   margin-left: 5px;
@@ -193,7 +193,7 @@ section.form-section form .container .content .input-box:last-child p {
 }
 section.form form .container .content a,
 section.form-section form .container .content a {
-  color: #0662bb;
+  color: #1A9B82;
 }
 section.form form .container .content button[type=submit],
 section.form-section form .container .content button[type=submit] {
@@ -378,7 +378,7 @@ body.login-page section.form-section form .container .content .action-box .btn-p
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background-color: #008d7c;
+  background-color: #1A9B82;
   color: #00204A;
   border: none;
   border-radius: 50px;

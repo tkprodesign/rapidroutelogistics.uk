@@ -97,7 +97,7 @@
 }
 .track-container .tracking-visual .progress-line .fill {
   height: 100%;
-  background: #0aa391;
+  background: #22B496;
   transition: 1s ease-in-out;
 }
 .track-container .tracking-visual .nodes {
@@ -131,12 +131,12 @@
   text-align: center;
 }
 .track-container .tracking-visual .nodes .node.done, .track-container .tracking-visual .nodes .node.active {
-  color: #0aa391;
+  color: #22B496;
 }
 .track-container .tracking-visual .nodes .node.done i, .track-container .tracking-visual .nodes .node.active i {
-  border-color: #0aa391;
+  border-color: #22B496;
   color: #ffffff;
-  background: #0aa391;
+  background: #22B496;
 }
 .track-container .tracking-visual .nodes .node.active i {
   box-shadow: 0 0 0 5px rgba(42, 77, 143, 0.15);
@@ -194,7 +194,7 @@
   color: #b42318;
 }
 .track-container .timeline .timeline-item:first-child {
-  color: #0aa391;
+  color: #22B496;
 }
 .track-container .timeline .timeline-item.is-negative {
   background: #fff7f7;
@@ -472,7 +472,7 @@
 }
 .track-container.exception-pay-container .exception-pay-loading .material-symbols-outlined {
   font-size: 28px;
-  color: #0aa391;
+  color: #22B496;
 }
 .track-container.exception-pay-container .exception-pay-loading strong {
   display: block;

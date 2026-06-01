@@ -26,7 +26,7 @@ section:not(.hero) .container .heading h2::after {
   bottom: -1px;
   width: 80px;
   height: 4px;
-  background-color: #008d7c;
+  background-color: #1A9B82;
   display: block;
 }
 section:not(.hero) .container .heading-1-1 {
@@ -136,7 +136,7 @@ section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading {
   font-weight: 700;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading .accent {
-  color: #008d7c;
+  color: #1A9B82;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .heading .sub-heading {
   font-size: 20px;
@@ -168,7 +168,7 @@ section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box input:focus
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .pri {
   color: #121212;
-  background: #008d7c;
+  background: #1A9B82;
   display: flex;
   align-items: center;
   padding: 10px 24px;
@@ -192,7 +192,7 @@ section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .sec {
 section.ups-branch-context .container .ups-branch-card {
   background: linear-gradient(135deg, #f4fbfa 0%, #ffffff 100%);
   border: 1px solid rgba(0, 141, 124, 0.18);
-  border-left: 6px solid #008d7c;
+  border-left: 6px solid #1A9B82;
   border-radius: 6px;
   padding: 36px;
   display: grid;
@@ -205,7 +205,7 @@ section.ups-branch-context .container .ups-branch-card .content .eyebrow {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 700;
-  color: #008d7c;
+  color: #1A9B82;
   margin-bottom: 10px;
 }
 section.ups-branch-context .container .ups-branch-card .content h2 {
@@ -292,7 +292,7 @@ section.tools .container .right .heading p {
 }
 section.tools .container .right .heading a {
   margin-top: 20px;
-  background: #008d7c;
+  background: #1A9B82;
   display: flex;
   align-items: center;
   padding: 10px 24px;
@@ -305,7 +305,7 @@ section.tools .container .right .heading a {
   cursor: pointer;
 }
 section.tools .container .right .heading a:hover {
-  background: #20b7a4;
+  background: #22B496;
 }
 
 section.services-alt .container .heading {
@@ -344,7 +344,7 @@ section.services-alt .container .heading .toggle::after {
   top: 50%;
   width: 100px;
   height: 48px;
-  background-color: #008d7c;
+  background-color: #1A9B82;
   display: inline-block;
   border-radius: 4rem;
   transition: left 0.2s;
@@ -383,7 +383,7 @@ section.services-alt .container .content .g1 .col a,
 section.services-alt .container .content .g2 .col a {
   font-weight: 500;
   font-size: 16px;
-  color: #008d7c;
+  color: #1A9B82;
   display: flex;
   align-items: center;
   gap: 2px;
@@ -391,7 +391,7 @@ section.services-alt .container .content .g2 .col a {
 
 section.banner-1 .container {
   color: #ffffff;
-  background-image: linear-gradient(304.78deg, #0c191f -12.16%, #0aa391 61.1%);
+  background-image: linear-gradient(304.78deg, #0c191f -12.16%, #22B496 61.1%);
   padding: 60px 64px;
   display: flex;
   align-items: center;
@@ -415,7 +415,7 @@ section.banner-1 .container .left a .icon {
   font-size: 12px;
 }
 section.banner-1 .container .right a {
-  background: #008d7c;
+  background: #1A9B82;
   display: flex;
   align-items: center;
   padding: 10px 24px;
@@ -428,7 +428,7 @@ section.banner-1 .container .right a {
   cursor: pointer;
 }
 section.banner-1 .container .right a:hover {
-  background: #20b7a4;
+  background: #22B496;
 }
 
 section.cards-container .container .heading {
@@ -484,7 +484,7 @@ section.cards-container .container .content .col .card-content p {
   margin-bottom: 16px;
 }
 section.cards-container .container .content .col .card-content a {
-  color: #008d7c;
+  color: #1A9B82;
   display: flex;
   align-items: center;
   gap: 2px;
@@ -600,7 +600,7 @@ section.about-us .content p {
   margin-bottom: 20px;
 }
 section.about-us .content a {
-  background: #008d7c;
+  background: #1A9B82;
   display: flex;
   align-items: center;
   padding: 10px 24px;
