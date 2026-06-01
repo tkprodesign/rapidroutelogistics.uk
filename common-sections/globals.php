@@ -2,6 +2,12 @@
 if (!defined('COMMON_SECTIONS_GLOBALS_LOADED')) {
     define('COMMON_SECTIONS_GLOBALS_LOADED', true);
 
+    if (!isset($GLOBALS['rrl_runtime_config']) || !is_array($GLOBALS['rrl_runtime_config'])) {
+        $runtimeConfigPath = __DIR__ . '/runtime-config.php';
+        $runtimeConfig = file_exists($runtimeConfigPath) ? include $runtimeConfigPath : [];
+        $GLOBALS['rrl_runtime_config'] = is_array($runtimeConfig) ? $runtimeConfig : [];
+    }
+
     if (!function_exists('rrl_env')) {
         function rrl_env(array $names, ?string $default = null): ?string {
             foreach ($names as $name) {
@@ -14,6 +20,9 @@ if (!defined('COMMON_SECTIONS_GLOBALS_LOADED')) {
                 }
                 if (isset($_SERVER[$name]) && trim((string)$_SERVER[$name]) !== '') {
                     return trim((string)$_SERVER[$name]);
+                }
+                if (isset($GLOBALS['rrl_runtime_config'][$name]) && trim((string)$GLOBALS['rrl_runtime_config'][$name]) !== '') {
+                    return trim((string)$GLOBALS['rrl_runtime_config'][$name]);
                 }
             }
             return $default;

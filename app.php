@@ -8,12 +8,20 @@
 
 
 
-require_once __DIR__ . '/common-sections/globals.php';
 
 
 
 
-
+    if (!function_exists('asset_url')) {
+        function asset_url(string $path): string {
+            $filePath = $_SERVER['DOCUMENT_ROOT'] . $path;
+            if (file_exists($filePath)) {
+                $separator = (strpos($path, '?') === false) ? '?' : '&';
+                return $path . $separator . 'v=' . filemtime($filePath);
+            }
+            return $path;
+        }
+    }
 
     function test_input($data) {
         $data = trim($data);
@@ -25,6 +33,8 @@ require_once __DIR__ . '/common-sections/globals.php';
 
 
     if ($_SERVER["REQUEST_METHOD"] == "POST"  && isset($_POST['free-quote-button']) && !empty($_POST['free-quote-button'])) {
+        require_once __DIR__ . '/common-sections/globals.php';
+
         // Collect form data
         $name = $_POST['name'];
         $address = $_POST['address'];
