@@ -170,22 +170,121 @@ window.togglePassVisibility = function(cid, oid, piid, acid = null, aoid = null,
 
 
 
-// --- SECTION EDITING LOGIC ---
-/**
- * Hides all <section> elements unless they have the '.editing' class.
- * This ensures the focus remains on the "art piece" currently in progress.
- */
-// const manageSectionVisibility = () => {
-//     const sections = document.querySelectorAll('section');
-    
-//     sections.forEach(section => {
-//         if (!section.classList.contains('editing')) {
-//             section.style.display = 'none';
-//         } else {
-//             section.style.display = ''; // Restores default (block, flex, etc.)
-//         }
-//     });
-// };
+// --- PAGE TRANSITIONS ---
+(function () {
+    // Clear exit class on back/forward navigation
+    window.addEventListener('pageshow', function (e) {
+        if (e.persisted) {
+            document.body.classList.remove('page-exit');
+        }
+    });
 
-// Execute the visibility check
-// manageSectionVisibility();
+    document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[href]');
+        if (!link) return;
+
+        // Skip special links
+        if (
+            link.classList.contains('js-open-support-chat') ||
+            link.classList.contains('js-open-live-chat')
+        ) return;
+
+        var href = link.getAttribute('href');
+        if (!href) return;
+        if (
+            href.startsWith('#') ||
+            href.startsWith('javascript:') ||
+            href.startsWith('mailto:') ||
+            href.startsWith('tel:')
+        ) return;
+        if (link.getAttribute('target') === '_blank') return;
+        if (link.hasAttribute('download')) return;
+
+        try {
+            var url = new URL(href, window.location.href);
+            if (url.origin !== window.location.origin) return;
+            // Don't animate same-page navigations
+            if (url.pathname === window.location.pathname && !url.search && !url.hash) return;
+        } catch (err) {
+            return;
+        }
+
+        e.preventDefault();
+        var dest = href;
+        document.body.classList.add('page-exit');
+        setTimeout(function () {
+            window.location.href = dest;
+        }, 270);
+    }, true);
+})();
+
+// --- SCROLL REVEAL ---
+(function () {
+    if (!window.IntersectionObserver) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                var el = entry.target;
+                el.classList.add('rrl-visible');
+                observer.unobserve(el);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -36px 0px'
+    });
+
+    function observe(el, delay) {
+        if (!el || el.classList.contains('rrl-reveal')) return;
+        el.classList.add('rrl-reveal');
+        if (delay) el.style.transitionDelay = delay + 's';
+        observer.observe(el);
+    }
+
+    document.querySelectorAll('section:not(.hero)').forEach(function (section) {
+        // Section headings
+        var heading = section.querySelector('.container .heading');
+        if (heading) observe(heading, 0);
+
+        // Cards with stagger
+        var cols = section.querySelectorAll('.content .col, .container > .col');
+        cols.forEach(function (col, i) {
+            observe(col, parseFloat((i * 0.09).toFixed(2)));
+        });
+
+        // Other key elements
+        var single = [
+            '.ups-branch-card',
+            '.container .left',
+            '.container .right',
+            '.container .inner',
+        ];
+        single.forEach(function (sel) {
+            section.querySelectorAll(sel).forEach(function (el, i) {
+                observe(el, parseFloat((i * 0.07).toFixed(2)));
+            });
+        });
+    });
+
+    // Banner, tools, about-us as whole blocks
+    document.querySelectorAll(
+        'section.banner-1, section.tools, section.about-us, section.important-updates, section.cards-container'
+    ).forEach(function (section) {
+        observe(section, 0);
+    });
+})();
+
+// --- MOBILE MENU: ESC KEY TO CLOSE ---
+(function () {
+    document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape' && e.keyCode !== 27) return;
+        var btn = document.querySelector('#menuToggleBtn');
+        var nav = document.querySelector('header .container .left nav');
+        if (btn && btn.classList.contains('active')) {
+            btn.classList.remove('active');
+            document.body.classList.remove('active-nav');
+            if (nav) nav.classList.remove('active');
+        }
+    });
+})();

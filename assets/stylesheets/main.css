@@ -905,4 +905,362 @@ header .container .right .cta .dtp {
   box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(18,35,43,0.08);
 }
 
+/* ================================================================
+   PREMIUM EXPERIENCE SYSTEM — Rapid Route Logistics
+   Presidential. Seamless. Forward-moving. Flowing.
+   ================================================================ */
+
+/* ── 1. SMOOTH SCROLL ── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── 2. PAGE TRANSITIONS ── */
+@keyframes rrl-page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  animation: rrl-page-enter 0.58s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+body.page-exit {
+  opacity: 0 !important;
+  transform: translateY(-12px) !important;
+  transition: opacity 0.26s ease, transform 0.26s ease !important;
+  pointer-events: none !important;
+}
+
+/* ── 3. SCROLL REVEAL ── */
+.rrl-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.rrl-reveal.rrl-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── 4. MOBILE MENU — FULL-SCREEN OVERLAY ── */
+@media (max-width: 959px) {
+  header {
+    z-index: 95 !important;
+  }
+
+  header .container .left nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100dvh !important;
+    background: rgba(11, 20, 26, 0.97) !important;
+    background-image: radial-gradient(circle at 78% 18%, rgba(26, 155, 130, 0.1) 0%, transparent 52%) !important;
+    backdrop-filter: blur(32px) !important;
+    -webkit-backdrop-filter: blur(32px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 96px 48px 72px !important;
+    gap: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: none !important;
+    transition:
+      opacity 0.44s cubic-bezier(0.22, 0.61, 0.36, 1),
+      visibility 0.44s ease !important;
+    z-index: 88 !important;
+  }
+
+  header .container .left nav.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  header .container .left nav ul {
+    flex-direction: column !important;
+    gap: 0 !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 480px;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  header .container .left nav ul li {
+    width: 100% !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+    overflow: hidden;
+  }
+
+  header .container .left nav ul li:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.07) !important;
+  }
+
+  header .container .left nav ul a {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding: 22px 0 !important;
+    font-family: 'Barlow Condensed', 'Barlow', sans-serif !important;
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em !important;
+    color: rgba(255, 255, 255, 0.78) !important;
+    text-decoration: none !important;
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      color 0.22s ease,
+      opacity 0.52s cubic-bezier(0.22, 0.61, 0.36, 1),
+      transform 0.52s cubic-bezier(0.22, 0.61, 0.36, 1) !important;
+  }
+
+  header .container .left nav ul a:hover,
+  header .container .left nav ul a.active {
+    color: #1A9B82 !important;
+  }
+
+  header .container .left nav ul a::after {
+    display: none !important;
+  }
+
+  header .container .left nav.active ul li:nth-child(1) a { opacity: 1; transform: translateY(0); transition-delay: 0.08s !important; }
+  header .container .left nav.active ul li:nth-child(2) a { opacity: 1; transform: translateY(0); transition-delay: 0.14s !important; }
+  header .container .left nav.active ul li:nth-child(3) a { opacity: 1; transform: translateY(0); transition-delay: 0.20s !important; }
+  header .container .left nav.active ul li:nth-child(4) a { opacity: 1; transform: translateY(0); transition-delay: 0.26s !important; }
+  header .container .left nav.active ul li:nth-child(5) a { opacity: 1; transform: translateY(0); transition-delay: 0.32s !important; }
+}
+
+/* ── 5. HAMBURGER → ELEGANT X ── */
+header .container .right #menuToggleBtn {
+  width: 32px;
+  height: 22px;
+  cursor: pointer;
+  position: relative;
+  z-index: 96;
+  flex-shrink: 0;
+  display: none;
+}
+
+@media (max-width: 959px) {
+  header .container .right #menuToggleBtn {
+    display: inline-block;
+  }
+}
+
+header .container .right #menuToggleBtn span {
+  display: block;
+  position: absolute;
+  left: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: #14232b;
+  transform-origin: center;
+  transition:
+    top 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+    bottom 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.24s ease,
+    width 0.3s ease,
+    background-color 0.28s ease;
+}
+
+header .container .right #menuToggleBtn span.l1 {
+  top: 2px;
+  width: 28px;
+}
+header .container .right #menuToggleBtn span.l2 {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+}
+header .container .right #menuToggleBtn span.l3 {
+  bottom: 2px;
+  top: auto;
+  width: 28px;
+}
+
+header .container .right #menuToggleBtn.active span {
+  background-color: #fff !important;
+  width: 28px;
+}
+header .container .right #menuToggleBtn.active span.l1 {
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%) rotate(45deg);
+}
+header .container .right #menuToggleBtn.active span.l2 {
+  opacity: 0;
+  transform: translateY(-50%) scaleX(0);
+}
+header .container .right #menuToggleBtn.active span.l3 {
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+/* ── 6. NAV LINK UNDERLINE — DESKTOP ONLY ── */
+@media (min-width: 960px) {
+  header .container .left nav ul a {
+    position: relative;
+  }
+  header .container .left nav ul a::after {
+    content: "" !important;
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #1A9B82;
+    border-radius: 1px;
+    transition:
+      width 0.32s cubic-bezier(0.22, 0.61, 0.36, 1),
+      left 0.32s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  header .container .left nav ul a:hover::after,
+  header .container .left nav ul a.active::after {
+    width: 100%;
+    left: 0;
+  }
+}
+
+/* ── 7. BUTTON MICROINTERACTIONS ── */
+header .container .right .cta .dtp,
+a.dtp,
+section .c-t-a .pri {
+  transition:
+    background-color 0.22s ease,
+    color 0.22s ease,
+    transform 0.16s ease,
+    box-shadow 0.22s ease !important;
+}
+
+header .container .right .cta .dtp:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(14, 35, 43, 0.22) !important;
+}
+
+header .container .right .cta .dtp:active,
+a.dtp:active {
+  transform: scale(0.97) translateY(0) !important;
+}
+
+/* ── 8. CARD HOVER LIFT ── */
+section .col,
+.ups-branch-card {
+  transition:
+    transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 0.61, 0.36, 1) !important;
+}
+
+/* ── 9. FOOTER LOGO — PREMIUM BADGE FRAME ── */
+footer .footer-brand img {
+  width: 88px !important;
+  height: 88px !important;
+  object-fit: contain !important;
+  border-radius: 18px !important;
+  box-shadow:
+    0 0 0 1px rgba(26, 155, 130, 0.28),
+    0 0 0 4px rgba(26, 155, 130, 0.08),
+    0 8px 24px rgba(0, 0, 0, 0.32) !important;
+  opacity: 1;
+  padding: 0;
+}
+
+/* ── 10. FOOTER BRAND — MOBILE SPACING FIX ── */
+@media (max-width: 959px) {
+  footer {
+    padding-top: 0 !important;
+  }
+  footer .footer-brand {
+    margin-top: 40px !important;
+    padding: 0 20px 28px !important;
+    margin-bottom: 0 !important;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  footer .footer-brand img {
+    width: 64px !important;
+    height: 64px !important;
+  }
+  footer .footer-brand h2 {
+    font-size: 24px !important;
+    line-height: 1.25 !important;
+  }
+  footer .footer-brand p {
+    font-size: 14px !important;
+    opacity: 0.8;
+  }
+  footer .footer-brand .footer-kicker {
+    font-size: 11px !important;
+    letter-spacing: 0.12em;
+  }
+}
+
+/* ── 11. FOOTER LINKS — ELEGANT HOVER ── */
+footer .footer-container .footer-section .footer-links li a {
+  transition: color 0.22s ease, opacity 0.22s ease, padding-left 0.22s ease !important;
+  opacity: 0.72 !important;
+  padding-left: 0;
+}
+
+footer .footer-container .footer-section .footer-links li a:hover {
+  opacity: 1 !important;
+  padding-left: 6px;
+  color: #22B496 !important;
+  text-decoration: none !important;
+}
+
+/* ── 12. FOOTER HEADINGS — BRAND FEEL ── */
+footer .footer-container .footer-section .footer-heading {
+  font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+  font-size: 13px !important;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+
+/* ── 13. GLOBAL LINK TRANSITIONS ── */
+a {
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+/* ── 14. TABLET FOOTER BRAND ── */
+@media (min-width: 600px) and (max-width: 959px) {
+  footer .footer-brand {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 0 24px 32px !important;
+  }
+  footer .footer-brand img {
+    width: 72px !important;
+    height: 72px !important;
+    flex-shrink: 0;
+  }
+}
+
 /*# sourceMappingURL=main.css.map */

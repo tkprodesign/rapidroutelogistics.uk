@@ -263,4 +263,9 @@ section.about-us .heading {
 }
 section.about-us .content {
   padding: 0px 16px;
-}/*# sourceMappingURL=home.css.map */
+}
+
+section.hero .custom-shape-divider-bottom-1771151583 {
+  display: none !important;
+}
+/*# sourceMappingURL=home.css.map */
