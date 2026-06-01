@@ -479,3 +479,71 @@ body {
     width: 100%;
   }
 }/*# sourceMappingURL=control-panel.css.map */
+
+/* ===== CONTROL PANEL GROUP SEPARATORS ===== */
+
+/* Shared group label style */
+#cp-add-location-event::before,
+#cp-exception-payments::before,
+#cp-support-email::before,
+#cp-shipments::before,
+#cp-site-users::before,
+#cp-delete-shipment::before {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #1A9B82;
+  padding: 0;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(26,155,130,0.18);
+}
+
+#cp-add-location-event {
+  margin-top: 8px;
+}
+
+#cp-add-location-event::before {
+  content: "Tracking & Operations";
+}
+
+#cp-exception-payments::before {
+  content: "Payments & Finance";
+  margin-top: 12px;
+}
+
+#cp-shipments::before {
+  content: "Shipment Records";
+}
+
+#cp-support-email::before {
+  content: "Communications";
+}
+
+#cp-site-users::before {
+  content: "User Management";
+}
+
+#cp-delete-shipment::before {
+  content: "Danger Zone";
+  color: #c0392b;
+  border-bottom-color: rgba(192,57,43,0.18);
+}
+
+/* Visual divider between sections to feel grouped */
+.content > section.cp-card + section.cp-card {
+  margin-top: 16px;
+}
+
+/* Danger zone section red accent top bar */
+#cp-delete-shipment,
+#cp-delete-site-user {
+  border-top: 3px solid rgba(192,57,43,0.35);
+  position: relative;
+}
+
+#cp-delete-service-quote {
+  border-top: none;
+}

@@ -19,9 +19,9 @@
   }
 }
 body {
-  background-color: #f4f1ee;
+  background-color: #f5f7f9;
   margin: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Barlow', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333333;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -120,9 +120,9 @@ body {
 }
 .shipment-list .shipment-item:hover {
   border-color: #1A9B82;
-  background: #fffcf5;
+  background: #f0faf8;
   transform: scale(1.01);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 5px 15px rgba(26, 155, 130, 0.07);
 }
 .shipment-list .shipment-item .ship-details {
   display: flex;
@@ -261,7 +261,7 @@ body {
   transition: all 0.25s ease;
 }
 .btn-gold:hover {
-  background-color: rgb(211.6851851852, 161, 29.8148148148);
+  background-color: #157d69;
 }
 .btn-gold.w-100 {
   width: 100%;
@@ -836,3 +836,76 @@ body {
     grid-template-columns: 1fr;
   }
 }/*# sourceMappingURL=dashboard.css.map */
+
+/* ===== REMOVE UPS BRAND ICONS ===== */
+img[src*="/ups/3d-icons/"],
+img[src*="/ups/"] {
+  display: none !important;
+}
+
+/* Replace empty-state icon areas with CSS teal circles */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 48px 24px;
+  gap: 16px;
+}
+
+.empty-state::before {
+  content: '\eb5e';
+  font-family: 'Material Symbols Outlined';
+  font-size: 2.5rem;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(26,155,130,0.12), rgba(26,155,130,0.06));
+  border: 1.5px solid rgba(26,155,130,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1A9B82;
+  line-height: 72px;
+  text-align: center;
+}
+
+.empty-state h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #14232b;
+}
+
+.empty-state p {
+  color: #888;
+  font-size: 0.9rem;
+  max-width: 320px;
+  margin: 0;
+}
+
+/* Quick-grid items: hide icon images, keep text  */
+.quick-grid .q-item img.art-icon-img {
+  display: none !important;
+}
+
+/* Elevate quick-grid items without icon clutter */
+.quick-grid .q-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.quick-grid .q-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1A9B82, transparent);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.quick-grid .q-item:hover::before {
+  opacity: 1;
+}

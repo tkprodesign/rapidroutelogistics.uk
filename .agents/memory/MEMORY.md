@@ -1,2 +1,4 @@
-- [Brand design system](brand-design-system.md) — RRL brand tokens, CSS architecture, off-palette color replacements
-- [Premium experience system](premium-experience.md) — page transitions, scroll reveal, mobile menu, hamburger JS/CSS
+- [Brand palette & CSS architecture](brand-palette.md) — teal #1A9B82, dark #14232b, no yellow/blue; page-specific CSS in page file not main.css
+- [Image assets & replacements](image-assets.md) — mc1/mc5=hero backgrounds, cd1/cd2=service cards; all replaced with Unsplash logistics photos
+- [Dashboard BOM issue](dashboard-bom.md) — dashboard/app.php had UTF-8 BOM causing session_start warning; stripped in June 2026
+- [Stats section homepage](stats-section.md) — rrl-stats section between brand-context and why-choose-us; counter JS in home.js uses IntersectionObserver

@@ -1,5 +1,5 @@
 body {
-  background: #f2f1ef;
+  background: #f5f7f9;
 }
 
 .create-main {
@@ -31,7 +31,7 @@ body {
 .head-line {
   width: 84px;
   height: 4px;
-  background: #ffc300;
+  background: #1A9B82;
   display: inline-block;
   margin: 14px 0 10px;
 }
@@ -46,7 +46,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  color: #005eb8;
+  color: #1A9B82;
   text-decoration: none;
   font-weight: 600;
   margin-top: 14px;
@@ -244,7 +244,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #005eb8;
+  color: #1A9B82;
   text-decoration: none;
   margin: 4px 0 10px;
   font-weight: 500;
@@ -568,7 +568,7 @@ body {
 }
 
 .inline-link {
-  color: #005eb8;
+  color: #1A9B82;
   text-decoration: none;
   font-weight: 600;
 }
@@ -736,8 +736,8 @@ body {
 }
 
 .quote-btn-primary {
-  background: #ffc300;
-  border-color: #ffc300;
+  background: #1A9B82;
+  border-color: #1A9B82;
   color: #111;
 }
 
@@ -748,13 +748,13 @@ body {
 
 .quote-btn-secondary {
   background: #fff;
-  border-color: #005eb8;
-  color: #005eb8;
+  border-color: #1A9B82;
+  color: #1A9B82;
 }
 
 .quote-btn-secondary:hover {
-  background: #005eb8;
-  border-color: #005eb8;
+  background: #1A9B82;
+  border-color: #1A9B82;
   color: #fff;
 }
 
@@ -1060,7 +1060,7 @@ body {
 }
 
 .service-quote-hint {
-  color: #005eb8;
+  color: #1A9B82;
   text-decoration: none;
   font-weight: 500;
 }
@@ -1305,8 +1305,8 @@ body {
 }
 
 .crypto-copy-btn:hover {
-  border-color: #005eb8;
-  color: #005eb8;
+  border-color: #1A9B82;
+  color: #1A9B82;
 }
 
 .crypto-copy-btn.is-copied {
@@ -1325,7 +1325,7 @@ body {
 }
 
 .terms-card a {
-  color: #005eb8;
+  color: #1A9B82;
 }
 
 .terms-check {
@@ -1418,8 +1418,8 @@ body {
 }
 
 .promo-btn-apply {
-  background: #ffc300;
-  border-color: #ffc300;
+  background: #1A9B82;
+  border-color: #1A9B82;
   color: #111;
 }
 
@@ -1430,13 +1430,13 @@ body {
 
 .promo-btn-remove {
   background: #fff;
-  border-color: #005eb8;
-  color: #005eb8;
+  border-color: #1A9B82;
+  color: #1A9B82;
 }
 
 .promo-btn-remove:hover {
-  background: #005eb8;
-  border-color: #005eb8;
+  background: #1A9B82;
+  border-color: #1A9B82;
   color: #fff;
 }
 
@@ -1504,7 +1504,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #ffc300;
+  background: #1A9B82;
   color: #111;
   font-weight: 700;
   cursor: pointer;
@@ -1953,7 +1953,7 @@ body {
     margin-bottom: 10px;
   }
   .mobile-summary-bar a {
-    color: #005eb8;
+    color: #1A9B82;
     font-weight: 700;
     text-decoration: none;
   }

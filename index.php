@@ -114,6 +114,37 @@ include('./app.php');
 </section>
 
 
+
+
+<section class="rrl-stats" id="rrl-stats">
+    <div class="stats-container">
+        <div class="stat-item">
+            <div class="stat-number-row">
+                <span class="stat-number" data-count="15000">0</span><span class="stat-suffix">+</span>
+            </div>
+            <span class="stat-label">Shipments Delivered</span>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number-row">
+                <span class="stat-number">99.2</span><span class="stat-suffix">%</span>
+            </div>
+            <span class="stat-label">On-Time Delivery Rate</span>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number-row">
+                <span class="stat-number" data-count="50">0</span><span class="stat-suffix">+</span>
+            </div>
+            <span class="stat-label">Active Route Destinations</span>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number-row">
+                <span class="stat-number">24/7</span>
+            </div>
+            <span class="stat-label">Support Line</span>
+        </div>
+    </div>
+</section>
+
 <section class="why-choose-us editing">
     <div class="container">
         <div class="heading .heading-1">
@@ -349,6 +380,5 @@ include('./app.php');
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 <script src="/assets/scripts/home.js?v=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/assets/scripts/home.js'); ?>"></script>
-<div style="text-align:center;padding:4px 0;font-size:10px;color:#ccc;"><a href="https://udfkit.com" style="color:#ddd;text-decoration:none;">UDF PDF D&ouml;n&uuml;&#351;t&uuml;r&uuml;c&uuml;</a> | <a href="https://convertudftopdf.com" style="color:#ddd;text-decoration:none;">UDF PDF &Ccedil;evirici</a></div>
 </body>
 </html>

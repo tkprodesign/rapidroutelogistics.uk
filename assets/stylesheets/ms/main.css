@@ -52,7 +52,7 @@ footer .footer-container .footer-section .footer-links {
   overflow: hidden;
   padding: 0 24px;
   opacity: 0;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: transparent;
   transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.4s ease;
 }
 footer .footer-container .footer-section .footer-links li {
@@ -79,7 +79,7 @@ footer .footer-container .footer-section .footer-links li a:hover {
 }
 footer .footer-container .footer-section .footer-links li a .material-symbols-outlined {
   font-size: 16px;
-  color: #ffb500;
+  color: #1A9B82;
 }
 footer .footer-container .footer-section.is-active .footer-heading .mobile-toggle-icon {
   transform: rotate(180deg);
