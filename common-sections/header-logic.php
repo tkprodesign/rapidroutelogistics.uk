@@ -1,5 +1,14 @@
 <?php
-require_once __DIR__ . '/globals.php';
+if (!function_exists('asset_url')) {
+    function asset_url(string $path): string {
+        $filePath = $_SERVER['DOCUMENT_ROOT'] . $path;
+        if (file_exists($filePath)) {
+            $separator = (strpos($path, '?') === false) ? '?' : '&';
+            return $path . $separator . 'v=' . filemtime($filePath);
+        }
+        return $path;
+    }
+}
 
 $serviceAlertCount = 0;
 $serviceAlertLink = '/support/';
@@ -14,6 +23,8 @@ if (isset($user_email) && trim((string)$user_email) !== '') {
 }
 
 if ($headerSignedInEmail !== '') {
+    require_once __DIR__ . '/globals.php';
+
     $serviceAlertLink = '/dashboard/?t=overview&a=incoming#shipment-activity';
     $serviceAlertStatuses = [
         'pending',
@@ -65,4 +76,3 @@ $mobileAccountHref = $headerIsSignedIn ? '/dashboard/' : '/login/';
 $headerRequestPath = (string)(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?? '/');
 $logoutHref = (strpos($headerRequestPath, '/dashboard') === 0) ? '/logout/?next=login' : '/logout/?next=home';
 ?>
-

@@ -21,6 +21,22 @@ jobs:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+          DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          NOREPLY_FROM_EMAIL: ${{ secrets.NOREPLY_FROM_EMAIL }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_SECURE: ${{ secrets.SMTP_SECURE }}
+          SHIPMENTS_EMAIL_PASSWORD: ${{ secrets.SHIPMENTS_EMAIL_PASSWORD }}
+          BILLING_EMAIL_PASSWORD: ${{ secrets.BILLING_EMAIL_PASSWORD }}
+          ADMIN_EMAIL_PASSWORD: ${{ secrets.ADMIN_EMAIL_PASSWORD }}
+          SUPPORT_EMAIL_PASSWORD: ${{ secrets.SUPPORT_EMAIL_PASSWORD }}
+          TRACKING_EMAIL_PASSWORD: ${{ secrets.TRACKING_EMAIL_PASSWORD }}
+          NOREPLY_EMAIL_PASSWORD: ${{ secrets.NOREPLY_EMAIL_PASSWORD }}
           REMOTE_DIR: /rapidroutelogistics.uk/htdocs
           BEFORE_SHA: ${{ github.event.before }}
           AFTER_SHA: ${{ github.sha }}
@@ -43,6 +59,42 @@ jobs:
           fi
 
           touch changed-files.txt deleted-files.txt
+
+          php -r '
+          $names = [
+              "DATABASE_USERNAME", "DATABASE_PASSWORD", "DATABASE_NAME", "DATABASE_HOST", "DATABASE_PORT",
+              "RESEND_API_KEY", "NOREPLY_FROM_EMAIL", "SMTP_HOST", "SMTP_PORT", "SMTP_SECURE",
+              "SHIPMENTS_EMAIL_PASSWORD", "BILLING_EMAIL_PASSWORD", "ADMIN_EMAIL_PASSWORD",
+              "SUPPORT_EMAIL_PASSWORD", "TRACKING_EMAIL_PASSWORD", "NOREPLY_EMAIL_PASSWORD",
+          ];
+          $config = [];
+          foreach ($names as $name) {
+              $value = getenv($name);
+              if ($value !== false && trim($value) !== "") {
+                  $config[$name] = trim($value);
+              }
+          }
+          if (!isset($config["DATABASE_HOST"])) {
+              $config["DATABASE_HOST"] = "sql300.byethost18.com";
+          }
+          if (!isset($config["DATABASE_PORT"])) {
+              $config["DATABASE_PORT"] = "3306";
+          }
+          if (!isset($config["NOREPLY_FROM_EMAIL"])) {
+              $config["NOREPLY_FROM_EMAIL"] = "noreply@rapidroutelogistics.uk";
+          }
+          if (!isset($config["SMTP_HOST"])) {
+              $config["SMTP_HOST"] = "mail.spacemail.com";
+          }
+          if (!isset($config["SMTP_PORT"])) {
+              $config["SMTP_PORT"] = "465";
+          }
+          if (!isset($config["SMTP_SECURE"])) {
+              $config["SMTP_SECURE"] = "ssl";
+          }
+          file_put_contents("common-sections/runtime-config.php", "<?php\nreturn " . var_export($config, true) . ";\n");
+          '
+          printf '%s\0' common-sections/runtime-config.php >> changed-files.txt
 
           while IFS= read -r -d '' file; do
             case "$file" in
