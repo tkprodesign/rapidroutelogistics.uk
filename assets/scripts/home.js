@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 delay: 5000,
                 disableOnInteraction: false,
             },
+            noSwipingSelector: 'input, textarea, button, .c-t-a',
+            preventClicks: false,
+            preventClicksPropagation: false,
         });
     }
 

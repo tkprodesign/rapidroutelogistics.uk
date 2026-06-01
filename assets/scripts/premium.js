@@ -61,56 +61,8 @@
   if (coarse || reduced) return;
 
   // ── 3. CUSTOM CURSOR ──────────────────────────────────────────────
-  var dot  = document.createElement('div');
-  dot.className  = 'rrl-cursor-dot';
-  var ring = document.createElement('div');
-  ring.className = 'rrl-cursor-ring';
-  document.body.appendChild(dot);
-  document.body.appendChild(ring);
-  document.body.classList.add('rrl-cursor-enabled');
-
-  var mx = -200, my = -200;
-  var rx = -200, ry = -200;
-  var rafCursor = null;
-  var ringReady = false;
-
-  document.addEventListener('mousemove', function (e) {
-    mx = e.clientX;
-    my = e.clientY;
-
-    // Snap ring to cursor on very first move to avoid fly-in
-    if (!ringReady) {
-      rx = mx; ry = my;
-      ringReady = true;
-      dot.style.opacity  = '1';
-      ring.style.opacity = '1';
-    }
-
-    dot.style.transform = 'translate(' + (mx - 4) + 'px,' + (my - 4) + 'px)';
-    if (!rafCursor) rafCursor = requestAnimationFrame(lerpRing);
-  });
-
-  function lerpRing() {
-    rx += (mx - rx) * 0.13;
-    ry += (my - ry) * 0.13;
-    ring.style.transform = 'translate(' + (rx - 18) + 'px,' + (ry - 18) + 'px)';
-    if (Math.abs(mx - rx) > 0.25 || Math.abs(my - ry) > 0.25) {
-      rafCursor = requestAnimationFrame(lerpRing);
-    } else {
-      rafCursor = null;
-    }
-  }
-
-  document.addEventListener('mouseleave', function () {
-    dot.style.opacity  = '0';
-    ring.style.opacity = '0';
-    ringReady = false;
-  });
-
-  document.addEventListener('mouseover', function (e) {
-    var el = e.target && e.target.closest('a, button, input, select, textarea, [role="button"], .dtp, label, .col');
-    document.body.classList.toggle('rrl-cursor-hover', !!el);
-  }, { passive: true });
+  // Keep the native system cursor visible. The previous custom cursor hid
+  // the pointer outside the hero and made tracking inputs harder to use.
 
   // ── 4. MAGNETIC BUTTONS ──────────────────────────────────────────
   var magnets = document.querySelectorAll('header .cta .dtp, .banner-1 .right a, .rrl-magnetic');

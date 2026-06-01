@@ -6,6 +6,34 @@
     error_reporting(E_ALL);
     date_default_timezone_set('America/Chicago');
 
+    if (!function_exists('rrl_enforce_https')) {
+        function rrl_enforce_https(): void {
+            if (headers_sent()) {
+                return;
+            }
+
+            $host = strtolower((string)($_SERVER['HTTP_HOST'] ?? ''));
+            if (!in_array($host, ['rapidroutelogistics.uk', 'www.rapidroutelogistics.uk'], true)) {
+                return;
+            }
+
+            $https = strtolower((string)($_SERVER['HTTPS'] ?? ''));
+            $forwardedProto = strtolower((string)($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? ''));
+            $cfVisitor = (string)($_SERVER['HTTP_CF_VISITOR'] ?? '');
+            $cfVisitorHttps = stripos($cfVisitor, '"scheme":"https"') !== false || stripos($cfVisitor, "'scheme':'https'") !== false;
+
+            if ($https === 'on' || $https === '1' || $forwardedProto === 'https' || $cfVisitorHttps) {
+                return;
+            }
+
+            $requestUri = (string)($_SERVER['REQUEST_URI'] ?? '/');
+            header('Location: https://' . $host . $requestUri, true, 301);
+            exit;
+        }
+    }
+
+    rrl_enforce_https();
+
 
 
 

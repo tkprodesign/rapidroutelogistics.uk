@@ -12,6 +12,18 @@ if (document.querySelector('.swiper') && typeof Swiper === 'function') {
             delay: 5000, 
             disableOnInteraction: false,
         },
+        noSwipingSelector: 'input, textarea, button, .c-t-a',
+        preventClicks: false,
+        preventClicksPropagation: false,
+    });
+
+    const heroTrackingForms = document.querySelectorAll('.hero .c-t-a');
+    heroTrackingForms.forEach((form) => {
+        ['pointerdown', 'mousedown', 'touchstart', 'click'].forEach((eventName) => {
+            form.addEventListener(eventName, (event) => {
+                event.stopPropagation();
+            });
+        });
     });
 }
 
