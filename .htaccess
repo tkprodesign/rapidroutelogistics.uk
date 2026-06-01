@@ -1,3 +1,11 @@
 Options -Indexes
 RewriteEngine On
+
+# Always serve the public site over HTTPS, including when Cloudflare
+# forwards visitor protocol details to the origin.
+RewriteCond %{HTTP_HOST} ^(www\.)?rapidroutelogistics\.uk$ [NC]
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
 RewriteRule ^maintenance/archive/ - [F,L]
