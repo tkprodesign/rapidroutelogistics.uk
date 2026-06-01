@@ -1035,4 +1035,259 @@ section.about-us .content a:hover {
   background: #1A9B82;
 }
 
+/* ================================================================
+   PREMIUM TIER II — SECTION POLISH
+   Brand Context · Why Choose Us · Cards · Hero · Banner
+   ================================================================ */
+
+/* ── HERO: GRADIENT ACCENT TEXT ── */
+section.hero .swiper .swiper-slide .heading .main-heading .accent {
+  background: linear-gradient(125deg, #1A9B82 0%, #2DD4BF 65%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── BRAND CONTEXT CARD — CINEMATIC DARK ── */
+section.ups-branch-context.brand-context .container .ups-branch-card {
+  background: linear-gradient(140deg, #0d1920 0%, #14232b 55%, #0e1e27 100%);
+  border: none;
+  border-left: none;
+  border-radius: 18px;
+  padding: 56px 64px;
+  gap: 56px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.26),
+    0 8px 28px rgba(0, 0, 0, 0.12);
+}
+
+section.ups-branch-context.brand-context .container .ups-branch-card::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -80px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(26, 155, 130, 0.13) 0%, transparent 68%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+section.ups-branch-context.brand-context .container .ups-branch-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1A9B82 0%, rgba(26, 155, 130, 0.28) 60%, transparent 100%);
+  z-index: 1;
+}
+
+section.ups-branch-context.brand-context .container .ups-branch-card .content {
+  position: relative;
+  z-index: 1;
+}
+
+section.ups-branch-context.brand-context .container .ups-branch-card .content .eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: #1A9B82;
+  margin-bottom: 16px;
+}
+
+section.ups-branch-context.brand-context .container .ups-branch-card .content h2 {
+  color: #fff;
+  font-size: 36px;
+  line-height: 1.16;
+  margin-bottom: 20px;
+  font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+section.ups-branch-context.brand-context .container .ups-branch-card .content p {
+  font-size: 17px;
+  line-height: 1.68;
+  margin-bottom: 14px;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+section.ups-branch-context.brand-context .container .ups-branch-card .content ul {
+  margin: 18px 0 0 0;
+  list-style: none;
+  padding: 0;
+}
+
+section.ups-branch-context.brand-context .container .ups-branch-card .content ul li {
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 15px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.55;
+}
+
+section.ups-branch-context.brand-context .container .ups-branch-card .content ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 2px;
+  background: #1A9B82;
+  border-radius: 1px;
+}
+
+section.ups-branch-context.brand-context .container .ups-branch-card .visual {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(26, 155, 130, 0.2);
+  border-radius: 20px;
+  padding: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+section.ups-branch-context.brand-context .container .ups-branch-card .visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(26, 155, 130, 0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+section.ups-branch-context.brand-context .container .ups-branch-card .visual img {
+  width: min(200px, 100%);
+  height: auto;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 4px 28px rgba(26, 155, 130, 0.55))
+    drop-shadow(0 0 56px rgba(26, 155, 130, 0.22));
+  position: relative;
+  z-index: 1;
+}
+
+/* ── WHY CHOOSE US: PREMIUM CARDS ── */
+section.why-choose-us {
+  background: linear-gradient(180deg, #f5fbfa 0%, #ffffff 100%);
+}
+
+section.why-choose-us .container .content .col {
+  border-radius: 10px;
+  height: auto;
+  min-height: 180px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.3s var(--rrl-ease, cubic-bezier(0.22, 0.61, 0.36, 1)),
+    box-shadow 0.3s ease,
+    border-color 0.28s ease;
+}
+
+section.why-choose-us .container .content .col::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1A9B82, #2DD4BF);
+  border-radius: 10px 10px 0 0;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  z-index: 1;
+}
+
+section.why-choose-us .container .content .col:hover::before {
+  opacity: 1;
+}
+
+section.why-choose-us .container .content .col:hover {
+  box-shadow: 0 10px 36px rgba(18, 35, 43, 0.11), 0 2px 8px rgba(18, 35, 43, 0.06);
+  border-color: rgba(26, 155, 130, 0.2);
+}
+
+section.why-choose-us .container .content .col h4 {
+  font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #14232b;
+}
+
+/* ── CARDS CONTAINER: IMAGE ZOOM + LIFT ── */
+section.cards-container .content .col {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.36s var(--rrl-ease, cubic-bezier(0.22, 0.61, 0.36, 1)),
+              box-shadow 0.36s ease !important;
+}
+
+section.cards-container .content .col:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 20px 52px rgba(18, 35, 43, 0.14), 0 4px 14px rgba(18, 35, 43, 0.06) !important;
+}
+
+section.cards-container .content .col .img-wrapper {
+  overflow: hidden;
+}
+
+section.cards-container .content .col .img-wrapper img {
+  transition: transform 0.58s cubic-bezier(0.22, 0.61, 0.36, 1);
+  display: block;
+  width: 100%;
+}
+
+section.cards-container .content .col:hover .img-wrapper img {
+  transform: scale(1.05);
+}
+
+/* ── BANNER-1: CINEMATIC CTA BAND ── */
+section.banner-1 {
+  background: linear-gradient(140deg, #0e1e27 0%, #14232b 50%, #0f1d25 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+section.banner-1::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: -80px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(26, 155, 130, 0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+section.banner-1::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  right: -60px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+section.banner-1 .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── SERVICES-ALT: SUBTLE BG ── */
+section.services-alt {
+  background: #f7faf9;
+}
+
 /*# sourceMappingURL=home.css.map */

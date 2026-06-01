@@ -107,7 +107,7 @@ include('./app.php');
                 </ul>
             </div>
             <div class="visual">
-                <img src="<?= htmlspecialchars(asset_url('/assets/images/branding/rapid-route-logistics-icon-dark.png')); ?>" alt="Rapid Route Logistics icon">
+                <img src="<?= htmlspecialchars(asset_url('/assets/images/branding/rapid-route-logistics-icon-light.png')); ?>" alt="Rapid Route Logistics icon">
             </div>
         </div>
     </div>
