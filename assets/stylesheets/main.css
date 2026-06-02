@@ -1792,7 +1792,7 @@ section .col,
 .rrl-whatsapp-widget {
   z-index: 80 !important;
   right: 22px !important;
-  bottom: 22px !important;
+  bottom: 120px !important;
   min-height: 48px !important;
   box-shadow: 0 14px 34px rgba(11, 28, 34, 0.18) !important;
 }
@@ -1816,4 +1816,28 @@ footer .footer-brand { max-width: 1320px !important; }
     transition-duration: .001ms !important;
   }
   body { animation: none !important; }
+}
+
+/* ── WhatsApp: icon container transparent (SVG has its own circle background) ── */
+.rrl-whatsapp-widget__icon {
+  background: transparent !important;
+  box-shadow: none !important;
+  width: 42px !important;
+  height: 42px !important;
+  flex: 0 0 42px !important;
+}
+.rrl-whatsapp-widget__icon img {
+  width: 42px !important;
+  height: 42px !important;
+  display: block !important;
+}
+@media (max-width: 760px) {
+  .rrl-whatsapp-widget {
+    bottom: 110px !important;
+    right: 16px !important;
+  }
+  .rrl-whatsapp-widget__icon img {
+    width: 38px !important;
+    height: 38px !important;
+  }
 }

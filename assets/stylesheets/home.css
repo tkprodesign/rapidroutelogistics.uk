@@ -1716,3 +1716,230 @@ section.services-alt .container .content .g2 .col.service-tile .service-media im
   section:not(.hero) .container { width: calc(100% - 32px); margin-bottom: 3.5rem !important; }
   section:not(.hero) .container .heading { margin: 48px auto 2.25rem !important; }
 }
+
+
+/* ================================================================
+   CINEMATIC STORY SECTION — How We Work
+   ================================================================ */
+.rrl-story-section {
+    position: relative;
+    min-height: 72vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(148deg, #07121a 0%, #0d1e27 55%, #091620 100%);
+    padding: 100px 0;
+}
+
+.rrl-story-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/assets/images/home/mc1.jpg');
+    background-size: cover;
+    background-position: center 40%;
+    opacity: 0.12;
+    filter: saturate(0.25) contrast(1.15);
+    pointer-events: none;
+}
+
+.rrl-story-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, rgba(7,18,26,0.96) 38%, rgba(7,18,26,0.78) 100%);
+    pointer-events: none;
+}
+
+.rrl-story-container {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 52px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.rrl-story-kicker {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #1A9B82;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: 'Barlow', sans-serif;
+}
+
+.rrl-story-headline {
+    font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+    font-size: clamp(36px, 4.2vw, 64px);
+    font-weight: 800;
+    line-height: 1.03;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 26px;
+}
+
+.rrl-story-headline span {
+    color: #1A9B82;
+}
+
+.rrl-story-body {
+    font-size: 17px;
+    line-height: 1.74;
+    color: rgba(255, 255, 255, 0.60);
+    margin-bottom: 38px;
+    max-width: 480px;
+}
+
+.rrl-story-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #1A9B82;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 14px 30px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-family: 'Barlow', sans-serif;
+    transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+    box-shadow: 0 10px 28px rgba(26, 155, 130, 0.28);
+}
+
+.rrl-story-cta:hover {
+    background: #22b496;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px rgba(26, 155, 130, 0.38);
+    color: #fff;
+    text-decoration: none;
+}
+
+.rrl-story-cta .material-symbols-outlined {
+    font-size: 18px;
+}
+
+/* Left side reveal animation */
+.rrl-story-left {
+    opacity: 0;
+    transform: translateX(-28px);
+    transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.rrl-story-left.rrl-story-left-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Process steps */
+.rrl-process-step {
+    display: flex;
+    gap: 22px;
+    align-items: flex-start;
+    padding: 26px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    opacity: 0;
+    transform: translateX(24px);
+    transition: opacity 0.58s cubic-bezier(0.22, 0.61, 0.36, 1),
+                transform 0.58s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.rrl-process-step:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.rrl-process-step.rrl-step-visible {
+    opacity: 1;
+    transform: none;
+}
+
+.rrl-step-num {
+    font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: #1A9B82;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    flex-shrink: 0;
+    width: 52px;
+    opacity: 0.65;
+    padding-top: 2px;
+}
+
+.rrl-step-body h4 {
+    font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.01em;
+    margin: 0 0 6px 0;
+}
+
+.rrl-step-body p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.50);
+    line-height: 1.62;
+    margin: 0;
+}
+
+@media (max-width: 960px) {
+    .rrl-story-container {
+        grid-template-columns: 1fr;
+        gap: 52px;
+        padding: 0 28px;
+    }
+    .rrl-story-section {
+        padding: 72px 0;
+        min-height: auto;
+    }
+    .rrl-story-left {
+        transform: translateY(18px);
+    }
+    .rrl-process-step {
+        transform: translateY(14px);
+    }
+}
+
+@media (max-width: 760px) {
+    .rrl-story-section {
+        padding: 56px 0;
+    }
+    .rrl-story-container {
+        padding: 0 20px;
+    }
+    .rrl-story-headline {
+        font-size: clamp(30px, 9vw, 46px);
+    }
+    .rrl-story-body {
+        font-size: 15px;
+    }
+}
+
+/* ── WhatsApp icon container: transparent (SVG has its own circle) ── */
+.rrl-whatsapp-widget__icon {
+    background: transparent !important;
+    box-shadow: none !important;
+    width: 42px !important;
+    height: 42px !important;
+    flex: 0 0 42px !important;
+}
+
+.rrl-whatsapp-widget__icon img {
+    width: 42px;
+    height: 42px;
+    display: block;
+    border-radius: 0;
+}
+
+/* ── Login page: horizontal logo sizing ── */
+body.login-page section.form form .container .heading .logo,
+body.login-page section.form-section form .container .heading .logo {
+    width: 210px !important;
+    max-width: 60vw !important;
+    height: auto !important;
+    margin-bottom: 24px !important;
+}
+

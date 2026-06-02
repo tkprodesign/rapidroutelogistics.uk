@@ -2,3 +2,6 @@
 - [Image assets & replacements](image-assets.md) — mc1/mc5=hero backgrounds, cd1/cd2=service cards; all replaced with Unsplash logistics photos
 - [Dashboard BOM issue](dashboard-bom.md) — dashboard/app.php had UTF-8 BOM causing session_start warning; stripped in June 2026
 - [Stats section homepage](stats-section.md) — rrl-stats section between brand-context and why-choose-us; counter JS in home.js uses IntersectionObserver
+- [Logo asset naming](logo-assets.md) — transparent/logo.png = dark-colored horizontal logo for light bg; transparent/logo-alt.png = light/white logo for dark bg; logo-horizontal-dark.png has white bg baked in (avoid)
+- [WhatsApp widget fix](whatsapp-widget.md) — inline SVG broken by CSS fill:currentColor; replaced with img tag using /assets/images/whatsapp-icon.svg; positioned bottom:120px above Smartsupp
+- [Story section homepage](story-section.md) — rrl-story-section inserted between hero and brand-context; step animations use rrl-step-visible via IntersectionObserver in home.js; left panel uses rrl-story-left-visible

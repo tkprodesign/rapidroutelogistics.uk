@@ -82,6 +82,44 @@ include('./app.php');
 
 
 
+
+<!-- ── CINEMATIC STORY SECTION ── -->
+<section class="rrl-story-section">
+    <div class="rrl-story-bg"></div>
+    <div class="rrl-story-overlay"></div>
+    <div class="rrl-story-container">
+        <div class="rrl-story-left">
+            <p class="rrl-story-kicker">WHO WE ARE</p>
+            <h2 class="rrl-story-headline">We don't just move packages.<br><span>We move what matters most.</span></h2>
+            <p class="rrl-story-body">Every business has a shipment to send. Every family has something precious to share. At Rapid Route Logistics, every collection is a commitment — handled with precision, tracked with transparency, delivered on time.</p>
+            <a href="/shipping/" class="rrl-story-cta">Start Shipping <span class="material-symbols-outlined">arrow_forward</span></a>
+        </div>
+        <div class="rrl-story-right">
+            <div class="rrl-process-step">
+                <span class="rrl-step-num">01</span>
+                <div class="rrl-step-body">
+                    <h4>Book Your Collection</h4>
+                    <p>Create your shipment online in minutes. We collect from your door at a time that works for you.</p>
+                </div>
+            </div>
+            <div class="rrl-process-step">
+                <span class="rrl-step-num">02</span>
+                <div class="rrl-step-body">
+                    <h4>We Handle the Route</h4>
+                    <p>Your shipment enters our precision network — handled carefully, tracked in real time, every mile.</p>
+                </div>
+            </div>
+            <div class="rrl-process-step">
+                <span class="rrl-step-num">03</span>
+                <div class="rrl-step-body">
+                    <h4>Delivered. Confirmed.</h4>
+                    <p>Final-mile delivery with proof of receipt. You and your recipient know the moment it lands.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="ups-branch-context brand-context premium-scene" data-premium-scene="brand">
     <div class="container">
         <div class="ups-branch-card">

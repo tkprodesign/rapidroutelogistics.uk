@@ -1,15 +1,30 @@
 ---
-name: Homepage image assets
-description: What images are used where on the homepage and what they were replaced with
+name: Image assets & replacements
+description: Which image files are used where, their sources and dimensions
 ---
 
-## Homepage images (assets/images/home/)
-- `mc1.jpg` → hero-1 CSS background (`background: url(...)` in home.css); replaced with Unsplash warehouse photo
-- `mc5.jpg` → hero-2 CSS background AND tools section `.left` background; replaced with Unsplash logistics photo
-- `cd1.jpg` → service card 1 inline img ("Ship and Scale"); replaced with Unsplash courier photo
-- `cd2.jpg` → service card 2 inline img ("Returns, Re-Delivery"); replaced with Unsplash trucks photo
+## Home images
+| File | Used in | Dimensions | Source |
+|------|---------|------------|--------|
+| `home/mc1.jpg` | hero-1 background (CSS) | 1920×1280 | Original, keep |
+| `home/mc5.jpg` | hero-2 background (CSS) + tools .left (CSS) | 1920×1080 | Unsplash warehouse |
+| `home/mc2.jpg` | Assisted Pickup service card | 900×600 | Unsplash courier |
+| `home/mc6.jpg` | Same-Day Delivery card | 1200×800 | Unsplash conference |
+| `home/cd1.jpg` | Family Parcel + cards-container col 1 | original | Keep |
+| `home/cd2.jpg` | Event Delivery + cards-container col 2 | original | Keep |
+| `home/mc3.avif` | Not referenced anywhere | 2000×1371 | Unused |
 
-**Why:** Original images were military/helicopter photos — completely off-brand for a civilian logistics company.
+## Service images (all now 1200×800)
+| File | Used for |
+|------|---------|
+| `services/air-freight.jpg` | Business Logistics tile |
+| `services/warehouse-solutions.jpg` | Bulk & Scheduled Deliveries tile |
+| `services/road-freight.jpg` | Inter-City & Regional tile |
+| `services/ocean-freight.jpg` | Not currently in index.php hero tiles |
+| `parcel-delivery.jpg` | Document & Priority Parcel tile |
 
-## tools section img tag
-The `<img src="/assets/images/home/mc5.jpg">` in the tools section has `display: none` in CSS — it's decorative/legacy.
+## Branding
+- `branding/transparent/logo.png` — dark horizontal logo, transparent bg (header + login)
+- `branding/transparent/logo-alt.png` — light/white horizontal logo, transparent bg (dark bg use)
+- `branding/transparent/icon-alt.png` — light icon mark only (footer badge, brand-context visual)
+- `whatsapp-icon.svg` — in assets/images/ (green circle + white phone path, for WhatsApp widget)
