@@ -1458,7 +1458,7 @@ section.services-alt .container .heading .toggle button.active {
   color: #071310;
 }
 section.services-alt .container .heading .toggle::after {
-  background: linear-gradient(135deg, #77f7dc, #ffd64c);
+  background: linear-gradient(135deg, #1A9B82, #22B496);
 }
 section.services-alt .container .content {
   perspective: none;
@@ -1533,11 +1533,11 @@ section.services-alt .container .content .g2 .col.service-tile p {
 }
 section.services-alt .container .content .g1 .col.service-tile a,
 section.services-alt .container .content .g2 .col.service-tile a {
-  color: #77f7dc;
+  color: #4DDBBD;
   width: -moz-max-content;
   width: max-content;
   padding-bottom: 3px;
-  border-bottom: 1px solid rgba(119, 247, 220, 0.45);
+  border-bottom: 1px solid rgba(77, 219, 189, 0.45);
 }
 section.services-alt .container .content .g1 .col.service-tile:hover,
 section.services-alt .container .content .g1 .col.service-tile:focus-within,

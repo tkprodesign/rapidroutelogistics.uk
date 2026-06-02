@@ -50,10 +50,7 @@ function exception_pay_clean_text(string $value): string {
 }
 
 function exception_pay_crypto_processing_fee(float $amount): float {
-    if ($amount <= 0) return 0.00;
-    if ($amount < 400) return 5.00;
-    if ($amount < 800) return 7.00;
-    return 10.00;
+    return 0.00;
 }
 
 exception_pay_ensure_table($conn);

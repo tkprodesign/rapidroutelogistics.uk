@@ -1,11 +1,11 @@
 body {
-  background: #f4f1ed;
+  background: #f0f4f3;
 }
 
 .cp-topbar {
   background: #ffffff;
-  border-bottom: 1px solid #e8e4df;
-  box-shadow: 0 6px 18px rgba(36, 22, 12, 0.04);
+  border-bottom: 1px solid #dde8e5;
+  box-shadow: 0 6px 18px rgba(20, 35, 43, 0.05);
 }
 
 .cp-topbar-inner {
@@ -20,7 +20,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  color: #1f1f1f;
+  color: #14232b;
 }
 .cp-topbar-brand img {
   height: 56px;
@@ -38,7 +38,7 @@ body {
   line-height: 1.2;
 }
 .cp-topbar-brand-copy span {
-  color: #6b625a;
+  color: #547068;
   font-size: 0.86rem;
   line-height: 1.2;
 }
@@ -56,21 +56,22 @@ body {
   min-height: 40px;
   padding: 0 14px;
   border-radius: 999px;
-  color: #4d443d;
+  color: #3d5a54;
   font-weight: 600;
   transition: background-color 0.18s ease, color 0.18s ease;
 }
 .cp-topbar-nav a:hover {
-  background: #f8f1e3;
-  color: #7c4a2a;
+  background: rgba(26, 155, 130, 0.1);
+  color: #1A9B82;
 }
 .cp-topbar-nav a.active {
-  background: #ffb500;
-  color: #1f1f1f;
+  background: #1A9B82;
+  color: #ffffff;
 }
 
 .header-2 {
-  background: linear-gradient(120deg, #7c4a2a 0%, #5d341d 100%);
+  background: linear-gradient(120deg, #14232b 0%, #1a3040 100%);
+  border-bottom: 3px solid #1A9B82;
   color: #fff;
   padding: 24px 0;
   margin-bottom: 20px;
@@ -83,12 +84,14 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  color: rgba(255,255,255,0.75);
 }
 
 .header-2 .cutomer-name {
   margin: 6px 0 0;
   font-size: 2rem;
   font-weight: 700;
+  color: #fff;
 }
 
 .content {
@@ -97,11 +100,11 @@ body {
 
 .cp-card {
   background: #fff;
-  border: 1px solid #e8e4df;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(36, 22, 12, 0.06);
-  padding: 20px;
-  margin-bottom: 26px;
+  border: 1px solid #dde8e5;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(20, 35, 43, 0.05);
+  padding: 24px;
+  margin-bottom: 24px;
 }
 
 .cp-card-head {
@@ -115,21 +118,21 @@ body {
 
 .cp-card-head h2 {
   margin: 0;
-  color: #1f1f1f;
+  color: #14232b;
   font-size: 1.35rem;
 }
 
 .cp-card-head p {
   margin: 4px 0 0;
-  color: #5f5f5f;
+  color: #547068;
   font-size: 0.95rem;
 }
 
 .cp-table-wrap {
   width: 100%;
   overflow-x: auto;
-  border: 1px solid #ece8e4;
-  border-radius: 10px;
+  border: 1px solid #dde8e5;
+  border-radius: 12px;
 }
 
 .cp-table {
@@ -141,14 +144,14 @@ body {
 .cp-table th,
 .cp-table td {
   padding: 12px 14px;
-  border-bottom: 1px solid #f0ece8;
+  border-bottom: 1px solid #eaf1ef;
   text-align: left;
   font-size: 0.92rem;
 }
 
 .cp-table th {
-  background: #faf8f6;
-  color: #3a3a3a;
+  background: #f4faf8;
+  color: #14232b;
   font-weight: 700;
   position: sticky;
   top: 0;
@@ -156,7 +159,7 @@ body {
 }
 
 .cp-table tbody tr:hover {
-  background: #fffaf3;
+  background: rgba(26, 155, 130, 0.04);
 }
 
 .cp-table tbody tr:last-child td {
@@ -199,8 +202,8 @@ body {
   min-height: 32px;
   padding: 6px 12px;
   border-radius: 999px;
-  background: #f5efe6;
-  color: #6b4b32;
+  background: rgba(26, 155, 130, 0.1);
+  color: #0e7a64;
   font-size: 0.82rem;
   font-weight: 700;
   line-height: 1;
@@ -213,18 +216,19 @@ body {
   align-items: center;
   justify-content: center;
   min-height: var(--btn-height);
-  padding: 10px 16px;
+  padding: 10px 20px;
   border-radius: var(--btn-radius-pill);
-  background: #ffb500;
-  color: #1f1f1f;
+  background: #1A9B82;
+  color: #ffffff;
   font-weight: 700;
   text-decoration: none;
-  border: 1px solid #e3a200;
+  border: 1px solid #15876e;
   transition: all 0.2s ease;
+  gap: 8px;
 }
 
 .cp-btn:hover {
-  background: #f3ab00;
+  background: #15876e;
 }
 
 .cp-btn-secondary {
@@ -234,21 +238,21 @@ body {
 }
 
 .cp-btn-secondary:hover {
-  background: #f2f8ff;
+  background: rgba(26, 155, 130, 0.06);
 }
 
 .cp-quote-form label {
   display: block;
   margin-bottom: 6px;
   font-weight: 600;
-  color: #2d2d2d;
+  color: #14232b;
 }
 
 .cp-location-form label {
   display: block;
   margin-bottom: 6px;
   font-weight: 600;
-  color: #2d2d2d;
+  color: #14232b;
 }
 
 .cp-quote-form {
@@ -275,7 +279,7 @@ body {
 
 .cp-quote-grid input {
   width: 100%;
-  border: 1px solid #d5cec7;
+  border: 1px solid #c8d8d4;
   border-radius: 8px;
   height: 46px;
   padding: 0 12px;
@@ -287,7 +291,7 @@ body {
 
 .cp-quote-grid textarea {
   width: 100%;
-  border: 1px solid #d5cec7;
+  border: 1px solid #c8d8d4;
   border-radius: 8px;
   min-height: 130px;
   padding: 12px;
@@ -301,7 +305,7 @@ body {
 
 .cp-quote-grid select {
   width: 100%;
-  border: 1px solid #d5cec7;
+  border: 1px solid #c8d8d4;
   border-radius: 8px;
   height: 46px;
   padding: 0 12px;
@@ -315,12 +319,12 @@ body {
 .cp-quote-grid select:focus,
 .cp-quote-grid textarea:focus {
   border-color: #1A9B82;
-  box-shadow: 0 0 0 3px rgba(0, 93, 173, 0.15);
+  box-shadow: 0 0 0 3px rgba(26, 155, 130, 0.15);
 }
 
 #pay_block_message_preview[readonly] {
-  background: #faf8f6;
-  color: #3a3a3a;
+  background: #f4faf8;
+  color: #14232b;
 }
 
 .cp-card-head p {
@@ -330,7 +334,7 @@ body {
 
 .cp-form-helper {
   margin: 0 0 14px;
-  color: #5f5f5f;
+  color: #547068;
   font-size: 0.94rem;
   line-height: 1.45;
   max-width: 760px;
@@ -350,7 +354,7 @@ body {
 .cp-location-grid input,
 .cp-location-grid select {
   width: 100%;
-  border: 1px solid #d5cec7;
+  border: 1px solid #c8d8d4;
   border-radius: 8px;
   height: 46px;
   padding: 0 12px;
@@ -363,7 +367,7 @@ body {
 .cp-location-grid input:focus,
 .cp-location-grid select:focus {
   border-color: #1A9B82;
-  box-shadow: 0 0 0 3px rgba(0, 93, 173, 0.15);
+  box-shadow: 0 0 0 3px rgba(26, 155, 130, 0.15);
 }
 
 .cp-location-grid-wide {
@@ -403,16 +407,16 @@ body {
 
 .cp-quote-notice {
   margin: 0 0 12px;
-  padding: 10px 12px;
-  border-radius: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
   font-weight: 600;
   border: 1px solid transparent;
 }
 
 .cp-quote-notice.is-success {
-  background: #edf8ef;
-  border-color: #b8e0bf;
-  color: #1f6d2d;
+  background: #edf8f5;
+  border-color: #a8ddd1;
+  color: #0e6b56;
 }
 
 .cp-quote-notice.is-error {
@@ -421,12 +425,32 @@ body {
   color: #9e2f2f;
 }
 
+.cp-error-card {
+  background: #fff2f2;
+  border: 1px solid #f0bcbc;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  color: #9e2f2f;
+}
+
+.cp-error-card h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: #9e2f2f;
+}
+
+.cp-error-card ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
 @media (max-width: 760px) {
   .header-2 .cutomer-name {
     font-size: 1.55rem;
   }
   .cp-card {
-    padding: 14px;
+    padding: 16px;
   }
   .content {
     display: flex;
@@ -478,11 +502,10 @@ body {
   .cp-quote-actions .cp-btn {
     width: 100%;
   }
-}/*# sourceMappingURL=control-panel.css.map */
+}
 
 /* ===== CONTROL PANEL GROUP SEPARATORS ===== */
 
-/* Shared group label style */
 #cp-add-location-event::before,
 #cp-exception-payments::before,
 #cp-support-email::before,
@@ -532,12 +555,10 @@ body {
   border-bottom-color: rgba(192,57,43,0.18);
 }
 
-/* Visual divider between sections to feel grouped */
 .content > section.cp-card + section.cp-card {
   margin-top: 16px;
 }
 
-/* Danger zone section red accent top bar */
 #cp-delete-shipment,
 #cp-delete-site-user {
   border-top: 3px solid rgba(192,57,43,0.35);

@@ -143,9 +143,18 @@ if (!defined('COMMON_SECTIONS_GLOBALS_LOADED')) {
 
 
 
+    if (!isset($GLOBALS['rrl_email_config']) || !is_array($GLOBALS['rrl_email_config'])) {
+        $emailSecretsPath = __DIR__ . '/email-secrets.php';
+        $emailSecretsData = file_exists($emailSecretsPath) ? include $emailSecretsPath : [];
+        $GLOBALS['rrl_email_config'] = is_array($emailSecretsData) ? $emailSecretsData : [];
+    }
+
     if (!function_exists('rrl_send_resend_email')) {
         function rrl_send_resend_email(array $to, string $subject, string $html, string $text = ''): array {
-            $apiKey = rrl_env(['RESEND_API_KEY'], '');
+            $apiKey = (string)($GLOBALS['rrl_email_config']['RESEND_API_KEY'] ?? '');
+            if ($apiKey === '') {
+                $apiKey = rrl_env(['RESEND_API_KEY'], '');
+            }
             if ($apiKey === '') {
                 $error = 'Missing RESEND_API_KEY';
                 error_log('rrl-email: ' . $error . ' for subject "' . $subject . '"');

@@ -183,6 +183,8 @@ if (!$tracking_id_missing && isset($conn) && $conn instanceof mysqli) {
     }
 }
 
+$progressStatusKey = $statusKey;
+
 if ($tracking_found && !empty($history)) {
     $latestEvent = $history[0];
     $eventStatusKey = rrl_normalize_tracking_status($latestEvent['activity'] ?? null);
@@ -210,12 +212,14 @@ if ($tracking_found && !empty($history)) {
 
 if ($tracking_id_missing) {
     $statusKey = 'pending';
+    $progressStatusKey = 'pending';
     $status = 'Enter Tracking Number';
     $progress_percent = 0;
     $estimated_delivery_text = '-';
     $estimated_delivery_hint = 'Provide a tracking number to view shipment updates.';
 } elseif (!$tracking_found) {
     $statusKey = 'not_found';
+    $progressStatusKey = 'not_found';
     $status = 'Not Found';
     $progress_percent = 0;
     $estimated_delivery_text = '-';
@@ -228,7 +232,7 @@ $progress_nodes = [
     ['label' => 'Delivered', 'icon' => 'inventory_2', 'state' => 'pending'],
 ];
 
-switch ($statusKey) {
+switch ($progressStatusKey) {
     case 'pending':
         $progress_percent = max(0, min(12, $progress_percent));
         $progress_nodes[0]['state'] = 'active';

@@ -18,7 +18,7 @@ $invoice_total = (float)($created_shipment['total_charges'] ?? 0);
 $invoice_service_total = (float)($created_shipment['service_total'] ?? 0);
 $invoice_tax_total = (float)($created_shipment['tax_total'] ?? 0);
 $invoice_crypto_processing_fee = (float)($created_shipment['crypto_processing_fee'] ?? 0);
-$invoice_promo_discount = (float)($created_shipment['promo_discount_total'] ?? max(0, ($invoice_service_total + $invoice_pickup_fee + $invoice_carbon_fee + $invoice_options_total + $invoice_crypto_processing_fee + $invoice_tax_total) - $invoice_total));
+$invoice_promo_discount = (float)($created_shipment['promo_discount_total'] ?? max(0, ($invoice_service_total + $invoice_pickup_fee + $invoice_carbon_fee + $invoice_options_total + $invoice_tax_total) - $invoice_total));
 $invoice_created_date = date('M j, Y');
 $invoice_payment_method_key = strtolower(trim((string)($created_shipment['payment_method'] ?? ($shipment_form['payment_method'] ?? 'card'))));
 $invoice_payment_method = ($invoice_payment_method_key === 'crypto') ? 'Other Payment Methods' : 'Payment Card';
@@ -53,9 +53,6 @@ if ($invoice_signature_fee > 0) {
 }
 if ($invoice_adult_signature_fee > 0) {
     $invoice_rows[] = ['label' => 'Adult Signature Required', 'amount' => $invoice_adult_signature_fee];
-}
-if ($invoice_crypto_processing_fee > 0) {
-    $invoice_rows[] = ['label' => 'Blockchain Network Processing Fee', 'amount' => $invoice_crypto_processing_fee];
 }
 $invoice_rows[] = ['label' => 'Taxes and Duties', 'amount' => $invoice_tax_total];
 ?>

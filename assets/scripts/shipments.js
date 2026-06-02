@@ -374,11 +374,7 @@
     }
 
     function calcCryptoProcessingFee(amount) {
-      var value = Number(amount || 0);
-      if (isNaN(value) || value <= 0) return 0;
-      if (value < 400) return 5;
-      if (value < 800) return 7;
-      return 10;
+      return 0;
     }
 
     function currentPaymentMethod() {

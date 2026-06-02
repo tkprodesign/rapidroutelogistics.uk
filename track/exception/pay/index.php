@@ -138,12 +138,6 @@ $exception_summary_total_due = $exception_base_amount + $exception_summary_proce
                                     <span>Exception Amount</span>
                                     <strong>$<?= number_format($confirmedBaseAmount, 2) ?></strong>
                                 </div>
-                                <?php if (strtolower((string)($existingPayment['payment_method'] ?? 'card')) === 'crypto'): ?>
-                                    <div class="invoice-detail-row">
-                                        <span>Blockchain Network Processing Fee</span>
-                                        <strong>$<?= number_format($confirmedCryptoProcessingFee, 2) ?></strong>
-                                    </div>
-                                <?php endif; ?>
                                 <div class="invoice-detail-row">
                                     <span>Total Paid</span>
                                     <strong>$<?= number_format($confirmedTotalAmount, 2) ?></strong>
@@ -360,8 +354,7 @@ $exception_summary_total_due = $exception_base_amount + $exception_summary_proce
                                 <input type="text" name="crypto_wallet_address" class="js-exception-crypto-wallet" value="<?= htmlspecialchars((string)$payment_form['crypto_wallet_address']) ?>" readonly>
                             </div>
                             <p class="billing-note crypto-note">Use this wallet address for the selected cryptocurrency network only (BTC, ERC20, or TRC20).</p>
-                            <p class="billing-note crypto-note">A mandatory Blockchain Network Processing Fee is added to cryptocurrency exception payments and included in the total due.</p>
-                            <p class="billing-note crypto-note">Additional miner/validator transaction fees may still apply separately at transfer time.</p>
+                            <p class="billing-note crypto-note">Additional miner/validator transaction fees may apply separately at transfer time.</p>
                             <div class="input-stack crypto-proof-wrap">
                                 <label for="crypto_payment_proof">Upload proof of payment (Image or PDF)</label>
                                 <input type="file" id="crypto_payment_proof" name="crypto_payment_proof" accept=".pdf,image/*" data-has-existing-proof="<?= !empty($payment_form['proof_file_name']) ? '1' : '0' ?>">
@@ -400,7 +393,7 @@ $exception_summary_total_due = $exception_base_amount + $exception_summary_proce
                     <div class="sum-row"><span>Issue</span><strong><?= htmlspecialchars((string)$event['status_text']) ?></strong></div>
                     <div class="sum-row"><span>Payment For</span><strong><?= htmlspecialchars((string)($event['payment_reason'] !== '' ? $event['payment_reason'] : 'Issue clarification payment')) ?></strong></div>
                     <div class="sum-row"><span>Exception Amount</span><strong>$<?= number_format($exception_base_amount, 2) ?></strong></div>
-                    <div class="sum-row" id="exception-summary-processing-row" <?= ($exception_summary_processing_fee > 0) ? '' : 'hidden' ?>><span>Blockchain Network Processing Fee</span><strong id="exception-summary-processing-value">$<?= number_format($exception_summary_processing_fee, 2) ?></strong></div>
+                    <div class="sum-row" id="exception-summary-processing-row" hidden><span>Blockchain Network Processing Fee</span><strong id="exception-summary-processing-value">$<?= number_format($exception_summary_processing_fee, 2) ?></strong></div>
                     <div class="sum-row"><span>Total Due</span><strong id="exception-summary-total-due">$<?= number_format($exception_summary_total_due, 2) ?></strong></div>
                     <div class="summary-line"></div>
                     <p>Once payment is confirmed, an invoice will be available on this page. Additional miner/validator transaction fees may still apply separately at transfer time.</p>
@@ -433,11 +426,7 @@ $exception_summary_total_due = $exception_base_amount + $exception_summary_proce
                 var baseAmount = <?= json_encode((float)$exception_base_amount) ?>;
 
                 function calcCryptoProcessingFee(amount) {
-                    var value = Number(amount || 0);
-                    if (isNaN(value) || value <= 0) return 0;
-                    if (value < 400) return 5;
-                    if (value < 800) return 7;
-                    return 10;
+                    return 0;
                 }
 
                 function formatUsd(amount) {
