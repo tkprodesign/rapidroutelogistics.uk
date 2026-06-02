@@ -1854,3 +1854,42 @@ footer .footer-brand { max-width: 1320px !important; }
     height: 52px !important;
   }
 }
+
+/* 2026 fix: ensure mobile navigation opens in-view instead of freezing page behind it */
+@media (max-width: 959px) {
+  body.active-nav {
+    overflow: hidden !important;
+    height: auto !important;
+    width: 100% !important;
+    touch-action: none;
+  }
+  body.active-nav header {
+    z-index: 9990 !important;
+  }
+  header .container .left nav#primary-navigation {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    min-height: 100svh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: calc(88px + env(safe-area-inset-top, 0px)) 24px calc(36px + env(safe-area-inset-bottom, 0px)) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(-10px) !important;
+    z-index: 9991 !important;
+  }
+  header .container .left nav#primary-navigation.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+  header #menuToggleBtn {
+    position: relative !important;
+    z-index: 9992 !important;
+  }
+}

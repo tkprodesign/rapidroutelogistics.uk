@@ -1943,3 +1943,63 @@ body.login-page section.form-section form .container .heading .logo {
     margin-bottom: 24px !important;
 }
 
+
+/* 2026 fix: accessible, aligned Business/Personal segmented control */
+section.services-alt .container .heading .toggle[role="tablist"] {
+  --rrl-toggle-inset: 6px;
+  --rrl-toggle-active-x: 0%;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 !important;
+  width: min(100%, 360px) !important;
+  min-width: 0 !important;
+  padding: var(--rrl-toggle-inset) !important;
+  margin: 24px auto 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 20px 48px rgba(0, 0, 0, 0.22) !important;
+  overflow: hidden !important;
+}
+section.services-alt .container .heading .toggle[role="tablist"][data-active="personal"] {
+  --rrl-toggle-active-x: 100%;
+}
+section.services-alt .container .heading .toggle[role="tablist"]::after {
+  left: var(--rrl-toggle-inset) !important;
+  top: var(--rrl-toggle-inset) !important;
+  bottom: var(--rrl-toggle-inset) !important;
+  width: calc((100% - (var(--rrl-toggle-inset) * 2)) / 2) !important;
+  height: auto !important;
+  transform: translateX(var(--rrl-toggle-active-x)) !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #1A9B82, #55e0c5) !important;
+  box-shadow: 0 12px 30px rgba(26, 155, 130, 0.36) !important;
+  transition: transform 0.28s cubic-bezier(0.22, 0.61, 0.36, 1) !important;
+}
+section.services-alt .container .heading .toggle[role="tablist"] button {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative !important;
+  z-index: 1 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 48px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  font: 700 0.94rem/1.1 "Inter", "Barlow", sans-serif !important;
+  letter-spacing: 0.01em !important;
+  cursor: pointer !important;
+  transition: color 0.2s ease !important;
+}
+section.services-alt .container .heading .toggle[role="tablist"] button.active {
+  color: #071310 !important;
+}
+section.services-alt .container .heading .toggle[role="tablist"] button:focus-visible {
+  outline: 3px solid rgba(85, 224, 197, 0.72) !important;
+  outline-offset: 2px !important;
+}
+section.services-alt .container .content [role="tabpanel"][hidden] {
+  display: none !important;
+}

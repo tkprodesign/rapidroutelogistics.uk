@@ -104,3 +104,37 @@ footer .footer-bottom .copyright {
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.5;
 }/*# sourceMappingURL=main.css.map */
+
+/* 2026 fix: keep mobile menu in the viewport on small phones */
+@media (max-width: 760px) {
+  body.active-nav {
+    overflow: hidden !important;
+    height: auto !important;
+    width: 100% !important;
+    touch-action: none;
+  }
+  body.active-nav header { z-index: 9990 !important; }
+  header .container .left nav#primary-navigation {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    min-height: 100svh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: calc(88px + env(safe-area-inset-top, 0px)) 20px calc(32px + env(safe-area-inset-bottom, 0px)) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(-10px) !important;
+    z-index: 9991 !important;
+  }
+  header .container .left nav#primary-navigation.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+  header #menuToggleBtn { position: relative !important; z-index: 9992 !important; }
+}
