@@ -32,11 +32,11 @@ return [
     'SMTP_SECURE' => rrl_email_env('SMTP_SECURE', 'ssl'),
 
     // Mailbox passwords are intentionally read from environment / repo secrets.
-    'SHIPMENTS_EMAIL_PASSWORD' => rrl_email_env('SHIPMENTS_EMAIL_PASSWORD'),
-    'BILLING_EMAIL_PASSWORD' => rrl_email_env('BILLING_EMAIL_PASSWORD'),
-    'ADMIN_EMAIL_PASSWORD' => rrl_email_env('ADMIN_EMAIL_PASSWORD'),
-    'SUPPORT_EMAIL_PASSWORD' => rrl_email_env('SUPPORT_EMAIL_PASSWORD'),
-    'TRACKING_EMAIL_PASSWORD' => rrl_email_env('TRACKING_EMAIL_PASSWORD'),
-    'NOREPLY_EMAIL_PASSWORD' => rrl_email_env('NOREPLY_EMAIL_PASSWORD'),
+    'SHIPMENTS_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
+    'BILLING_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
+    'ADMIN_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
+    'SUPPORT_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
+    'TRACKING_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
+    'NOREPLY_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
 ];
 ?>
