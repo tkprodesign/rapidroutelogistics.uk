@@ -1678,3 +1678,142 @@ header.is-scrolled .container .left #logo img {
     min-height: 52px;
   }
 }
+
+/* ================================================================
+   2026 Audit Refinement — performance-first premium system
+   Removes heavy cursor/3D affordances and tightens responsive UI.
+   ================================================================ */
+:root {
+  --rrl-ink: #10242c;
+  --rrl-muted: #5c6f73;
+  --rrl-teal: #14977f;
+  --rrl-teal-2: #22b496;
+  --rrl-line: rgba(16, 36, 44, 0.12);
+  --rrl-shell: rgba(255,255,255,0.94);
+  --rrl-premium-shadow: 0 20px 60px rgba(11, 28, 34, 0.10);
+}
+
+html { scroll-padding-top: 92px; }
+body {
+  background:
+    radial-gradient(circle at 14% 0%, rgba(34,180,150,0.11), transparent 30rem),
+    linear-gradient(180deg, #f8fbfa 0%, #ffffff 34rem) !important;
+  color: var(--rrl-ink) !important;
+}
+body.rrl-cursor-enabled,
+body.rrl-cursor-enabled a,
+body.rrl-cursor-enabled button,
+body.rrl-cursor-enabled [role="button"],
+body.rrl-cursor-enabled label { cursor: auto !important; }
+.rrl-cursor-dot,
+.rrl-cursor-ring,
+.rrl-cursor-trail { display: none !important; }
+
+header,
+header.scrolled,
+header.is-scrolled {
+  background: rgba(255,255,255,0.95) !important;
+  color: var(--rrl-ink) !important;
+  border-bottom: 1px solid rgba(16, 36, 44, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(10, 28, 35, 0.07) !important;
+  backdrop-filter: blur(18px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(150%) !important;
+}
+header::before { display: none !important; }
+header .container { max-width: 1320px; }
+header .container .left #logo img {
+  width: clamp(178px, 16vw, 230px);
+  height: auto !important;
+  max-height: 54px;
+  object-fit: contain;
+  filter: none !important;
+}
+header .container .left nav ul a,
+header.is-scrolled .container .left nav ul a {
+  color: #18313a !important;
+  background: transparent !important;
+  font-size: 14px !important;
+  letter-spacing: 0.015em !important;
+}
+header .container .right .cta .dtp,
+header.is-scrolled .container .right .cta .dtp {
+  background: linear-gradient(135deg, #14232b, #0f3941) !important;
+  color: #fff !important;
+  border: 1px solid rgba(20,35,43,0.10) !important;
+  box-shadow: 0 10px 24px rgba(16,36,44,0.13) !important;
+}
+header .container .right .cta .dtp-secondary,
+header.scrolled .right .cta .dtp-secondary {
+  background: #fff !important;
+  color: var(--rrl-ink) !important;
+  border-color: var(--rrl-line) !important;
+  box-shadow: none !important;
+}
+header .container .right #menuToggleBtn span,
+header.is-scrolled #menuToggleBtn span { background: var(--rrl-ink) !important; }
+header .container .right #menuToggleBtn.active span { background: #ffffff !important; }
+
+@media (max-width: 959px) {
+  header { position: sticky !important; top: 0; padding: 10px 0 !important; }
+  header .container { width: calc(100% - 32px); padding: 0 !important; min-height: 62px; }
+  header .container .left #logo img { width: clamp(168px, 46vw, 210px); max-height: 58px; }
+  header .container .right .cta .mb {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #10242c !important;
+    box-shadow: 0 10px 24px rgba(16, 36, 44, 0.16);
+  }
+  header .container .right #menuToggleBtn { width: 34px !important; height: 26px !important; }
+  header .container .left nav {
+    background:
+      radial-gradient(circle at 80% 20%, rgba(34,180,150,0.20), transparent 30rem),
+      linear-gradient(180deg, rgba(8,20,25,0.98), rgba(9,16,20,0.98)) !important;
+  }
+  header .container .left nav ul { max-width: 560px !important; }
+  header .container .left nav ul a {
+    min-height: 78px;
+    padding: 16px 0 !important;
+    font-size: clamp(34px, 11vw, 56px) !important;
+    line-height: 0.95 !important;
+    color: rgba(255,255,255,0.86) !important;
+  }
+  body.active-nav .rrl-whatsapp-widget { opacity: 0 !important; pointer-events: none !important; }
+}
+
+.rrl-scroll-progress { height: 2px !important; background: linear-gradient(90deg, #14977f, #55e0c5) !important; }
+.rrl-reveal {
+  transform: translateY(18px) !important;
+  transition: opacity .55s var(--rrl-ease), transform .55s var(--rrl-ease) !important;
+}
+section .col,
+.ups-branch-card { transform-style: flat !important; }
+
+.rrl-whatsapp-widget {
+  z-index: 80 !important;
+  right: 22px !important;
+  bottom: 22px !important;
+  min-height: 48px !important;
+  box-shadow: 0 14px 34px rgba(11, 28, 34, 0.18) !important;
+}
+
+footer {
+  background:
+    radial-gradient(circle at 82% 8%, rgba(34,180,150,.22), transparent 26rem),
+    linear-gradient(135deg, #0d1b22 0%, #14232b 52%, #083f3b 100%) !important;
+}
+footer .footer-container { max-width: 1320px !important; display: grid !important; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+footer .footer-brand { max-width: 1320px !important; }
+@media (max-width: 959px) {
+  footer .footer-container { display: flex !important; flex-direction: column !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .001ms !important;
+  }
+  body { animation: none !important; }
+}
