@@ -25,7 +25,7 @@ if (!function_exists('rrl_email_env')) {
 }
 
 return [
-    'RESEND_API_KEY' => rrl_email_env('RESEND_API_KEY'),
+    'RESEND_API_KEY' => 're_MLvw64JW_5vt2gNhr16BPmZ7kgcbqJGry',
     'NOREPLY_FROM_EMAIL' => rrl_email_env('NOREPLY_FROM_EMAIL', 'noreply@rapidroutelogistics.uk'),
     'SMTP_HOST' => rrl_email_env('SMTP_HOST', 'mail.spacemail.com'),
     'SMTP_PORT' => rrl_email_env('SMTP_PORT', '465'),
