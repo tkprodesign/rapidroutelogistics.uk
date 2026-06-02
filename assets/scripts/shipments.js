@@ -737,7 +737,7 @@
         var loader = document.createElement('div');
         loader.className = 'service-item-processing';
         loader.innerHTML =
-          '<dotlottie-wc class="service-item-processing-lottie" src="https://lottie.host/ac0927e0-074a-4a7e-a1c1-28b874073eb6/ASb2VUE7W2.lottie" autoplay loop></dotlottie-wc>' +
+          '<span class="service-item-processing-mark" aria-hidden="true">RRL</span>' +
           '<p>Generating quote...</p>';
         targetCard.appendChild(loader);
         activeProcessingCard = targetCard;

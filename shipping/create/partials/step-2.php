@@ -97,12 +97,7 @@
                                     <p id="service-process-status">Only a selected service with a generated quote can continue to the next step.</p>
                                 </div>
                                 <div class="service-processing-overlay" id="service-processing-overlay" aria-hidden="true">
-                                    <dotlottie-wc
-                                        class="service-processing-lottie"
-                                        src="https://lottie.host/ac0927e0-074a-4a7e-a1c1-28b874073eb6/ASb2VUE7W2.lottie"
-                                        autoplay
-                                        loop
-                                    ></dotlottie-wc>
+                                    <span class="service-processing-mark" aria-hidden="true">RRL</span>
                     <h4>Generating Secure Quote</h4>
                     <p>Encrypting shipment data and requesting price, duration, and service notes...</p>
                 </div>

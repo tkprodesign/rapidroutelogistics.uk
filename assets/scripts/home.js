@@ -3,9 +3,7 @@
  * No framework/runtime dependencies: designed for static PHP hosting and low-end devices.
  */
 document.addEventListener('DOMContentLoaded', function () {
-    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // Lightweight hero rotation replaces Swiper to avoid third-party JS/CSS weight.
+    // Static hero setup avoids third-party slider and timed motion weight.
     var slides = Array.prototype.slice.call(document.querySelectorAll('.hero .swiper-slide'));
     if (slides.length > 1) {
         var activeIndex = Math.max(0, slides.findIndex(function (slide) { return slide.classList.contains('is-active'); }));
@@ -14,15 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
             slide.setAttribute('aria-hidden', index === activeIndex ? 'false' : 'true');
         });
 
-        if (!reduceMotion) {
-            window.setInterval(function () {
-                slides[activeIndex].classList.remove('is-active');
-                slides[activeIndex].setAttribute('aria-hidden', 'true');
-                activeIndex = (activeIndex + 1) % slides.length;
-                slides[activeIndex].classList.add('is-active');
-                slides[activeIndex].setAttribute('aria-hidden', 'false');
-            }, 6500);
-        }
+        // Keep the hero static to avoid background cross-fade/scale work on slower devices.
+        // Additional slides remain in the markup for content fallback, but do not auto-animate.
     }
 
     if (!window.__headerNavBound) {
