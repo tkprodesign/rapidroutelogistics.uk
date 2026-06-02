@@ -73,7 +73,7 @@ function signup_resolve_secret(string $name): string {
         return trim($signupEmailConfig[$name]);
     }
 
-    return '';
+    return rrl_env([$name], '');
 }
 
 /* -------------------------
@@ -96,42 +96,19 @@ function signup_send_verification_email(string $toEmail, string $recipientName, 
         $fromEmail = 'noreply@rapidroutelogistics.uk';
     }
 
-    $safeName = htmlspecialchars($recipientName ?: 'Customer', ENT_QUOTES, 'UTF-8');
     $safeCode = htmlspecialchars((string)$verificationCode, ENT_QUOTES, 'UTF-8');
+    $displayName = $recipientName !== '' ? $recipientName : 'Customer';
 
-    $currentYear = date('Y');
-    $html = '
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Signup Verification Code</title>
-</head>
-<body style="margin:0;padding:0;background-color:#f3f4f6;font-family:Arial,Helvetica,sans-serif;color:#111827;">
-<div style="display:none;max-height:0;overflow:hidden;opacity:0;">Your Rapid Route Logistics verification code is inside.</div>
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#f3f4f6;padding:24px 0;">
-<tr>
-<td align="center">
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="640" style="max-width:640px;background-color:#ffffff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;">
-<tr>
-<td style="background-color:#0f172a;padding:16px 28px;">
-<a href="https://rapidroutelogistics.uk/" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;">
-<img src="https://rapidroutelogistics.uk/assets/images/branding/logo-horizontal-dark.png" alt="Rapid Route Logistics" width="220" style="display:block;border:0;max-width:220px;height:auto;">
-</a>
-</td>
-</tr>
-<tr><td style="padding:28px 40px 6px 40px;"><h1 style="margin:0;font-size:26px;line-height:1.3;color:#0f172a;">Verify your account</h1></td></tr>
-<tr><td style="padding:0 40px 12px 40px;"><p style="margin:0;font-size:15px;line-height:1.7;color:#374151;">Hi ' . $safeName . ', thanks for signing up. Use the verification code below to activate your account.</p></td></tr>
-<tr><td style="padding:6px 40px 20px 40px;"><div style="display:inline-block;border:1px solid #d1d5db;border-radius:8px;padding:14px 18px;background-color:#f9fafb;font-size:32px;letter-spacing:6px;font-weight:bold;color:#111827;">' . $safeCode . '</div><p style="margin:12px 0 0 0;font-size:13px;color:#6b7280;">This code expires in 15 minutes.</p></td></tr>
-<tr><td style="padding:0 40px 18px 40px;"><p style="margin:0;font-size:12px;line-height:1.6;color:#6b7280;">If you did not expect this message, please contact support at support@rapidroutelogistics.uk.</p></td></tr>
-<tr><td style="background-color:#f8fafc;border-top:1px solid #e5e7eb;padding:16px 24px;"><p style="margin:0;font-size:11px;line-height:1.5;color:#6b7280;">© ' . $currentYear . ' Rapid Route Logistics. Please do not reply to this email.</p></td></tr>
-</table>
-</td>
-</tr>
-</table>
-</body>
-</html>';
+    $body = rrl_email_h1('Verify your account')
+        . rrl_email_p('Hi ' . $displayName . ', thanks for signing up. Use the verification code below to activate your Rapid Route Logistics account.')
+        . rrl_email_code_panel($safeCode, 'This code expires in 15 minutes.')
+        . rrl_email_p('If you did not request this signup, you can safely ignore this message or contact support.');
+
+    $html = rrl_email_brand_shell(
+        'Signup Verification Code',
+        'Your Rapid Route Logistics verification code is inside.',
+        $body
+    );
 
     $data = [
         "from" => "Rapid Route Logistics <{$fromEmail}>",
@@ -156,7 +133,7 @@ function signup_send_verification_email(string $toEmail, string $recipientName, 
     curl_close($ch);
 
     if ($response === false || $httpCode < 200 || $httpCode >= 300) {
-        error_log("Resend failed: HTTP {$httpCode} | {$response}");
+        error_log("signup: Resend failed HTTP {$httpCode} | " . (string)$response);
         return false;
     }
 

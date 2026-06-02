@@ -398,3 +398,38 @@ section.services-alt.shipping-tools .container .heading {
   text-align: left;
 }
 /*# sourceMappingURL=support.css.map */
+
+/* Enterprise support refinement pass */
+.support-page .assistant-wrap .assistant-bg {
+  background: radial-gradient(760px 260px at 50% 90%, rgba(26,155,130,0.18), transparent 62%), linear-gradient(180deg, #eef7f5 0%, #dcefeb 58%, #f7fbfa 100%);
+}
+.support-page .assistant-wrap .assistant-bg::before {
+  background: radial-gradient(1200px 220px at 50% 100%, rgba(26,155,130,0.16) 0%, rgba(219,239,235,0.92) 55%, transparent 56%);
+}
+.support-page .support-alert p,
+.support-page .support-categories .support-card p,
+.support-page .support-faq .faq-panel details div {
+  color: #344743;
+}
+.support-page .support-categories .support-card {
+  border-radius: 18px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 16px 38px rgba(18,35,43,0.08);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.support-page .support-categories .support-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(26,155,130,0.28);
+  box-shadow: 0 20px 48px rgba(18,35,43,0.11);
+}
+.support-page .support-categories .support-card .btn-gold {
+  background: #1A9B82;
+  color: #ffffff;
+  box-shadow: 0 12px 24px rgba(26,155,130,0.2);
+}
+.support-page .support-faq .faq-tabs button.active {
+  color: #1A9B82;
+  border-bottom-color: #1A9B82;
+}
+.support-page .support-faq .faq-panel details[open] {
+  border-color: rgba(26,155,130,0.24);
+}

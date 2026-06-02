@@ -95,6 +95,7 @@ if (menuToggleBtn && nav && body) {
         menuToggleBtn.classList.toggle('active');
         body.classList.toggle('active-nav');
         nav.classList.toggle('active');
+        menuToggleBtn.setAttribute('aria-expanded', menuToggleBtn.classList.contains('active') ? 'true' : 'false');
     });
 
     nav.querySelectorAll('a').forEach((link) => {
@@ -102,6 +103,7 @@ if (menuToggleBtn && nav && body) {
             menuToggleBtn.classList.remove('active');
             body.classList.remove('active-nav');
             nav.classList.remove('active');
+            menuToggleBtn.setAttribute('aria-expanded', 'false');
         });
     });
 
@@ -110,6 +112,7 @@ if (menuToggleBtn && nav && body) {
             menuToggleBtn.classList.remove('active');
             body.classList.remove('active-nav');
             nav.classList.remove('active');
+            menuToggleBtn.setAttribute('aria-expanded', 'false');
         }
     });
 }
@@ -295,6 +298,7 @@ window.togglePassVisibility = function(cid, oid, piid, acid = null, aoid = null,
         var nav = document.querySelector('header .container .left nav');
         if (btn && btn.classList.contains('active')) {
             btn.classList.remove('active');
+            btn.setAttribute('aria-expanded', 'false');
             document.body.classList.remove('active-nav');
             if (nav) nav.classList.remove('active');
         }
