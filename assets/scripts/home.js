@@ -20,10 +20,12 @@ document.addEventListener('DOMContentLoaded', function () {
         var menuBtn = document.querySelector('header #menuToggleBtn');
         if (menuBtn && navEl && bodyEl) {
             menuBtn.addEventListener('click', function () {
-                var isOpen = menuBtn.classList.toggle('active');
+                var isOpen = !menuBtn.classList.contains('active');
+                menuBtn.classList.toggle('active', isOpen);
                 bodyEl.classList.toggle('active-nav', isOpen);
                 navEl.classList.toggle('active', isOpen);
                 menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                menuBtn.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
             });
         }
     }
@@ -142,17 +144,28 @@ document.addEventListener('DOMContentLoaded', function () {
     if (toggle && btnBusiness && btnPersonal && gBusiness && gPersonal) {
         var setActiveTab = function (type) {
             var isPersonal = type === 'personal';
-            toggle.style.setProperty('--after-left', isPersonal ? 'calc(50% - 1px)' : '3px');
+            toggle.dataset.active = isPersonal ? 'personal' : 'business';
             btnPersonal.classList.toggle('active', isPersonal);
             btnBusiness.classList.toggle('active', !isPersonal);
+            btnPersonal.setAttribute('aria-selected', isPersonal ? 'true' : 'false');
+            btnBusiness.setAttribute('aria-selected', isPersonal ? 'false' : 'true');
+            btnPersonal.setAttribute('tabindex', isPersonal ? '0' : '-1');
+            btnBusiness.setAttribute('tabindex', isPersonal ? '-1' : '0');
             gPersonal.classList.toggle('active', isPersonal);
             gBusiness.classList.toggle('active', !isPersonal);
-            btnPersonal.setAttribute('aria-pressed', isPersonal ? 'true' : 'false');
-            btnBusiness.setAttribute('aria-pressed', isPersonal ? 'false' : 'true');
+            gPersonal.hidden = !isPersonal;
+            gBusiness.hidden = isPersonal;
         };
 
-        btnPersonal.addEventListener('click', function (e) { e.preventDefault(); setActiveTab('personal'); });
-        btnBusiness.addEventListener('click', function (e) { e.preventDefault(); setActiveTab('business'); });
+        btnPersonal.addEventListener('click', function () { setActiveTab('personal'); });
+        btnBusiness.addEventListener('click', function () { setActiveTab('business'); });
+        toggle.addEventListener('keydown', function (e) {
+            if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+            e.preventDefault();
+            var nextType = btnBusiness.classList.contains('active') ? 'personal' : 'business';
+            setActiveTab(nextType);
+            (nextType === 'personal' ? btnPersonal : btnBusiness).focus();
+        });
         setActiveTab(btnPersonal.classList.contains('active') ? 'personal' : 'business');
     }
 

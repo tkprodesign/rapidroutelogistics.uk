@@ -240,14 +240,14 @@ include('./app.php');
         <div class="heading">
             <h2>Logistics Solutions for Business and Personal Shipping</h2>
             <p>From urgent parcels to critical business documents, Rapid Route Logistics delivers with precision, security, and discipline. Going the extra mile for every customer, every route, every time.</p>
-            <div class="toggle">
-                <button href="#" class="btn1 active">Business</button>
-                <button href="#" class="btn2">Personal</button>
+            <div class="toggle" role="tablist" aria-label="Choose shipping solution type">
+                <button type="button" class="btn1 active" role="tab" aria-selected="true" aria-controls="business-shipping-panel" id="business-shipping-tab">Business</button>
+                <button type="button" class="btn2" role="tab" aria-selected="false" aria-controls="personal-shipping-panel" id="personal-shipping-tab">Personal</button>
             </div>
         </div>
         <div class="content">
             <!-- Business / Government Services -->
-            <div class="g1 active">
+            <div class="g1 active" id="business-shipping-panel" role="tabpanel" aria-labelledby="business-shipping-tab">
                 <div class="col service-tile">
                     <div class="service-media"><img src="<?= htmlspecialchars(asset_url('/assets/images/services/air-freight.jpg')); ?>" alt="Business logistics aircraft loading operation"></div>
                     <div class="service-copy">
@@ -283,7 +283,7 @@ include('./app.php');
             </div>
 
             <!-- Personal & Family Services -->
-            <div class="g2">
+            <div class="g2" id="personal-shipping-panel" role="tabpanel" aria-labelledby="personal-shipping-tab" hidden>
                 <div class="col service-tile">
                     <div class="service-media"><img src="<?= htmlspecialchars(asset_url('/assets/images/home/mc6.jpg')); ?>" alt="Same-day courier preparing a fast delivery"></div>
                     <div class="service-copy">

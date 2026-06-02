@@ -248,3 +248,36 @@ section.about-us .heading {
 section.about-us .content {
   padding: 0px 16px;
 }/*# sourceMappingURL=home.css.map */
+
+/* 2026 fix: keep Business/Personal toggle aligned on tablet */
+section.services-alt .container .heading .toggle[role="tablist"] {
+  --rrl-toggle-inset: 6px;
+  --rrl-toggle-active-x: 0%;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 !important;
+  width: min(100%, 360px) !important;
+  min-width: 0 !important;
+  padding: var(--rrl-toggle-inset) !important;
+  margin: 24px auto 0 !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+}
+section.services-alt .container .heading .toggle[role="tablist"][data-active="personal"] { --rrl-toggle-active-x: 100%; }
+section.services-alt .container .heading .toggle[role="tablist"]::after {
+  left: var(--rrl-toggle-inset) !important;
+  top: var(--rrl-toggle-inset) !important;
+  bottom: var(--rrl-toggle-inset) !important;
+  width: calc((100% - (var(--rrl-toggle-inset) * 2)) / 2) !important;
+  height: auto !important;
+  transform: translateX(var(--rrl-toggle-active-x)) !important;
+  transition: transform 0.28s cubic-bezier(0.22, 0.61, 0.36, 1) !important;
+}
+section.services-alt .container .heading .toggle[role="tablist"] button {
+  min-width: 0 !important;
+  width: 100% !important;
+  min-height: 48px !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+section.services-alt .container .content [role="tabpanel"][hidden] { display: none !important; }
