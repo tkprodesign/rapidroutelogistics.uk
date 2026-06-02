@@ -26,6 +26,22 @@ require_once __DIR__ . '/../common-sections/globals.php';
 
 $errors = [];
 
+function verification_send_resend_code(string $email, int $code): bool {
+    $body = rrl_email_h1('Your previous code expired')
+        . rrl_email_p('We generated a fresh verification code so you can continue activating your Rapid Route Logistics account.')
+        . rrl_email_code_panel((string)$code, 'This new code expires in 15 minutes.')
+        . rrl_email_p('If you did not request this code, you can safely ignore this message or contact support.');
+
+    $result = rrl_send_resend_email(
+        [$email],
+        'Your new verification code',
+        rrl_email_brand_shell('Verification Code Resend', 'Your previous verification code expired. Here is a new one.', $body),
+        'Your new Rapid Route Logistics verification code is ' . $code . '. It expires in 15 minutes.'
+    );
+
+    return !empty($result['ok']);
+}
+
 /* -------------------------
    HANDLE VERIFICATION
 -------------------------- */
@@ -77,9 +93,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $ins->execute();
                 $ins->close();
 
-                // TODO: Send $new_code to user's email
-
-                $errors[] = "Code expired. A new code has been sent to your email.";
+                if (verification_send_resend_code($email, $new_code)) {
+                    $errors[] = "Code expired. A new code has been sent to your email.";
+                } else {
+                    error_log('verification: failed to dispatch refreshed code for ' . $email);
+                    $errors[] = "Code expired. We generated a new code, but email delivery failed. Please contact support.";
+                }
 
             } elseif (hash_equals((string)$verification['code'], $entered_code)) {
 
