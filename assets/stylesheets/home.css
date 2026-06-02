@@ -1404,48 +1404,6 @@ body {
   background: radial-gradient(circle at 12% 18%, rgba(34, 180, 150, 0.1), transparent 34rem), radial-gradient(circle at 88% 42%, rgba(0, 141, 124, 0.08), transparent 30rem), #f7fbfa;
 }
 
-.premium-scroll-shell {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 2;
-  mix-blend-mode: screen;
-  opacity: var(--premium-shell-opacity, 0.92);
-  transition: opacity 0.35s ease;
-}
-.premium-scroll-shell .premium-globe-canvas {
-  position: absolute;
-  top: var(--premium-globe-y, 50%);
-  left: var(--premium-globe-x, 74%);
-  width: min(46vw, 620px);
-  height: min(46vw, 620px);
-  transform: translate3d(-50%, -50%, 0) scale(var(--premium-globe-scale, 1));
-  filter: drop-shadow(0 0 38px rgba(34, 180, 150, 0.32));
-  opacity: var(--premium-globe-opacity, 0);
-  transition: opacity 0.18s linear, filter 0.25s ease;
-}
-.premium-scroll-shell .premium-depth-field {
-  position: absolute;
-  border: 1px solid rgba(119, 247, 220, 0.14);
-  border-radius: 999px;
-  transform: translate3d(var(--premium-field-x, 0), var(--premium-field-y, 0), 0) rotate(var(--premium-field-rotate, 0deg));
-  opacity: var(--premium-field-opacity, 0);
-}
-.premium-scroll-shell .premium-depth-field-a {
-  width: 44vw;
-  height: 44vw;
-  top: 9vh;
-  right: -11vw;
-  background: radial-gradient(circle, rgba(34, 180, 150, 0.1), transparent 62%);
-}
-.premium-scroll-shell .premium-depth-field-b {
-  width: 28vw;
-  height: 28vw;
-  left: -10vw;
-  bottom: 6vh;
-  border-color: rgba(255, 214, 76, 0.16);
-}
-
 .premium-scene {
   position: relative;
   isolation: isolate;
@@ -1596,26 +1554,12 @@ section.services-alt .container .content .g2 .col.service-tile:focus-within .ser
 }
 
 @media (max-width: 1120px) {
-  .premium-scroll-shell .premium-globe-canvas {
-    left: 78%;
-    width: min(62vw, 520px);
-    height: min(62vw, 520px);
-  }
   section.services-alt .container .content .g1.active,
   section.services-alt .container .content .g2.active {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 @media (max-width: 760px) {
-  .premium-scroll-shell {
-    opacity: 0.58;
-  }
-  .premium-scroll-shell .premium-globe-canvas {
-    left: 70%;
-    top: 34%;
-    width: 82vw;
-    height: 82vw;
-  }
   section.services-alt {
     padding: 3rem 0 4rem;
   }
@@ -1630,9 +1574,6 @@ section.services-alt .container .content .g2 .col.service-tile:focus-within .ser
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .premium-scroll-shell {
-    display: none;
-  }
   .premium-scene,
   .premium-scene::before,
   section.services-alt .container .content .g1 .col.service-tile,

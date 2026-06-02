@@ -1008,52 +1008,6 @@ body {
         #f7fbfa;
 }
 
-.premium-scroll-shell {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 2;
-    mix-blend-mode: screen;
-    opacity: var(--premium-shell-opacity, .92);
-    transition: opacity .35s ease;
-
-    .premium-globe-canvas {
-        position: absolute;
-        top: var(--premium-globe-y, 50%);
-        left: var(--premium-globe-x, 74%);
-        width: min(46vw, 620px);
-        height: min(46vw, 620px);
-        transform: translate3d(-50%, -50%, 0) scale(var(--premium-globe-scale, 1));
-        filter: drop-shadow(0 0 38px rgba(34, 180, 150, .32));
-        opacity: var(--premium-globe-opacity, 0);
-        transition: opacity .18s linear, filter .25s ease;
-    }
-
-    .premium-depth-field {
-        position: absolute;
-        border: 1px solid rgba(119, 247, 220, .14);
-        border-radius: 999px;
-        transform: translate3d(var(--premium-field-x, 0), var(--premium-field-y, 0), 0) rotate(var(--premium-field-rotate, 0deg));
-        opacity: var(--premium-field-opacity, 0);
-    }
-
-    .premium-depth-field-a {
-        width: 44vw;
-        height: 44vw;
-        top: 9vh;
-        right: -11vw;
-        background: radial-gradient(circle, rgba(34, 180, 150, .10), transparent 62%);
-    }
-
-    .premium-depth-field-b {
-        width: 28vw;
-        height: 28vw;
-        left: -10vw;
-        bottom: 6vh;
-        border-color: rgba(255, 214, 76, .16);
-    }
-}
-
 .premium-scene {
     position: relative;
     isolation: isolate;
@@ -1208,11 +1162,6 @@ section.services-alt {
 }
 
 @media (max-width: 1120px) {
-    .premium-scroll-shell .premium-globe-canvas {
-        left: 78%;
-        width: min(62vw, 520px);
-        height: min(62vw, 520px);
-    }
 
     section.services-alt .container .content .g1.active,
     section.services-alt .container .content .g2.active {
@@ -1221,16 +1170,6 @@ section.services-alt {
 }
 
 @media (max-width: 760px) {
-    .premium-scroll-shell {
-        opacity: .58;
-
-        .premium-globe-canvas {
-            left: 70%;
-            top: 34%;
-            width: 82vw;
-            height: 82vw;
-        }
-    }
 
     section.services-alt {
         padding: 3rem 0 4rem;
@@ -1249,8 +1188,6 @@ section.services-alt {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .premium-scroll-shell { display: none; }
-
     .premium-scene,
     .premium-scene::before,
     section.services-alt .container .content .g1 .col.service-tile,

@@ -28,11 +28,6 @@ include('./app.php');
 </head>
 <body>
 <?php include("common-sections/header.html"); ?>
-<div class="premium-scroll-shell" aria-hidden="true">
-    <canvas class="premium-globe-canvas" width="900" height="900"></canvas>
-    <div class="premium-depth-field premium-depth-field-a"></div>
-    <div class="premium-depth-field premium-depth-field-b"></div>
-</div>
 <section class="hero premium-scene" data-premium-scene="hero">
     <!-- DESKTOP CURVE -->
     <div class="custom-shape-divider-bottom-1771138429">
