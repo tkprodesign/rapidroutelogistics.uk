@@ -1835,9 +1835,22 @@ footer .footer-brand { max-width: 1320px !important; }
   .rrl-whatsapp-widget {
     bottom: 110px !important;
     right: 16px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    width: 52px !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .rrl-whatsapp-widget__icon {
+    width: 52px !important;
+    height: 52px !important;
+    flex: 0 0 52px !important;
   }
   .rrl-whatsapp-widget__icon img {
-    width: 38px !important;
-    height: 38px !important;
+    width: 52px !important;
+    height: 52px !important;
   }
 }
