@@ -15,7 +15,6 @@
     <link rel="shortcut icon" href="<?= htmlspecialchars(asset_url('/assets/images/branding/mark-only.png')); ?>" type="image/png">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.3/dist/dotlottie-wc.js" type="module"></script>
 </head>
 <body>
 <?php include("../common-sections/header.html"); ?>
@@ -38,12 +37,7 @@
 
             <div class="assistant-wrap" aria-hidden="true">
                 <div class="assistant-bg">
-                    <dotlottie-wc
-                        class="support-lottie"
-                        src="https://lottie.host/4883e397-3885-4589-87a1-8c9ad987e032/svqXIeapgv.lottie"
-                        autoplay
-                        loop
-                    ></dotlottie-wc>
+                    <div class="support-static-mark">RRL</div>
                 </div>
             </div>
         </section>

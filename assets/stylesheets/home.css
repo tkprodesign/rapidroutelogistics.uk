@@ -1399,7 +1399,7 @@ section.rrl-stats.in-view .stat-item:nth-child(4) { opacity: 1; transform: none;
   }
 }
 
-/* ===== Premium cinematic scroll experience ===== */
+/* ===== Static premium layout (3D/scroll animation removed for performance) ===== */
 body {
   background: radial-gradient(circle at 12% 18%, rgba(34, 180, 150, 0.1), transparent 34rem), radial-gradient(circle at 88% 42%, rgba(0, 141, 124, 0.08), transparent 30rem), #f7fbfa;
 }
@@ -1415,9 +1415,9 @@ body {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: var(--scene-aura, 0);
+  opacity: 0;
   background: linear-gradient(120deg, transparent 0%, rgba(34, 180, 150, 0.08) 34%, transparent 68%), radial-gradient(circle at var(--scene-light-x, 72%) var(--scene-light-y, 34%), rgba(34, 180, 150, 0.16), transparent 34rem);
-  transform: translate3d(0, var(--scene-drift, 0), 0);
+  transform: none;
 }
 
 section.hero.premium-scene,
@@ -1431,10 +1431,10 @@ section.rrl-stats.premium-scene .stats-container,
 section.why-choose-us.premium-scene .container,
 section.tools.premium-scene .container,
 section.services-alt.premium-scene .container {
-  transform: translate3d(0, var(--scene-content-y, 0), 0);
-  opacity: var(--scene-content-opacity, 1);
-  transition: transform 0.12s linear, opacity 0.12s linear;
-  will-change: transform, opacity;
+  transform: none;
+  opacity: 1;
+  transition: none;
+  will-change: auto;
 }
 
 section.services-alt {
@@ -1461,7 +1461,7 @@ section.services-alt .container .heading .toggle::after {
   background: linear-gradient(135deg, #77f7dc, #ffd64c);
 }
 section.services-alt .container .content {
-  perspective: 1200px;
+  perspective: none;
 }
 section.services-alt .container .content .g1.active,
 section.services-alt .container .content .g2.active {
@@ -1477,10 +1477,10 @@ section.services-alt .container .content .g2 .col.service-tile {
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 28px;
   box-shadow: 0 34px 90px rgba(0, 0, 0, 0.28);
-  transform: translate3d(0, var(--tile-y, 42px), 0) rotateX(var(--tile-tilt, 5deg));
-  opacity: var(--tile-opacity, 0.24);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.12s linear, opacity 0.12s linear;
-  will-change: transform, opacity;
+  transform: none;
+  opacity: 1;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  will-change: auto;
 }
 section.services-alt .container .content .g1 .col.service-tile::after,
 section.services-alt .container .content .g2 .col.service-tile::after {
@@ -1502,10 +1502,10 @@ section.services-alt .container .content .g2 .col.service-tile .service-media im
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  transform: translate3d(0, var(--image-y, 0), 0) scale(var(--image-scale, 1.12));
+  transform: none;
   filter: saturate(1.08) contrast(1.04);
-  transition: transform 0.12s linear, filter 0.25s ease;
-  will-change: transform;
+  transition: filter 0.25s ease;
+  will-change: auto;
 }
 section.services-alt .container .content .g1 .col.service-tile .service-copy,
 section.services-alt .container .content .g2 .col.service-tile .service-copy {
@@ -1513,10 +1513,10 @@ section.services-alt .container .content .g2 .col.service-tile .service-copy {
   z-index: 1;
   margin-top: auto;
   padding: 220px 24px 28px;
-  transform: translate3d(0, var(--copy-y, 26px), 0);
-  opacity: var(--copy-opacity, 0.28);
-  transition: transform 0.12s linear, opacity 0.12s linear;
-  will-change: transform, opacity;
+  transform: none;
+  opacity: 1;
+  transition: none;
+  will-change: auto;
 }
 section.services-alt .container .content .g1 .col.service-tile h3,
 section.services-alt .container .content .g2 .col.service-tile h3 {
@@ -1604,14 +1604,14 @@ section.hero .swiper .swiper-wrapper .swiper-slide {
   width: 100% !important;
   opacity: 0;
   visibility: hidden;
-  transform: scale(1.015);
-  transition: opacity 900ms ease, transform 1200ms ease, visibility 900ms ease;
+  transform: none;
+  transition: none;
   pointer-events: none;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide.is-active {
   opacity: 1;
   visibility: visible;
-  transform: scale(1);
+  transform: none;
   pointer-events: auto;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .dark-bg {
@@ -1683,12 +1683,10 @@ section.services-alt .container .content .g2 .col.service-tile .service-copy {
 section.services-alt .container .content { perspective: none !important; }
 section.services-alt .container .content .g1 .col.service-tile,
 section.services-alt .container .content .g2 .col.service-tile {
-  transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease !important;
+  transition: border-color .28s ease, box-shadow .28s ease !important;
 }
 section.services-alt .container .content .g1 .col.service-tile .service-media img,
-section.services-alt .container .content .g2 .col.service-tile .service-media img { transition: filter .28s ease, transform .45s ease !important; }
-section.services-alt .container .content .g1 .col.service-tile:hover,
-section.services-alt .container .content .g2 .col.service-tile:hover { transform: translateY(-6px) !important; }
+section.services-alt .container .content .g2 .col.service-tile .service-media img { transition: filter .28s ease !important; }
 
 @media (max-width: 760px) {
   section.hero .swiper .swiper-wrapper { height: calc(100svh - 82px) !important; min-height: 650px; }

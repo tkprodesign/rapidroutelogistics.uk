@@ -1000,7 +1000,7 @@ section.services-alt .container .heading .toggle button {
     transition: color .2s ease;
 }
 
-/* ===== Premium cinematic scroll experience ===== */
+/* ===== Static premium layout (3D/scroll animation removed for performance) ===== */
 body {
     background:
         radial-gradient(circle at 12% 18%, rgba(34, 180, 150, .10), transparent 34rem),
@@ -1019,11 +1019,11 @@ body {
         inset: 0;
         z-index: -1;
         pointer-events: none;
-        opacity: var(--scene-aura, 0);
+        opacity: 0;
         background:
             linear-gradient(120deg, transparent 0%, rgba(34, 180, 150, .08) 34%, transparent 68%),
             radial-gradient(circle at var(--scene-light-x, 72%) var(--scene-light-y, 34%), rgba(34, 180, 150, .16), transparent 34rem);
-        transform: translate3d(0, var(--scene-drift, 0), 0);
+        transform: none;
     }
 }
 
@@ -1038,10 +1038,10 @@ section.rrl-stats.premium-scene .stats-container,
 section.why-choose-us.premium-scene .container,
 section.tools.premium-scene .container,
 section.services-alt.premium-scene .container {
-    transform: translate3d(0, var(--scene-content-y, 0), 0);
-    opacity: var(--scene-content-opacity, 1);
-    transition: transform .12s linear, opacity .12s linear;
-    will-change: transform, opacity;
+    transform: none;
+    opacity: 1;
+    transition: none;
+    will-change: auto;
 }
 
 section.services-alt {
@@ -1068,7 +1068,7 @@ section.services-alt {
         }
 
         .content {
-            perspective: 1200px;
+            perspective: none;
 
             .g1,
             .g2 {
@@ -1085,10 +1085,10 @@ section.services-alt {
                     border: 1px solid rgba(255, 255, 255, .16);
                     border-radius: 28px;
                     box-shadow: 0 34px 90px rgba(0, 0, 0, .28);
-                    transform: translate3d(0, var(--tile-y, 42px), 0) rotateX(var(--tile-tilt, 5deg));
-                    opacity: var(--tile-opacity, .24);
-                    transition: border-color .25s ease, box-shadow .25s ease, transform .12s linear, opacity .12s linear;
-                    will-change: transform, opacity;
+                    transform: none;
+                    opacity: 1;
+                    transition: border-color .25s ease, box-shadow .25s ease;
+                    will-change: auto;
 
                     &::after {
                         content: "";
@@ -1107,10 +1107,10 @@ section.services-alt {
                             width: 100%;
                             height: 100%;
                             object-fit: cover;
-                            transform: translate3d(0, var(--image-y, 0), 0) scale(var(--image-scale, 1.12));
+                            transform: none;
                             filter: saturate(1.08) contrast(1.04);
-                            transition: transform .12s linear, filter .25s ease;
-                            will-change: transform;
+                            transition: filter .25s ease;
+                            will-change: auto;
                         }
                     }
 
@@ -1119,10 +1119,10 @@ section.services-alt {
                         z-index: 1;
                         margin-top: auto;
                         padding: 220px 24px 28px;
-                        transform: translate3d(0, var(--copy-y, 26px), 0);
-                        opacity: var(--copy-opacity, .28);
-                        transition: transform .12s linear, opacity .12s linear;
-                        will-change: transform, opacity;
+                        transform: none;
+                        opacity: 1;
+                        transition: none;
+                        will-change: auto;
                     }
 
                     h3 {

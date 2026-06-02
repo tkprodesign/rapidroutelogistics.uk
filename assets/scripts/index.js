@@ -4,28 +4,7 @@
  */
 
 // --- HEADER SWIPER ---
-if (document.querySelector('.swiper') && typeof Swiper === 'function') {
-    const swiper = new Swiper(".swiper", {
-        loop: true,
-        slidesPerView: 1,
-        autoplay: {
-            delay: 5000, 
-            disableOnInteraction: false,
-        },
-        noSwipingSelector: 'input, textarea, button, .c-t-a',
-        preventClicks: false,
-        preventClicksPropagation: false,
-    });
-
-    const heroTrackingForms = document.querySelectorAll('.hero .c-t-a');
-    heroTrackingForms.forEach((form) => {
-        ['pointerdown', 'mousedown', 'touchstart', 'click'].forEach((eventName) => {
-            form.addEventListener(eventName, (event) => {
-                event.stopPropagation();
-            });
-        });
-    });
-}
+// Disabled: homepage hero is intentionally static to avoid timed motion/cross-fade work.
 
 // --- GLOBAL SELECTORS ---
 const body = document.querySelector('body');
