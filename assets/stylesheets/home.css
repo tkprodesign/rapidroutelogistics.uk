@@ -563,7 +563,7 @@ section.about-us {
   background-color: #fff;
 }
 section.about-us .left-col {
-  background: url("/assets/images/home/mc2.jpg");
+  background: url("/assets/images/carousel-1.jpg");
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;

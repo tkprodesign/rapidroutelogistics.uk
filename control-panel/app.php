@@ -347,7 +347,7 @@ function cp_build_location_event_email_html(array $payload, string $recipientTyp
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#f3f4f6;padding:24px 0;">
 <tr><td align="center">
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="640" style="max-width:640px;background-color:#ffffff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;">
-<tr><td style="background-color:#0f172a;padding:16px 28px;"><img src="https://rapidroutelogistics.uk/assets/images/branding/logo-horizontal-dark.png" alt="Rapid Route Logistics" width="220" style="display:block;border:0;max-width:220px;height:auto;"></td></tr>
+<tr><td style="background-color:#0f172a;padding:16px 28px;"><img src="https://rapidroutelogistics.uk/assets/images/branding/transparent/logo.png" alt="Rapid Route Logistics" width="220" style="display:block;border:0;max-width:220px;height:auto;"></td></tr>
 <tr><td style="padding:24px 40px 8px 40px;"><h1 style="margin:0;font-size:24px;line-height:1.3;color:#0f172a;">Shipment location event added</h1></td></tr>
 <tr><td style="padding:0 40px 14px 40px;"><p style="margin:0;font-size:15px;line-height:1.7;color:#374151;">Hello ' . $safeRecipientName . ', this is an automatic update for the ' . $safeRoleText . ' on your shipment.</p></td></tr>
 <tr><td style="padding:0 40px 18px 40px;">
@@ -494,7 +494,7 @@ function cp_build_support_email_html(string $messageBody, string $adminEmail): s
 <table border="0" cellpadding="0" cellspacing="0" width="600" style="background-color:#ffffff;border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
 <tr>
 <td align="center" style="padding:40px 40px 20px 40px;">
-<img src="https://rapidroutelogistics.uk/assets/images/branding/logo-stacked-light.png" alt="Rapid Route Logistics" width="60" style="display:block;border:0;">
+<img src="https://rapidroutelogistics.uk/assets/images/branding/transparent/icon-alt.png" alt="Rapid Route Logistics" width="60" style="display:block;border:0;">
 </td>
 </tr>
 <tr>

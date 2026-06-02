@@ -34,7 +34,7 @@ include('./app.php');
         <div class="container">
             <div class="heading">
                 <span class="auth-logo-wrap">
-                    <img src="/assets/images/branding/logo-stacked-light.png" alt="Rapid Route Logistics Logo" class="logo">
+                    <img src="/assets/images/branding/transparent/icon-alt.png" alt="Rapid Route Logistics Logo" class="logo">
                 </span>
                 <h2>Welcome</h2>
             </div>

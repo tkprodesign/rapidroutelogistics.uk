@@ -27,4 +27,4 @@ All templates use the premium Rapid Route Logistics email shell:
 
 Shared brand links:
 - Link: `https://rapidroutelogistics.uk/`
-- Image: `https://rapidroutelogistics.uk/assets/images/branding/logo-horizontal-light.png`
+- Image: `https://rapidroutelogistics.uk/assets/images/branding/transparent/logo-alt.png`

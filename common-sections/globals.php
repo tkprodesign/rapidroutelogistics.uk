@@ -198,7 +198,7 @@ if (!defined('COMMON_SECTIONS_GLOBALS_LOADED')) {
             $safePreheader = htmlspecialchars($preheader, ENT_QUOTES, 'UTF-8');
             $year = htmlspecialchars((string)($options['year'] ?? date('Y')), ENT_QUOTES, 'UTF-8');
             $supportEmail = htmlspecialchars((string)($options['support_email'] ?? 'support@rapidroutelogistics.uk'), ENT_QUOTES, 'UTF-8');
-            $logoUrl = htmlspecialchars((string)($options['logo_url'] ?? 'https://rapidroutelogistics.uk/assets/images/branding/logo-horizontal-light.png'), ENT_QUOTES, 'UTF-8');
+            $logoUrl = htmlspecialchars((string)($options['logo_url'] ?? 'https://rapidroutelogistics.uk/assets/images/branding/transparent/logo-alt.png'), ENT_QUOTES, 'UTF-8');
             $siteUrl = htmlspecialchars((string)($options['site_url'] ?? 'https://rapidroutelogistics.uk/'), ENT_QUOTES, 'UTF-8');
 
             return '<!doctype html>
