@@ -16,7 +16,7 @@
     <form method="post" action="">
         <div class="container">
             <div class="heading">
-                <img src="/assets/images/branding/logo-stacked-light.png" alt="Rapid Route Logistics Logo" class="logo">
+                <img src="/assets/images/branding/transparent/icon-alt.png" alt="Rapid Route Logistics Logo" class="logo">
                 <h2>Control Panel Access</h2>
             </div>
             <?php if (!empty($error)): ?>

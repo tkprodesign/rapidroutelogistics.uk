@@ -617,3 +617,24 @@
   border-radius: 18px;
   box-shadow: 0 16px 28px rgba(180, 35, 24, 0.06);
 }/*# sourceMappingURL=tracking.css.map */
+
+/* Accessible, status-aware progress polish */
+.track-container .tracking-visual .progress-line {
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+.track-container .tracking-visual .progress-line .fill {
+  border-radius: inherit;
+  background: linear-gradient(90deg, #1A9B82 0%, #2DD4BF 100%);
+  min-width: 0;
+}
+
+.track-container .tracking-visual .nodes .node.pending i {
+  background: #fff;
+}
+
+.track-container .tracking-visual .nodes .node.active span,
+.track-container .tracking-visual .nodes .node.done span {
+  color: #14232b;
+}

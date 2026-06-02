@@ -20,8 +20,71 @@ $tracking_found = false;
 $tracking_id_missing = ($tracking_id_raw === '');
 $tracking_lookup_attempted = !$tracking_id_missing;
 
+function rrl_normalize_tracking_status($value) {
+    $statusText = strtolower(trim((string)$value));
+    $statusText = preg_replace('/[^a-z0-9]+/', '_', $statusText);
+    $statusText = trim((string)$statusText, '_');
+
+    $aliases = [
+        'created' => 'pending',
+        'label_created' => 'pending',
+        'order_created' => 'pending',
+        'shipment_created' => 'pending',
+        'processing' => 'pending',
+        'ready_for_pickup' => 'pending',
+        'picked_up' => 'picked_up',
+        'pickup' => 'picked_up',
+        'origin_scan' => 'picked_up',
+        'origin' => 'picked_up',
+        'shipped' => 'shipped',
+        'departed' => 'shipped',
+        'departed_facility' => 'shipped',
+        'arrived' => 'in_transit',
+        'arrived_at_facility' => 'in_transit',
+        'processed' => 'in_transit',
+        'processed_at_facility' => 'in_transit',
+        'checkpoint' => 'in_transit',
+        'in_store' => 'in_store',
+        'in_transit' => 'in_transit',
+        'transit' => 'in_transit',
+        'on_the_way' => 'in_transit',
+        'out_for_delivery' => 'out_for_delivery',
+        'ofd' => 'out_for_delivery',
+        'delivery_attempt' => 'out_for_delivery',
+        'delivered' => 'delivered',
+        'destination' => 'delivered',
+        'completed' => 'delivered',
+        'complete' => 'delivered',
+        'exception' => 'failed',
+        'delayed' => 'failed',
+        'failed' => 'failed',
+        'held' => 'failed',
+        'cancelled' => 'cancelled',
+        'canceled' => 'cancelled'
+    ];
+
+    if (isset($aliases[$statusText])) {
+        return $aliases[$statusText];
+    }
+
+    if (strpos($statusText, 'out_for_delivery') !== false) return 'out_for_delivery';
+    if (strpos($statusText, 'deliver') !== false && strpos($statusText, 'out') === false) return 'delivered';
+    if (strpos($statusText, 'exception') !== false || strpos($statusText, 'delay') !== false || strpos($statusText, 'hold') !== false) return 'failed';
+    if (strpos($statusText, 'transit') !== false || strpos($statusText, 'arriv') !== false || strpos($statusText, 'process') !== false) return 'in_transit';
+    if (strpos($statusText, 'ship') !== false || strpos($statusText, 'pickup') !== false || strpos($statusText, 'depart') !== false) return 'shipped';
+    if (strpos($statusText, 'label') !== false || strpos($statusText, 'created') !== false) return 'pending';
+
+    return null;
+}
+
 if (!$tracking_id_missing && isset($conn) && $conn instanceof mysqli) {
-    $shipmentSql = "SELECT status, estimated_delivery_time FROM shipments WHERE tracking_number = ? LIMIT 1";
+    $hasCompletionColumn = false;
+    $completionColumnCheck = $conn->query("SHOW COLUMNS FROM shipments LIKE 'completion_percentage'");
+    if ($completionColumnCheck && $completionColumnCheck->num_rows > 0) {
+        $hasCompletionColumn = true;
+    }
+    $shipmentSelect = $hasCompletionColumn ? 'status, completion_percentage, estimated_delivery_time' : 'status, estimated_delivery_time';
+    $shipmentSql = "SELECT {$shipmentSelect} FROM shipments WHERE tracking_number = ? LIMIT 1";
     $stmtShipment = $conn->prepare($shipmentSql);
     if ($stmtShipment) {
         $stmtShipment->bind_param("s", $tracking_id_raw);
@@ -45,7 +108,7 @@ if (!$tracking_id_missing && isset($conn) && $conn instanceof mysqli) {
                 'failed' => 'Exception',
                 'cancelled' => 'Cancelled'
             ];
-            $statusKey = strtolower(trim((string)($shipmentRow['status'] ?? 'in_transit')));
+            $statusKey = rrl_normalize_tracking_status($shipmentRow['status'] ?? 'in_transit') ?? 'in_transit';
             $status = $statusMap[$statusKey] ?? 'In Transit';
 
             $progressMap = [
@@ -61,7 +124,8 @@ if (!$tracking_id_missing && isset($conn) && $conn instanceof mysqli) {
                 'failed' => 65,
                 'cancelled' => 10
             ];
-            $progress_percent = $progressMap[$statusKey] ?? 65;
+            $storedProgress = isset($shipmentRow['completion_percentage']) ? (int)$shipmentRow['completion_percentage'] : null;
+            $progress_percent = ($storedProgress !== null && $storedProgress >= 0 && $storedProgress <= 100) ? $storedProgress : ($progressMap[$statusKey] ?? 65);
 
             $etaEpoch = (int)($shipmentRow['estimated_delivery_time'] ?? 0);
             if ($etaEpoch > 0) {
@@ -119,6 +183,31 @@ if (!$tracking_id_missing && isset($conn) && $conn instanceof mysqli) {
     }
 }
 
+if ($tracking_found && !empty($history)) {
+    $latestEvent = $history[0];
+    $eventStatusKey = rrl_normalize_tracking_status($latestEvent['activity'] ?? null);
+    if (!$eventStatusKey && !empty($latestEvent['is_negative'])) {
+        $eventStatusKey = 'failed';
+    }
+    if ($eventStatusKey) {
+        $statusKey = $eventStatusKey;
+        $statusMap = [
+            'pending' => 'Label Created',
+            'incoming' => 'Shipped',
+            'outgoing' => 'Shipped',
+            'picked_up' => 'Shipped',
+            'in_store' => 'In Transit',
+            'shipped' => 'In Transit',
+            'in_transit' => 'In Transit',
+            'out_for_delivery' => 'Out for Delivery',
+            'delivered' => 'Delivered',
+            'failed' => 'Exception',
+            'cancelled' => 'Cancelled'
+        ];
+        $status = $statusMap[$statusKey] ?? $status;
+    }
+}
+
 if ($tracking_id_missing) {
     $statusKey = 'pending';
     $status = 'Enter Tracking Number';
@@ -126,7 +215,7 @@ if ($tracking_id_missing) {
     $estimated_delivery_text = '-';
     $estimated_delivery_hint = 'Provide a tracking number to view shipment updates.';
 } elseif (!$tracking_found) {
-    $statusKey = 'failed';
+    $statusKey = 'not_found';
     $status = 'Not Found';
     $progress_percent = 0;
     $estimated_delivery_text = '-';
@@ -141,7 +230,7 @@ $progress_nodes = [
 
 switch ($statusKey) {
     case 'pending':
-        $progress_percent = 0;
+        $progress_percent = max(0, min(12, $progress_percent));
         $progress_nodes[0]['state'] = 'active';
         $estimated_delivery_hint = 'Shipment information received';
         break;
@@ -149,7 +238,7 @@ switch ($statusKey) {
     case 'incoming':
     case 'outgoing':
     case 'picked_up':
-        $progress_percent = 18;
+        $progress_percent = max(18, min(35, $progress_percent));
         $progress_nodes[0]['label'] = 'Shipped';
         $progress_nodes[0]['state'] = 'active';
         $estimated_delivery_hint = 'Picked up and moving';
@@ -158,7 +247,7 @@ switch ($statusKey) {
     case 'in_store':
     case 'shipped':
     case 'in_transit':
-        $progress_percent = 64;
+        $progress_percent = max(45, min(74, $progress_percent));
         $progress_nodes[0]['label'] = 'Shipped';
         $progress_nodes[0]['state'] = 'done';
         $progress_nodes[1]['state'] = 'active';
@@ -166,7 +255,7 @@ switch ($statusKey) {
         break;
 
     case 'out_for_delivery':
-        $progress_percent = 82;
+        $progress_percent = max(82, min(96, $progress_percent));
         $progress_nodes[0]['label'] = 'Shipped';
         $progress_nodes[0]['state'] = 'done';
         $progress_nodes[1]['label'] = 'Out for Delivery';
@@ -184,7 +273,7 @@ switch ($statusKey) {
         break;
 
     case 'failed':
-        $progress_percent = 64;
+        $progress_percent = max(45, min(78, $progress_percent));
         $progress_nodes[0]['label'] = 'Shipped';
         $progress_nodes[0]['state'] = 'done';
         $progress_nodes[1]['label'] = 'Exception';
@@ -198,8 +287,14 @@ switch ($statusKey) {
         $estimated_delivery_hint = 'Shipment cancelled';
         break;
 
+    case 'not_found':
+        $progress_percent = 0;
+        $progress_nodes[0]['state'] = 'pending';
+        $estimated_delivery_hint = 'No shipment matched that tracking number.';
+        break;
+
     default:
-        $progress_percent = 64;
+        $progress_percent = max(45, min(74, $progress_percent));
         $progress_nodes[0]['label'] = 'Shipped';
         $progress_nodes[0]['state'] = 'done';
         $progress_nodes[1]['state'] = 'active';
@@ -242,9 +337,9 @@ switch ($statusKey) {
                     </div>
                 </div>
 
-                <div class="tracking-visual">
-                    <div class="progress-line">
-                        <div class="fill" style="width: <?= $progress_percent ?>%;"></div>
+                <div class="tracking-visual" aria-label="Shipment progress: <?= (int)$progress_percent ?> percent complete">
+                    <div class="progress-line" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="<?= (int)$progress_percent ?>">
+                        <div class="fill" style="width: <?= (int)$progress_percent ?>%;"></div>
                     </div>
                     <div class="nodes">
                         <?php foreach ($progress_nodes as $node): ?>

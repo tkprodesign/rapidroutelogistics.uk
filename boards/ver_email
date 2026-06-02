@@ -13,7 +13,7 @@
                     
                     <tr>
                         <td align="center" style="padding: 40px 40px 20px 40px;">
-                            <img src="https://rapidroutelogistics.uk/assets/images/branding/logo-stacked-light.png" alt="Rapid Route Logistics" width="60" style="display: block; border: 0;">
+                            <img src="https://rapidroutelogistics.uk/assets/images/branding/transparent/icon-alt.png" alt="Rapid Route Logistics" width="60" style="display: block; border: 0;">
                         </td>
                     </tr>
 

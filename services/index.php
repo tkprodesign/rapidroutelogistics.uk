@@ -44,7 +44,7 @@ include("app.php");
                 </div>
             </div>
             <div class="hero-media">
-                <img src="<?= htmlspecialchars(asset_url('/assets/images/home/mc2.jpg')); ?>" alt="Rapid Route delivery specialist standing in front of delivery vehicle">
+                <img src="<?= htmlspecialchars(asset_url('/assets/images/carousel-1.jpg')); ?>" alt="Rapid Route delivery specialist standing in front of delivery vehicle">
             </div>
         </section>
     </div>

@@ -150,8 +150,8 @@
                 </div>
 
                 <div class="faq-panel" data-faq-panel="contacts">
-                    <details><summary>How do I contact support?</summary><div>Visit the support page and choose your preferred support category, or message us on WhatsApp at <a href="https://wa.me/447529442298" target="_blank" rel="noopener noreferrer">+44 7529 442298</a>.</div></details>
-                    <details><summary>How do I reach shipping support quickly?</summary><div>Use tracking or shipping help cards above for direct routes, or contact WhatsApp support at <a href="https://wa.me/447529442298" target="_blank" rel="noopener noreferrer">+44 7529 442298</a>.</div></details>
+                    <details><summary>How do I contact support?</summary><div>Visit the support page and choose your preferred support category, or message us on WhatsApp at <a href="https://wa.me/447529442298?text=Hello%20Rapid%20Route%20Logistics%2C%20I%20need%20support." target="_blank" rel="noopener noreferrer">+44 7529 442298</a>.</div></details>
+                    <details><summary>How do I reach shipping support quickly?</summary><div>Use tracking or shipping help cards above for direct routes, or contact WhatsApp support at <a href="https://wa.me/447529442298?text=Hello%20Rapid%20Route%20Logistics%2C%20I%20need%20support." target="_blank" rel="noopener noreferrer">+44 7529 442298</a>.</div></details>
                 </div>
             </div>
         </div>

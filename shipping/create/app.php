@@ -758,7 +758,7 @@ function shipping_build_customer_shipment_email_html(array $payload): string {
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="640" style="max-width:640px;background:#ffffff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;">
 <tr><td style="background:#0f172a;padding:16px 28px;">
 <a href="https://rapidroutelogistics.uk/" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;">
-<img src="https://rapidroutelogistics.uk/assets/images/branding/logo-horizontal-dark.png" alt="Rapid Route Logistics" width="220" style="display:block;border:0;max-width:220px;height:auto;">
+<img src="https://rapidroutelogistics.uk/assets/images/branding/transparent/logo.png" alt="Rapid Route Logistics" width="220" style="display:block;border:0;max-width:220px;height:auto;">
 </a>
 </td></tr>
 <tr><td style="padding:28px 40px 6px 40px;"><h1 style="margin:0;font-size:26px;line-height:1.3;color:#0f172a;">Your shipment is confirmed</h1></td></tr>
@@ -818,7 +818,7 @@ function shipping_build_customer_invoice_email_html(array $payload): string {
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="640" style="max-width:640px;background:#ffffff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;">
 <tr><td style="background:#0f172a;padding:16px 28px;">
 <a href="https://rapidroutelogistics.uk/" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;">
-<img src="https://rapidroutelogistics.uk/assets/images/branding/logo-horizontal-dark.png" alt="Rapid Route Logistics" width="220" style="display:block;border:0;max-width:220px;height:auto;">
+<img src="https://rapidroutelogistics.uk/assets/images/branding/transparent/logo.png" alt="Rapid Route Logistics" width="220" style="display:block;border:0;max-width:220px;height:auto;">
 </a>
 </td></tr>
 <tr><td style="padding:28px 40px 6px 40px;"><h1 style="margin:0;font-size:26px;line-height:1.3;color:#0f172a;">Your shipment invoice</h1></td></tr>
