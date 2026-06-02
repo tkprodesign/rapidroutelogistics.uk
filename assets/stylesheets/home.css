@@ -1587,3 +1587,134 @@ section.services-alt .container .content .g2 .col.service-tile:focus-within .ser
     transition: none !important;
   }
 }
+
+/* ================================================================
+   2026 Homepage Audit Refinement — lightweight luxury layout
+   ================================================================ */
+section.hero .swiper { position: relative; overflow: hidden; background: #07141a; }
+section.hero .swiper .swiper-wrapper {
+  position: relative !important;
+  width: 100% !important;
+  height: clamp(680px, 82vh, 880px) !important;
+  max-height: none !important;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.015);
+  transition: opacity 900ms ease, transform 1200ms ease, visibility 900ms ease;
+  pointer-events: none;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  pointer-events: auto;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .dark-bg {
+  background:
+    linear-gradient(90deg, rgba(5,16,22,.86) 0%, rgba(8,22,30,.70) 44%, rgba(8,22,30,.40) 100%),
+    linear-gradient(180deg, rgba(5,16,22,.12), rgba(5,16,22,.55)) !important;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .container {
+  width: min(1320px, calc(100% - 64px));
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 92px;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .heading {
+  margin: 0 0 34px 0 !important;
+  max-width: 780px !important;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading {
+  font-size: clamp(64px, 7vw, 104px) !important;
+  line-height: .92 !important;
+  letter-spacing: -0.045em !important;
+  text-wrap: balance;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .heading .sub-heading {
+  max-width: 660px;
+  color: rgba(255,255,255,.82);
+  font-size: clamp(18px, 1.4vw, 22px) !important;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a {
+  max-width: 720px;
+  padding: 10px;
+  gap: 10px !important;
+  border-radius: 999px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.16);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box { width: 100% !important; }
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box input {
+  min-height: 64px;
+  border-radius: 999px !important;
+  padding: 0 26px !important;
+  font-size: 18px;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .pri {
+  min-width: 188px;
+  min-height: 64px;
+  border: 0;
+  color: #fff !important;
+  background: linear-gradient(135deg, #14977f, #22b496) !important;
+  box-shadow: 0 20px 46px rgba(20,151,127,.30);
+}
+.premium-scene,
+.premium-scene::before,
+section.services-alt .container .content .g1 .col.service-tile,
+section.services-alt .container .content .g2 .col.service-tile,
+section.services-alt .container .content .g1 .col.service-tile .service-media img,
+section.services-alt .container .content .g2 .col.service-tile .service-media img,
+section.services-alt .container .content .g1 .col.service-tile .service-copy,
+section.services-alt .container .content .g2 .col.service-tile .service-copy {
+  transform: none !important;
+  opacity: 1 !important;
+  will-change: auto !important;
+}
+.premium-scene::before { display: none !important; }
+section.services-alt .container .content { perspective: none !important; }
+section.services-alt .container .content .g1 .col.service-tile,
+section.services-alt .container .content .g2 .col.service-tile {
+  transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease !important;
+}
+section.services-alt .container .content .g1 .col.service-tile .service-media img,
+section.services-alt .container .content .g2 .col.service-tile .service-media img { transition: filter .28s ease, transform .45s ease !important; }
+section.services-alt .container .content .g1 .col.service-tile:hover,
+section.services-alt .container .content .g2 .col.service-tile:hover { transform: translateY(-6px) !important; }
+
+@media (max-width: 760px) {
+  section.hero .swiper .swiper-wrapper { height: calc(100svh - 82px) !important; min-height: 650px; }
+  section.hero .swiper .swiper-wrapper .swiper-slide .container {
+    width: calc(100% - 32px);
+    justify-content: flex-end;
+    padding-bottom: 116px;
+  }
+  section.hero .swiper .swiper-wrapper .swiper-slide .heading { margin-bottom: 24px !important; }
+  section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading {
+    font-size: clamp(56px, 15vw, 72px) !important;
+    line-height: .94 !important;
+  }
+  section.hero .swiper .swiper-wrapper .swiper-slide .heading .sub-heading { font-size: 17px !important; line-height: 1.55 !important; }
+  section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a {
+    max-width: none;
+    flex-direction: column;
+    padding: 0 !important;
+    gap: 14px !important;
+    background: transparent;
+    border: 0;
+    backdrop-filter: none;
+  }
+  section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box input,
+  section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .pri { min-height: 72px; width: 100%; }
+  section.hero .custom-shape-divider-bottom-1771138429 svg { height: 92px !important; }
+  section:not(.hero) .container { width: calc(100% - 32px); margin-bottom: 3.5rem !important; }
+  section:not(.hero) .container .heading { margin: 48px auto 2.25rem !important; }
+}
