@@ -28,7 +28,12 @@ include('./app.php');
 </head>
 <body>
 <?php include("common-sections/header.html"); ?>
-<section class="hero">
+<div class="premium-scroll-shell" aria-hidden="true">
+    <canvas class="premium-globe-canvas" width="900" height="900"></canvas>
+    <div class="premium-depth-field premium-depth-field-a"></div>
+    <div class="premium-depth-field premium-depth-field-b"></div>
+</div>
+<section class="hero premium-scene" data-premium-scene="hero">
     <!-- DESKTOP CURVE -->
     <div class="custom-shape-divider-bottom-1771138429">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -88,7 +93,7 @@ include('./app.php');
 
 
 
-<section class="ups-branch-context brand-context">
+<section class="ups-branch-context brand-context premium-scene" data-premium-scene="brand">
     <div class="container">
         <div class="ups-branch-card">
             <div class="content">
@@ -116,7 +121,7 @@ include('./app.php');
 
 
 
-<section class="rrl-stats" id="rrl-stats">
+<section class="rrl-stats premium-scene" id="rrl-stats" data-premium-scene="stats">
     <div class="stats-container">
         <div class="stat-item">
             <div class="stat-number-row">
@@ -145,7 +150,7 @@ include('./app.php');
     </div>
 </section>
 
-<section class="why-choose-us editing">
+<section class="why-choose-us editing premium-scene" data-premium-scene="precision">
     <div class="container">
         <div class="heading .heading-1">
             <h2>Precision in Motion. Deliveries You Can Count On</h2>
@@ -185,7 +190,7 @@ include('./app.php');
 
 
 
-<section class="tools">
+<section class="tools premium-scene" data-premium-scene="tools">
     <div class="container">
         <div class="left"></div>
         <div class="right">
@@ -203,7 +208,7 @@ include('./app.php');
 
 
 
-<section class="services-alt">
+<section class="services-alt premium-scene" data-premium-scene="services">
     <div class="container">
         <div class="heading">
             <h2>Logistics Solutions for Business and Personal Shipping</h2>
@@ -216,49 +221,73 @@ include('./app.php');
         <div class="content">
             <!-- Business / Government Services -->
             <div class="g1 active">
-                <div class="col">
-                    <h3>Business Logistics</h3>
-                    <p>Compliance & Security. Time-sensitive and confidential deliveries for companies, teams, and professionals.</p>
-                    <a href="/shipping">Start Order <span class="material-symbols-outlined">chevron_right</span></a>
+                <div class="col service-tile">
+                    <div class="service-media"><img src="<?= htmlspecialchars(asset_url('/assets/images/services/air-freight.jpg')); ?>" alt="Business logistics aircraft loading operation"></div>
+                    <div class="service-copy">
+                        <h3>Business Logistics</h3>
+                        <p>Compliance & Security. Time-sensitive and confidential deliveries for companies, teams, and professionals.</p>
+                        <a href="/shipping">Start Order <span class="material-symbols-outlined">chevron_right</span></a>
+                    </div>
                 </div>
-                <div class="col">
-                    <h3>Bulk & Scheduled Deliveries</h3>
-                    <p>Efficiency. Large shipments and recurring deliveries for organizations are executed seamlessly.</p>
-                    <a href="/shipping">Book Bulk <span class="material-symbols-outlined">chevron_right</span></a>
+                <div class="col service-tile">
+                    <div class="service-media"><img src="<?= htmlspecialchars(asset_url('/assets/images/services/warehouse-solutions.jpg')); ?>" alt="Bulk scheduled delivery warehouse coordination"></div>
+                    <div class="service-copy">
+                        <h3>Bulk & Scheduled Deliveries</h3>
+                        <p>Efficiency. Large shipments and recurring deliveries for organizations are executed seamlessly.</p>
+                        <a href="/shipping">Book Bulk <span class="material-symbols-outlined">chevron_right</span></a>
+                    </div>
                 </div>
-                <div class="col">
-                    <h3>Inter-City & Regional Delivery</h3>
-                    <p>Coverage. Shipments reach cities and regions on schedule, supporting daily operations.</p>
-                    <a href="/shipping">Ship Route <span class="material-symbols-outlined">chevron_right</span></a>
+                <div class="col service-tile">
+                    <div class="service-media"><img src="<?= htmlspecialchars(asset_url('/assets/images/services/road-freight.jpg')); ?>" alt="Inter-city regional road freight movement"></div>
+                    <div class="service-copy">
+                        <h3>Inter-City & Regional Delivery</h3>
+                        <p>Coverage. Shipments reach cities and regions on schedule, supporting daily operations.</p>
+                        <a href="/shipping">Ship Route <span class="material-symbols-outlined">chevron_right</span></a>
+                    </div>
                 </div>
-                <div class="col">
-                    <h3>Document & Priority Parcel Delivery</h3>
-                    <p>Confidentiality. Critical documents and packages are transported securely at every stage.</p>
-                    <a href="/shipping">Send Docs <span class="material-symbols-outlined">chevron_right</span></a>
+                <div class="col service-tile">
+                    <div class="service-media"><img src="<?= htmlspecialchars(asset_url('/assets/images/parcel-delivery.jpg')); ?>" alt="Priority parcel delivery with careful handling"></div>
+                    <div class="service-copy">
+                        <h3>Document & Priority Parcel Delivery</h3>
+                        <p>Confidentiality. Critical documents and packages are transported securely at every stage.</p>
+                        <a href="/shipping">Send Docs <span class="material-symbols-outlined">chevron_right</span></a>
+                    </div>
                 </div>
             </div>
 
             <!-- Personal & Family Services -->
             <div class="g2">
-                <div class="col">
-                    <h3>Same-Day Delivery</h3>
-                    <p>Urgency. Critical packages for families and individuals are picked up and delivered the same day.</p>
-                    <a href="/shipping">Ship Today <span class="material-symbols-outlined">chevron_right</span></a>
+                <div class="col service-tile">
+                    <div class="service-media"><img src="<?= htmlspecialchars(asset_url('/assets/images/home/mc6.jpg')); ?>" alt="Same-day courier preparing a fast delivery"></div>
+                    <div class="service-copy">
+                        <h3>Same-Day Delivery</h3>
+                        <p>Urgency. Critical packages for families and individuals are picked up and delivered the same day.</p>
+                        <a href="/shipping">Ship Today <span class="material-symbols-outlined">chevron_right</span></a>
+                    </div>
                 </div>
-                <div class="col">
-                    <h3>Family Parcel Delivery</h3>
-                    <p>Care. Personal packages and parcels are handled safely, ensuring timely arrival to loved ones.</p>
-                    <a href="/shipping">Send Parcel <span class="material-symbols-outlined">chevron_right</span></a>
+                <div class="col service-tile">
+                    <div class="service-media"><img src="<?= htmlspecialchars(asset_url('/assets/images/home/cd1.jpg')); ?>" alt="Family parcel delivery doorstep handoff"></div>
+                    <div class="service-copy">
+                        <h3>Family Parcel Delivery</h3>
+                        <p>Care. Personal packages and parcels are handled safely, ensuring timely arrival to loved ones.</p>
+                        <a href="/shipping">Send Parcel <span class="material-symbols-outlined">chevron_right</span></a>
+                    </div>
                 </div>
-                <div class="col">
-                    <h3>Assisted Pickup & Delivery</h3>
-                    <p>Convenience. Pickups and deliveries for elderly or mobility-challenged customers are supported efficiently.</p>
-                    <a href="/shipping">Book Pickup <span class="material-symbols-outlined">chevron_right</span></a>
+                <div class="col service-tile">
+                    <div class="service-media"><img src="<?= htmlspecialchars(asset_url('/assets/images/home/mc2.jpg')); ?>" alt="Assisted pickup and delivery courier support"></div>
+                    <div class="service-copy">
+                        <h3>Assisted Pickup & Delivery</h3>
+                        <p>Convenience. Pickups and deliveries for elderly or mobility-challenged customers are supported efficiently.</p>
+                        <a href="/shipping">Book Pickup <span class="material-symbols-outlined">chevron_right</span></a>
+                    </div>
                 </div>
-                <div class="col">
-                    <h3>Event & Specialty Deliveries</h3>
-                    <p>Flexibility. Packages for personal events, celebrations, or special requests are managed with attention to detail.</p>
-                    <a href="/shipping">Ship Event <span class="material-symbols-outlined">chevron_right</span></a>
+                <div class="col service-tile">
+                    <div class="service-media"><img src="<?= htmlspecialchars(asset_url('/assets/images/home/cd2.jpg')); ?>" alt="Specialty event delivery logistics planning"></div>
+                    <div class="service-copy">
+                        <h3>Event & Specialty Deliveries</h3>
+                        <p>Flexibility. Packages for personal events, celebrations, or special requests are managed with attention to detail.</p>
+                        <a href="/shipping">Ship Event <span class="material-symbols-outlined">chevron_right</span></a>
+                    </div>
                 </div>
             </div>
         </div>
