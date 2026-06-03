@@ -42,6 +42,7 @@
         </div>
     </form>
 </section>
+<script src="/assets/scripts/forms.js?v=<?php echo time(); ?>" defer></script>
 </body>
 </html>
 
