@@ -7,6 +7,7 @@
 
 // Hero Section
 section.hero {
+    overflow: hidden;
     .custom-shape-divider-bottom-1771138429, .custom-shape-divider-bottom-1771153943{
         display: none;
         .shape-fill {
@@ -36,13 +37,16 @@ section.hero {
         }
     }
     .swiper {
+        width: 100%;
+        overflow: hidden;
         .swiper-wrapper {
-            width: 100vw;
+            width: 100%;
             height: 80vh;
             max-height: auto;
 
             .swiper-slide {
-                width: 100vw;
+                width: 100%;
+                max-width: 100%;
                 min-height: auto;
                 display: flex;
                 flex-direction: column;
