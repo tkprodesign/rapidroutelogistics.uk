@@ -6,6 +6,9 @@
  * Paragraph Style 2: Optimized for readability.
  * Uses a balanced line-height for that "clean art" feel.
  */
+section.hero {
+  overflow: hidden;
+}
 section.hero .custom-shape-divider-bottom-1771138429, section.hero .custom-shape-divider-bottom-1771153943 {
   display: none;
 }
@@ -34,13 +37,18 @@ section.hero .custom-shape-divider-bottom-1771153755 svg {
   width: calc(171% + 1.3px);
   height: 70px;
 }
+section.hero .swiper {
+  width: 100%;
+  overflow: hidden;
+}
 section.hero .swiper .swiper-wrapper {
-  width: 100vw;
+  width: 100%;
   height: 80vh;
   max-height: auto;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide {
-  width: 100vw;
+  width: 100%;
+  max-width: 100%;
   min-height: auto;
   display: flex;
   flex-direction: column;

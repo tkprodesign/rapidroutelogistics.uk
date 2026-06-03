@@ -43,6 +43,7 @@ section:not(.hero) .container .heading-1-1 h2::after {
 
 section.hero {
   position: relative;
+  overflow: hidden;
 }
 section.hero .custom-shape-divider-bottom-1771153755, section.hero .custom-shape-divider-bottom-1771153943 {
   display: none;
@@ -80,13 +81,18 @@ section.hero .custom-shape-divider-bottom-1771138429 svg {
   height: 192px;
   z-index: 89;
 }
+section.hero .swiper {
+  width: 100%;
+  overflow: hidden;
+}
 section.hero .swiper .swiper-wrapper {
-  width: 100vw;
+  width: 100%;
   height: 920px;
   max-height: 920px;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide {
-  width: 100vw;
+  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -245,8 +251,10 @@ section.why-choose-us .container .heading {
 }
 section.why-choose-us .container .content {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  min-width: 1140px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  max-width: 1140px;
+  min-width: 0;
   margin: auto;
   gap: 2rem;
 }

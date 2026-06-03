@@ -14,6 +14,11 @@
     margin: 0;
     box-sizing: border-box;
 }
+html {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -24,6 +29,8 @@ body {
     color: $dk;
     font-family: 'roboto', 'roboto-fallback', 'tahoma', 'helvetica', 'arial', 'sans-serif';
     position: relative;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 .container {
     width: 95%;
