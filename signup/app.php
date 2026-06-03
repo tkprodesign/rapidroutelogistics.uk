@@ -168,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($name === "") $errors[] = "Name is required.";
     if ($email === "" || !filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Valid email is required.";
     if ($username === "") $errors[] = "Username is required.";
-    if ($password === "" || strlen($password) < 8) $errors[] = "Password must be at least 8 characters.";
+    if ($password === "" || strlen($password) < 8 || !preg_match("/[A-Za-z]/", $password) || !preg_match("/[0-9]/", $password)) $errors[] = "Password must be at least 8 characters and include a letter and a number.";
     if (!$terms) $errors[] = "You must accept the terms.";
     if ($phone_number !== null && !preg_match("/^[0-9]+$/", $phone_number)) $errors[] = "Phone must be digits only.";
 
