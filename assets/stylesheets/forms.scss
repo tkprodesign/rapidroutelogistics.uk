@@ -411,3 +411,148 @@ body.login-page {
         }
     }
 }
+
+/* 2026 auth form polish: password reveal + unmistakable validation states */
+section.form,
+section.form-section {
+    form .container .content {
+        .form-errors,
+        .error-message {
+            background: #fff1f1;
+            border: 1px solid #fda29b;
+            border-left: 4px solid #d92d20;
+            color: #b42318;
+            font-weight: 700;
+            box-shadow: 0 10px 24px rgba(180, 35, 24, 0.08);
+        }
+
+        .form-errors p {
+            color: inherit;
+            margin: 0 0 6px;
+            line-height: 1.45;
+        }
+
+        .form-errors p:last-child {
+            margin-bottom: 0;
+        }
+
+        .input-box.has-password-toggle {
+            position: relative;
+        }
+
+        .input-box.has-password-toggle input[type="password"],
+        .input-box.has-password-toggle input[type="text"] {
+            padding-right: 72px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            top: 9px;
+            right: 8px;
+            width: 44px;
+            min-height: 44px;
+            padding: 0;
+            border: 1px solid rgba(20, 35, 43, 0.16);
+            border-radius: 999px;
+            background: #ffffff;
+            color: #14232b;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            font-size: 0;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 6px 14px rgba(20, 35, 43, 0.08);
+        }
+
+        .password-toggle:hover,
+        .password-toggle:focus-visible {
+            background: #e9fbf7;
+            border-color: #1A9B82;
+            color: #0f7665;
+            outline: none;
+        }
+
+        .password-toggle .material-symbols-outlined {
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .password-requirements {
+            margin-top: 10px;
+            padding: 12px 14px;
+            border: 1px solid #d9e9e5;
+            border-radius: 10px;
+            background: #f5fffc;
+            color: #14232b;
+            text-align: left;
+        }
+
+        .password-requirements p {
+            margin: 0 0 8px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #14232b;
+        }
+
+        .password-requirements ul {
+            list-style: none;
+            display: grid;
+            gap: 6px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .password-requirements li {
+            color: #b42318;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .password-requirements li::before {
+            content: "✕";
+            display: inline-flex;
+            width: 20px;
+            color: #d92d20;
+            font-weight: 900;
+        }
+
+        .password-requirements li.is-valid {
+            color: #067647;
+        }
+
+        .password-requirements li.is-valid::before {
+            content: "✓";
+            color: #079455;
+        }
+
+        input.is-invalid,
+        input[aria-invalid="true"] {
+            border-color: #d92d20 !important;
+            box-shadow: 0 0 0 2px rgba(217, 45, 32, 0.16) !important;
+        }
+
+        input.is-valid {
+            border-color: #079455 !important;
+            box-shadow: 0 0 0 2px rgba(7, 148, 85, 0.14) !important;
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    section.form,
+    section.form-section {
+        form .container .content {
+            .input-box.has-password-toggle input[type="password"],
+            .input-box.has-password-toggle input[type="text"] {
+                padding-right: 68px;
+            }
+
+            .password-toggle {
+                padding: 0;
+                font-size: 0;
+            }
+        }
+    }
+}

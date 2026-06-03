@@ -1900,3 +1900,13 @@ footer .footer-brand { max-width: 1320px !important; }
     z-index: 9992 !important;
   }
 }
+
+/* 2026 validation visibility: never let errors inherit ordinary copy styling. */
+:where(.form-errors, .error-message, .field-error, .card-field-error, .profile-error-msg, .profile-inline-error, .wallet-error-msg, .cp-quote-notice.is-error, .promo-feedback.error) {
+  color: #b42318 !important;
+  font-weight: 700;
+}
+:where(.form-errors, .error-message, .field-error, .card-field-error, .profile-error-msg, .profile-inline-error, .wallet-error-msg) a {
+  color: #7a271a !important;
+  text-decoration: underline;
+}

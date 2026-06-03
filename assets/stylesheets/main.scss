@@ -1074,3 +1074,14 @@ header.is-scrolled .container .left #logo img {
     min-height: 52px;
   }
 }
+
+/* 2026 validation visibility: never let errors inherit ordinary copy styling. */
+:where(.form-errors, .error-message, .field-error, .card-field-error, .profile-error-msg, .profile-inline-error, .wallet-error-msg, .cp-quote-notice.is-error, .promo-feedback.error) {
+  color: #b42318 !important;
+  font-weight: 700;
+}
+
+:where(.form-errors, .error-message, .field-error, .card-field-error, .profile-error-msg, .profile-inline-error, .wallet-error-msg) a {
+  color: #7a271a !important;
+  text-decoration: underline;
+}

@@ -33,7 +33,7 @@
 <?php include("../common-sections/header.html"); ?>
 
 <section class="form">
-    <form action="" method="post">
+    <form action="" method="post" data-signup-form>
         <div class="container">
             <div class="heading">
                 <h2>Sign Up</h2>
@@ -42,7 +42,7 @@
 
             <div class="content">
                 <?php if (!empty($errors)): ?>
-                    <div style="color:red; margin-bottom:15px;">
+                    <div class="form-errors" role="alert" aria-live="polite">
                         <?php foreach ($errors as $error): ?>
                             <p><?= htmlspecialchars($error) ?></p>
                         <?php endforeach; ?>
@@ -70,8 +70,14 @@
                     <input type="text" name="username" placeholder="Username">
                 </div>
 
-                <div class="input-box">
-                    <input type="password" name="password" placeholder="Password">
+                <div class="input-box password-field">
+                    <input type="password" name="password" placeholder="Password" autocomplete="new-password" aria-describedby="signup-password-help">
+                    <div class="password-requirements" id="signup-password-help" aria-live="polite">
+                        <p>Password must include:</p>
+                        <ul>
+                            <li data-password-rule="length">At least 8 characters</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="input-box checkbox">
