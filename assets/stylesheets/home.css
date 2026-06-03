@@ -2012,10 +2012,32 @@ section.services-alt .container .content [role="tabpanel"][hidden] {
   display: none !important;
 }
 
-/* 2026 desktop hero/header fix: keep the oversized headline below the site header. */
+/* 2026 desktop hero/header fix: match the fixed header offset and keep the CTA above the curve. */
 @media (min-width: 761px) {
+  :root {
+    --rrl-header-offset: 86px;
+  }
+
+  body {
+    padding-top: var(--rrl-header-offset) !important;
+  }
+
+  section.hero .swiper .swiper-wrapper {
+    height: clamp(620px, calc(100svh - var(--rrl-header-offset)), 820px) !important;
+  }
+
   section.hero .swiper .swiper-wrapper .swiper-slide .container {
-    padding-top: clamp(72px, 9vh, 112px);
-    justify-content: flex-start;
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: clamp(82px, 10vh, 116px);
+  }
+
+  section.hero .swiper .swiper-wrapper .swiper-slide .heading {
+    margin-bottom: clamp(18px, 2.3vh, 30px) !important;
+  }
+
+  section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading {
+    font-size: clamp(58px, 6.2vw, 96px) !important;
+    line-height: .95 !important;
   }
 }

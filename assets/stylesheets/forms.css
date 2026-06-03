@@ -642,14 +642,15 @@ section.form-section form .container .content .input-box.has-password-toggle { p
 section.form form .container .content .input-box.has-password-toggle input[type=password],
 section.form form .container .content .input-box.has-password-toggle input[type=text],
 section.form-section form .container .content .input-box.has-password-toggle input[type=password],
-section.form-section form .container .content .input-box.has-password-toggle input[type=text] { padding-right: 118px; }
+section.form-section form .container .content .input-box.has-password-toggle input[type=text] { padding-right: 72px; }
 section.form form .container .content .password-toggle,
 section.form-section form .container .content .password-toggle {
   position: absolute;
   top: 9px;
   right: 8px;
-  min-height: 40px;
-  padding: 0 12px;
+  width: 44px;
+  min-height: 44px;
+  padding: 0;
   border: 1px solid rgba(20, 35, 43, 0.16);
   border-radius: 999px;
   background: #ffffff;
@@ -657,8 +658,8 @@ section.form-section form .container .content .password-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  font-size: 0.82rem;
+  gap: 0;
+  font-size: 0;
   font-weight: 800;
   cursor: pointer;
   box-shadow: 0 6px 14px rgba(20, 35, 43, 0.08);
@@ -733,7 +734,7 @@ section.form-section form .container .content input.is-valid {
   section.form form .container .content .input-box.has-password-toggle input[type=password],
   section.form form .container .content .input-box.has-password-toggle input[type=text],
   section.form-section form .container .content .input-box.has-password-toggle input[type=password],
-  section.form-section form .container .content .input-box.has-password-toggle input[type=text] { padding-right: 98px; }
+  section.form-section form .container .content .input-box.has-password-toggle input[type=text] { padding-right: 68px; }
   section.form form .container .content .password-toggle,
-  section.form-section form .container .content .password-toggle { padding: 0 10px; font-size: 0.76rem; }
+  section.form-section form .container .content .password-toggle { padding: 0; font-size: 0; }
 }

@@ -76,8 +76,6 @@
                         <p>Password must include:</p>
                         <ul>
                             <li data-password-rule="length">At least 8 characters</li>
-                            <li data-password-rule="letter">At least one letter</li>
-                            <li data-password-rule="number">At least one number</li>
                         </ul>
                     </div>
                 </div>

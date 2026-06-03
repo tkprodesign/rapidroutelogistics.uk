@@ -43,7 +43,7 @@ document.querySelectorAll('input[type="password"]').forEach((input, index) => {
     button.setAttribute("aria-label", "Show password");
     button.setAttribute("aria-pressed", "false");
     button.setAttribute("aria-controls", input.id || `password-field-${index + 1}`);
-    button.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">visibility</span><span class="password-toggle-text">Peek</span>';
+    button.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">visibility</span>';
 
     if (!input.id) {
         input.id = `password-field-${index + 1}`;
@@ -55,7 +55,6 @@ document.querySelectorAll('input[type="password"]').forEach((input, index) => {
         button.setAttribute("aria-label", isHidden ? "Hide password" : "Show password");
         button.setAttribute("aria-pressed", String(isHidden));
         button.querySelector(".material-symbols-outlined").textContent = isHidden ? "visibility_off" : "visibility";
-        button.querySelector(".password-toggle-text").textContent = isHidden ? "No peek" : "Peek";
         input.focus({ preventScroll: true });
     });
 
@@ -67,8 +66,6 @@ document.querySelectorAll('input[type="password"]').forEach((input, index) => {
 ---------------------------- */
 const passwordRules = {
     length: value => value.length >= 8,
-    letter: value => /[A-Za-z]/.test(value),
-    number: value => /[0-9]/.test(value),
 };
 
 function updatePasswordRules() {
@@ -138,7 +135,7 @@ if (signupForm) {
 
         // Password validation
         if (passwordInput && !updatePasswordRules()) {
-            errors.push({ field: passwordInput, message: "Password must be at least 8 characters and include a letter and a number." });
+            errors.push({ field: passwordInput, message: "Password must be at least 8 characters." });
         }
 
         // Terms validation
