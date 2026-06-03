@@ -616,3 +616,124 @@ body.login-page section.form-section form .container .heading .logo {
     margin: 0 auto 24px !important;
     display: block !important;
 }
+
+/* 2026 auth form polish: password reveal + unmistakable validation states */
+section.form form .container .content .form-errors,
+section.form form .container .content .error-message,
+section.form-section form .container .content .form-errors,
+section.form-section form .container .content .error-message {
+  background: #fff1f1;
+  border: 1px solid #fda29b;
+  border-left: 4px solid #d92d20;
+  color: #b42318;
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(180, 35, 24, 0.08);
+}
+section.form form .container .content .form-errors p,
+section.form-section form .container .content .form-errors p {
+  color: inherit;
+  margin: 0 0 6px;
+  line-height: 1.45;
+}
+section.form form .container .content .form-errors p:last-child,
+section.form-section form .container .content .form-errors p:last-child { margin-bottom: 0; }
+section.form form .container .content .input-box.has-password-toggle,
+section.form-section form .container .content .input-box.has-password-toggle { position: relative; }
+section.form form .container .content .input-box.has-password-toggle input[type=password],
+section.form form .container .content .input-box.has-password-toggle input[type=text],
+section.form-section form .container .content .input-box.has-password-toggle input[type=password],
+section.form-section form .container .content .input-box.has-password-toggle input[type=text] { padding-right: 118px; }
+section.form form .container .content .password-toggle,
+section.form-section form .container .content .password-toggle {
+  position: absolute;
+  top: 9px;
+  right: 8px;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid rgba(20, 35, 43, 0.16);
+  border-radius: 999px;
+  background: #ffffff;
+  color: #14232b;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(20, 35, 43, 0.08);
+}
+section.form form .container .content .password-toggle:hover,
+section.form form .container .content .password-toggle:focus-visible,
+section.form-section form .container .content .password-toggle:hover,
+section.form-section form .container .content .password-toggle:focus-visible {
+  background: #e9fbf7;
+  border-color: #1A9B82;
+  color: #0f7665;
+  outline: none;
+}
+section.form form .container .content .password-toggle .material-symbols-outlined,
+section.form-section form .container .content .password-toggle .material-symbols-outlined { font-size: 18px; line-height: 1; }
+section.form form .container .content .password-requirements,
+section.form-section form .container .content .password-requirements {
+  margin-top: 10px;
+  padding: 12px 14px;
+  border: 1px solid #d9e9e5;
+  border-radius: 10px;
+  background: #f5fffc;
+  color: #14232b;
+  text-align: left;
+}
+section.form form .container .content .password-requirements p,
+section.form-section form .container .content .password-requirements p {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #14232b;
+}
+section.form form .container .content .password-requirements ul,
+section.form-section form .container .content .password-requirements ul {
+  list-style: none;
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+}
+section.form form .container .content .password-requirements li,
+section.form-section form .container .content .password-requirements li {
+  color: #b42318;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+section.form form .container .content .password-requirements li::before,
+section.form-section form .container .content .password-requirements li::before {
+  content: "✕";
+  display: inline-flex;
+  width: 20px;
+  color: #d92d20;
+  font-weight: 900;
+}
+section.form form .container .content .password-requirements li.is-valid,
+section.form-section form .container .content .password-requirements li.is-valid { color: #067647; }
+section.form form .container .content .password-requirements li.is-valid::before,
+section.form-section form .container .content .password-requirements li.is-valid::before { content: "✓"; color: #079455; }
+section.form form .container .content input.is-invalid,
+section.form form .container .content input[aria-invalid=true],
+section.form-section form .container .content input.is-invalid,
+section.form-section form .container .content input[aria-invalid=true] {
+  border-color: #d92d20 !important;
+  box-shadow: 0 0 0 2px rgba(217, 45, 32, 0.16) !important;
+}
+section.form form .container .content input.is-valid,
+section.form-section form .container .content input.is-valid {
+  border-color: #079455 !important;
+  box-shadow: 0 0 0 2px rgba(7, 148, 85, 0.14) !important;
+}
+@media (max-width: 420px) {
+  section.form form .container .content .input-box.has-password-toggle input[type=password],
+  section.form form .container .content .input-box.has-password-toggle input[type=text],
+  section.form-section form .container .content .input-box.has-password-toggle input[type=password],
+  section.form-section form .container .content .input-box.has-password-toggle input[type=text] { padding-right: 98px; }
+  section.form form .container .content .password-toggle,
+  section.form-section form .container .content .password-toggle { padding: 0 10px; font-size: 0.76rem; }
+}

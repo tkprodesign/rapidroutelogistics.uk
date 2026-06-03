@@ -2011,3 +2011,11 @@ section.services-alt .container .heading .toggle[role="tablist"] button:focus-vi
 section.services-alt .container .content [role="tabpanel"][hidden] {
   display: none !important;
 }
+
+/* 2026 desktop hero/header fix: keep the oversized headline below the site header. */
+@media (min-width: 761px) {
+  section.hero .swiper .swiper-wrapper .swiper-slide .container {
+    padding-top: clamp(72px, 9vh, 112px);
+    justify-content: flex-start;
+  }
+}

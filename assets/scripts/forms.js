@@ -1,11 +1,11 @@
-const form = document.querySelector("form");
+const signupForm = document.querySelector('[data-signup-form]');
 const countrySelect = document.querySelector('select[name="country_code"]');
 
-const nameInput = document.querySelector('input[name="name"]');
-const emailInput = document.querySelector('input[name="email"]');
-const usernameInput = document.querySelector('input[name="username"]');
-const passwordInput = document.querySelector('input[name="password"]');
-const termsCheckbox = document.querySelector('input[name="accept_terms"]');
+const nameInput = signupForm?.querySelector('input[name="name"]');
+const emailInput = signupForm?.querySelector('input[name="email"]');
+const usernameInput = signupForm?.querySelector('input[name="username"]');
+const passwordInput = signupForm?.querySelector('input[name="password"]');
+const termsCheckbox = signupForm?.querySelector('input[name="accept_terms"]');
 
 /* ---------------------------
    Load Country Codes
@@ -29,14 +29,89 @@ if (countrySelect) {
 }
 
 /* ---------------------------
-   Validation
+   Password reveal controls
 ---------------------------- */
-if (form) {
-    form.addEventListener("submit", function (e) {
+document.querySelectorAll('input[type="password"]').forEach((input, index) => {
+    const container = input.closest(".input-box") || input.parentElement;
+    if (!container || container.querySelector(".password-toggle")) return;
+
+    container.classList.add("has-password-toggle");
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "password-toggle";
+    button.setAttribute("aria-label", "Show password");
+    button.setAttribute("aria-pressed", "false");
+    button.setAttribute("aria-controls", input.id || `password-field-${index + 1}`);
+    button.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">visibility</span><span class="password-toggle-text">Peek</span>';
+
+    if (!input.id) {
+        input.id = `password-field-${index + 1}`;
+    }
+
+    button.addEventListener("click", () => {
+        const isHidden = input.type === "password";
+        input.type = isHidden ? "text" : "password";
+        button.setAttribute("aria-label", isHidden ? "Hide password" : "Show password");
+        button.setAttribute("aria-pressed", String(isHidden));
+        button.querySelector(".material-symbols-outlined").textContent = isHidden ? "visibility_off" : "visibility";
+        button.querySelector(".password-toggle-text").textContent = isHidden ? "No peek" : "Peek";
+        input.focus({ preventScroll: true });
+    });
+
+    input.insertAdjacentElement("afterend", button);
+});
+
+/* ---------------------------
+   Signup password live validation
+---------------------------- */
+const passwordRules = {
+    length: value => value.length >= 8,
+    letter: value => /[A-Za-z]/.test(value),
+    number: value => /[0-9]/.test(value),
+};
+
+function updatePasswordRules() {
+    if (!passwordInput) return true;
+
+    const value = passwordInput.value;
+    let isValid = true;
+
+    Object.entries(passwordRules).forEach(([rule, test]) => {
+        const ruleElement = document.querySelector(`[data-password-rule="${rule}"]`);
+        const rulePassed = test(value);
+
+        if (ruleElement) {
+            ruleElement.classList.toggle("is-valid", rulePassed);
+            ruleElement.classList.toggle("is-invalid", value.length > 0 && !rulePassed);
+        }
+
+        if (!rulePassed) {
+            isValid = false;
+        }
+    });
+
+    passwordInput.classList.toggle("is-valid", isValid && value.length > 0);
+    passwordInput.classList.toggle("is-invalid", value.length > 0 && !isValid);
+
+    return isValid;
+}
+
+if (passwordInput) {
+    updatePasswordRules();
+    passwordInput.addEventListener("input", updatePasswordRules);
+    passwordInput.addEventListener("blur", updatePasswordRules);
+}
+
+/* ---------------------------
+   Signup Validation
+---------------------------- */
+if (signupForm) {
+    signupForm.addEventListener("submit", function (e) {
         let errors = [];
 
         // Remove old error messages and states
-        document.querySelectorAll(".error-message").forEach(el => el.remove());
+        signupForm.querySelectorAll(".error-message").forEach(el => el.remove());
         [nameInput, emailInput, usernameInput, passwordInput, termsCheckbox].forEach(field => {
             if (!field) return;
             field.removeAttribute("aria-invalid");
@@ -62,8 +137,8 @@ if (form) {
         }
 
         // Password validation
-        if (passwordInput && passwordInput.value.length < 8) {
-            errors.push({ field: passwordInput, message: "Password must be at least 8 characters." });
+        if (passwordInput && !updatePasswordRules()) {
+            errors.push({ field: passwordInput, message: "Password must be at least 8 characters and include a letter and a number." });
         }
 
         // Terms validation
