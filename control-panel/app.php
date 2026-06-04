@@ -945,7 +945,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_service_quote']
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_location_event']) && !empty($_POST['add_location_event'])) {
     cp_ensure_shipment_location_event_payment_columns($dbconn);
 
-    $shipmentId = isset($_POST['event_shipment_id']) ? (int)$_POST['event_shipment_id'] : 0;
     $trackingNumber = trim((string)($_POST['event_tracking_number'] ?? ''));
     $locationLabel = strtolower(trim((string)($_POST['event_location_label'] ?? 'checkpoint')));
     $eventSeverity = strtolower(trim((string)($_POST['event_severity'] ?? 'neutral')));
@@ -964,13 +963,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_location_event']) 
     $nowEpoch = time();
     $eventTimeEpoch = $nowEpoch;
 
+    $shipmentId = 0;
+    if ($trackingNumber !== '') {
+        $stmtLookup = $dbconn->prepare("SELECT id FROM shipments WHERE tracking_number = ? ORDER BY id DESC LIMIT 1");
+        if ($stmtLookup) {
+            $stmtLookup->bind_param('s', $trackingNumber);
+            $stmtLookup->execute();
+            $resLookup = $stmtLookup->get_result();
+            $rowLookup = $resLookup ? $resLookup->fetch_assoc() : null;
+            $stmtLookup->close();
+            $shipmentId = $rowLookup ? (int)$rowLookup['id'] : 0;
+        }
+    }
+
     $validLocationLabels = ['origin', 'checkpoint', 'exception', 'destination'];
     $validSeverities = ['neutral', 'negative'];
-    if ($shipmentId <= 0) {
-        $cp_location_event_notice = 'Shipment ID must be a valid number.';
-        $cp_location_event_notice_type = 'error';
-    } elseif ($trackingNumber === '') {
+    if ($trackingNumber === '') {
         $cp_location_event_notice = 'Tracking Number is required.';
+        $cp_location_event_notice_type = 'error';
+    } elseif ($shipmentId <= 0) {
+        $cp_location_event_notice = 'No shipment found with tracking number "' . htmlspecialchars($trackingNumber) . '". Please check and try again.';
         $cp_location_event_notice_type = 'error';
     } elseif ($locationName === '') {
         $cp_location_event_notice = 'Location Name is required.';

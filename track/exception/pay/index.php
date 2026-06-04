@@ -326,7 +326,7 @@ $exception_summary_total_due = $exception_base_amount + $exception_summary_proce
                                 <input type="text" name="card_number" value="<?= htmlspecialchars((string)$payment_form['card_number']) ?>" placeholder="Card Number*" autocomplete="cc-number" inputmode="numeric">
                             </div>
                             <div class="input-row pay-exp-row">
-                                <input type="text" name="card_expiry" value="<?= htmlspecialchars((string)$payment_form['card_expiry']) ?>" placeholder="MM/YY" autocomplete="cc-exp" inputmode="numeric">
+                                <input type="text" name="card_expiry" value="<?= htmlspecialchars((string)$payment_form['card_expiry']) ?>" placeholder="MM/YY" autocomplete="cc-exp" inputmode="numeric" maxlength="5">
                                 <div class="cvv-wrap">
                                     <input type="text" name="card_cvv" value="<?= htmlspecialchars((string)$payment_form['card_cvv']) ?>" placeholder="CVV*" autocomplete="cc-csc" inputmode="numeric">
                                 </div>
@@ -472,6 +472,50 @@ $exception_summary_total_due = $exception_base_amount + $exception_summary_proce
                 }
 
                 syncMode(hiddenInput ? hiddenInput.value : 'card');
+
+                (function () {
+                    var expiry = document.querySelector('input[name="card_expiry"]');
+                    if (!expiry) return;
+                    expiry.addEventListener('input', function () {
+                        var raw = expiry.value.replace(/\D/g, '');
+                        if (raw.length > 4) raw = raw.slice(0, 4);
+                        if (raw.length >= 3) {
+                            expiry.value = raw.slice(0, 2) + '/' + raw.slice(2);
+                        } else {
+                            expiry.value = raw;
+                        }
+                    });
+                    expiry.addEventListener('keydown', function (e) {
+                        if (e.key === 'Backspace' && expiry.value.length === 3 && expiry.value[2] === '/') {
+                            e.preventDefault();
+                            expiry.value = expiry.value.slice(0, 2);
+                        }
+                    });
+                    expiry.addEventListener('blur', function () {
+                        var val = expiry.value;
+                        var m = /^(\d{2})\/(\d{2})$/.exec(val);
+                        if (!m) return;
+                        var mm = Number(m[1]);
+                        var yy = Number(m[2]);
+                        var now = new Date();
+                        var currentYY = now.getFullYear() % 100;
+                        var currentMM = now.getMonth() + 1;
+                        var errorEl = expiry.parentElement ? expiry.parentElement.querySelector('.expiry-error') : null;
+                        if (!errorEl) {
+                            errorEl = document.createElement('p');
+                            errorEl.className = 'expiry-error';
+                            errorEl.style.cssText = 'color:#c0392b;font-size:13px;margin:4px 0 0;';
+                            if (expiry.parentElement) expiry.parentElement.appendChild(errorEl);
+                        }
+                        if (mm < 1 || mm > 12) {
+                            errorEl.textContent = 'Enter a valid month (01–12).';
+                        } else if (yy < currentYY || (yy === currentYY && mm < currentMM)) {
+                            errorEl.textContent = 'This card has expired.';
+                        } else {
+                            errorEl.textContent = '';
+                        }
+                    });
+                })();
             })();
         </script>
     <?php endif; ?>

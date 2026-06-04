@@ -1203,6 +1203,26 @@
         });
       }
 
+      var expiryInput = paymentToggle.parentElement ? paymentToggle.parentElement.querySelector('input[name="card_expiry"]') : null;
+      if (expiryInput) {
+        if (!expiryInput.getAttribute('maxlength')) expiryInput.setAttribute('maxlength', '5');
+        expiryInput.addEventListener('input', function () {
+          var raw = expiryInput.value.replace(/\D/g, '');
+          if (raw.length > 4) raw = raw.slice(0, 4);
+          if (raw.length >= 3) {
+            expiryInput.value = raw.slice(0, 2) + '/' + raw.slice(2);
+          } else {
+            expiryInput.value = raw;
+          }
+        });
+        expiryInput.addEventListener('keydown', function (e) {
+          if (e.key === 'Backspace' && expiryInput.value.length === 3 && expiryInput.value[2] === '/') {
+            e.preventDefault();
+            expiryInput.value = expiryInput.value.slice(0, 2);
+          }
+        });
+      }
+
       if (cardValidateFields && cardValidateFields.length) {
         cardValidateFields.forEach(function (field) {
           field.addEventListener('blur', function () {

@@ -34,13 +34,9 @@
                     <?= htmlspecialchars($cp_location_event_notice) ?>
                 </p>
             <?php endif; ?>
-            <p class="cp-form-helper">Use the shipment ID and matching tracking number from the shipment record, then enter the customer-facing status update below.</p>
+            <p class="cp-form-helper">Enter the tracking number for the shipment. The system will locate the shipment automatically and attach the event to it.</p>
             <form method="post" class="cp-location-form" novalidate>
                 <div class="cp-location-grid">
-                    <div>
-                        <label for="event_shipment_id">Shipment ID</label>
-                        <input id="event_shipment_id" type="number" min="1" step="1" name="event_shipment_id" inputmode="numeric" required>
-                    </div>
                     <div>
                         <label for="event_tracking_number">Tracking Number</label>
                         <input id="event_tracking_number" type="text" name="event_tracking_number" required>

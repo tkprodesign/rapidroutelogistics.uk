@@ -4,6 +4,22 @@ body.active-nav {
   overflow: hidden;
 }
 
+.nav-mobile-only {
+  display: list-item !important;
+}
+
+.nav-mobile-divider {
+  height: 1px;
+  background: #e3e3e3;
+  margin: 8px 0;
+  padding: 0 !important;
+  pointer-events: none;
+}
+
+.nav-mobile-only a {
+  display: block;
+}
+
 .container {
   width: calc(100vw - 32px);
 }

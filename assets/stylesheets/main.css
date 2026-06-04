@@ -1579,6 +1579,10 @@ header .container .left nav ul.pri-nav li a:focus-visible::after {
   transform: scaleX(1);
 }
 
+.nav-mobile-only {
+  display: none;
+}
+
 footer.footer {
   position: relative;
   overflow: hidden;

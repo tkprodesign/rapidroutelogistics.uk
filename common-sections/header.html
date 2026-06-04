@@ -46,6 +46,11 @@
                     <li><a href="/services/">Products & Services</a></li>
                     <li><a href="#" class="js-open-support-chat" data-chat-message="I need help to make a quote.">Get a Quote</a></li>
                     <li><a href="/support/">Support</a></li>
+                    <?php if ($headerIsSignedIn): ?>
+                    <li class="nav-mobile-only nav-mobile-divider"></li>
+                    <li class="nav-mobile-only"><a href="/dashboard/">Dashboard</a></li>
+                    <li class="nav-mobile-only"><a href="<?= htmlspecialchars($logoutHref); ?>">Logout</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
         </div>
