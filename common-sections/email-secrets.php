@@ -25,18 +25,16 @@ if (!function_exists('rrl_email_env')) {
 }
 
 return [
-    'RESEND_API_KEY' => 're_MLvw64JW_5vt2gNhr16BPmZ7kgcbqJGry',
-    'NOREPLY_FROM_EMAIL' => rrl_email_env('NOREPLY_FROM_EMAIL', 'noreply@rapidroutelogistics.uk'),
-    'SMTP_HOST' => rrl_email_env('SMTP_HOST', 'mail.spacemail.com'),
-    'SMTP_PORT' => rrl_email_env('SMTP_PORT', '465'),
-    'SMTP_SECURE' => rrl_email_env('SMTP_SECURE', 'ssl'),
-
-    // Mailbox passwords are intentionally read from environment / repo secrets.
-    'SHIPMENTS_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
-    'BILLING_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
-    'ADMIN_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
-    'SUPPORT_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
-    'TRACKING_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
-    'NOREPLY_EMAIL_PASSWORD' => ';,js%RxY8GSynZJ',
+    'RESEND_API_KEY'          => rrl_email_env('RESEND_API_KEY'),
+    'NOREPLY_FROM_EMAIL'      => rrl_email_env('NOREPLY_FROM_EMAIL', 'noreply@rapidroutelogistics.uk'),
+    'SMTP_HOST'               => rrl_email_env('SMTP_HOST', 'mail.spacemail.com'),
+    'SMTP_PORT'               => rrl_email_env('SMTP_PORT', '465'),
+    'SMTP_SECURE'             => rrl_email_env('SMTP_SECURE', 'ssl'),
+    'SHIPMENTS_EMAIL_PASSWORD' => rrl_email_env('SHIPMENTS_EMAIL_PASSWORD'),
+    'BILLING_EMAIL_PASSWORD'   => rrl_email_env('BILLING_EMAIL_PASSWORD'),
+    'ADMIN_EMAIL_PASSWORD'     => rrl_email_env('ADMIN_EMAIL_PASSWORD'),
+    'SUPPORT_EMAIL_PASSWORD'   => rrl_email_env('SUPPORT_EMAIL_PASSWORD'),
+    'TRACKING_EMAIL_PASSWORD'  => rrl_email_env('TRACKING_EMAIL_PASSWORD'),
+    'NOREPLY_EMAIL_PASSWORD'   => rrl_email_env('NOREPLY_EMAIL_PASSWORD'),
 ];
 ?>
