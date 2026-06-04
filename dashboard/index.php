@@ -38,10 +38,27 @@ include('app.php');
             </div>
 
             <nav class="dashboard-tabs">
-                <a href="?t=overview" class="tab <?= $page == 'overview' ? 'active' : '' ?>">Overview</a>
-                <a href="?t=profile" class="tab <?= $page == 'profile' ? 'active' : '' ?>">Profile</a>
-                <a href="?t=upsmc" class="tab <?= $page == 'upsmc' ? 'active' : '' ?>">Delivery Preferences</a>
-                <a href="?t=wallet" class="tab <?= $page == 'wallet' ? 'active' : '' ?>">Wallet</a>
+                <a href="?t=overview" class="tab <?= $page == 'overview' ? 'active' : '' ?>">
+                    <span class="material-symbols-outlined tab-icon">dashboard</span>
+                    <span class="tab-label">Overview</span>
+                </a>
+                <a href="?t=profile" class="tab <?= $page == 'profile' ? 'active' : '' ?>">
+                    <span class="material-symbols-outlined tab-icon">person</span>
+                    <span class="tab-label">Profile</span>
+                </a>
+                <a href="?t=upsmc" class="tab <?= $page == 'upsmc' ? 'active' : '' ?>">
+                    <span class="material-symbols-outlined tab-icon">local_shipping</span>
+                    <span class="tab-label">Delivery Preferences</span>
+                </a>
+                <a href="?t=wallet" class="tab <?= $page == 'wallet' ? 'active' : '' ?>">
+                    <span class="material-symbols-outlined tab-icon">account_balance_wallet</span>
+                    <span class="tab-label">Wallet</span>
+                </a>
+                <div class="dashboard-tabs-divider"></div>
+                <a href="<?= htmlspecialchars($logoutHref); ?>" class="tab tab-logout">
+                    <span class="material-symbols-outlined tab-icon">logout</span>
+                    <span class="tab-label">Logout</span>
+                </a>
             </nav>
         </div>
     </section>

@@ -48,7 +48,46 @@
   font-size: 0.82rem;
 }
 
-.dashboard-tabs,
+.dashboard-tabs {
+  width: 100%;
+  max-width: 100%;
+  gap: 6px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 2px 4px;
+  margin: 0;
+  flex-wrap: nowrap;
+}
+
+.dashboard-tabs .tab {
+  font-size: 0.82rem;
+  flex: 0 0 auto;
+  padding: 8px 14px;
+}
+
+.dashboard-tabs .tab .tab-label {
+  display: none;
+}
+
+.dashboard-tabs .tab .tab-icon {
+  font-size: 18px;
+}
+
+.dashboard-tabs .tab.active .tab-label,
+.dashboard-tabs .tab-logout .tab-label {
+  display: inline;
+}
+
+.dashboard-tabs-divider {
+  display: none;
+}
+
+.dashboard-tabs::-webkit-scrollbar {
+  display: none;
+}
+
 .activity-tabs {
   width: 100%;
   max-width: 100%;
@@ -61,8 +100,6 @@
   margin: 0;
 }
 
-.dashboard-tabs .tab,
-.dashboard-tabs a,
 .activity-tabs .tab,
 .activity-tabs a {
   font-size: 0.95rem;
@@ -71,7 +108,6 @@
   align-items: center;
 }
 
-.dashboard-tabs::-webkit-scrollbar,
 .activity-tabs::-webkit-scrollbar {
   display: none;
 }

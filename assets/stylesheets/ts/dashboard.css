@@ -1,3 +1,20 @@
+.dashboard-tabs {
+  gap: 6px;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  padding-bottom: 4px;
+}
+
+.dashboard-tabs .tab {
+  font-size: 0.84rem;
+  padding: 8px 16px;
+  flex: 0 0 auto;
+}
+
+.dashboard-tabs::-webkit-scrollbar {
+  display: none;
+}
+
 .grid-main {
   grid-template-columns: 1fr;
 }

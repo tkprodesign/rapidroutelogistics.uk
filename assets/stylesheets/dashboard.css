@@ -64,12 +64,66 @@ body {
   font-weight: 300;
 }
 
-.dashboard-tabs, .activity-tabs {
+.dashboard-tabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+.dashboard-tabs .tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  padding: 9px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.01em;
+  border: 1.5px solid transparent;
+  background: rgba(255, 255, 255, 0.07);
+  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+  white-space: nowrap;
+}
+.dashboard-tabs .tab .tab-icon {
+  font-size: 17px;
+  line-height: 1;
+}
+.dashboard-tabs .tab:hover:not(.active):not(.tab-logout) {
+  background: rgba(255, 255, 255, 0.13);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.dashboard-tabs .tab.active {
+  background: #1A9B82;
+  color: #ffffff;
+  border-color: #1A9B82;
+  box-shadow: 0 4px 18px rgba(26, 155, 130, 0.38);
+}
+.dashboard-tabs-divider {
+  flex: 1;
+  min-width: 12px;
+}
+.dashboard-tabs .tab-logout {
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+  margin-left: 0;
+}
+.dashboard-tabs .tab-logout:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.35);
+}
+
+.activity-tabs {
   display: flex;
   gap: 32px;
 }
-.dashboard-tabs .tab, .dashboard-tabs a, .activity-tabs .tab, .activity-tabs a {
-  color: white;
+.activity-tabs .tab, .activity-tabs a {
+  color: #666666;
   text-decoration: none;
   padding-bottom: 14px;
   border-bottom: 4px solid transparent;
@@ -77,11 +131,11 @@ body {
   font-weight: 500;
   transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.dashboard-tabs .tab.active, .dashboard-tabs a.active, .activity-tabs .tab.active, .activity-tabs a.active {
+.activity-tabs .tab.active, .activity-tabs a.active {
   border-color: #1A9B82;
-  color: #ffffff;
+  color: #14232b;
 }
-.dashboard-tabs .tab:hover:not(.active), .dashboard-tabs a:hover:not(.active), .activity-tabs .tab:hover:not(.active), .activity-tabs a:hover:not(.active) {
+.activity-tabs .tab:hover:not(.active), .activity-tabs a:hover:not(.active) {
   opacity: 0.7;
 }
 

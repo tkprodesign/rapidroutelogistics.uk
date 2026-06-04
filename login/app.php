@@ -68,10 +68,6 @@ $requiredLogin = (isset($_POST['required_login']) && (string)$_POST['required_lo
     || (isset($_GET['required_login']) && (string)$_GET['required_login'] === '1');
 
 $alreadySignedIn = !empty($_SESSION['user_id']) || !empty($_COOKIE['user_email']) || !empty($_COOKIE['user_Email']);
-if ($alreadySignedIn) {
-    header("Location: /dashboard/");
-    exit();
-}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' && $requiredLogin) {
     $error = "Sign in is required to access tracking.";
