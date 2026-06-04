@@ -683,3 +683,80 @@ body {
   }
 }
 
+
+/* ── Shipment detail editor ─────────────────────────────────── */
+.cp-card-head-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.cp-btn-small {
+  padding: 7px 10px;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.cp-event-edit-list {
+  display: grid;
+  gap: 18px;
+}
+
+.cp-event-edit-card {
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 14px;
+  padding: 18px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.cp-event-edit-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.cp-event-edit-head h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #10223f;
+}
+
+.cp-event-edit-head span {
+  color: #65758b;
+  font-size: 0.9rem;
+}
+
+.cp-checkbox-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.cp-checkbox-row label {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin: 0;
+  font-weight: 600;
+  color: #334155;
+}
+
+.cp-checkbox-row input[type="checkbox"] {
+  width: auto;
+  min-height: auto;
+}
+
+@media (max-width: 760px) {
+  .cp-card-head-actions,
+  .cp-event-edit-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

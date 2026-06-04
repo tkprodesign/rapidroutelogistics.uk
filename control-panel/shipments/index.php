@@ -41,6 +41,7 @@
                             <th>Status</th>
                             <th>Arrival</th>
                             <th>Created</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,13 +90,14 @@
                             <td><?= htmlspecialchars((string)$s['status']) ?></td>
                             <td><?= htmlspecialchars($arrivalDisplay) ?></td>
                             <td><?= htmlspecialchars($shipDisplay) ?></td>
+                            <td><a class="cp-btn cp-btn-secondary cp-btn-small" href="/control-panel/shipments/detail.php?id=<?= (int)$s['id'] ?>">Edit Details</a></td>
                         </tr>
                         <?php
                             endwhile;
                         else:
                         ?>
                         <tr>
-                            <td colspan="8">No shipments found.</td>
+                            <td colspan="9">No shipments found.</td>
                         </tr>
                         <?php endif; ?>
                     </tbody>
