@@ -141,7 +141,11 @@
                     <!-- Status Text -->
                     <div class="cp-location-grid-wide">
                         <label for="event_status_text">Status Text <span class="cp-required">*</span></label>
-                        <input id="event_status_text" type="text" name="event_status_text" placeholder="e.g. Arrived at Rotterdam Port, Netherlands – Awaiting customs clearance" required>
+                        <div style="display:flex;gap:8px;align-items:center;">
+                            <input id="event_status_text" type="text" name="event_status_text" placeholder="e.g. Arrived at Rotterdam Port, Netherlands" required style="flex:1;min-width:0;">
+                            <button type="button" id="use-status-suggestion" title="Copy suggested text into the field" style="display:none;white-space:nowrap;flex-shrink:0;padding:8px 13px;background:#e8f7f3;border:1.5px solid #1A9B82;border-radius:8px;color:#1A9B82;font-size:0.82rem;font-weight:700;cursor:pointer;letter-spacing:0.01em;">✓ Use</button>
+                        </div>
+                        <span id="status-suggestion-preview" style="display:none;font-size:0.78rem;color:#7aaa9a;margin-top:4px;font-style:italic;"></span>
                     </div>
 
                     <!-- Sea Freight Fields (conditional: shown when transport mode = sea) -->
@@ -1006,6 +1010,86 @@
         if (typeSelect) typeSelect.addEventListener('change', updatePaymentFields);
         updateSeaFields();
         updatePaymentFields();
+    })();
+
+    (function () {
+        var statusInput  = document.getElementById('event_status_text');
+        var useBtn       = document.getElementById('use-status-suggestion');
+        var preview      = document.getElementById('status-suggestion-preview');
+        if (!statusInput || !useBtn || !preview) return;
+
+        var templates = {
+            'Shipment Created':     'Shipment information received at {location}',
+            'Picked Up':            'Picked up from {location}, ready for departure',
+            'Departed Facility':    'Departed facility at {location}',
+            'Arrived Facility':     'Arrived at {location}',
+            'Customs Clearance':    'Package cleared customs at {location}',
+            'Customs Hold':         'Shipment held at customs \u2013 {location}',
+            'Port Arrival':         'Arrived at port \u2013 {location}',
+            'Port Departure':       'Departed from port at {location}',
+            'Vessel Departure':     'Vessel departed from {location}',
+            'Vessel Arrival':       'Vessel arrived at {location}',
+            'Warehouse Processing': 'Processing at warehouse \u2013 {location}',
+            'In Transit':           'Shipment in transit through {location}',
+            'Out For Delivery':     'Out for delivery \u2013 {location}',
+            'Delivered':            'Package successfully delivered at {location}',
+            'Delayed':              'Shipment delayed at {location}',
+            'Exception':            'Exception encountered at {location}',
+            'Payment Required':     'Payment required \u2013 shipment held at {location}',
+            'Other':                'Update from {location}'
+        };
+
+        function buildLocation() {
+            var city    = (document.getElementById('event_city')         || {value:''}).value.trim();
+            var state   = (document.getElementById('event_state_region') || {value:''}).value.trim();
+            var country = (document.getElementById('event_country_code') || {value:''}).value.trim();
+            var locName = (document.getElementById('event_location_name')|| {value:''}).value.trim();
+            var parts   = [];
+            if (city)                       parts.push(city);
+            if (state && state !== city)    parts.push(state);
+            if (country)                    parts.push(country);
+            return parts.length > 0 ? parts.join(', ') : locName;
+        }
+
+        function getSuggestion() {
+            var typeEl = document.getElementById('event_type');
+            var type   = typeEl ? typeEl.value : '';
+            var tmpl   = templates[type];
+            if (!tmpl) return '';
+            var loc = buildLocation();
+            if (!loc) return '';
+            return tmpl.replace('{location}', loc);
+        }
+
+        function update() {
+            var suggestion = getSuggestion();
+            if (suggestion) {
+                statusInput.placeholder = suggestion;
+                preview.textContent     = suggestion;
+                preview.style.display   = 'block';
+                useBtn.style.display    = '';
+            } else {
+                statusInput.placeholder = 'e.g. Arrived at Rotterdam Port, Netherlands';
+                preview.style.display   = 'none';
+                useBtn.style.display    = 'none';
+            }
+        }
+
+        useBtn.addEventListener('click', function () {
+            var suggestion = getSuggestion();
+            if (suggestion) {
+                statusInput.value = suggestion;
+                statusInput.focus();
+            }
+        });
+
+        ['event_type','event_transport_mode','event_location_name',
+         'event_city','event_state_region','event_country_code'].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) { el.addEventListener('change', update); el.addEventListener('input', update); }
+        });
+
+        update();
     })();
     </script>
     </body>

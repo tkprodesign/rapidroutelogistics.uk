@@ -404,6 +404,21 @@ $currentLocationText     = !empty($history)  ? $history[0]['location']       : '
 
 // Avoid showing current = origin or destination if they're the same text
 $showCurrentInRoute = ($currentLocationText !== '' && $currentLocationText !== $originLocationText && $currentLocationText !== $destinationLocationText && $currentLocationText !== '-');
+
+// Collect unique intermediate waypoints visited between origin and current (chronological order)
+$intermediateWaypoints = [];
+$_routeSeen = array_flip(array_filter(
+    [$originLocationText, $currentLocationText, $destinationLocationText, '-', ''],
+    fn($v) => $v !== ''
+));
+$_routeSeen['-'] = true;
+$_routeSeen['']  = true;
+foreach (array_reverse($history) as $_evt) {
+    $_loc = $_evt['location'];
+    if (isset($_routeSeen[$_loc])) continue;
+    $_routeSeen[$_loc] = true;
+    $intermediateWaypoints[] = $_loc;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -576,6 +591,15 @@ $showCurrentInRoute = ($currentLocationText !== '' && $currentLocationText !== $
                             </div>
                         </div>
                         <?php endif; ?>
+                        <?php foreach ($intermediateWaypoints as $_wp): ?>
+                        <div class="route-step route-waypoint">
+                            <div class="route-step-dot"></div>
+                            <div class="route-step-body">
+                                <span class="route-step-label">Checkpoint</span>
+                                <span class="route-step-text"><?= htmlspecialchars($_wp) ?></span>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
                         <?php if ($showCurrentInRoute): ?>
                         <div class="route-step route-current">
                             <div class="route-step-dot"></div>

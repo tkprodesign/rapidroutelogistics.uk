@@ -981,6 +981,15 @@
   background: #27ae60;
 }
 
+.route-waypoint .route-step-dot {
+  border-color: #8ec5bc;
+  background: #8ec5bc;
+}
+
+.route-waypoint .route-step-label {
+  color: #9fbfba;
+}
+
 .route-step-body {
   display: flex;
   flex-direction: column;
