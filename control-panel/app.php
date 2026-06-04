@@ -103,6 +103,10 @@ $cp_negative_event_notice = '';
 $cp_negative_event_notice_type = '';
 $cp_arrival_date_notice = '';
 $cp_arrival_date_notice_type = '';
+$cp_shipment_detail_notice = '';
+$cp_shipment_detail_notice_type = '';
+$cp_shipment_event_edit_notice = '';
+$cp_shipment_event_edit_notice_type = '';
 
 function cp_ensure_shipment_location_event_payment_columns(mysqli $dbconn): void {
     $columnSql = [
@@ -183,6 +187,36 @@ if (isset($_SESSION['cp_arrival_date_notice']) && is_array($_SESSION['cp_arrival
     $cp_arrival_date_notice = (string)($_SESSION['cp_arrival_date_notice']['message'] ?? '');
     $cp_arrival_date_notice_type = (string)($_SESSION['cp_arrival_date_notice']['type'] ?? '');
     unset($_SESSION['cp_arrival_date_notice']);
+}
+if (isset($_SESSION['cp_shipment_detail_notice']) && is_array($_SESSION['cp_shipment_detail_notice'])) {
+    $cp_shipment_detail_notice = (string)($_SESSION['cp_shipment_detail_notice']['message'] ?? '');
+    $cp_shipment_detail_notice_type = (string)($_SESSION['cp_shipment_detail_notice']['type'] ?? '');
+    unset($_SESSION['cp_shipment_detail_notice']);
+}
+if (isset($_SESSION['cp_shipment_event_edit_notice']) && is_array($_SESSION['cp_shipment_event_edit_notice'])) {
+    $cp_shipment_event_edit_notice = (string)($_SESSION['cp_shipment_event_edit_notice']['message'] ?? '');
+    $cp_shipment_event_edit_notice_type = (string)($_SESSION['cp_shipment_event_edit_notice']['type'] ?? '');
+    unset($_SESSION['cp_shipment_event_edit_notice']);
+}
+
+function cp_parse_datetime_local_to_epoch(string $raw): ?int {
+    $raw = trim($raw);
+    if ($raw === '') {
+        return null;
+    }
+    $epoch = strtotime($raw);
+    if ($epoch === false || $epoch <= 0) {
+        return null;
+    }
+    return (int)$epoch;
+}
+
+function cp_nullable_decimal_from_post(string $key): ?float {
+    $raw = trim((string)($_POST[$key] ?? ''));
+    if ($raw === '') {
+        return null;
+    }
+    return is_numeric($raw) ? (float)$raw : null;
 }
 
 function cp_detect_arrival_column_type(mysqli $dbconn): string {
@@ -733,6 +767,297 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_negative_event_
         'type' => $cp_negative_event_notice_type
     ];
     header('Location: /control-panel/page/#cp-negative-events');
+    exit();
+}
+
+
+// Update the full shipment record from the shipment detail page.
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_shipment_detail']) && !empty($_POST['update_shipment_detail'])) {
+    $shipmentId = isset($_POST['shipment_id']) ? (int)$_POST['shipment_id'] : 0;
+    $trackingNumber = trim((string)($_POST['tracking_number'] ?? ''));
+    $senderName = trim((string)($_POST['sender_name'] ?? ''));
+    $senderEmail = trim((string)($_POST['sender_email'] ?? ''));
+    $senderPhone = trim((string)($_POST['sender_phone'] ?? ''));
+    $receiverName = trim((string)($_POST['receiver_name'] ?? ''));
+    $receiverEmail = trim((string)($_POST['receiver_email'] ?? ''));
+    $receiverPhone = trim((string)($_POST['receiver_phone'] ?? ''));
+    $originAddress = trim((string)($_POST['origin_address'] ?? ''));
+    $destinationAddress = trim((string)($_POST['destination_address'] ?? ''));
+    $shipmentType = cp_map_shipment_type((string)($_POST['shipment_type'] ?? 'standard'));
+    $status = strtolower(trim((string)($_POST['status'] ?? 'pending')));
+    $currentLocation = trim((string)($_POST['current_location'] ?? ''));
+    $completionRaw = trim((string)($_POST['completion_percentage'] ?? '0'));
+    $notes = trim((string)($_POST['notes'] ?? ''));
+    $estimatedDeliveryEpoch = cp_parse_datetime_local_to_epoch((string)($_POST['estimated_delivery_time'] ?? ''));
+    $deliveredAtEpoch = cp_parse_datetime_local_to_epoch((string)($_POST['delivered_at'] ?? ''));
+    $length = cp_nullable_decimal_from_post('length');
+    $width = cp_nullable_decimal_from_post('width');
+    $height = cp_nullable_decimal_from_post('height');
+    $weight = cp_nullable_decimal_from_post('weight');
+    $validStatuses = ['pending', 'picked_up', 'shipped', 'in_transit', 'out_for_delivery', 'delivered', 'failed', 'cancelled'];
+    $redirect = $shipmentId > 0 ? '/control-panel/shipments/detail.php?id=' . $shipmentId : '/control-panel/shipments/';
+
+    if ($shipmentId <= 0) {
+        $cp_shipment_detail_notice = 'Shipment ID must be valid.';
+        $cp_shipment_detail_notice_type = 'error';
+    } elseif ($trackingNumber === '' || $senderName === '' || $receiverName === '' || $originAddress === '' || $destinationAddress === '') {
+        $cp_shipment_detail_notice = 'Tracking number, sender, receiver, origin, and destination are required.';
+        $cp_shipment_detail_notice_type = 'error';
+    } elseif ($senderEmail !== '' && !filter_var($senderEmail, FILTER_VALIDATE_EMAIL)) {
+        $cp_shipment_detail_notice = 'Sender email is invalid.';
+        $cp_shipment_detail_notice_type = 'error';
+    } elseif ($receiverEmail !== '' && !filter_var($receiverEmail, FILTER_VALIDATE_EMAIL)) {
+        $cp_shipment_detail_notice = 'Receiver email is invalid.';
+        $cp_shipment_detail_notice_type = 'error';
+    } elseif (!in_array($status, $validStatuses, true)) {
+        $cp_shipment_detail_notice = 'Shipment status is invalid.';
+        $cp_shipment_detail_notice_type = 'error';
+    } elseif ($completionRaw === '' || !ctype_digit($completionRaw) || (int)$completionRaw < 0 || (int)$completionRaw > 100) {
+        $cp_shipment_detail_notice = 'Completion percentage must be between 0 and 100.';
+        $cp_shipment_detail_notice_type = 'error';
+    } else {
+        $stmtCurrent = $dbconn->prepare('SELECT tracking_number FROM shipments WHERE id = ? LIMIT 1');
+        $currentTracking = '';
+        if ($stmtCurrent) {
+            $stmtCurrent->bind_param('i', $shipmentId);
+            $stmtCurrent->execute();
+            $resCurrent = $stmtCurrent->get_result();
+            $rowCurrent = $resCurrent ? $resCurrent->fetch_assoc() : null;
+            $stmtCurrent->close();
+            $currentTracking = $rowCurrent ? (string)$rowCurrent['tracking_number'] : '';
+        }
+
+        if ($currentTracking === '') {
+            $cp_shipment_detail_notice = "Shipment #{$shipmentId} was not found.";
+            $cp_shipment_detail_notice_type = 'error';
+        } else {
+            $stmtDuplicate = $dbconn->prepare('SELECT id FROM shipments WHERE tracking_number = ? AND id <> ? LIMIT 1');
+            $duplicateFound = false;
+            if ($stmtDuplicate) {
+                $stmtDuplicate->bind_param('si', $trackingNumber, $shipmentId);
+                $stmtDuplicate->execute();
+                $resDuplicate = $stmtDuplicate->get_result();
+                $duplicateFound = (bool)($resDuplicate && $resDuplicate->num_rows > 0);
+                $stmtDuplicate->close();
+            }
+
+            if ($duplicateFound) {
+                $cp_shipment_detail_notice = 'Another shipment already uses tracking number ' . $trackingNumber . '.';
+                $cp_shipment_detail_notice_type = 'error';
+            } else {
+                $completion = (int)$completionRaw;
+                $updatedAt = time();
+                $arrivalColumnType = cp_detect_arrival_column_type($dbconn);
+                $estimatedDeliveryValue = $estimatedDeliveryEpoch !== null ? cp_format_arrival_for_storage($arrivalColumnType, $estimatedDeliveryEpoch) : null;
+                $dbconn->begin_transaction();
+                try {
+                    $stmt = $dbconn->prepare(
+                        'UPDATE shipments SET tracking_number = ?, sender_name = ?, sender_email = NULLIF(?, \'\'), sender_phone = NULLIF(?, \'\'), receiver_name = ?, receiver_email = NULLIF(?, \'\'), receiver_phone = NULLIF(?, \'\'), origin_address = ?, destination_address = ?, length = ?, width = ?, height = ?, weight = ?, shipment_type = ?, status = ?, current_location = NULLIF(?, \'\'), completion_percentage = ?, estimated_delivery_time = ?, delivered_at = ?, notes = NULLIF(?, \'\'), date_updated = ? WHERE id = ? LIMIT 1'
+                    );
+                    if (!$stmt) {
+                        throw new RuntimeException('Unable to prepare shipment update.');
+                    }
+                    $stmt->bind_param(
+                        'sssssssssddddsssisisii',
+                        $trackingNumber,
+                        $senderName,
+                        $senderEmail,
+                        $senderPhone,
+                        $receiverName,
+                        $receiverEmail,
+                        $receiverPhone,
+                        $originAddress,
+                        $destinationAddress,
+                        $length,
+                        $width,
+                        $height,
+                        $weight,
+                        $shipmentType,
+                        $status,
+                        $currentLocation,
+                        $completion,
+                        $estimatedDeliveryValue,
+                        $deliveredAtEpoch,
+                        $notes,
+                        $updatedAt,
+                        $shipmentId
+                    );
+                    $stmt->execute();
+                    $stmt->close();
+
+                    if ($trackingNumber !== $currentTracking) {
+                        $stmtEvents = $dbconn->prepare('UPDATE shipment_location_events SET tracking_number = ?, updated_at_epoch = ? WHERE shipment_id = ? OR tracking_number = ?');
+                        if ($stmtEvents) {
+                            $stmtEvents->bind_param('siis', $trackingNumber, $updatedAt, $shipmentId, $currentTracking);
+                            $stmtEvents->execute();
+                            $stmtEvents->close();
+                        }
+                    }
+
+                    $dbconn->commit();
+                    $cp_shipment_detail_notice = "Shipment #{$shipmentId} updated successfully.";
+                    $cp_shipment_detail_notice_type = 'success';
+                    $redirect = '/control-panel/shipments/detail.php?id=' . $shipmentId;
+                } catch (Throwable $e) {
+                    $dbconn->rollback();
+                    $cp_shipment_detail_notice = 'Could not update shipment. ' . $e->getMessage();
+                    $cp_shipment_detail_notice_type = 'error';
+                }
+            }
+        }
+    }
+
+    $_SESSION['cp_shipment_detail_notice'] = [
+        'message' => $cp_shipment_detail_notice,
+        'type' => $cp_shipment_detail_notice_type
+    ];
+    header('Location: ' . $redirect);
+    exit();
+}
+
+// Update a shipment event from the shipment detail page.
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_shipment_event']) && !empty($_POST['update_shipment_event'])) {
+    cp_ensure_shipment_location_event_payment_columns($dbconn);
+
+    $eventId = isset($_POST['event_id']) ? (int)$_POST['event_id'] : 0;
+    $shipmentId = isset($_POST['shipment_id']) ? (int)$_POST['shipment_id'] : 0;
+    $trackingNumber = trim((string)($_POST['event_tracking_number'] ?? ''));
+    $locationLabel = strtolower(trim((string)($_POST['event_location_label'] ?? 'checkpoint')));
+    $eventSeverity = strtolower(trim((string)($_POST['event_severity'] ?? 'neutral')));
+    $transportMode = strtolower(trim((string)($_POST['event_transport_mode'] ?? '')));
+    $eventType = trim((string)($_POST['event_type'] ?? ''));
+    $locationType = trim((string)($_POST['event_location_type'] ?? ''));
+    $locationName = trim((string)($_POST['event_location_name'] ?? ''));
+    $city = trim((string)($_POST['event_city'] ?? ''));
+    $stateRegion = trim((string)($_POST['event_state_region'] ?? ''));
+    $countryCode = strtoupper(trim((string)($_POST['event_country_code'] ?? '')));
+    $postalCode = trim((string)($_POST['event_postal_code'] ?? ''));
+    $statusText = trim((string)($_POST['event_status_text'] ?? ''));
+    $issueNote = trim((string)($_POST['event_issue_note'] ?? ''));
+    $paymentAmount = cp_nullable_decimal_from_post('event_payment_amount');
+    $paymentAmountRaw = trim((string)($_POST['event_payment_amount'] ?? ''));
+    $paymentReason = trim((string)($_POST['event_payment_reason'] ?? ''));
+    $vesselName = trim((string)($_POST['event_vessel_name'] ?? ''));
+    $voyageNumber = trim((string)($_POST['event_voyage_number'] ?? ''));
+    $portOfDeparture = trim((string)($_POST['event_port_of_departure'] ?? ''));
+    $portOfArrival = trim((string)($_POST['event_port_of_arrival'] ?? ''));
+    $eventTimeEpoch = cp_parse_datetime_local_to_epoch((string)($_POST['event_time'] ?? ''));
+    $isCurrent = isset($_POST['event_is_current']) ? 1 : 0;
+    $negativePaid = isset($_POST['event_negative_paid']) ? 1 : 0;
+    $validLocationLabels = ['origin', 'checkpoint', 'exception', 'destination'];
+    $validSeverities = ['neutral', 'negative'];
+    $redirect = $shipmentId > 0 ? '/control-panel/shipments/detail.php?id=' . $shipmentId . '#event-' . $eventId : '/control-panel/shipments/';
+
+    if ($eventId <= 0 || $shipmentId <= 0) {
+        $cp_shipment_event_edit_notice = 'Event ID and shipment ID are required.';
+        $cp_shipment_event_edit_notice_type = 'error';
+    } elseif ($trackingNumber === '' || $locationName === '' || $statusText === '') {
+        $cp_shipment_event_edit_notice = 'Tracking number, location name, and status text are required.';
+        $cp_shipment_event_edit_notice_type = 'error';
+    } elseif (!in_array($locationLabel, $validLocationLabels, true)) {
+        $cp_shipment_event_edit_notice = 'Event location label is invalid.';
+        $cp_shipment_event_edit_notice_type = 'error';
+    } elseif (!in_array($eventSeverity, $validSeverities, true)) {
+        $cp_shipment_event_edit_notice = 'Event severity is invalid.';
+        $cp_shipment_event_edit_notice_type = 'error';
+    } elseif ($countryCode !== '' && !preg_match('/^[A-Z]{2,8}$/', $countryCode)) {
+        $cp_shipment_event_edit_notice = 'Country code must be 2 to 8 letters.';
+        $cp_shipment_event_edit_notice_type = 'error';
+    } elseif ($paymentAmountRaw !== '' && $paymentAmount === null) {
+        $cp_shipment_event_edit_notice = 'Payment amount must be a valid number.';
+        $cp_shipment_event_edit_notice_type = 'error';
+    } elseif ($eventTimeEpoch === null) {
+        $cp_shipment_event_edit_notice = 'Event time is required.';
+        $cp_shipment_event_edit_notice_type = 'error';
+    } else {
+        $nowEpoch = time();
+        $isOrigin = $locationLabel === 'origin' ? 1 : 0;
+        $isDestination = $locationLabel === 'destination' ? 1 : 0;
+        $paidAt = $negativePaid === 1 ? $nowEpoch : null;
+        $dbconn->begin_transaction();
+        try {
+            if ($isCurrent === 1) {
+                $stmtClearCurrent = $dbconn->prepare('UPDATE shipment_location_events SET is_current = NULL, updated_at_epoch = ? WHERE shipment_id = ? AND id <> ?');
+                if ($stmtClearCurrent) {
+                    $stmtClearCurrent->bind_param('iii', $nowEpoch, $shipmentId, $eventId);
+                    $stmtClearCurrent->execute();
+                    $stmtClearCurrent->close();
+                }
+            }
+            if ($isOrigin === 1) {
+                $stmtClearOrigin = $dbconn->prepare('UPDATE shipment_location_events SET is_origin = NULL, updated_at_epoch = ? WHERE shipment_id = ? AND id <> ?');
+                if ($stmtClearOrigin) {
+                    $stmtClearOrigin->bind_param('iii', $nowEpoch, $shipmentId, $eventId);
+                    $stmtClearOrigin->execute();
+                    $stmtClearOrigin->close();
+                }
+            }
+            if ($isDestination === 1) {
+                $stmtClearDestination = $dbconn->prepare('UPDATE shipment_location_events SET is_destination = NULL, updated_at_epoch = ? WHERE shipment_id = ? AND id <> ?');
+                if ($stmtClearDestination) {
+                    $stmtClearDestination->bind_param('iii', $nowEpoch, $shipmentId, $eventId);
+                    $stmtClearDestination->execute();
+                    $stmtClearDestination->close();
+                }
+            }
+
+            $stmt = $dbconn->prepare(
+                'UPDATE shipment_location_events SET tracking_number = ?, location_label = ?, event_severity = ?, transport_mode = NULLIF(?, \'\'), event_type = NULLIF(?, \'\'), location_type = NULLIF(?, \'\'), is_current = IF(? = 1, 1, NULL), is_origin = IF(? = 1, 1, NULL), is_destination = IF(? = 1, 1, NULL), location_name = ?, city = NULLIF(?, \'\'), state_region = NULLIF(?, \'\'), country_code = NULLIF(?, \'\'), postal_code = NULLIF(?, \'\'), status_text = ?, issue_note = NULLIF(?, \'\'), payment_amount = ?, payment_reason = NULLIF(?, \'\'), vessel_name = NULLIF(?, \'\'), voyage_number = NULLIF(?, \'\'), port_of_departure = NULLIF(?, \'\'), port_of_arrival = NULLIF(?, \'\'), negative_event_paid = ?, negative_event_paid_at_epoch = IF(? = 1, ?, NULL), event_time_epoch = ?, updated_at_epoch = ? WHERE id = ? AND shipment_id = ? LIMIT 1'
+            );
+            if (!$stmt) {
+                throw new RuntimeException('Unable to prepare event update.');
+            }
+            $stmt->bind_param(
+                'ssssssiiisssssssdsssssiiiiiii',
+                $trackingNumber,
+                $locationLabel,
+                $eventSeverity,
+                $transportMode,
+                $eventType,
+                $locationType,
+                $isCurrent,
+                $isOrigin,
+                $isDestination,
+                $locationName,
+                $city,
+                $stateRegion,
+                $countryCode,
+                $postalCode,
+                $statusText,
+                $issueNote,
+                $paymentAmount,
+                $paymentReason,
+                $vesselName,
+                $voyageNumber,
+                $portOfDeparture,
+                $portOfArrival,
+                $negativePaid,
+                $negativePaid,
+                $paidAt,
+                $eventTimeEpoch,
+                $nowEpoch,
+                $eventId,
+                $shipmentId
+            );
+            $stmt->execute();
+            $affected = $stmt->affected_rows;
+            $stmt->close();
+            $dbconn->commit();
+
+            $cp_shipment_event_edit_notice = $affected >= 0 ? "Event #{$eventId} saved." : "Event #{$eventId} was not updated.";
+            $cp_shipment_event_edit_notice_type = 'success';
+        } catch (Throwable $e) {
+            $dbconn->rollback();
+            $cp_shipment_event_edit_notice = 'Could not update shipment event. ' . $e->getMessage();
+            $cp_shipment_event_edit_notice_type = 'error';
+        }
+    }
+
+    $_SESSION['cp_shipment_event_edit_notice'] = [
+        'message' => $cp_shipment_event_edit_notice,
+        'type' => $cp_shipment_event_edit_notice_type
+    ];
+    header('Location: ' . $redirect);
     exit();
 }
 
