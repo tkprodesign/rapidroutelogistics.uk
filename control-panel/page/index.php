@@ -479,6 +479,49 @@
             </form>
         </section>
 
+        <section id="cp-update-shipment-status" class="cp-card cp-card-action">
+            <div class="cp-card-head">
+                <div>
+                    <h2>Update Shipment Status</h2>
+                    <p>Set the shipment status and progress level. This controls the progress bar and status badge on the tracking page.</p>
+                </div>
+            </div>
+            <?php if (!empty($cp_shipment_status_notice)): ?>
+                <p class="cp-quote-notice <?= ($cp_shipment_status_notice_type === 'success') ? 'is-success' : 'is-error' ?>">
+                    <?= htmlspecialchars($cp_shipment_status_notice) ?>
+                </p>
+            <?php endif; ?>
+            <form method="post" class="cp-quote-form">
+                <div class="cp-quote-grid">
+                    <div>
+                        <label for="status_tracking_number">Tracking Number <span class="cp-required">*</span></label>
+                        <input id="status_tracking_number" type="text" name="status_tracking_number" required placeholder="e.g. 1Z9A8B7C6D5E4F3G">
+                    </div>
+                    <div>
+                        <label for="new_shipment_status">New Status <span class="cp-required">*</span></label>
+                        <select id="new_shipment_status" name="new_shipment_status" required>
+                            <option value="">— Select Status —</option>
+                            <option value="pending">Pending — Label Created</option>
+                            <option value="picked_up">Picked Up</option>
+                            <option value="shipped">Shipped / Departed</option>
+                            <option value="in_transit">In Transit</option>
+                            <option value="out_for_delivery">Out for Delivery</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="failed">Exception / Issue</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="new_completion_pct">Completion % <span class="cp-optional">(optional, 0–100)</span></label>
+                        <input id="new_completion_pct" type="number" name="new_completion_pct" min="0" max="100" step="1" placeholder="Leave blank to use default">
+                    </div>
+                </div>
+                <div class="cp-quote-actions">
+                    <button class="cp-btn" type="submit" name="update_shipment_status" value="1">Update Status</button>
+                </div>
+            </form>
+        </section>
+
         <section id="cp-service-quotes" class="cp-card cp-card-list">
             <div class="cp-card-head">
                 <div>

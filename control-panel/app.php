@@ -736,6 +736,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_negative_event_
     exit();
 }
 
+// Update shipment status by tracking number
+$cp_shipment_status_notice = '';
+$cp_shipment_status_notice_type = 'success';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_shipment_status']) && !empty($_POST['update_shipment_status'])) {
+    $statusTrackingNumber = trim((string)($_POST['status_tracking_number'] ?? ''));
+    $newStatus = strtolower(trim((string)($_POST['new_shipment_status'] ?? '')));
+    $newCompletionRaw = trim((string)($_POST['new_completion_pct'] ?? ''));
+
+    $validStatuses = ['pending', 'picked_up', 'shipped', 'in_transit', 'out_for_delivery', 'delivered', 'failed', 'cancelled'];
+
+    if ($statusTrackingNumber === '') {
+        $cp_shipment_status_notice = 'Tracking Number is required.';
+        $cp_shipment_status_notice_type = 'error';
+    } elseif (!in_array($newStatus, $validStatuses, true)) {
+        $cp_shipment_status_notice = 'Please select a valid status.';
+        $cp_shipment_status_notice_type = 'error';
+    } elseif ($newCompletionRaw !== '' && (!is_numeric($newCompletionRaw) || (int)$newCompletionRaw < 0 || (int)$newCompletionRaw > 100)) {
+        $cp_shipment_status_notice = 'Completion % must be a whole number between 0 and 100.';
+        $cp_shipment_status_notice_type = 'error';
+    } else {
+        $newCompletion = ($newCompletionRaw !== '') ? (int)$newCompletionRaw : null;
+        $updatedAt = time();
+
+        if ($newCompletion !== null) {
+            $stmtStatus = $dbconn->prepare(
+                "UPDATE shipments SET status = ?, completion_percentage = ?, date_updated = ? WHERE tracking_number = ? LIMIT 1"
+            );
+            if ($stmtStatus) {
+                $stmtStatus->bind_param('siis', $newStatus, $newCompletion, $updatedAt, $statusTrackingNumber);
+            }
+        } else {
+            $stmtStatus = $dbconn->prepare(
+                "UPDATE shipments SET status = ?, date_updated = ? WHERE tracking_number = ? LIMIT 1"
+            );
+            if ($stmtStatus) {
+                $stmtStatus->bind_param('sis', $newStatus, $updatedAt, $statusTrackingNumber);
+            }
+        }
+
+        if (!$stmtStatus) {
+            $cp_shipment_status_notice = 'Unable to prepare status update.';
+            $cp_shipment_status_notice_type = 'error';
+        } else {
+            $stmtStatus->execute();
+            $affected = $stmtStatus->affected_rows;
+            $stmtStatus->close();
+
+            if ($affected > 0) {
+                $cp_shipment_status_notice = 'Status updated to "' . htmlspecialchars($newStatus) . '" for tracking number ' . htmlspecialchars($statusTrackingNumber) . '.';
+                $cp_shipment_status_notice_type = 'success';
+            } elseif ($dbconn->errno === 0) {
+                $cp_shipment_status_notice = 'No shipment found with tracking number "' . htmlspecialchars($statusTrackingNumber) . '". Nothing was updated.';
+                $cp_shipment_status_notice_type = 'error';
+            } else {
+                $cp_shipment_status_notice = 'Database error: ' . htmlspecialchars($dbconn->error);
+                $cp_shipment_status_notice_type = 'error';
+            }
+        }
+    }
+}
+
 // Update shipment arrival date by tracking number
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_shipment_arrival_date']) && !empty($_POST['update_shipment_arrival_date'])) {
     $trackingNumber = trim((string)($_POST['arrival_tracking_number'] ?? ''));
