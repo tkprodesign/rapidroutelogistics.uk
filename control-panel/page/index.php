@@ -99,17 +99,6 @@
                         </select>
                     </div>
 
-                    <!-- Location Label / Event Role -->
-                    <div>
-                        <label for="event_location_label">Event Role</label>
-                        <select id="event_location_label" name="event_location_label">
-                            <option value="checkpoint">Checkpoint</option>
-                            <option value="origin">Origin</option>
-                            <option value="exception">Exception</option>
-                            <option value="destination">Destination</option>
-                        </select>
-                    </div>
-
                     <!-- Event Severity -->
                     <div>
                         <label for="event_severity">Event Severity</label>

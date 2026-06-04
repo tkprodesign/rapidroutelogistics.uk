@@ -257,31 +257,13 @@ if (!$tracking_id_missing && isset($conn) && $conn instanceof mysqli) {
     }
 }
 
-// Override status from most recent event
+// The shipment's own status field (set in the control panel) is the sole
+// authoritative source for the overall status badge and progress bar.
+// Event severity marks individual timeline entries only — it must never
+// override the shipment-level status key.
 $progressStatusKey = $statusKey;
 
 if ($tracking_found && !empty($history)) {
-    $latestEvent = $history[0];
-    $eventStatusKey = rrl_normalize_tracking_status($latestEvent['activity'] ?? null);
-    if (!$eventStatusKey && !empty($latestEvent['is_negative'])) $eventStatusKey = 'failed';
-    if ($eventStatusKey) {
-        $statusKey = $eventStatusKey;
-        $statusMap = [
-            'pending'          => 'Label Created',
-            'incoming'         => 'Shipped',
-            'outgoing'         => 'Shipped',
-            'picked_up'        => 'Picked Up',
-            'in_store'         => 'In Transit',
-            'shipped'          => 'In Transit',
-            'in_transit'       => 'In Transit',
-            'out_for_delivery' => 'Out for Delivery',
-            'delivered'        => 'Delivered',
-            'failed'           => 'Exception',
-            'cancelled'        => 'Cancelled',
-        ];
-        $status = $statusMap[$statusKey] ?? $status;
-    }
-
     $lastUpdatedText = $history[0]['date'] . ' · ' . $history[0]['time'];
 }
 

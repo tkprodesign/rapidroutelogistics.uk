@@ -1,0 +1,69 @@
+Copy and paste this into your Replit Agent:
+
+---
+
+**TASK: Fix Shipping Location Event Logic + Control Panel + Tracking Consistency**
+
+Update the system to fix confusion between event input, database structure, and tracking display.
+
+### 1. Control Panel UI Fix
+
+* Remove the **“event role” option** completely from the Shipping Location Event section.
+* Keep only:
+
+  * Event type/name
+  * Event description (if exists)
+  * **Event severity (IMPORTANT FIELD)**
+
+### 2. Event Severity Logic (Critical)
+
+* Ensure the system correctly understands that **event severity is the only classification field used for impact logic**.
+* Severity should control how events affect shipment status and tracking behavior.
+* Do NOT mix severity with role or any other field.
+
+### 3. Backend / Database Alignment
+
+* Ensure Shipping Location Event schema in database matches exactly what is used in control panel.
+* Remove any references to:
+
+  * event_role
+  * role-based event classification (if it exists anywhere)
+* Normalize all event handling around:
+
+  * severity
+  * timestamp
+  * location
+  * status update rules
+
+### 4. Tracking Page Consistency Fix
+
+* Fix issue where “abnormalities” are appearing due to incorrect event interpretation.
+* Tracking page must ONLY reflect:
+
+  * valid event severity impacts
+  * correct chronological event flow
+* Remove any logic that misinterprets old “role-based” data as abnormal shipment behavior.
+
+### 5. Shipment Loader / Progress Bar Fix
+
+* Fix the shipment progress loader so it is NOT influenced by incorrect or misclassified event data.
+* Progress bar must strictly depend on:
+
+  * valid shipment stages
+  * correct event sequencing
+  * severity impact rules (only if explicitly mapped)
+
+### 6. Final Requirement
+
+* Ensure full consistency between:
+
+  * Control panel input
+  * Database schema
+  * Tracking page output
+  * Progress bar logic
+
+No mismatched fields, no legacy “role” logic, and no misclassification of events.
+
+---
+
+If you want, I can next help you tighten the tracking page logic so it becomes “enterprise-level clean” (no glitches, no fake anomalies).
