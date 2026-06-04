@@ -152,24 +152,29 @@ if (!$tracking_id_missing && isset($conn) && $conn instanceof mysqli) {
             $statusKey = rrl_normalize_tracking_status($shipmentRow['status'] ?? 'in_transit') ?? 'in_transit';
             $status = $statusMap[$statusKey] ?? 'In Transit';
 
+            // Percentages represent position within the bar that runs between
+            // node centers (node 1 = 0%, node 5 = 100%, nodes evenly spaced).
             $progressMap = [
-                'pending'          => 10,
-                'incoming'         => 28,
-                'outgoing'         => 28,
-                'picked_up'        => 30,
+                'pending'          => 0,
+                'incoming'         => 25,
+                'outgoing'         => 25,
+                'picked_up'        => 25,
                 'in_store'         => 50,
-                'shipped'          => 55,
-                'in_transit'       => 58,
-                'out_for_delivery' => 82,
+                'shipped'          => 50,
+                'in_transit'       => 50,
+                'out_for_delivery' => 75,
                 'delivered'        => 100,
-                'failed'           => 58,
-                'cancelled'        => 5,
+                'failed'           => 50,
+                'cancelled'        => 0,
             ];
 
-            $storedProgress = isset($shipmentRow['completion_percentage']) ? (int)$shipmentRow['completion_percentage'] : null;
-            $progress_percent = ($storedProgress !== null && $storedProgress >= 0 && $storedProgress <= 100)
-                ? $storedProgress
-                : ($progressMap[$statusKey] ?? 55);
+            // Treat completion_percentage = 0 (default DB value) the same as NULL —
+            // only use it when the admin has explicitly set a value > 0.
+            $rawCompletion = $shipmentRow['completion_percentage'] ?? null;
+            $storedProgress = ($rawCompletion !== null && (int)$rawCompletion > 0 && (int)$rawCompletion <= 100)
+                ? (int)$rawCompletion
+                : null;
+            $progress_percent = ($storedProgress !== null) ? $storedProgress : ($progressMap[$statusKey] ?? 50);
 
             $etaEpoch = (int)($shipmentRow['estimated_delivery_time'] ?? 0);
             if ($etaEpoch > 0) {
@@ -317,7 +322,7 @@ $progress_nodes = [
 
 switch ($progressStatusKey) {
     case 'pending':
-        $progress_percent = max(0, min(15, $progress_percent));
+        $progress_percent = max(0, min(12, $progress_percent));
         $progress_nodes[0]['state'] = 'active';
         $estimated_delivery_hint = 'Shipment information received';
         break;
@@ -325,7 +330,7 @@ switch ($progressStatusKey) {
     case 'incoming':
     case 'outgoing':
     case 'picked_up':
-        $progress_percent = max(22, min(38, $progress_percent));
+        $progress_percent = max(20, min(30, $progress_percent));
         $progress_nodes[0]['state'] = 'done';
         $progress_nodes[1]['state'] = 'active';
         $estimated_delivery_hint = 'Picked up and moving';
@@ -334,7 +339,7 @@ switch ($progressStatusKey) {
     case 'in_store':
     case 'shipped':
     case 'in_transit':
-        $progress_percent = max(42, min(68, $progress_percent));
+        $progress_percent = max(44, min(56, $progress_percent));
         $progress_nodes[0]['state'] = 'done';
         $progress_nodes[1]['state'] = 'done';
         $progress_nodes[2]['state'] = 'active';
@@ -342,7 +347,7 @@ switch ($progressStatusKey) {
         break;
 
     case 'out_for_delivery':
-        $progress_percent = max(76, min(94, $progress_percent));
+        $progress_percent = max(70, min(80, $progress_percent));
         $progress_nodes[0]['state'] = 'done';
         $progress_nodes[1]['state'] = 'done';
         $progress_nodes[2]['state'] = 'done';
@@ -363,7 +368,7 @@ switch ($progressStatusKey) {
         break;
 
     case 'failed':
-        $progress_percent = max(42, min(68, $progress_percent));
+        $progress_percent = max(44, min(56, $progress_percent));
         $progress_nodes[0]['state'] = 'done';
         $progress_nodes[1]['state'] = 'done';
         $progress_nodes[2]['label'] = 'Exception';
@@ -384,7 +389,7 @@ switch ($progressStatusKey) {
         break;
 
     default:
-        $progress_percent = max(42, min(68, $progress_percent));
+        $progress_percent = max(44, min(56, $progress_percent));
         $progress_nodes[0]['state'] = 'done';
         $progress_nodes[1]['state'] = 'done';
         $progress_nodes[2]['state'] = 'active';

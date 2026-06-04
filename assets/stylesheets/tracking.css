@@ -88,9 +88,9 @@
 }
 .track-container .tracking-visual .progress-line {
   position: absolute;
-  top: 20px;
-  left: 0;
-  right: 0;
+  top: 24px;
+  left: 9%;
+  right: 9%;
   height: 6px;
   background: #e0e0e0;
   z-index: 1;
