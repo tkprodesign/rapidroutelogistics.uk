@@ -405,17 +405,19 @@ $currentLocationText     = !empty($history)  ? $history[0]['location']       : '
 // Avoid showing current = origin or destination if they're the same text
 $showCurrentInRoute = ($currentLocationText !== '' && $currentLocationText !== $originLocationText && $currentLocationText !== $destinationLocationText && $currentLocationText !== '-');
 
-// Collect unique intermediate waypoints visited between origin and current (chronological order)
+// Collect unique intermediate waypoints visited between origin and current (chronological order).
+// Only include physical stops — exclude in-motion/transit location types (Vessel, Aircraft).
 $intermediateWaypoints = [];
-$_routeSeen = array_flip(array_filter(
-    [$originLocationText, $currentLocationText, $destinationLocationText, '-', ''],
-    fn($v) => $v !== ''
-));
-$_routeSeen['-'] = true;
-$_routeSeen['']  = true;
+$_routeSeen = ['-' => true, '' => true];
+foreach ([$originLocationText, $currentLocationText, $destinationLocationText] as $_sl) {
+    if ((string)$_sl !== '' && $_sl !== '-') $_routeSeen[$_sl] = true;
+}
+$_transitTypes = ['Vessel', 'Aircraft'];
 foreach (array_reverse($history) as $_evt) {
-    $_loc = $_evt['location'];
+    $_loc  = $_evt['location'];
+    $_type = (string)($_evt['location_type'] ?? '');
     if (isset($_routeSeen[$_loc])) continue;
+    if (in_array($_type, $_transitTypes, true)) continue;
     $_routeSeen[$_loc] = true;
     $intermediateWaypoints[] = $_loc;
 }
