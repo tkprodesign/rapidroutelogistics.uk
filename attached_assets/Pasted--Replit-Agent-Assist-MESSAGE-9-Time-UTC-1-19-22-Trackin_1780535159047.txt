@@ -1,0 +1,226 @@
+**Replit Agent Assist | MESSAGE 9 | Time (UTC+1): 19:22**
+
+### Tracking System Upgrade (Admin Control Panel + Customer Tracking Page)
+
+The shipment event system and tracking page should be upgraded together so they work as a complete professional logistics platform rather than as separate features.
+
+#### 1. Redesign the Admin "Add Shipping Location Event" Form
+
+The current form is heavily focused on road-based shipments and assumes every update has a city, state, and postal code. This does not reflect real-world international logistics where shipments may travel by sea, air, rail, or through ports, customs facilities, warehouses, and distribution hubs.
+
+**Required Improvements:**
+
+* Add **Transport Mode**:
+
+  * Road
+  * Air
+  * Sea
+  * Rail
+  * Mixed
+
+* Add **Event Type**:
+
+  * Shipment Created
+  * Picked Up
+  * Departed Facility
+  * Arrived Facility
+  * Customs Clearance
+  * Customs Hold
+  * Port Arrival
+  * Port Departure
+  * Vessel Departure
+  * Vessel Arrival
+  * Warehouse Processing
+  * In Transit
+  * Out For Delivery
+  * Delivered
+  * Delayed
+  * Exception
+  * Payment Required
+  * Other
+
+* Add **Location Type**:
+
+  * Warehouse
+  * Distribution Center
+  * Airport
+  * Seaport
+  * Customs Office
+  * Checkpoint
+  * Vessel
+  * Aircraft
+  * Customer Address
+  * Other
+
+* Keep:
+
+  * Tracking Number
+  * Status Text
+  * Event Severity
+  * Location Name
+  * Country
+
+* Make these optional:
+
+  * City
+  * State/Region
+  * Postal Code
+
+* Payment fields should only appear when a payment-related event is selected.
+
+* For sea shipments, support optional fields such as:
+
+  * Vessel Name
+  * Voyage Number
+  * Port of Departure
+  * Port of Arrival
+
+This will allow realistic shipment histories for sea freight, air freight, customs processing, warehousing, and local delivery.
+
+---
+
+#### 2. Upgrade the Customer Tracking Page
+
+The tracking page should feel comparable to premium logistics companies and present information in a more useful way.
+
+##### Status First
+
+Instead of leading with the tracking number, prominently display:
+
+* Current Status Badge
+* Tracking Number
+* Origin → Destination
+* Last Updated Timestamp
+
+Example:
+
+🟢 In Transit
+
+Tracking #: XXXXXXXX
+
+New York, USA → London, UK
+
+Last Updated: June 3, 2026 14:35 UTC
+
+---
+
+##### Replace the Current 3-Step Progress Bar
+
+Current:
+
+* Shipped
+* In Transit
+* Delivered
+
+Replace with:
+
+* Shipment Created
+* Picked Up
+* In Transit
+* Arrived at Destination
+* Delivered
+
+This provides a more realistic shipment journey.
+
+---
+
+##### Add Shipment Summary Card
+
+Display:
+
+* Service Type
+* Transport Mode
+* Weight
+* Package Count
+* Estimated Delivery Date
+
+---
+
+##### Add Current Location Card
+
+Example:
+
+Current Location
+
+📍 Rotterdam Port, Netherlands
+
+Status:
+Container unloaded and awaiting customs clearance.
+
+Last Updated:
+June 3, 2026 14:35 UTC
+
+---
+
+##### Add Shipment Route
+
+Display:
+
+Origin:
+📍 Shanghai, China
+
+Current:
+📍 Singapore Port
+
+Destination:
+📍 Lagos, Nigeria
+
+This gives customers immediate visibility into shipment progress.
+
+---
+
+##### Dynamic Transport Icons
+
+Show icons based on transport mode:
+
+* 🚢 Sea Freight
+* ✈️ Air Freight
+* 🚚 Road Freight
+* 🚆 Rail Freight
+
+Do not always display truck-related visuals.
+
+---
+
+##### Improve ETA Section
+
+Reduce the visual size of the delivery date and present it more elegantly.
+
+Example:
+
+Estimated Delivery
+
+July 29, 2026
+
+Before End of Day
+
+The date should not overpower the rest of the tracking information.
+
+---
+
+##### Add Status Badges
+
+Use visually distinct statuses:
+
+* 🟢 In Transit
+* 🔵 Processing
+* 🟡 Customs Review
+* 🟠 Delayed
+* 🔴 Exception
+* ✅ Delivered
+
+---
+
+##### Quick Information Strip
+
+Directly below the tracking result, show:
+
+**Current Status:** In Transit | **Current Location:** Rotterdam Port | **ETA:** July 29, 2026
+
+This allows customers to get key information immediately without scrolling.
+
+---
+
+### Overall Goal
+
+Transform the tracking system from a basic shipment tracker into a professional multi-modal logistics platform that properly supports road, air, sea, rail, customs, ports, warehouses, and international freight operations while delivering a premium customer experience.

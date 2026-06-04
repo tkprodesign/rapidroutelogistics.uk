@@ -109,7 +109,14 @@ function cp_ensure_shipment_location_event_payment_columns(mysqli $dbconn): void
         "ALTER TABLE shipment_location_events ADD COLUMN payment_amount DECIMAL(10,2) NULL DEFAULT NULL",
         "ALTER TABLE shipment_location_events ADD COLUMN payment_reason VARCHAR(255) NULL DEFAULT NULL",
         "ALTER TABLE shipment_location_events ADD COLUMN negative_event_paid TINYINT(1) NOT NULL DEFAULT 0",
-        "ALTER TABLE shipment_location_events ADD COLUMN negative_event_paid_at_epoch BIGINT NULL DEFAULT NULL"
+        "ALTER TABLE shipment_location_events ADD COLUMN negative_event_paid_at_epoch BIGINT NULL DEFAULT NULL",
+        "ALTER TABLE shipment_location_events ADD COLUMN transport_mode VARCHAR(40) NULL DEFAULT NULL",
+        "ALTER TABLE shipment_location_events ADD COLUMN event_type VARCHAR(80) NULL DEFAULT NULL",
+        "ALTER TABLE shipment_location_events ADD COLUMN location_type VARCHAR(80) NULL DEFAULT NULL",
+        "ALTER TABLE shipment_location_events ADD COLUMN vessel_name VARCHAR(190) NULL DEFAULT NULL",
+        "ALTER TABLE shipment_location_events ADD COLUMN voyage_number VARCHAR(80) NULL DEFAULT NULL",
+        "ALTER TABLE shipment_location_events ADD COLUMN port_of_departure VARCHAR(190) NULL DEFAULT NULL",
+        "ALTER TABLE shipment_location_events ADD COLUMN port_of_arrival VARCHAR(190) NULL DEFAULT NULL",
     ];
 
     foreach ($columnSql as $sql) {
@@ -960,6 +967,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_location_event']) 
     $issueNote = '';
     $paymentAmountRaw = trim((string)($_POST['event_payment_amount'] ?? ''));
     $paymentReason = trim((string)($_POST['event_payment_reason'] ?? ''));
+    $transportMode = strtolower(trim((string)($_POST['event_transport_mode'] ?? '')));
+    $eventType = trim((string)($_POST['event_type'] ?? ''));
+    $locationType = trim((string)($_POST['event_location_type'] ?? ''));
+    $vesselName = trim((string)($_POST['event_vessel_name'] ?? ''));
+    $voyageNumber = trim((string)($_POST['event_voyage_number'] ?? ''));
+    $portOfDeparture = trim((string)($_POST['event_port_of_departure'] ?? ''));
+    $portOfArrival = trim((string)($_POST['event_port_of_arrival'] ?? ''));
     $nowEpoch = time();
     $eventTimeEpoch = $nowEpoch;
 
@@ -1071,8 +1085,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_location_event']) 
         }
 
         $sql = "INSERT INTO shipment_location_events
-                (shipment_id, tracking_number, location_label, event_severity, is_current, is_origin, is_destination, location_name, city, state_region, country_code, postal_code, status_text, issue_note, payment_amount, payment_reason, negative_event_paid, negative_event_paid_at_epoch, event_time_epoch, created_at_epoch, updated_at_epoch)
-                VALUES (?, ?, ?, ?, ?, IF(? = 1, 1, NULL), IF(? = 1, 1, NULL), ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, NULL, ?, ?, ?)";
+                (shipment_id, tracking_number, location_label, event_severity, transport_mode, event_type, location_type, is_current, is_origin, is_destination, location_name, city, state_region, country_code, postal_code, status_text, issue_note, payment_amount, payment_reason, vessel_name, voyage_number, port_of_departure, port_of_arrival, negative_event_paid, negative_event_paid_at_epoch, event_time_epoch, created_at_epoch, updated_at_epoch)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, IF(? = 1, 1, NULL), IF(? = 1, 1, NULL), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, NULL, ?, ?, ?)";
         $stmt = $dbconn->prepare($sql);
 
         if (!$stmt) {
@@ -1080,11 +1094,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_location_event']) 
             $cp_location_event_notice_type = 'error';
         } else {
             $stmt->bind_param(
-                "isssiiisssssssdsiii",
+                "issssssiiisssssssdsssssiii",
                 $shipmentId,
                 $trackingNumber,
                 $locationLabel,
                 $eventSeverity,
+                $transportMode,
+                $eventType,
+                $locationType,
                 $isCurrent,
                 $isOrigin,
                 $isDestination,
@@ -1097,6 +1114,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_location_event']) 
                 $issueNote,
                 $paymentAmount,
                 $paymentReason,
+                $vesselName,
+                $voyageNumber,
+                $portOfDeparture,
+                $portOfArrival,
                 $eventTimeEpoch,
                 $nowEpoch,
                 $nowEpoch

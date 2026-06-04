@@ -5,12 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Control Panel | Rapid Route Logistics</title>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/> -->
     <link rel="stylesheet" href="/assets/stylesheets/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="/assets/stylesheets/control-panel.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="shortcut icon" href="/assets/images/branding/mark-only.png?v=<?php echo time(); ?>" type="image/png">
-    <!-- <script src="https://kit.fontawesome.com/4fee328683.js" crossorigin="anonymous"></script> -->
 </head>
 <body>
     <?php include("../partials/header.php");?>
@@ -26,7 +24,7 @@
             <div class="cp-card-head">
                 <div>
                     <h2>Add Shipping Location Event</h2>
-                    <p>Add a new tracking update for a shipment and timeline.</p>
+                    <p>Add a new tracking update for a shipment timeline. Supports road, air, sea, rail, customs, and warehouse events.</p>
                 </div>
             </div>
             <?php if (!empty($cp_location_event_notice)): ?>
@@ -34,61 +32,167 @@
                     <?= htmlspecialchars($cp_location_event_notice) ?>
                 </p>
             <?php endif; ?>
-            <p class="cp-form-helper">Enter the tracking number for the shipment. The system will locate the shipment automatically and attach the event to it.</p>
-            <form method="post" class="cp-location-form" novalidate>
+            <p class="cp-form-helper">Enter the tracking number — the system will locate the shipment automatically.</p>
+            <form method="post" class="cp-location-form" novalidate id="locationEventForm">
                 <div class="cp-location-grid">
-                    <div>
-                        <label for="event_tracking_number">Tracking Number</label>
+
+                    <!-- Tracking Number -->
+                    <div class="cp-location-grid-wide">
+                        <label for="event_tracking_number">Tracking Number <span class="cp-required">*</span></label>
                         <input id="event_tracking_number" type="text" name="event_tracking_number" required>
                     </div>
+
+                    <!-- Transport Mode -->
                     <div>
-                        <label for="event_location_label">Location Label</label>
-                        <select id="event_location_label" name="event_location_label">
-                            <option value="checkpoint">checkpoint</option>
-                            <option value="origin">origin</option>
-                            <option value="exception">exception</option>
-                            <option value="destination">destination</option>
+                        <label for="event_transport_mode">Transport Mode</label>
+                        <select id="event_transport_mode" name="event_transport_mode">
+                            <option value="">— Select Mode —</option>
+                            <option value="road">Road</option>
+                            <option value="air">Air</option>
+                            <option value="sea">Sea</option>
+                            <option value="rail">Rail</option>
+                            <option value="mixed">Mixed</option>
                         </select>
                     </div>
+
+                    <!-- Event Type -->
+                    <div>
+                        <label for="event_type">Event Type</label>
+                        <select id="event_type" name="event_type">
+                            <option value="">— Select Event Type —</option>
+                            <option value="Shipment Created">Shipment Created</option>
+                            <option value="Picked Up">Picked Up</option>
+                            <option value="Departed Facility">Departed Facility</option>
+                            <option value="Arrived Facility">Arrived Facility</option>
+                            <option value="Customs Clearance">Customs Clearance</option>
+                            <option value="Customs Hold">Customs Hold</option>
+                            <option value="Port Arrival">Port Arrival</option>
+                            <option value="Port Departure">Port Departure</option>
+                            <option value="Vessel Departure">Vessel Departure</option>
+                            <option value="Vessel Arrival">Vessel Arrival</option>
+                            <option value="Warehouse Processing">Warehouse Processing</option>
+                            <option value="In Transit">In Transit</option>
+                            <option value="Out For Delivery">Out For Delivery</option>
+                            <option value="Delivered">Delivered</option>
+                            <option value="Delayed">Delayed</option>
+                            <option value="Exception">Exception</option>
+                            <option value="Payment Required">Payment Required</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Location Type -->
+                    <div>
+                        <label for="event_location_type">Location Type</label>
+                        <select id="event_location_type" name="event_location_type">
+                            <option value="">— Select Location Type —</option>
+                            <option value="Warehouse">Warehouse</option>
+                            <option value="Distribution Center">Distribution Center</option>
+                            <option value="Airport">Airport</option>
+                            <option value="Seaport">Seaport</option>
+                            <option value="Customs Office">Customs Office</option>
+                            <option value="Checkpoint">Checkpoint</option>
+                            <option value="Vessel">Vessel</option>
+                            <option value="Aircraft">Aircraft</option>
+                            <option value="Customer Address">Customer Address</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Location Label / Event Role -->
+                    <div>
+                        <label for="event_location_label">Event Role</label>
+                        <select id="event_location_label" name="event_location_label">
+                            <option value="checkpoint">Checkpoint</option>
+                            <option value="origin">Origin</option>
+                            <option value="exception">Exception</option>
+                            <option value="destination">Destination</option>
+                        </select>
+                    </div>
+
+                    <!-- Event Severity -->
                     <div>
                         <label for="event_severity">Event Severity</label>
                         <select id="event_severity" name="event_severity">
-                            <option value="neutral">neutral</option>
-                            <option value="negative">negative</option>
+                            <option value="neutral">Neutral</option>
+                            <option value="negative">Negative</option>
                         </select>
                     </div>
+
+                    <!-- Country Code -->
                     <div>
-                        <label for="event_country_code">Country Code</label>
-                        <input id="event_country_code" type="text" name="event_country_code" maxlength="2" value="US" required>
+                        <label for="event_country_code">Country Code <span class="cp-required">*</span></label>
+                        <input id="event_country_code" type="text" name="event_country_code" maxlength="2" value="US" placeholder="e.g. GB" required>
                     </div>
+
+                    <!-- Location Name -->
                     <div>
-                        <label for="event_location_name">Location Name</label>
-                        <input id="event_location_name" type="text" name="event_location_name" required>
+                        <label for="event_location_name">Location Name <span class="cp-required">*</span></label>
+                        <input id="event_location_name" type="text" name="event_location_name" placeholder="e.g. Heathrow Airport, Rotterdam Port" required>
                     </div>
+
+                    <!-- City -->
                     <div>
-                        <label for="event_city">City</label>
+                        <label for="event_city">City <span class="cp-optional">(optional)</span></label>
                         <input id="event_city" type="text" name="event_city">
                     </div>
+
+                    <!-- State/Region -->
                     <div>
-                        <label for="event_state_region">State/Region</label>
+                        <label for="event_state_region">State / Region <span class="cp-optional">(optional)</span></label>
                         <input id="event_state_region" type="text" name="event_state_region">
                     </div>
+
+                    <!-- Postal Code -->
                     <div>
-                        <label for="event_postal_code">Postal Code</label>
+                        <label for="event_postal_code">Postal Code <span class="cp-optional">(optional)</span></label>
                         <input id="event_postal_code" type="text" name="event_postal_code">
                     </div>
+
+                    <!-- Status Text -->
                     <div class="cp-location-grid-wide">
-                        <label for="event_status_text">Status Text</label>
-                        <input id="event_status_text" type="text" name="event_status_text" placeholder="Example: Arrived at Hub, Shipment Delayed, Out for Delivery" required>
+                        <label for="event_status_text">Status Text <span class="cp-required">*</span></label>
+                        <input id="event_status_text" type="text" name="event_status_text" placeholder="e.g. Arrived at Rotterdam Port, Netherlands – Awaiting customs clearance" required>
                     </div>
-                    <div>
-                        <label for="event_payment_amount">Payment Amount</label>
-                        <input id="event_payment_amount" type="number" min="0" step="0.01" name="event_payment_amount" placeholder="Optional">
+
+                    <!-- Sea Freight Fields (conditional: shown when transport mode = sea) -->
+                    <div id="sea-fields" class="cp-location-grid-span4" style="display:none;">
+                        <p class="cp-section-label"><span class="material-symbols-outlined" aria-hidden="true">directions_boat</span> Sea Freight Details</p>
+                        <div class="cp-location-grid">
+                            <div>
+                                <label for="event_vessel_name">Vessel Name <span class="cp-optional">(optional)</span></label>
+                                <input id="event_vessel_name" type="text" name="event_vessel_name" placeholder="e.g. MSC Oscar">
+                            </div>
+                            <div>
+                                <label for="event_voyage_number">Voyage Number <span class="cp-optional">(optional)</span></label>
+                                <input id="event_voyage_number" type="text" name="event_voyage_number" placeholder="e.g. V019E">
+                            </div>
+                            <div>
+                                <label for="event_port_of_departure">Port of Departure <span class="cp-optional">(optional)</span></label>
+                                <input id="event_port_of_departure" type="text" name="event_port_of_departure" placeholder="e.g. Shanghai, China">
+                            </div>
+                            <div>
+                                <label for="event_port_of_arrival">Port of Arrival <span class="cp-optional">(optional)</span></label>
+                                <input id="event_port_of_arrival" type="text" name="event_port_of_arrival" placeholder="e.g. Rotterdam, Netherlands">
+                            </div>
+                        </div>
                     </div>
-                    <div class="cp-location-grid-wide">
-                        <label for="event_payment_reason">What the Payment Is For</label>
-                        <input id="event_payment_reason" type="text" name="event_payment_reason" placeholder="Example: Customs clarification fee, documentation review fee">
+
+                    <!-- Payment Fields (conditional: shown when event type requires payment) -->
+                    <div id="payment-fields" class="cp-location-grid-span4" style="display:none;">
+                        <p class="cp-section-label"><span class="material-symbols-outlined" aria-hidden="true">payments</span> Payment Details</p>
+                        <div class="cp-location-grid">
+                            <div>
+                                <label for="event_payment_amount">Payment Amount (£)</label>
+                                <input id="event_payment_amount" type="number" min="0" step="0.01" name="event_payment_amount" placeholder="e.g. 150.00">
+                            </div>
+                            <div class="cp-location-grid-wide">
+                                <label for="event_payment_reason">What the Payment Is For</label>
+                                <input id="event_payment_reason" type="text" name="event_payment_reason" placeholder="e.g. Customs duty, documentation review fee">
+                            </div>
+                        </div>
                     </div>
+
                 </div>
                 <div class="cp-quote-actions">
                     <button class="cp-btn" type="submit" name="add_location_event" value="1">Add Location Event</button>
@@ -129,8 +233,7 @@
                                 <th>Method</th>
                                 <th>Status</th>
                                 <th>Proof</th>
-                                <th>Arrival</th>
-                            <th>Created</th>
+                                <th>Created</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -187,7 +290,7 @@
                             else:
                             ?>
                             <tr>
-                                <td colspan="10">No exception payment records found.</td>
+                                <td colspan="11">No exception payment records found.</td>
                             </tr>
                             <?php endif; ?>
                         </tbody>
@@ -242,7 +345,7 @@
             <div class="cp-card-head">
                 <div>
                     <h2>Send Support Email</h2>
-<p>Send styled support emails via Resend from support@rapidroutelogistics.uk</p>
+                    <p>Send styled support emails via Resend from support@rapidroutelogistics.uk</p>
                 </div>
             </div>
             <?php if (!empty($cp_support_email_notice)): ?>
@@ -356,7 +459,6 @@
                 <a class="cp-btn cp-btn-secondary" href="/control-panel/shipments/">View Complete Shipment List</a>
             </div>
         </section>
-        
 
         <section id="cp-update-arrival-date" class="cp-card cp-card-action">
             <div class="cp-card-head">
@@ -638,6 +740,7 @@
                 </table>
             </div>
         </section>
+
         <section id="cp-site-users" class="cp-card cp-card-list">
             <div class="cp-card-head">
                 <div>
@@ -846,6 +949,31 @@
 
         titleSelect.addEventListener('change', syncPayBlockMessage);
         syncPayBlockMessage();
+    })();
+
+    (function () {
+        var modeSelect = document.getElementById('event_transport_mode');
+        var typeSelect = document.getElementById('event_type');
+        var seaFields  = document.getElementById('sea-fields');
+        var payFields  = document.getElementById('payment-fields');
+        var paymentTypes = ['Payment Required', 'Exception'];
+
+        function updateSeaFields() {
+            if (modeSelect && seaFields) {
+                seaFields.style.display = (modeSelect.value === 'sea') ? '' : 'none';
+            }
+        }
+
+        function updatePaymentFields() {
+            if (typeSelect && payFields) {
+                payFields.style.display = (paymentTypes.indexOf(typeSelect.value) !== -1) ? '' : 'none';
+            }
+        }
+
+        if (modeSelect) modeSelect.addEventListener('change', updateSeaFields);
+        if (typeSelect) typeSelect.addEventListener('change', updatePaymentFields);
+        updateSeaFields();
+        updatePaymentFields();
     })();
     </script>
     </body>

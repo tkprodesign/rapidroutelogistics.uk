@@ -568,3 +568,48 @@ body {
 #cp-delete-service-quote {
   border-top: none;
 }
+
+/* ── New location event form helpers ─────────────────────────── */
+.cp-required {
+  color: #c0392b;
+  font-weight: 700;
+  margin-left: 2px;
+}
+
+.cp-optional {
+  color: #8aa0a0;
+  font-size: 0.82rem;
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+.cp-section-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.93rem;
+  color: #1A9B82;
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  background: rgba(26,155,130,0.07);
+  border-left: 3px solid #1A9B82;
+  border-radius: 0 6px 6px 0;
+}
+
+.cp-section-label .material-symbols-outlined {
+  font-size: 1.1rem;
+  color: inherit;
+}
+
+.cp-location-grid-span4 {
+  grid-column: 1 / -1;
+  margin-top: 6px;
+}
+
+@media (max-width: 760px) {
+  .cp-location-grid-span4 {
+    grid-column: 1 / -1;
+  }
+}
+

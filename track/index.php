@@ -11,14 +11,22 @@ if (!$trackSignedIn) {
 $tracking_id_raw = isset($_GET['id']) ? trim((string)$_GET['id']) : '';
 $tracking_id = htmlspecialchars($tracking_id_raw);
 $statusKey = 'in_transit';
+$progressStatusKey = 'in_transit';
 $status = "In Transit";
 $progress_percent = 65;
-$estimated_delivery_text = "Thursday, March 5, 2026";
+$estimated_delivery_text = "—";
 $estimated_delivery_hint = "By End of Day";
 $history = [];
 $tracking_found = false;
 $tracking_id_missing = ($tracking_id_raw === '');
 $tracking_lookup_attempted = !$tracking_id_missing;
+$shipmentOrigin = '';
+$shipmentDestination = '';
+$shipmentWeight = null;
+$currentTransportMode = '';
+$originEvent = null;
+$destinationEvent = null;
+$lastUpdatedText = '—';
 
 function rrl_normalize_tracking_status($value) {
     $statusText = strtolower(trim((string)$value));
@@ -63,9 +71,7 @@ function rrl_normalize_tracking_status($value) {
         'canceled' => 'cancelled'
     ];
 
-    if (isset($aliases[$statusText])) {
-        return $aliases[$statusText];
-    }
+    if (isset($aliases[$statusText])) return $aliases[$statusText];
 
     if (strpos($statusText, 'out_for_delivery') !== false) return 'out_for_delivery';
     if (strpos($statusText, 'deliver') !== false && strpos($statusText, 'out') === false) return 'delivered';
@@ -77,14 +83,48 @@ function rrl_normalize_tracking_status($value) {
     return null;
 }
 
+// Ensure new event columns exist (safe ALTER TABLE — silently ignores if already present)
 if (!$tracking_id_missing && isset($conn) && $conn instanceof mysqli) {
-    $hasCompletionColumn = false;
-    $completionColumnCheck = $conn->query("SHOW COLUMNS FROM shipments LIKE 'completion_percentage'");
-    if ($completionColumnCheck && $completionColumnCheck->num_rows > 0) {
-        $hasCompletionColumn = true;
+    $newCols = [
+        "ALTER TABLE shipment_location_events ADD COLUMN transport_mode VARCHAR(40) NULL DEFAULT NULL",
+        "ALTER TABLE shipment_location_events ADD COLUMN event_type VARCHAR(80) NULL DEFAULT NULL",
+        "ALTER TABLE shipment_location_events ADD COLUMN location_type VARCHAR(80) NULL DEFAULT NULL",
+        "ALTER TABLE shipment_location_events ADD COLUMN vessel_name VARCHAR(190) NULL DEFAULT NULL",
+        "ALTER TABLE shipment_location_events ADD COLUMN voyage_number VARCHAR(80) NULL DEFAULT NULL",
+        "ALTER TABLE shipment_location_events ADD COLUMN port_of_departure VARCHAR(190) NULL DEFAULT NULL",
+        "ALTER TABLE shipment_location_events ADD COLUMN port_of_arrival VARCHAR(190) NULL DEFAULT NULL",
+    ];
+    foreach ($newCols as $_sql) {
+        try { $conn->query($_sql); } catch (Throwable $_e) {}
     }
-    $shipmentSelect = $hasCompletionColumn ? 'status, completion_percentage, estimated_delivery_time' : 'status, estimated_delivery_time';
-    $shipmentSql = "SELECT {$shipmentSelect} FROM shipments WHERE tracking_number = ? LIMIT 1";
+}
+
+if (!$tracking_id_missing && isset($conn) && $conn instanceof mysqli) {
+
+    // Check which optional shipment columns exist
+    $hasCompletionColumn = false;
+    $r = $conn->query("SHOW COLUMNS FROM shipments LIKE 'completion_percentage'");
+    if ($r && $r->num_rows > 0) $hasCompletionColumn = true;
+
+    $hasOriginCol = false;
+    $r = $conn->query("SHOW COLUMNS FROM shipments LIKE 'origin'");
+    if ($r && $r->num_rows > 0) $hasOriginCol = true;
+
+    $hasDestCol = false;
+    $r = $conn->query("SHOW COLUMNS FROM shipments LIKE 'destination'");
+    if ($r && $r->num_rows > 0) $hasDestCol = true;
+
+    $hasWeightCol = false;
+    $r = $conn->query("SHOW COLUMNS FROM shipments LIKE 'weight'");
+    if ($r && $r->num_rows > 0) $hasWeightCol = true;
+
+    $selectParts = ['status', 'estimated_delivery_time'];
+    if ($hasCompletionColumn) $selectParts[] = 'completion_percentage';
+    if ($hasOriginCol)        $selectParts[] = 'origin';
+    if ($hasDestCol)          $selectParts[] = 'destination';
+    if ($hasWeightCol)        $selectParts[] = 'weight';
+
+    $shipmentSql = "SELECT " . implode(', ', $selectParts) . " FROM shipments WHERE tracking_number = ? LIMIT 1";
     $stmtShipment = $conn->prepare($shipmentSql);
     if ($stmtShipment) {
         $stmtShipment->bind_param("s", $tracking_id_raw);
@@ -96,49 +136,59 @@ if (!$tracking_id_missing && isset($conn) && $conn instanceof mysqli) {
         if ($shipmentRow) {
             $tracking_found = true;
             $statusMap = [
-                'pending' => 'Label Created',
-                'incoming' => 'Shipped',
-                'outgoing' => 'Shipped',
-                'picked_up' => 'Shipped',
-                'in_store' => 'In Transit',
-                'shipped' => 'In Transit',
-                'in_transit' => 'In Transit',
+                'pending'          => 'Label Created',
+                'incoming'         => 'Shipped',
+                'outgoing'         => 'Shipped',
+                'picked_up'        => 'Picked Up',
+                'in_store'         => 'In Transit',
+                'shipped'          => 'In Transit',
+                'in_transit'       => 'In Transit',
                 'out_for_delivery' => 'Out for Delivery',
-                'delivered' => 'Delivered',
-                'failed' => 'Exception',
-                'cancelled' => 'Cancelled'
+                'delivered'        => 'Delivered',
+                'failed'           => 'Exception',
+                'cancelled'        => 'Cancelled',
             ];
+
             $statusKey = rrl_normalize_tracking_status($shipmentRow['status'] ?? 'in_transit') ?? 'in_transit';
             $status = $statusMap[$statusKey] ?? 'In Transit';
 
             $progressMap = [
-                'pending' => 10,
-                'incoming' => 25,
-                'outgoing' => 25,
-                'picked_up' => 30,
-                'in_store' => 45,
-                'shipped' => 55,
-                'in_transit' => 65,
-                'out_for_delivery' => 85,
-                'delivered' => 100,
-                'failed' => 65,
-                'cancelled' => 10
+                'pending'          => 10,
+                'incoming'         => 28,
+                'outgoing'         => 28,
+                'picked_up'        => 30,
+                'in_store'         => 50,
+                'shipped'          => 55,
+                'in_transit'       => 58,
+                'out_for_delivery' => 82,
+                'delivered'        => 100,
+                'failed'           => 58,
+                'cancelled'        => 5,
             ];
+
             $storedProgress = isset($shipmentRow['completion_percentage']) ? (int)$shipmentRow['completion_percentage'] : null;
-            $progress_percent = ($storedProgress !== null && $storedProgress >= 0 && $storedProgress <= 100) ? $storedProgress : ($progressMap[$statusKey] ?? 65);
+            $progress_percent = ($storedProgress !== null && $storedProgress >= 0 && $storedProgress <= 100)
+                ? $storedProgress
+                : ($progressMap[$statusKey] ?? 55);
 
             $etaEpoch = (int)($shipmentRow['estimated_delivery_time'] ?? 0);
             if ($etaEpoch > 0) {
-                if ($etaEpoch > 1000000000000) {
-                    $etaEpoch = (int)($etaEpoch / 1000);
-                }
+                if ($etaEpoch > 1000000000000) $etaEpoch = (int)($etaEpoch / 1000);
                 $estimated_delivery_text = date("l, F j, Y", $etaEpoch);
             }
+
+            $shipmentOrigin      = trim((string)($shipmentRow['origin'] ?? ''));
+            $shipmentDestination = trim((string)($shipmentRow['destination'] ?? ''));
+            $shipmentWeight      = (isset($shipmentRow['weight']) && $shipmentRow['weight'] !== null) ? (float)$shipmentRow['weight'] : null;
         }
     }
 
+    // Fetch events — includes new columns (safe since we ensured them above)
     $eventsSql = "
-        SELECT id, event_time_epoch, status_text, city, state_region, country_code, location_name, event_severity, issue_note, negative_event_paid
+        SELECT id, event_time_epoch, status_text, city, state_region, country_code,
+               location_name, event_severity, issue_note, negative_event_paid,
+               is_origin, is_destination,
+               transport_mode, event_type, location_type
         FROM shipment_location_events
         WHERE tracking_number = ?
         ORDER BY event_time_epoch DESC, id DESC
@@ -152,89 +202,140 @@ if (!$tracking_id_missing && isset($conn) && $conn instanceof mysqli) {
         if ($eventsRes) {
             while ($row = $eventsRes->fetch_assoc()) {
                 $epoch = (int)($row['event_time_epoch'] ?? 0);
-                if ($epoch > 1000000000000) {
-                    $epoch = (int)($epoch / 1000);
-                }
+                if ($epoch > 1000000000000) $epoch = (int)($epoch / 1000);
 
                 $pieces = [];
                 if (!empty($row['location_name'])) $pieces[] = (string)$row['location_name'];
-                if (!empty($row['city'])) $pieces[] = (string)$row['city'];
-                if (!empty($row['state_region'])) $pieces[] = (string)$row['state_region'];
-                if (!empty($row['country_code'])) $pieces[] = strtoupper((string)$row['country_code']);
+                if (!empty($row['city']))           $pieces[] = (string)$row['city'];
+                if (!empty($row['state_region']))   $pieces[] = (string)$row['state_region'];
+                if (!empty($row['country_code']))   $pieces[] = strtoupper((string)$row['country_code']);
                 $locationText = implode(', ', $pieces);
 
                 $severity = strtolower(trim((string)($row['event_severity'] ?? 'neutral')));
                 $isNegative = ($severity === 'negative');
                 $isNegativePaid = (int)($row['negative_event_paid'] ?? 0) === 1;
+                $isOriginFlag = (int)($row['is_origin'] ?? 0) === 1;
+                $isDestinationFlag = (int)($row['is_destination'] ?? 0) === 1;
+                $transportMode = strtolower(trim((string)($row['transport_mode'] ?? '')));
 
                 $history[] = [
-                    "event_id" => (int)($row['id'] ?? 0),
-                    "time" => $epoch > 0 ? date("h:i A", $epoch) : "--:--",
-                    "date" => $epoch > 0 ? date("M j, Y", $epoch) : "-",
-                    "location" => $locationText !== '' ? $locationText : "-",
-                    "activity" => (string)($row['status_text'] ?? 'Update'),
-                    "is_negative" => ($isNegative && !$isNegativePaid),
-                    "is_negative_paid" => $isNegativePaid,
-                    "issue_note" => (string)($row['issue_note'] ?? '')
+                    'event_id'       => (int)($row['id'] ?? 0),
+                    'time'           => $epoch > 0 ? date("h:i A", $epoch) : '--:--',
+                    'date'           => $epoch > 0 ? date("M j, Y", $epoch) : '-',
+                    'location'       => $locationText !== '' ? $locationText : '-',
+                    'activity'       => (string)($row['status_text'] ?? 'Update'),
+                    'is_negative'    => ($isNegative && !$isNegativePaid),
+                    'is_negative_paid' => $isNegativePaid,
+                    'issue_note'     => (string)($row['issue_note'] ?? ''),
+                    'is_origin'      => $isOriginFlag,
+                    'is_destination' => $isDestinationFlag,
+                    'transport_mode' => $transportMode,
+                    'event_type'     => (string)($row['event_type'] ?? ''),
+                    'location_type'  => (string)($row['location_type'] ?? ''),
                 ];
+
+                if ($isOriginFlag && $originEvent === null) {
+                    $originEvent = end($history);
+                }
+                if ($isDestinationFlag && $destinationEvent === null) {
+                    $destinationEvent = end($history);
+                }
             }
         }
         $stmtEvents->close();
     }
+
+    // Post-process: find origin/destination events from the final history array
+    $originEvent = null;
+    $destinationEvent = null;
+    foreach ($history as $evt) {
+        if ($evt['is_origin'] && $originEvent === null)      $originEvent = $evt;
+        if ($evt['is_destination'] && $destinationEvent === null) $destinationEvent = $evt;
+        if (!empty($evt['transport_mode']) && $currentTransportMode === '') {
+            $currentTransportMode = $evt['transport_mode'];
+        }
+    }
 }
 
+// Override status from most recent event
 $progressStatusKey = $statusKey;
 
 if ($tracking_found && !empty($history)) {
     $latestEvent = $history[0];
     $eventStatusKey = rrl_normalize_tracking_status($latestEvent['activity'] ?? null);
-    if (!$eventStatusKey && !empty($latestEvent['is_negative'])) {
-        $eventStatusKey = 'failed';
-    }
+    if (!$eventStatusKey && !empty($latestEvent['is_negative'])) $eventStatusKey = 'failed';
     if ($eventStatusKey) {
         $statusKey = $eventStatusKey;
         $statusMap = [
-            'pending' => 'Label Created',
-            'incoming' => 'Shipped',
-            'outgoing' => 'Shipped',
-            'picked_up' => 'Shipped',
-            'in_store' => 'In Transit',
-            'shipped' => 'In Transit',
-            'in_transit' => 'In Transit',
+            'pending'          => 'Label Created',
+            'incoming'         => 'Shipped',
+            'outgoing'         => 'Shipped',
+            'picked_up'        => 'Picked Up',
+            'in_store'         => 'In Transit',
+            'shipped'          => 'In Transit',
+            'in_transit'       => 'In Transit',
             'out_for_delivery' => 'Out for Delivery',
-            'delivered' => 'Delivered',
-            'failed' => 'Exception',
-            'cancelled' => 'Cancelled'
+            'delivered'        => 'Delivered',
+            'failed'           => 'Exception',
+            'cancelled'        => 'Cancelled',
         ];
         $status = $statusMap[$statusKey] ?? $status;
     }
+
+    $lastUpdatedText = $history[0]['date'] . ' · ' . $history[0]['time'];
 }
 
 if ($tracking_id_missing) {
-    $statusKey = 'pending';
-    $progressStatusKey = 'pending';
+    $statusKey = $progressStatusKey = 'pending';
     $status = 'Enter Tracking Number';
     $progress_percent = 0;
-    $estimated_delivery_text = '-';
+    $estimated_delivery_text = '—';
     $estimated_delivery_hint = 'Provide a tracking number to view shipment updates.';
 } elseif (!$tracking_found) {
-    $statusKey = 'not_found';
-    $progressStatusKey = 'not_found';
+    $statusKey = $progressStatusKey = 'not_found';
     $status = 'Not Found';
     $progress_percent = 0;
-    $estimated_delivery_text = '-';
+    $estimated_delivery_text = '—';
     $estimated_delivery_hint = 'No shipment matched that tracking number.';
 }
 
+// Transport mode display
+$transportModeIcons = [
+    'road'  => 'local_shipping',
+    'air'   => 'flight',
+    'sea'   => 'directions_boat',
+    'rail'  => 'train',
+    'mixed' => 'multiple_stop',
+];
+$transportIcon  = $transportModeIcons[$currentTransportMode] ?? 'local_shipping';
+$transportLabel = $currentTransportMode ? ucwords(str_replace('_', ' ', $currentTransportMode)) . ' Freight' : 'Standard';
+
+// Status badge CSS class
+$statusBadgeClass = [
+    'pending'          => 'badge-pending',
+    'picked_up'        => 'badge-transit',
+    'shipped'          => 'badge-transit',
+    'in_store'         => 'badge-transit',
+    'in_transit'       => 'badge-transit',
+    'out_for_delivery' => 'badge-ofd',
+    'delivered'        => 'badge-delivered',
+    'failed'           => 'badge-exception',
+    'cancelled'        => 'badge-cancelled',
+    'not_found'        => 'badge-pending',
+][$statusKey] ?? 'badge-transit';
+
+// 5-step progress nodes
 $progress_nodes = [
-    ['label' => 'Label Created', 'icon' => 'package_2', 'state' => 'pending'],
-    ['label' => 'In Transit', 'icon' => 'local_shipping', 'state' => 'pending'],
-    ['label' => 'Delivered', 'icon' => 'inventory_2', 'state' => 'pending'],
+    ['label' => 'Shipment Created', 'icon' => 'package_2',       'state' => 'pending'],
+    ['label' => 'Picked Up',        'icon' => 'inventory',        'state' => 'pending'],
+    ['label' => 'In Transit',       'icon' => 'local_shipping',   'state' => 'pending'],
+    ['label' => 'At Destination',   'icon' => 'location_on',      'state' => 'pending'],
+    ['label' => 'Delivered',        'icon' => 'check_circle',     'state' => 'pending'],
 ];
 
 switch ($progressStatusKey) {
     case 'pending':
-        $progress_percent = max(0, min(12, $progress_percent));
+        $progress_percent = max(0, min(15, $progress_percent));
         $progress_nodes[0]['state'] = 'active';
         $estimated_delivery_hint = 'Shipment information received';
         break;
@@ -242,47 +343,51 @@ switch ($progressStatusKey) {
     case 'incoming':
     case 'outgoing':
     case 'picked_up':
-        $progress_percent = max(18, min(35, $progress_percent));
-        $progress_nodes[0]['label'] = 'Shipped';
-        $progress_nodes[0]['state'] = 'active';
+        $progress_percent = max(22, min(38, $progress_percent));
+        $progress_nodes[0]['state'] = 'done';
+        $progress_nodes[1]['state'] = 'active';
         $estimated_delivery_hint = 'Picked up and moving';
         break;
 
     case 'in_store':
     case 'shipped':
     case 'in_transit':
-        $progress_percent = max(45, min(74, $progress_percent));
-        $progress_nodes[0]['label'] = 'Shipped';
+        $progress_percent = max(42, min(68, $progress_percent));
         $progress_nodes[0]['state'] = 'done';
-        $progress_nodes[1]['state'] = 'active';
+        $progress_nodes[1]['state'] = 'done';
+        $progress_nodes[2]['state'] = 'active';
         $estimated_delivery_hint = 'By End of Day';
         break;
 
     case 'out_for_delivery':
-        $progress_percent = max(82, min(96, $progress_percent));
-        $progress_nodes[0]['label'] = 'Shipped';
+        $progress_percent = max(76, min(94, $progress_percent));
         $progress_nodes[0]['state'] = 'done';
-        $progress_nodes[1]['label'] = 'Out for Delivery';
-        $progress_nodes[1]['state'] = 'active';
+        $progress_nodes[1]['state'] = 'done';
+        $progress_nodes[2]['state'] = 'done';
+        $progress_nodes[3]['label'] = 'Out for Delivery';
+        $progress_nodes[3]['icon']  = 'local_shipping';
+        $progress_nodes[3]['state'] = 'active';
         $estimated_delivery_hint = 'Expected today';
         break;
 
     case 'delivered':
         $progress_percent = 100;
-        $progress_nodes[0]['label'] = 'Shipped';
         $progress_nodes[0]['state'] = 'done';
         $progress_nodes[1]['state'] = 'done';
-        $progress_nodes[2]['state'] = 'active';
-        $estimated_delivery_hint = 'Delivered';
+        $progress_nodes[2]['state'] = 'done';
+        $progress_nodes[3]['state'] = 'done';
+        $progress_nodes[4]['state'] = 'active';
+        $estimated_delivery_hint = 'Successfully delivered';
         break;
 
     case 'failed':
-        $progress_percent = max(45, min(78, $progress_percent));
-        $progress_nodes[0]['label'] = 'Shipped';
+        $progress_percent = max(42, min(68, $progress_percent));
         $progress_nodes[0]['state'] = 'done';
-        $progress_nodes[1]['label'] = 'Exception';
-        $progress_nodes[1]['state'] = 'active';
-        $estimated_delivery_hint = 'Delivery update required';
+        $progress_nodes[1]['state'] = 'done';
+        $progress_nodes[2]['label'] = 'Exception';
+        $progress_nodes[2]['icon']  = 'warning';
+        $progress_nodes[2]['state'] = 'active';
+        $estimated_delivery_hint = 'Action required';
         break;
 
     case 'cancelled':
@@ -293,26 +398,32 @@ switch ($progressStatusKey) {
 
     case 'not_found':
         $progress_percent = 0;
-        $progress_nodes[0]['state'] = 'pending';
         $estimated_delivery_hint = 'No shipment matched that tracking number.';
         break;
 
     default:
-        $progress_percent = max(45, min(74, $progress_percent));
-        $progress_nodes[0]['label'] = 'Shipped';
+        $progress_percent = max(42, min(68, $progress_percent));
         $progress_nodes[0]['state'] = 'done';
-        $progress_nodes[1]['state'] = 'active';
+        $progress_nodes[1]['state'] = 'done';
+        $progress_nodes[2]['state'] = 'active';
         $estimated_delivery_hint = 'By End of Day';
         break;
 }
-?>
 
+// Route text: prefer origin/destination event location, fall back to shipment columns
+$originLocationText      = $originEvent      ? $originEvent['location']      : $shipmentOrigin;
+$destinationLocationText = $destinationEvent ? $destinationEvent['location'] : $shipmentDestination;
+$currentLocationText     = !empty($history)  ? $history[0]['location']       : '';
+
+// Avoid showing current = origin or destination if they're the same text
+$showCurrentInRoute = ($currentLocationText !== '' && $currentLocationText !== $originLocationText && $currentLocationText !== $destinationLocationText && $currentLocationText !== '-');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Track Your Shipment | TK Pro Design</title>
+    <title>Track Your Shipment | Rapid Route Logistics</title>
     <link rel="shortcut icon" href="/assets/images/branding/mark-only.png?v=<?php echo time(); ?>" type="image/png">
     <link rel="stylesheet" href="/assets/stylesheets/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="/assets/stylesheets/tracking.css?v=<?php echo time(); ?>">
@@ -321,26 +432,83 @@ switch ($progressStatusKey) {
 <body>
 <?php include("../common-sections/header.html"); ?>
     <main class="track-container">
+
+        <!-- Search header -->
         <div class="track-header">
-            <h1>Tracking</h1>
+            <h1>Track Your Shipment</h1>
             <form class="search-bar" method="get" action="/track/">
-                <input type="text" name="id" placeholder="Tracking Number" value="<?= $tracking_id ?>" required>
+                <input type="text" name="id" placeholder="Enter Tracking Number" value="<?= $tracking_id ?>" required>
                 <button class="btn-track" type="submit">Track</button>
             </form>
         </div>
 
-        <div class="track-grid">
-            <section class="main-card">
-                <div class="status-header">
-                    <div class="id-group">
-                        <span>Tracking Number</span>
-                        <strong><?= $tracking_id !== '' ? $tracking_id : 'Not provided' ?></strong>
-                    </div>
-                    <div class="status-badge <?= str_replace(' ', '-', strtolower($status)) ?>">
-                        <?= $status ?>
-                    </div>
+        <?php if ($tracking_found && $tracking_id !== ''): ?>
+        <!-- Status Hero -->
+        <div class="track-status-hero">
+            <div class="track-status-hero-inner">
+                <div class="track-status-hero-left">
+                    <span class="track-status-badge <?= $statusBadgeClass ?>">
+                        <span class="badge-dot"></span>
+                        <?= htmlspecialchars($status) ?>
+                    </span>
+                    <p class="track-tn">Tracking # <strong><?= $tracking_id ?></strong></p>
+                    <?php if ($originLocationText || $destinationLocationText): ?>
+                    <p class="track-hero-route">
+                        <span class="material-symbols-outlined" aria-hidden="true">trip_origin</span>
+                        <?= htmlspecialchars($originLocationText ?: '—') ?>
+                        <span class="route-arrow-icon material-symbols-outlined" aria-hidden="true">east</span>
+                        <?= htmlspecialchars($destinationLocationText ?: '—') ?>
+                    </p>
+                    <?php endif; ?>
+                    <?php if ($lastUpdatedText !== '—'): ?>
+                    <p class="track-hero-updated">
+                        <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+                        Last updated: <?= htmlspecialchars($lastUpdatedText) ?>
+                    </p>
+                    <?php endif; ?>
                 </div>
+                <div class="track-status-hero-right">
+                    <span class="material-symbols-outlined track-transport-icon" aria-hidden="true"><?= htmlspecialchars($transportIcon) ?></span>
+                    <span class="track-transport-label"><?= htmlspecialchars($transportLabel) ?></span>
+                </div>
+            </div>
+        </div>
 
+        <!-- Quick Info Strip -->
+        <div class="track-quick-strip">
+            <div class="qstrip-item">
+                <span class="qstrip-icon material-symbols-outlined" aria-hidden="true">radio_button_checked</span>
+                <div>
+                    <span class="qstrip-label">Status</span>
+                    <span class="qstrip-value"><?= htmlspecialchars($status) ?></span>
+                </div>
+            </div>
+            <?php if ($currentLocationText && $currentLocationText !== '-'): ?>
+            <div class="qstrip-item">
+                <span class="qstrip-icon material-symbols-outlined" aria-hidden="true">location_on</span>
+                <div>
+                    <span class="qstrip-label">Current Location</span>
+                    <span class="qstrip-value"><?= htmlspecialchars($currentLocationText) ?></span>
+                </div>
+            </div>
+            <?php endif; ?>
+            <div class="qstrip-item">
+                <span class="qstrip-icon material-symbols-outlined" aria-hidden="true">calendar_today</span>
+                <div>
+                    <span class="qstrip-label">Estimated Delivery</span>
+                    <span class="qstrip-value"><?= htmlspecialchars($estimated_delivery_text) ?></span>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <!-- Main Grid -->
+        <div class="track-grid">
+
+            <!-- Left column: progress + details -->
+            <section class="main-card">
+
+                <!-- 5-step progress bar -->
                 <div class="tracking-visual" aria-label="Shipment progress: <?= (int)$progress_percent ?> percent complete">
                     <div class="progress-line" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="<?= (int)$progress_percent ?>">
                         <div class="fill" style="width: <?= (int)$progress_percent ?>%;"></div>
@@ -355,18 +523,103 @@ switch ($progressStatusKey) {
                     </div>
                 </div>
 
+                <!-- ETA block -->
                 <div class="estimated-delivery">
                     <p>Estimated Delivery</p>
                     <h2><?= htmlspecialchars($estimated_delivery_text) ?></h2>
                     <span><?= htmlspecialchars($estimated_delivery_hint) ?></span>
                 </div>
+
+                <?php if ($tracking_found): ?>
+
+                <!-- Shipment detail pills -->
+                <?php $hasAnyDetail = ($currentTransportMode || $shipmentWeight !== null || $lastUpdatedText !== '—'); ?>
+                <?php if ($hasAnyDetail): ?>
+                <div class="track-details-grid">
+                    <?php if ($currentTransportMode): ?>
+                    <div class="track-detail-item">
+                        <small>Transport Mode</small>
+                        <strong>
+                            <span class="material-symbols-outlined" aria-hidden="true"><?= htmlspecialchars($transportIcon) ?></span>
+                            <?= htmlspecialchars($transportLabel) ?>
+                        </strong>
+                    </div>
+                    <?php endif; ?>
+                    <?php if ($shipmentWeight !== null): ?>
+                    <div class="track-detail-item">
+                        <small>Shipment Weight</small>
+                        <strong><?= number_format($shipmentWeight, 2) ?> kg</strong>
+                    </div>
+                    <?php endif; ?>
+                    <?php if ($lastUpdatedText !== '—'): ?>
+                    <div class="track-detail-item">
+                        <small>Last Updated</small>
+                        <strong><?= htmlspecialchars($lastUpdatedText) ?></strong>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                <?php endif; ?>
+
+                <!-- Current location card -->
+                <?php if (!empty($history)): ?>
+                <div class="track-current-location">
+                    <div class="current-loc-header">
+                        <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
+                        <h4>Current Location</h4>
+                    </div>
+                    <p class="current-loc-name"><?= htmlspecialchars($history[0]['location'] !== '-' ? $history[0]['location'] : '—') ?></p>
+                    <p class="current-loc-status"><?= htmlspecialchars($history[0]['activity']) ?></p>
+                    <?php if ($lastUpdatedText !== '—'): ?>
+                    <p class="current-loc-time"><?= htmlspecialchars($lastUpdatedText) ?></p>
+                    <?php endif; ?>
+                </div>
+                <?php endif; ?>
+
+                <!-- Route display -->
+                <?php if ($originLocationText || $destinationLocationText): ?>
+                <div class="track-route-display">
+                    <h4 class="track-route-title">Shipment Route</h4>
+                    <div class="route-steps">
+                        <?php if ($originLocationText): ?>
+                        <div class="route-step route-origin">
+                            <div class="route-step-dot"></div>
+                            <div class="route-step-body">
+                                <span class="route-step-label">Origin</span>
+                                <span class="route-step-text"><?= htmlspecialchars($originLocationText) ?></span>
+                            </div>
+                        </div>
+                        <?php endif; ?>
+                        <?php if ($showCurrentInRoute): ?>
+                        <div class="route-step route-current">
+                            <div class="route-step-dot"></div>
+                            <div class="route-step-body">
+                                <span class="route-step-label">Current</span>
+                                <span class="route-step-text"><?= htmlspecialchars($currentLocationText) ?></span>
+                            </div>
+                        </div>
+                        <?php endif; ?>
+                        <?php if ($destinationLocationText): ?>
+                        <div class="route-step route-dest">
+                            <div class="route-step-dot"></div>
+                            <div class="route-step-body">
+                                <span class="route-step-label">Destination</span>
+                                <span class="route-step-text"><?= htmlspecialchars($destinationLocationText) ?></span>
+                            </div>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+
+                <?php endif; /* tracking_found */ ?>
             </section>
 
+            <!-- Right column: event history -->
             <section class="history-card">
                 <h3>Detailed History</h3>
                 <div class="timeline">
                     <?php if (!empty($history)): ?>
-                        <?php foreach($history as $event): ?>
+                        <?php foreach ($history as $event): ?>
                             <div class="timeline-item <?= !empty($event['is_negative']) ? 'is-negative' : '' ?>">
                                 <div class="time-col">
                                     <strong><?= htmlspecialchars((string)$event['time']) ?></strong>
@@ -375,6 +628,9 @@ switch ($progressStatusKey) {
                                 <div class="activity-col">
                                     <strong><?= htmlspecialchars((string)$event['activity']) ?></strong>
                                     <span><?= htmlspecialchars((string)$event['location']) ?></span>
+                                    <?php if (!empty($event['event_type'])): ?>
+                                        <span class="event-type-tag"><?= htmlspecialchars((string)$event['event_type']) ?></span>
+                                    <?php endif; ?>
                                     <?php if (!empty($event['is_negative'])): ?>
                                         <a
                                             class="urgent-cta"
@@ -404,10 +660,18 @@ switch ($progressStatusKey) {
                                 <span>Please verify the number and try again.</span>
                             </div>
                         </div>
+                    <?php else: ?>
+                        <div class="timeline-item">
+                            <div class="activity-col">
+                                <strong>No events yet.</strong>
+                                <span>Tracking updates will appear here once the shipment is in motion.</span>
+                            </div>
+                        </div>
                     <?php endif; ?>
                 </div>
             </section>
-        </div>
+
+        </div><!-- /.track-grid -->
     </main>
 <?php include("../common-sections/footer.html"); ?>
 </body>

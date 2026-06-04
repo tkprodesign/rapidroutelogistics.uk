@@ -638,3 +638,429 @@
 .track-container .tracking-visual .nodes .node.done span {
   color: #14232b;
 }
+
+/* ── Status Hero ────────────────────────────────────────────── */
+.track-status-hero {
+  background: #14232b;
+  border-radius: 14px;
+  margin: 0 0 18px;
+  padding: 22px 28px;
+}
+
+.track-status-hero-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.track-status-hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.track-status-hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.track-transport-icon {
+  font-size: 2.5rem;
+  color: #1A9B82;
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
+
+.track-transport-label {
+  font-size: 0.78rem;
+  color: #9bbfba;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.track-tn {
+  color: #9bbfba;
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.track-tn strong {
+  color: #e0f0ee;
+  font-weight: 600;
+}
+
+.track-hero-route {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #c5e0db;
+  font-size: 0.92rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.track-hero-route .material-symbols-outlined {
+  font-size: 1rem;
+  color: #1A9B82;
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.route-arrow-icon {
+  font-size: 1rem !important;
+  color: #5a8a84 !important;
+}
+
+.track-hero-updated {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #7aafaa;
+  font-size: 0.81rem;
+  margin: 0;
+}
+
+.track-hero-updated .material-symbols-outlined {
+  font-size: 0.95rem;
+}
+
+/* ── Status Badges ──────────────────────────────────────────── */
+.track-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 13px 5px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.01em;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.badge-pending          { background: rgba(180,180,180,0.18); color: #ccc; }
+.badge-pending .badge-dot { background: #aaa; }
+
+.badge-transit          { background: rgba(26,155,130,0.20); color: #7ef2dd; }
+.badge-transit .badge-dot { background: #1A9B82; }
+
+.badge-ofd              { background: rgba(52,152,219,0.22); color: #7fd3ff; }
+.badge-ofd .badge-dot   { background: #2e9bd4; }
+
+.badge-delivered        { background: rgba(39,174,96,0.22); color: #80f0b0; }
+.badge-delivered .badge-dot { background: #27ae60; }
+
+.badge-exception        { background: rgba(231,76,60,0.22); color: #ff9a90; }
+.badge-exception .badge-dot { background: #e74c3c; }
+
+.badge-cancelled        { background: rgba(150,100,100,0.18); color: #d9a0a0; }
+.badge-cancelled .badge-dot { background: #c44; }
+
+/* ── Quick Strip ────────────────────────────────────────────── */
+.track-quick-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border: 1px solid #d8eeea;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  margin: 0 0 20px;
+}
+
+.qstrip-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 22px;
+  flex: 1 1 160px;
+  border-right: 1px solid #d8eeea;
+}
+
+.qstrip-item:last-child {
+  border-right: none;
+}
+
+.qstrip-icon {
+  font-size: 1.5rem;
+  color: #1A9B82;
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 32;
+  flex-shrink: 0;
+}
+
+.qstrip-item > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.qstrip-label {
+  font-size: 0.76rem;
+  color: #7a9a96;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.qstrip-value {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #14232b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Shipment Detail Pills ──────────────────────────────────── */
+.track-details-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 16px 0 4px;
+  border-top: 1px solid #e6f2ef;
+}
+
+.track-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: #f4fbf9;
+  border: 1px solid #c8e8e0;
+  border-radius: 10px;
+  padding: 10px 16px;
+  flex: 1 1 140px;
+}
+
+.track-detail-item small {
+  font-size: 0.73rem;
+  color: #7a9a96;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.track-detail-item strong {
+  font-size: 0.92rem;
+  color: #14232b;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.track-detail-item strong .material-symbols-outlined {
+  font-size: 0.95rem;
+  color: #1A9B82;
+}
+
+/* ── Current Location Card ──────────────────────────────────── */
+.track-current-location {
+  margin: 16px 0 0;
+  background: linear-gradient(135deg, #f4fbf9 0%, #e8f5f0 100%);
+  border: 1px solid #b8dfd6;
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+
+.current-loc-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 6px;
+}
+
+.current-loc-header .material-symbols-outlined {
+  font-size: 1.2rem;
+  color: #1A9B82;
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.current-loc-header h4 {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1A9B82;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.current-loc-name {
+  margin: 0 0 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #14232b;
+}
+
+.current-loc-status {
+  margin: 0 0 4px;
+  font-size: 0.88rem;
+  color: #3a6060;
+}
+
+.current-loc-time {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #7a9a96;
+}
+
+/* ── Route Display ──────────────────────────────────────────── */
+.track-route-display {
+  margin: 16px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid #e6f2ef;
+}
+
+.track-route-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #7a9a96;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 12px;
+}
+
+.route-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.route-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  position: relative;
+  padding-bottom: 14px;
+}
+
+.route-step:last-child {
+  padding-bottom: 0;
+}
+
+.route-step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 16px;
+  bottom: 0;
+  width: 2px;
+  background: #c8e8e0;
+}
+
+.route-step-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 2px;
+  border: 2px solid #c8e8e0;
+  background: #fff;
+}
+
+.route-origin .route-step-dot {
+  border-color: #1A9B82;
+  background: #1A9B82;
+}
+
+.route-current .route-step-dot {
+  border-color: #2e9bd4;
+  background: #2e9bd4;
+}
+
+.route-dest .route-step-dot {
+  border-color: #27ae60;
+  background: #27ae60;
+}
+
+.route-step-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.route-step-label {
+  font-size: 0.73rem;
+  color: #7a9a96;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.route-step-text {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #14232b;
+}
+
+/* ── Event type tag in timeline ─────────────────────────────── */
+.event-type-tag {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 8px;
+  background: rgba(26,155,130,0.10);
+  border: 1px solid rgba(26,155,130,0.25);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1A9B82;
+  letter-spacing: 0.02em;
+}
+
+/* ── 5-node progress adjustments (narrower nodes) ───────────── */
+.track-container .tracking-visual .nodes {
+  justify-content: space-between;
+}
+
+.track-container .tracking-visual .nodes .node {
+  flex: 0 0 auto;
+  width: 18%;
+  max-width: 100px;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .track-status-hero {
+    padding: 16px 16px;
+  }
+
+  .track-status-hero-inner {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .track-status-hero-right {
+    flex-direction: row;
+    align-self: flex-start;
+  }
+
+  .track-quick-strip {
+    flex-direction: column;
+  }
+
+  .qstrip-item {
+    border-right: none;
+    border-bottom: 1px solid #d8eeea;
+  }
+
+  .qstrip-item:last-child {
+    border-bottom: none;
+  }
+
+  .track-details-grid {
+    flex-direction: column;
+  }
+
+  .track-detail-item {
+    flex: 1 1 auto;
+  }
+}
+
