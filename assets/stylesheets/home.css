@@ -863,20 +863,14 @@ section.services-alt .container .heading .toggle button {
    Sharp, precise geometry matching logo's angular language
    ============================================================ */
 
-/* ── Hero: diagonal bottom cut replaces organic wave ── */
-section.hero .custom-shape-divider-bottom-1771138429 {
+/* ── Hero: all bottom dividers removed ── */
+section.hero .custom-shape-divider-bottom-1771138429,
+section.hero .custom-shape-divider-bottom-1771153755,
+section.hero .custom-shape-divider-bottom-1771153943 {
   display: none !important;
 }
 section.hero::after {
-  content: "";
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 72px;
-  background: #fff;
-  clip-path: polygon(0 100%, 100% 0%, 100% 100%);
-  z-index: 89;
+  content: none !important;
 }
 
 /* ── Hero type: Barlow Condensed for max impact ── */

@@ -1905,6 +1905,99 @@ footer .footer-brand { max-width: 1320px !important; }
   }
 }
 
+/* ================================================================
+   WhatsApp Widget — definitive clean state (overrides all prior rules)
+   ================================================================ */
+.rrl-whatsapp-widget {
+  position: fixed !important;
+  right: 24px !important;
+  bottom: 120px !important;
+  z-index: 80 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  min-height: 52px !important;
+  padding: 0 20px 0 8px !important;
+  border-radius: 999px !important;
+  background: #25D366 !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22), 0 2px 8px rgba(0, 0, 0, 0.14) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  isolation: isolate !important;
+}
+
+.rrl-whatsapp-widget:hover,
+.rrl-whatsapp-widget:focus-visible {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.26), 0 4px 12px rgba(0, 0, 0, 0.16) !important;
+  color: #fff !important;
+  background: #20c05a !important;
+}
+
+.rrl-whatsapp-widget__icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 38px !important;
+  height: 38px !important;
+  flex: 0 0 38px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.22) !important;
+  box-shadow: none !important;
+}
+
+.rrl-whatsapp-widget__icon svg {
+  width: 26px !important;
+  height: 26px !important;
+  display: block !important;
+  fill: none !important;
+}
+
+.rrl-whatsapp-widget__icon svg path {
+  fill: #fff !important;
+}
+
+.rrl-whatsapp-widget__icon img {
+  display: none !important;
+}
+
+.rrl-whatsapp-widget__text {
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+}
+
+@media (max-width: 760px) {
+  .rrl-whatsapp-widget {
+    right: 16px !important;
+    bottom: 110px !important;
+    width: 56px !important;
+    min-height: 56px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+  }
+
+  .rrl-whatsapp-widget__icon {
+    width: 42px !important;
+    height: 42px !important;
+    flex: 0 0 42px !important;
+    background: rgba(255, 255, 255, 0.22) !important;
+  }
+
+  .rrl-whatsapp-widget__icon svg {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .rrl-whatsapp-widget__text {
+    display: none !important;
+  }
+}
+
 /* 2026 validation visibility: never let errors inherit ordinary copy styling. */
 :where(.form-errors, .error-message, .field-error, .card-field-error, .profile-error-msg, .profile-inline-error, .wallet-error-msg, .cp-quote-notice.is-error, .promo-feedback.error) {
   color: #b42318 !important;
