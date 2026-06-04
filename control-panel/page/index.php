@@ -943,6 +943,32 @@
             </form>
         </section>
 
+        <!-- Section group dividers (CSS order positions them visually) -->
+        <div class="cp-group-header" id="cpg-tracking">
+            <h3><span class="material-symbols-outlined">package_2</span> Tracking &amp; Events</h3>
+            <p>Add and manage shipment tracking events and status updates.</p>
+        </div>
+        <div class="cp-group-header" id="cpg-payments">
+            <h3><span class="material-symbols-outlined">payments</span> Payments &amp; Exceptions</h3>
+            <p>Review exception payments and manage user payment restrictions.</p>
+        </div>
+        <div class="cp-group-header" id="cpg-comms">
+            <h3><span class="material-symbols-outlined">mail</span> Communications</h3>
+            <p>Send support emails to users.</p>
+        </div>
+        <div class="cp-group-header" id="cpg-records">
+            <h3><span class="material-symbols-outlined">table</span> Data Records</h3>
+            <p>Browse the latest shipments, quotes, proofs, events, and users.</p>
+        </div>
+        <div class="cp-group-header" id="cpg-quote-tools">
+            <h3><span class="material-symbols-outlined">edit_note</span> Quote Tools</h3>
+            <p>Edit or remove service quotes.</p>
+        </div>
+        <div class="cp-group-header cp-group-header-danger" id="cpg-danger">
+            <h3><span class="material-symbols-outlined">warning</span> Danger Zone</h3>
+            <p>Permanent deletions — these actions cannot be undone.</p>
+        </div>
+
     </div>
     <?php include("../../common-sections/footer.html");?>
     <script>

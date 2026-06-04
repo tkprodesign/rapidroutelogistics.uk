@@ -20,7 +20,7 @@ include('./app.php'); // This contains the handler logic
 
             <div class="heading">
                 <span class="auth-logo-wrap">
-                    <img src="/assets/images/branding/transparent/icon-alt.png" alt="Rapid Route Logistics Logo" class="logo">
+                    <img src="/assets/images/branding/transparent/logo.png" alt="Rapid Route Logistics Logo" class="logo">
                 </span>
                 <h2>Forgot Password</h2>
                 <p>Enter your email address or username to receive reset instructions.</p>

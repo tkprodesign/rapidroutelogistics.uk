@@ -1583,6 +1583,22 @@ header .container .left nav ul.pri-nav li a:focus-visible::after {
   display: none;
 }
 
+@media (max-width: 1120px) {
+  .nav-mobile-only {
+    display: list-item !important;
+  }
+  .nav-mobile-divider {
+    height: 1px !important;
+    background: rgba(255,255,255,0.15) !important;
+    margin: 8px 0 !important;
+    padding: 0 !important;
+    pointer-events: none !important;
+  }
+  .nav-mobile-only a {
+    display: block !important;
+  }
+}
+
 footer.footer {
   position: relative;
   overflow: hidden;

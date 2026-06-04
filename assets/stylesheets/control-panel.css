@@ -96,7 +96,77 @@ body {
 
 .content {
   padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
 }
+
+/* ── Section group headers ─────────────────────────────────────────── */
+.cp-group-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 4px 6px;
+  border-top: 2px solid #dde8e5;
+  margin-top: 8px;
+}
+.cp-group-header:first-of-type,
+#cpg-tracking {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+.cp-group-header h3 {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #547068;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cp-group-header h3 .material-symbols-outlined {
+  font-size: 1rem;
+  color: #1A9B82;
+}
+.cp-group-header p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #93aaa5;
+}
+.cp-group-header-danger {
+  border-top-color: #f3d5d5;
+}
+.cp-group-header-danger h3 {
+  color: #b84040;
+}
+.cp-group-header-danger h3 .material-symbols-outlined {
+  color: #b84040;
+}
+
+/* ── Section display order ─────────────────────────────────────────── */
+#cpg-tracking              { order: 5; }
+#cp-add-location-event     { order: 10; }
+#cp-update-shipment-status { order: 20; }
+#cp-update-arrival-date    { order: 30; }
+#cpg-payments              { order: 35; }
+#cp-exception-payments     { order: 40; }
+#cp-user-payment-block     { order: 50; }
+#cpg-comms                 { order: 55; }
+#cp-support-email          { order: 60; }
+#cpg-records               { order: 65; }
+#cp-shipments              { order: 70; }
+#cp-service-quotes         { order: 80; }
+#cp-payment-proofs         { order: 90; }
+#cp-negative-events        { order: 100; }
+#cp-site-users             { order: 110; }
+#cpg-quote-tools           { order: 115; }
+#cp-edit-service-quote     { order: 120; }
+#cp-delete-service-quote   { order: 130; }
+#cpg-danger                { order: 135; }
+#cp-delete-shipment        { order: 140; }
+#cp-delete-site-user       { order: 150; }
 
 .cp-card {
   background: #fff;

@@ -6,70 +6,72 @@ include('./app.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Rapid Route Logistics</title>
+    <title>Reset Password | Rapid Route Logistics</title>
     <link rel="shortcut icon" href="/assets/images/branding/mark-only.png?v=<?php echo time(); ?>" type="image/png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="/assets/stylesheets/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="/assets/stylesheets/forms.css?v=<?php echo time(); ?>">
-    <?php
-    $loginDevMode = (function() {
-        $h = strtolower($_SERVER['HTTP_HOST'] ?? '');
-        return str_contains($h,'replit.dev')||str_contains($h,'replit.app')||str_contains($h,'localhost')||str_contains($h,'127.0.0.1')||$h==='';
-    })();
-    if (!$loginDevMode): ?>
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-    <?php endif; ?>
 </head>
 <body class="login-page">
 
 <section class="form">
     <form method="post" action="">
-        <?php if ($postLoginRedirect !== ''): ?>
-            <input type="hidden" name="redirect" value="<?= htmlspecialchars($postLoginRedirect) ?>">
+        <?php if ($tokenValid): ?>
+            <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
         <?php endif; ?>
-        <?php if ($requiredLogin): ?>
-            <input type="hidden" name="required_login" value="1">
-        <?php endif; ?>
-
         <div class="container">
+
             <div class="heading">
                 <span class="auth-logo-wrap">
                     <img src="/assets/images/branding/transparent/logo.png" alt="Rapid Route Logistics Logo" class="logo">
                 </span>
-                <h2>Welcome</h2>
+                <h2>Reset Password</h2>
+                <?php if ($tokenValid): ?>
+                    <p>Choose a new password for your account.</p>
+                <?php endif; ?>
             </div>
 
             <?php if (!empty($error)): ?>
                 <div class="form-errors">
                     <p><?= htmlspecialchars($error) ?></p>
+                    <p style="margin-top:10px;"><a href="/login/forgot-password/">Request a new reset link</a></p>
+                </div>
+            <?php elseif (!empty($success)): ?>
+                <div class="form-success">
+                    <p><?= $success ?></p>
                 </div>
             <?php endif; ?>
 
+            <?php if ($tokenValid): ?>
             <div class="content">
                 <div class="input-box">
-                    <input type="text" name="username" placeholder="Email or Username*" required>
+                    <input type="password" name="new_password" placeholder="New Password*" required minlength="8">
                 </div>
 
                 <div class="input-box">
-                    <input type="password" name="password" placeholder="Password*" required>
-                    <div class="forgot-link">
-                        <a href="/login/forgot-password/">Forgot Username/Password?</a>
-                    </div>
+                    <input type="password" name="confirm_password" placeholder="Confirm New Password*" required minlength="8">
                 </div>
 
                 <div class="action-box">
-                    <?php if (!$loginDevMode): ?>
-                    <div class="cf-turnstile" data-sitekey="0x4AAAAAACwnvMl9sbRLv3K2"></div>
-                    <?php endif; ?>
                     <button type="submit" class="btn-primary">
-                        Continue
+                        Set New Password
                         <span class="material-symbols-outlined">chevron_right</span>
                     </button>
                     <p class="signup-text">
-                        Don't have a profile? <a href="/signup/">Sign Up</a>
+                        Remember your password? <a href="/login/">Login</a>
                     </p>
                 </div>
             </div>
+            <?php elseif (empty($success)): ?>
+            <div class="content">
+                <div class="action-box">
+                    <p class="signup-text">
+                        <a href="/login/forgot-password/">Request a new password reset link</a>
+                    </p>
+                </div>
+            </div>
+            <?php endif; ?>
+
         </div>
     </form>
 </section>
@@ -77,4 +79,3 @@ include('./app.php');
 <script src="/assets/scripts/forms.js?v=<?php echo time(); ?>" defer></script>
 </body>
 </html>
-
