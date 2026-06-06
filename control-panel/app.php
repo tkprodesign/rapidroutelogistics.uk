@@ -545,7 +545,7 @@ function cp_build_support_email_html(array $paragraphs, string $adminEmail, stri
   .rrl-wrap{padding:16px 8px!important}
   .rrl-card{border-radius:12px!important}
   .rrl-header{padding:22px 24px!important}
-  .rrl-body{padding:28px 24px 20px 24px!important}
+  .rrl-body{padding:28px 24px 24px 24px!important}
   .rrl-footer{padding:18px 24px!important}
   .rrl-logo{width:180px!important;max-width:180px!important}
   .rrl-h1{font-size:22px!important}
@@ -556,7 +556,6 @@ function cp_build_support_email_html(array $paragraphs, string $adminEmail, stri
   .rrl-body{background:#0f1e25!important}
   .rrl-h1{color:#ecf5f2!important}
   .rrl-p{color:#b8ccc9!important}
-  .rrl-msg-panel{background:#0c1a20!important;border-color:#1e3a40!important}
   .rrl-signoff{color:#8aa9a4!important}
   .rrl-footer{background:#09161c!important;border-color:#1e3a40!important}
   .rrl-footer-text{color:#8aa9a4!important}
@@ -576,44 +575,33 @@ function cp_build_support_email_html(array $paragraphs, string $adminEmail, stri
     </a>
   </td></tr>
 
-  <!-- SUBJECT BANNER -->
-  <tr><td style="background:#1A9B82;padding:18px 36px;">
-    <p style="margin:0;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#d4f5ec;font-weight:700;">Support Communication</p>
-  </td></tr>
-
   <!-- BODY -->
-  <tr><td class="rrl-body" style="padding:36px 36px 28px 36px;background:#ffffff;">
-    <h1 class="rrl-h1" style="margin:0 0 8px 0;font-size:24px;line-height:1.25;color:#14232b;font-weight:800;letter-spacing:-0.01em;">' . $safeSubject . '</h1>
-    <p class="rrl-p" style="margin:0 0 28px 0;font-size:13px;color:#7a9490;line-height:1.5;">From the Rapid Route Logistics Support Team</p>
+  <tr><td class="rrl-body" style="padding:36px 36px 32px 36px;background:#ffffff;">
+    <h1 class="rrl-h1" style="margin:0 0 28px 0;font-size:24px;line-height:1.3;color:#14232b;font-weight:800;letter-spacing:-0.01em;border-bottom:2px solid #e8f1ef;padding-bottom:20px;">' . $safeSubject . '</h1>
 
-    <p class="rrl-p" style="margin:0 0 20px 0;font-size:15px;line-height:1.8;color:#2c3e35;">Dear Customer,</p>
-
-    <!-- MESSAGE PANEL -->
-    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 28px 0;">
-    <tr><td class="rrl-msg-panel" style="background:#f3faf7;border:1px solid #cce8df;border-left:4px solid #1A9B82;border-radius:8px;padding:22px 24px;">
 ' . $paragraphsHtml . '
-    <p style="margin:0;font-size:15px;line-height:1.8;color:#2c3e35;font-weight:600;">Warm regards,<br>The Rapid Route Logistics Support Team</p>
-    </td></tr>
-    </table>
 
     <!-- DIVIDER -->
-    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 22px 0;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:28px 0 20px 0;">
     <tr><td style="border-top:1px solid #ddeee8;font-size:0;line-height:0;">&nbsp;</td></tr>
     </table>
 
+    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#14232b;font-weight:700;">Warm regards,</p>
+    <p class="rrl-signoff" style="margin:0 0 24px 0;font-size:14px;line-height:1.6;color:#14232b;">The Rapid Route Logistics Support Team</p>
+
     <p class="rrl-signoff" style="margin:0;font-size:13px;line-height:1.7;color:#60847e;">
-      If you have any questions or require further assistance, please do not hesitate to reply to this email or contact our support team directly at
+      You can reply to this email directly or reach us at
       <a href="mailto:support@rapidroutelogistics.uk" style="color:#1A9B82;text-decoration:none;font-weight:700;">support@rapidroutelogistics.uk</a>.
     </p>
   </td></tr>
 
   <!-- FOOTER -->
-  <tr><td class="rrl-footer" style="background:#f0f8f5;border-top:1px solid #d0e4df;padding:22px 36px;">
+  <tr><td class="rrl-footer" style="background:#f0f8f5;border-top:1px solid #d0e4df;padding:20px 36px;">
     <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
     <tr>
       <td style="vertical-align:middle;">
-        <p class="rrl-footer-text" style="margin:0 0 4px 0;font-size:12px;line-height:1.6;color:#5a7a74;font-weight:700;">Rapid Route Logistics</p>
-        <p class="rrl-footer-text" style="margin:0;font-size:11px;line-height:1.6;color:#7a9490;">Secure, fast &amp; reliable delivery operations</p>
+        <p class="rrl-footer-text" style="margin:0 0 3px 0;font-size:12px;line-height:1.5;color:#5a7a74;font-weight:700;">Rapid Route Logistics</p>
+        <p class="rrl-footer-text" style="margin:0;font-size:11px;line-height:1.5;color:#7a9490;">Secure, fast &amp; reliable delivery operations</p>
       </td>
       <td align="right" style="vertical-align:middle;">
         <a href="https://rapidroutelogistics.uk/" class="rrl-footer-link" style="font-size:11px;color:#1A9B82;text-decoration:none;font-weight:700;">rapidroutelogistics.uk</a>
@@ -622,7 +610,7 @@ function cp_build_support_email_html(array $paragraphs, string $adminEmail, stri
     </table>
     <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:14px;">
     <tr><td style="border-top:1px solid #d0e4df;padding-top:14px;">
-      <p class="rrl-footer-text" style="margin:0;font-size:10px;line-height:1.6;color:#9bb5b0;">&copy; ' . $year . ' Rapid Route Logistics. All rights reserved. This email was sent as a customer support communication. Please do not reply directly to this message.</p>
+      <p class="rrl-footer-text" style="margin:0;font-size:10px;line-height:1.6;color:#9bb5b0;">&copy; ' . $year . ' Rapid Route Logistics. All rights reserved.</p>
     </td></tr>
     </table>
   </td></tr>
