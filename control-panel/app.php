@@ -517,19 +517,19 @@ function cp_send_resend_html_email(string $toEmail, string $subject, string $htm
     return ['ok' => true, 'response' => $response];
 }
 
-function cp_build_support_email_html(array $paragraphs, string $adminEmail): string {
-    $safeAdmin = htmlspecialchars($adminEmail, ENT_QUOTES, 'UTF-8');
+function cp_build_support_email_html(array $paragraphs, string $adminEmail, string $subject = ''): string {
     $year = date('Y');
+    $safeSubject = htmlspecialchars($subject !== '' ? $subject : 'A message from our Support Team', ENT_QUOTES, 'UTF-8');
 
     $paragraphsHtml = '';
     foreach ($paragraphs as $para) {
         $para = trim((string)$para);
         if ($para === '') continue;
         $safePara = nl2br(htmlspecialchars($para, ENT_QUOTES, 'UTF-8'));
-        $paragraphsHtml .= '<p style="margin:0 0 18px 0;font-size:15px;line-height:1.75;color:#344743;">' . $safePara . '</p>';
+        $paragraphsHtml .= '<p style="margin:0 0 20px 0;font-size:15px;line-height:1.8;color:#2c3e35;">' . $safePara . '</p>';
     }
     if ($paragraphsHtml === '') {
-        $paragraphsHtml = '<p style="margin:0;font-size:15px;line-height:1.75;color:#344743;">(No message content)</p>';
+        $paragraphsHtml = '<p style="margin:0;font-size:15px;line-height:1.8;color:#2c3e35;">(No message content)</p>';
     }
 
     return '<!doctype html>
@@ -539,30 +539,94 @@ function cp_build_support_email_html(array $paragraphs, string $adminEmail): str
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 <meta name="supported-color-schemes" content="light dark">
-<title>Rapid Route Logistics Support</title>
+<title>' . $safeSubject . '</title>
 <style>
-@media only screen and (max-width:640px){.rrl-wrapper{padding:18px 12px!important}.rrl-card{width:100%!important}.rrl-header,.rrl-content,.rrl-footer{padding-left:22px!important;padding-right:22px!important}.rrl-title{font-size:24px!important}}
-@media (prefers-color-scheme:dark){.rrl-wrapper{background:#071318!important}.rrl-card{background:#101f27!important;border-color:#1f3d45!important}.rrl-content{background:#101f27!important}.rrl-title{color:#f7fbfb!important}.rrl-copy{color:#c5d4d2!important}.rrl-footer{background:#0b181f!important;border-color:#224a50!important}.rrl-footer-copy{color:#c5d4d2!important}}
+@media only screen and (max-width:600px){
+  .rrl-wrap{padding:16px 8px!important}
+  .rrl-card{border-radius:12px!important}
+  .rrl-header{padding:22px 24px!important}
+  .rrl-body{padding:28px 24px 20px 24px!important}
+  .rrl-footer{padding:18px 24px!important}
+  .rrl-logo{width:180px!important;max-width:180px!important}
+  .rrl-h1{font-size:22px!important}
+}
+@media (prefers-color-scheme:dark){
+  .rrl-wrap{background:#071318!important}
+  .rrl-card{background:#0f1e25!important;border-color:#1e3a40!important}
+  .rrl-body{background:#0f1e25!important}
+  .rrl-h1{color:#ecf5f2!important}
+  .rrl-p{color:#b8ccc9!important}
+  .rrl-msg-panel{background:#0c1a20!important;border-color:#1e3a40!important}
+  .rrl-signoff{color:#8aa9a4!important}
+  .rrl-footer{background:#09161c!important;border-color:#1e3a40!important}
+  .rrl-footer-text{color:#8aa9a4!important}
+  .rrl-footer-link{color:#1ec9a4!important}
+}
 </style>
 </head>
-<body style="margin:0;padding:0;background:#eef4f2;font-family:Arial,Helvetica,sans-serif;color:#14232b;-webkit-text-size-adjust:100%;text-size-adjust:100%;">
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="rrl-wrapper" style="background:#eef4f2;padding:32px 16px;">
+<body style="margin:0;padding:0;background:#e8f1ef;font-family:Arial,Helvetica,sans-serif;color:#14232b;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="rrl-wrap" style="background:#e8f1ef;padding:36px 16px;">
 <tr><td align="center">
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="640" class="rrl-card" style="width:640px;max-width:640px;background:#ffffff;border:1px solid #dbe7e4;border-radius:18px;overflow:hidden;box-shadow:0 18px 48px rgba(20,35,43,0.12);">
-<tr><td class="rrl-header" style="background:#14232b;padding:26px 34px;border-bottom:4px solid #1A9B82;">
-<a href="https://rapidroutelogistics.uk/" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;">
-<img src="https://rapidroutelogistics.uk/assets/images/branding/transparent/logo-alt.png" alt="Rapid Route Logistics" width="230" style="display:block;border:0;max-width:230px;width:230px;height:auto;color:#ffffff;font-size:18px;font-weight:bold;">
-</a>
-</td></tr>
-<tr><td class="rrl-content" style="padding:34px 40px 28px 40px;background:#ffffff;">
-<h1 class="rrl-title" style="margin:0 0 20px 0;font-size:28px;line-height:1.2;color:#14232b;font-family:Arial,Helvetica,sans-serif;font-weight:800;letter-spacing:-0.01em;">Support Message</h1>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" class="rrl-card" style="width:600px;max-width:600px;background:#ffffff;border:1px solid #d0e4df;border-radius:16px;overflow:hidden;box-shadow:0 12px 40px rgba(20,35,43,0.10);">
+
+  <!-- HEADER -->
+  <tr><td class="rrl-header" style="background:#14232b;padding:28px 36px;border-bottom:4px solid #1A9B82;">
+    <a href="https://rapidroutelogistics.uk/" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;">
+      <img src="https://rapidroutelogistics.uk/assets/images/branding/transparent/logo-alt.png" alt="Rapid Route Logistics" width="210" class="rrl-logo" style="display:block;border:0;width:210px;max-width:210px;height:auto;">
+    </a>
+  </td></tr>
+
+  <!-- SUBJECT BANNER -->
+  <tr><td style="background:#1A9B82;padding:18px 36px;">
+    <p style="margin:0;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#d4f5ec;font-weight:700;">Support Communication</p>
+  </td></tr>
+
+  <!-- BODY -->
+  <tr><td class="rrl-body" style="padding:36px 36px 28px 36px;background:#ffffff;">
+    <h1 class="rrl-h1" style="margin:0 0 8px 0;font-size:24px;line-height:1.25;color:#14232b;font-weight:800;letter-spacing:-0.01em;">' . $safeSubject . '</h1>
+    <p class="rrl-p" style="margin:0 0 28px 0;font-size:13px;color:#7a9490;line-height:1.5;">From the Rapid Route Logistics Support Team</p>
+
+    <p class="rrl-p" style="margin:0 0 20px 0;font-size:15px;line-height:1.8;color:#2c3e35;">Dear Customer,</p>
+
+    <!-- MESSAGE PANEL -->
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 28px 0;">
+    <tr><td class="rrl-msg-panel" style="background:#f3faf7;border:1px solid #cce8df;border-left:4px solid #1A9B82;border-radius:8px;padding:22px 24px;">
 ' . $paragraphsHtml . '
-<p style="margin:28px 0 0 0;font-size:13px;color:#60716f;">This message was sent by: <strong style="color:#14232b;">' . $safeAdmin . '</strong></p>
-</td></tr>
-<tr><td class="rrl-footer" style="background:#f6faf9;border-top:1px solid #dbe7e4;padding:22px 34px;">
-<p class="rrl-footer-copy" style="margin:0 0 8px 0;font-size:12px;line-height:1.6;color:#60716f;">Need help? Contact <a href="mailto:support@rapidroutelogistics.uk" style="color:#1A9B82;text-decoration:none;font-weight:bold;">support@rapidroutelogistics.uk</a>.</p>
-<p class="rrl-footer-copy" style="margin:0;font-size:11px;line-height:1.6;color:#7b8a88;">&copy; ' . $year . ' Rapid Route Logistics. Please do not reply to this email.</p>
-</td></tr>
+    <p style="margin:0;font-size:15px;line-height:1.8;color:#2c3e35;font-weight:600;">Warm regards,<br>The Rapid Route Logistics Support Team</p>
+    </td></tr>
+    </table>
+
+    <!-- DIVIDER -->
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 22px 0;">
+    <tr><td style="border-top:1px solid #ddeee8;font-size:0;line-height:0;">&nbsp;</td></tr>
+    </table>
+
+    <p class="rrl-signoff" style="margin:0;font-size:13px;line-height:1.7;color:#60847e;">
+      If you have any questions or require further assistance, please do not hesitate to reply to this email or contact our support team directly at
+      <a href="mailto:support@rapidroutelogistics.uk" style="color:#1A9B82;text-decoration:none;font-weight:700;">support@rapidroutelogistics.uk</a>.
+    </p>
+  </td></tr>
+
+  <!-- FOOTER -->
+  <tr><td class="rrl-footer" style="background:#f0f8f5;border-top:1px solid #d0e4df;padding:22px 36px;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+      <td style="vertical-align:middle;">
+        <p class="rrl-footer-text" style="margin:0 0 4px 0;font-size:12px;line-height:1.6;color:#5a7a74;font-weight:700;">Rapid Route Logistics</p>
+        <p class="rrl-footer-text" style="margin:0;font-size:11px;line-height:1.6;color:#7a9490;">Secure, fast &amp; reliable delivery operations</p>
+      </td>
+      <td align="right" style="vertical-align:middle;">
+        <a href="https://rapidroutelogistics.uk/" class="rrl-footer-link" style="font-size:11px;color:#1A9B82;text-decoration:none;font-weight:700;">rapidroutelogistics.uk</a>
+      </td>
+    </tr>
+    </table>
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:14px;">
+    <tr><td style="border-top:1px solid #d0e4df;padding-top:14px;">
+      <p class="rrl-footer-text" style="margin:0;font-size:10px;line-height:1.6;color:#9bb5b0;">&copy; ' . $year . ' Rapid Route Logistics. All rights reserved. This email was sent as a customer support communication. Please do not reply directly to this message.</p>
+    </td></tr>
+    </table>
+  </td></tr>
+
 </table>
 </td></tr>
 </table>
@@ -588,7 +652,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['send_support_email']) 
         $cp_support_email_notice = 'At least one paragraph is required.';
         $cp_support_email_notice_type = 'error';
     } else {
-        $html = cp_build_support_email_html($paragraphs, $cookieEmail);
+        $html = cp_build_support_email_html($paragraphs, $cookieEmail, $subject);
         $sent = cp_send_smtp_html_email($receiverEmail, 'support@rapidroutelogistics.uk', $subject, $html);
         if ($sent) {
             $cp_support_email_notice = 'Support email sent successfully.';
