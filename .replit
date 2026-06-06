@@ -42,3 +42,11 @@ outputType = "webview"
 [deployment]
 deploymentTarget = "autoscale"
 run = ["bash", "start.sh"]
+
+[userenv]
+
+[userenv.shared]
+DATABASE_HOST = "127.0.0.1"
+DATABASE_NAME = "logistics_db"
+DATABASE_USERNAME = "logistics_user"
+DATABASE_PASSWORD = "local_dev_password"
