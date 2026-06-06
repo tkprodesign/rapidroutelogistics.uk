@@ -338,7 +338,7 @@
             <div class="cp-card-head">
                 <div>
                     <h2>Send Support Email</h2>
-                    <p>Send styled support emails via Resend from support@rapidroutelogistics.uk</p>
+                    <p>Send styled support emails via SMTP from support@rapidroutelogistics.uk</p>
                 </div>
             </div>
             <?php if (!empty($cp_support_email_notice)): ?>
@@ -357,8 +357,20 @@
                         <input id="support_subject" type="text" name="support_subject" required>
                     </div>
                     <div class="cp-quote-grid-wide">
-                        <label for="support_message">Message</label>
-                        <textarea id="support_message" name="support_message" rows="6" required></textarea>
+                        <label for="support_para_1">Paragraph 1 <span style="font-weight:400;color:#60716f;">(required)</span></label>
+                        <textarea id="support_para_1" name="support_paragraphs[]" rows="4" required></textarea>
+                    </div>
+                    <div class="cp-quote-grid-wide">
+                        <label for="support_para_2">Paragraph 2 <span style="font-weight:400;color:#60716f;">(optional)</span></label>
+                        <textarea id="support_para_2" name="support_paragraphs[]" rows="4"></textarea>
+                    </div>
+                    <div class="cp-quote-grid-wide">
+                        <label for="support_para_3">Paragraph 3 <span style="font-weight:400;color:#60716f;">(optional)</span></label>
+                        <textarea id="support_para_3" name="support_paragraphs[]" rows="4"></textarea>
+                    </div>
+                    <div class="cp-quote-grid-wide">
+                        <label for="support_para_4">Paragraph 4 <span style="font-weight:400;color:#60716f;">(optional)</span></label>
+                        <textarea id="support_para_4" name="support_paragraphs[]" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="cp-quote-actions">
