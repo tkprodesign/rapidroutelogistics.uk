@@ -86,7 +86,7 @@ section.hero .hero-animation {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: 10;
   overflow: hidden;
   transform-style: preserve-3d;
 }
@@ -177,7 +177,7 @@ section.hero .swiper .swiper-wrapper .swiper-slide .dark-bg {
   z-index: 0;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .content {
-  z-index: 1;
+  z-index: 20;
   padding: 40px 0;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide.hero-1 {
