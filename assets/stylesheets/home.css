@@ -90,6 +90,10 @@ section.hero .hero-animation {
   overflow: hidden;
   transform-style: preserve-3d;
 }
+section.hero .swiper {
+  position: relative;
+  z-index: 1;
+}
 section.hero .hero-animation::before {
   content: "";
   position: absolute;
@@ -715,62 +719,6 @@ section:not(.hero) .container {
 
 section:not(.hero) .container .heading {
   margin: 56px auto 3.5rem;
-}
-
-section.hero .swiper .swiper-wrapper {
-  height: 760px;
-  max-height: 760px;
-}
-
-section.hero .swiper .swiper-wrapper .swiper-slide .dark-bg {
-  background: linear-gradient(90deg, rgba(6, 16, 40, 0.84) 0%, rgba(6, 16, 40, 0.64) 45%, rgba(6, 16, 40, 0.46) 100%);
-}
-
-section.hero .swiper .swiper-wrapper .swiper-slide .container {
-  padding-top: 0px;
-}
-
-section.hero .swiper .swiper-wrapper .swiper-slide .heading {
-  max-width: 920px;
-  margin: 0 0 28px 0;
-}
-
-section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading {
-  font-size: clamp(38px, 5.2vw, 64px);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  max-width: 13.5ch;
-}
-
-section.hero .swiper .swiper-wrapper .swiper-slide .heading .sub-heading {
-  font-size: 18px;
-  max-width: 620px;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a {
-  max-width: 720px;
-  gap: 12px;
-}
-
-section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box {
-  width: 100%;
-}
-
-section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box input {
-  min-height: 58px;
-  padding: 18px 18px 18px 16px;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 16px 32px rgba(8, 16, 40, 0.2);
-}
-
-section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .pri {
-  min-height: 58px;
-  padding: 0 24px;
-  border-radius: 16px;
-  font-weight: 700;
-  box-shadow: 0 16px 32px rgba(8, 16, 40, 0.22);
 }
 
 section.why-choose-us .container .content {
@@ -1675,97 +1623,7 @@ section.services-alt .container .content .g2 .col.service-tile:focus-within .ser
   }
 }
 
-/* ================================================================
-   2026 Homepage Audit Refinement — lightweight luxury layout
-   ================================================================ */
-section.hero .swiper { position: relative; overflow: hidden; background: #07141a; }
-section.hero .swiper .swiper-wrapper {
-  position: relative !important;
-  width: 100% !important;
-  height: clamp(680px, 82vh, 880px) !important;
-  max-height: none !important;
-}
-section.hero .swiper .swiper-wrapper .swiper-slide {
-  position: absolute !important;
-  inset: 0;
-  width: 100% !important;
-  opacity: 0;
-  visibility: hidden;
-  transform: none;
-  transition: none;
-  pointer-events: none;
-}
-section.hero .swiper .swiper-wrapper .swiper-slide.is-active {
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-  pointer-events: auto;
-}
-section.hero .swiper .swiper-wrapper .swiper-slide .dark-bg {
-  background:
-    linear-gradient(90deg, rgba(5,16,22,.86) 0%, rgba(8,22,30,.70) 44%, rgba(8,22,30,.40) 100%),
-    linear-gradient(180deg, rgba(5,16,22,.12), rgba(5,16,22,.55)) !important;
-}
-section.hero .swiper .swiper-wrapper .swiper-slide .container {
-  width: min(1320px, calc(100% - 64px));
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-bottom: 92px;
-}
-section.hero .swiper .swiper-wrapper .swiper-slide .heading {
-  margin: 0 0 34px 0 !important;
-  max-width: 780px !important;
-}
-section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading {
-  font-size: clamp(64px, 7vw, 104px) !important;
-  line-height: .92 !important;
-  letter-spacing: -0.045em !important;
-  text-wrap: balance;
-}
-section.hero .swiper .swiper-wrapper .swiper-slide .heading .sub-heading {
-  max-width: 660px;
-  color: rgba(255,255,255,.82);
-  font-size: clamp(18px, 1.4vw, 22px) !important;
-}
-section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a {
-  max-width: 720px;
-  padding: 10px;
-  gap: 10px !important;
-  border-radius: 999px;
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.16);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
-section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box { width: 100% !important; }
-section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box input {
-  min-height: 64px;
-  border-radius: 999px !important;
-  padding: 0 26px !important;
-  font-size: 18px;
-}
-section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .pri {
-  min-width: 188px;
-  min-height: 64px;
-  border: 0;
-  color: #fff !important;
-  background: linear-gradient(135deg, #14977f, #22b496) !important;
-  box-shadow: 0 20px 46px rgba(20,151,127,.30);
-}
-.premium-scene,
-.premium-scene::before,
-section.services-alt .container .content .g1 .col.service-tile,
-section.services-alt .container .content .g2 .col.service-tile,
-section.services-alt .container .content .g1 .col.service-tile .service-media img,
-section.services-alt .container .content .g2 .col.service-tile .service-media img,
-section.services-alt .container .content .g1 .col.service-tile .service-copy,
-section.services-alt .container .content .g2 .col.service-tile .service-copy {
-  transform: none !important;
-  opacity: 1 !important;
-  will-change: auto !important;
-}
+/* Duplicate hero refinement styles removed to prevent layout conflicts and preserve the active hero design. */
 .premium-scene::before { display: none !important; }
 section.services-alt .container .content { perspective: none !important; }
 section.services-alt .container .content .g1 .col.service-tile,
@@ -1804,6 +1662,116 @@ section.services-alt .container .content .g2 .col.service-tile .service-media im
   section:not(.hero) .container .heading { margin: 48px auto 2.25rem !important; }
 }
 
+/* Hero layout override to prevent older fixed-size overrides from distorting the premium hero. */
+section.hero {
+  min-height: calc(100vh - 96px) !important;
+  height: auto !important;
+}
+section.hero .swiper {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+section.hero .swiper .swiper-wrapper {
+  width: 100% !important;
+  min-height: calc(100vh - 96px) !important;
+  height: auto !important;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  min-height: calc(100vh - 96px) !important;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .container {
+  position: relative !important;
+  z-index: 2 !important;
+  width: min(1320px, calc(100% - 64px)) !important;
+  padding-bottom: clamp(82px, 10vh, 116px) !important;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .heading {
+  margin-bottom: clamp(18px, 2.3vh, 30px) !important;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading {
+  font-size: clamp(58px, 6.2vw, 96px) !important;
+  line-height: .95 !important;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a {
+  max-width: 720px !important;
+}
+
+@media (min-width: 761px) {
+  section.hero .swiper .swiper-wrapper {
+    min-height: calc(100svh - 86px) !important;
+    height: calc(100svh - 86px) !important;
+  }
+  section.hero .swiper .swiper-wrapper .swiper-slide {
+    min-height: calc(100svh - 86px) !important;
+  }
+}
+
+@media (max-width: 959px) {
+  section.hero .swiper .swiper-wrapper {
+    height: 680px !important;
+    max-height: 680px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  section.hero .swiper .swiper-wrapper {
+    height: calc(100svh - 82px) !important;
+    min-height: 650px !important;
+  }
+}
+
+/* Strong hero layout normalization to prevent stale slide positioning and height overrides. */
+section.hero {
+  position: relative !important;
+  overflow: hidden !important;
+  min-height: calc(100vh - 96px) !important;
+  height: auto !important;
+}
+section.hero .swiper {
+  position: relative !important;
+  z-index: 1 !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+section.hero .swiper .swiper-wrapper {
+  position: relative !important;
+  width: 100% !important;
+  min-height: calc(100vh - 96px) !important;
+  height: auto !important;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  min-height: calc(100vh - 96px) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .container {
+  position: relative !important;
+  z-index: 2 !important;
+  width: min(1320px, calc(100% - 64px)) !important;
+  padding-bottom: clamp(82px, 10vh, 116px) !important;
+}
+section.hero .hero-animation {
+  z-index: 0 !important;
+}
+section.hero .hero-animation + .custom-shape-divider-bottom-1771138429,
+section.hero .hero-animation + .custom-shape-divider-bottom-1771153755,
+section.hero .hero-animation + .custom-shape-divider-bottom-1771153943 {
+  z-index: 1 !important;
+}
 
 /* ================================================================
    CINEMATIC STORY SECTION — How We Work
