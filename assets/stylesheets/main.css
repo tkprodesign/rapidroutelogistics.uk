@@ -18,33 +18,20 @@ a {
   color: inherit;
 }
 
-:root {
-  --page-bg: #f7f9fb;
-  --surface: rgba(255,255,255,0.88);
-  --surface-strong: rgba(16, 24, 33, 0.92);
-  --text-primary: #111827;
-  --text-muted: #4b5563;
-  --accent: #1A9B82;
-  --accent-strong: #0b6e57;
-  --accent-soft: rgba(26, 155, 130, 0.16);
-  --shadow-light: 0 24px 80px rgba(16, 24, 40, 0.08);
-  --shadow-soft: 0 8px 30px rgba(16, 24, 40, 0.05);
-  --btn-height: 52px;
-  --btn-height-compact: 42px;
-  --btn-radius-pill: 999px;
-  --btn-font-size: 0.98rem;
-  --max-content-width: 1320px;
-  --section-gap: 5rem;
-}
-
 body {
-  background: radial-gradient(circle at top, rgba(26,155,130,0.08), transparent 26%), #f7f9fb;
-  color: var(--text-primary);
-  font-family: "Inter", "Roboto", "Arial", sans-serif;
+  background: #fff;
+  color: #121212;
+  font-family: "roboto", "roboto-fallback", "tahoma", "helvetica", "arial", "sans-serif";
   position: relative;
   max-width: 100%;
   overflow-x: hidden;
-  min-height: 100vh;
+}
+
+:root {
+  --btn-height: 46px;
+  --btn-height-compact: 38px;
+  --btn-radius-pill: 999px;
+  --btn-font-size: 0.95rem;
 }
 
 .container {
@@ -251,56 +238,11 @@ header .container .left nav ul a:hover {
 header .container .left nav ul a.active {
   color: #1A9B82;
 }
-header.scrolled {
-  background: rgba(255,255,255,0.96);
-  box-shadow: 0 14px 42px rgba(15, 23, 42, 0.08);
-}
 header .container .left nav .tel {
   text-decoration: none;
   color: #1A9B82;
   font-size: 20px;
   font-weight: 600;
-}
-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(255,255,255,0.82);
-  backdrop-filter: blur(18px);
-  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.06);
-  padding: 14px 0;
-  transition: background 0.25s ease, padding 0.25s ease, box-shadow 0.25s ease;
-}
-header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-}
-header .container .left #logo img {
-  height: 50px;
-}
-header .container .left nav ul {
-  display: flex;
-  list-style: none;
-  gap: 32px;
-  align-items: center;
-}
-header .container .left nav ul a {
-  color: var(--text-primary);
-  font-size: 0.95rem;
-  letter-spacing: 0.01em;
-  transition: color 0.25s ease;
-}
-header .container .right .cta .dtp {
-  background: var(--accent);
-  color: #fff;
-  padding: 12px 26px;
-  border-radius: 999px;
-  box-shadow: 0 16px 30px rgba(26, 155, 130, 0.18);
-}
-header .container .right .cta .dtp:hover {
-  background: var(--accent-strong);
 }
 header .container .right {
   position: relative;
