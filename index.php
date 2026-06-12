@@ -23,17 +23,6 @@ include('./app.php');
 <body>
 <?php include("common-sections/header.html"); ?>
 <section class="hero premium-scene" data-premium-scene="hero">
-    <div class="hero-animation" aria-hidden="true">
-        <div class="hero-animation__grid"></div>
-        <div class="hero-animation__nodes">
-            <span class="hero-node hero-node--1"></span>
-            <span class="hero-node hero-node--2"></span>
-            <span class="hero-node hero-node--3"></span>
-            <span class="hero-node hero-node--4"></span>
-            <span class="hero-node hero-node--5"></span>
-            <span class="hero-node hero-node--6"></span>
-        </div>
-    </div>
     <!-- DESKTOP CURVE -->
     <div class="custom-shape-divider-bottom-1771138429">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">

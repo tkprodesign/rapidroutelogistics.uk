@@ -37,29 +37,22 @@ section.hero .custom-shape-divider-bottom-1771153755 svg {
   width: calc(171% + 1.3px);
   height: 70px;
 }
-section.hero {
-  position: relative;
-  overflow: hidden;
-  min-height: calc(100vh - 96px);
-}
 section.hero .swiper {
   width: 100%;
   overflow: hidden;
-  position: relative;
-  z-index: 1;
 }
 section.hero .swiper .swiper-wrapper {
   width: 100%;
-  min-height: calc(100vh - 96px);
-  height: auto;
+  height: 80vh;
+  max-height: auto;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide {
   width: 100%;
   max-width: 100%;
-  min-height: calc(100vh - 96px);
+  min-height: auto;
   display: flex;
   flex-direction: column;
-  height: auto;
+  height: 100%;
   align-items: center;
   position: relative;
 }

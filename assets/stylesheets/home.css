@@ -44,7 +44,6 @@ section:not(.hero) .container .heading-1-1 h2::after {
 section.hero {
   position: relative;
   overflow: hidden;
-  min-height: calc(100vh - 96px);
 }
 section.hero .custom-shape-divider-bottom-1771153755, section.hero .custom-shape-divider-bottom-1771153943 {
   display: none;
@@ -82,94 +81,21 @@ section.hero .custom-shape-divider-bottom-1771138429 svg {
   height: 192px;
   z-index: 89;
 }
-section.hero .hero-animation {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-  transform-style: preserve-3d;
-}
-section.hero .swiper {
-  position: relative;
-  z-index: 1;
-}
-section.hero .hero-animation::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 20% 20%, rgba(26, 155, 130, 0.18), transparent 18%), radial-gradient(circle at 82% 12%, rgba(45, 212, 191, 0.14), transparent 20%), radial-gradient(circle at 50% 85%, rgba(255, 255, 255, 0.14), transparent 18%);
-  opacity: 0.95;
-}
-section.hero .hero-animation__grid {
-  position: absolute;
-  inset: 0;
-  background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
-  background-size: 120px 120px;
-  opacity: 0.55;
-  transform: translateZ(-40px) scale(1.05);
-}
-section.hero .hero-animation__nodes {
-  position: absolute;
-  inset: 0;
-}
-section.hero .hero-node {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.96), rgba(26,155,130,0.95));
-  box-shadow: 0 0 30px rgba(26,155,130,0.35);
-  animation: hero-node-pop 12s ease-in-out infinite alternate;
-}
-section.hero .hero-node::after {
-  content: "";
-  position: absolute;
-  inset: -12px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(26,155,130,0.22), transparent 55%);
-}
-section.hero .hero-node--1 { top: 22%; left: 16%; animation-delay: 0s; }
-section.hero .hero-node--2 { top: 12%; right: 18%; animation-delay: 2s; }
-section.hero .hero-node--3 { top: 48%; left: 10%; animation-delay: 5s; }
-section.hero .hero-node--4 { top: 42%; right: 22%; animation-delay: 1.7s; }
-section.hero .hero-node--5 { bottom: 22%; left: 18%; animation-delay: 3.2s; }
-section.hero .hero-node--6 { bottom: 18%; right: 14%; animation-delay: 4.5s; }
-section.hero .hero-node::before {
-  content: "";
-  position: absolute;
-  inset: 50%;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.35);
-  transform: translate(-50%, -50%) scale(0.42);
-}
-section.hero .hero-animation .hero-node {
-  animation: hero-node-float 10s ease-in-out infinite alternate;
-}
-@keyframes hero-node-float {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  33% { transform: translate3d(12px, -10px, 18px) scale(1.05); }
-  66% { transform: translate3d(-14px, 14px, -10px) scale(0.95); }
-  100% { transform: translate3d(0, -6px, 0) scale(1); }
-}
-@keyframes hero-node-pop {
-  0% { transform: scale(0.88); opacity: 0.85; }
-  100% { transform: scale(1.05); opacity: 1; }
-}
 section.hero .swiper {
   width: 100%;
   overflow: hidden;
 }
 section.hero .swiper .swiper-wrapper {
   width: 100%;
-  min-height: calc(100vh - 96px);
+  height: 920px;
+  max-height: 920px;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide {
   width: 100%;
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 96px);
+  height: 100%;
   align-items: center;
   position: relative;
 }
@@ -177,11 +103,11 @@ section.hero .swiper .swiper-wrapper .swiper-slide .dark-bg {
   height: 100%;
   width: 100%;
   position: absolute;
-  background: linear-gradient(180deg, rgba(12, 18, 26, 0.8), rgba(12, 18, 26, 0.42));
+  background-color: rgba(17, 17, 17, 0.6);
   z-index: 0;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .content {
-  z-index: 20;
+  z-index: 1;
   padding: 40px 0;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide.hero-1 {
@@ -189,90 +115,75 @@ section.hero .swiper .swiper-wrapper .swiper-slide.hero-1 {
   position: relative;
   background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide.hero-2 {
   background: url("/assets/images/home/mc5.jpg");
-  background-position: center;
+  background-position: right 40% center;
   background-size: cover;
-  background-repeat: no-repeat;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .container {
-  z-index: 2;
+  z-index: 1;
   position: relative;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .heading {
   color: #fff;
-  margin: 80px auto 32px 0;
-  max-width: 760px;
+  margin: 60px auto 24px 0;
+  max-width: 850px;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .heading .pre-heading {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
-  margin-bottom: 18px;
-  color: rgba(255,255,255,0.82);
+  margin-bottom: 16px;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading {
-  font-size: clamp(3.4rem, 6vw, 5.4rem);
-  margin-bottom: 28px;
-  font-weight: 800;
-  line-height: 0.98;
-  letter-spacing: -0.04em;
-  max-width: 760px;
+  font-size: 64px;
+  margin-bottom: 24px;
+  font-weight: 700;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading .accent {
-  color: #22B496;
+  color: #1A9B82;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .heading .sub-heading {
-  font-size: 1.18rem;
+  font-size: 20px;
   font-weight: 500;
-  line-height: 1.6;
-  max-width: 680px;
-  color: rgba(255,255,255,0.92);
+  line-height: 150%;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a {
   display: flex;
-  flex-wrap: wrap;
   gap: 16px;
-  align-items: center;
   font-weight: 600;
   text-transform: capitalize;
   width: 100%;
-  max-width: 840px;
-  margin-top: 28px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 999px;
-  padding: 16px;
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.18);
-  backdrop-filter: blur(20px);
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box {
-  width: clamp(250px, 55%, 420px);
+  width: 60%;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box input {
   color: #121212;
-  padding: 18px 24px 18px 14px;
-  border-radius: 24px;
-  background: rgba(255,255,255,0.96);
+  padding: 16px 32px 16px 12px;
+  border-radius: 4px;
+  background: #fff;
   width: 100%;
-  border: 1px solid rgba(255,255,255,0.28);
+  border: none;
+  outline: none;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box input:focus {
+  border: none;
+  outline: none;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .pri {
-  color: #fff;
-  background: linear-gradient(135deg, #1A9B82, #15a87d);
+  color: #121212;
+  background: #1A9B82;
   display: flex;
   align-items: center;
-  padding: 16px 30px;
-  border-radius: 999px;
-  transition: transform 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.22);
+  padding: 10px 24px;
+  border-radius: 40px;
+  display: flex;
+  transition: all 0.25s ease;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .pri:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.04);
+  background-color: #22B496;
 }
 section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .sec {
   color: #fff;
@@ -281,7 +192,7 @@ section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .sec {
   padding: 0 32px;
   display: inline-flex;
   align-items: center;
-  background-color: rgba(20, 35, 43, 0.85);
+  background-color: #14232b;
 }
 
 section.ups-branch-context .container .ups-branch-card {
@@ -719,6 +630,62 @@ section:not(.hero) .container {
 
 section:not(.hero) .container .heading {
   margin: 56px auto 3.5rem;
+}
+
+section.hero .swiper .swiper-wrapper {
+  height: 760px;
+  max-height: 760px;
+}
+
+section.hero .swiper .swiper-wrapper .swiper-slide .dark-bg {
+  background: linear-gradient(90deg, rgba(6, 16, 40, 0.84) 0%, rgba(6, 16, 40, 0.64) 45%, rgba(6, 16, 40, 0.46) 100%);
+}
+
+section.hero .swiper .swiper-wrapper .swiper-slide .container {
+  padding-top: 0px;
+}
+
+section.hero .swiper .swiper-wrapper .swiper-slide .heading {
+  max-width: 920px;
+  margin: 0 0 28px 0;
+}
+
+section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading {
+  font-size: clamp(38px, 5.2vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  max-width: 13.5ch;
+}
+
+section.hero .swiper .swiper-wrapper .swiper-slide .heading .sub-heading {
+  font-size: 18px;
+  max-width: 620px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a {
+  max-width: 720px;
+  gap: 12px;
+}
+
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box {
+  width: 100%;
+}
+
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box input {
+  min-height: 58px;
+  padding: 18px 18px 18px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 16px 32px rgba(8, 16, 40, 0.2);
+}
+
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .pri {
+  min-height: 58px;
+  padding: 0 24px;
+  border-radius: 16px;
+  font-weight: 700;
+  box-shadow: 0 16px 32px rgba(8, 16, 40, 0.22);
 }
 
 section.why-choose-us .container .content {
@@ -1623,7 +1590,97 @@ section.services-alt .container .content .g2 .col.service-tile:focus-within .ser
   }
 }
 
-/* Duplicate hero refinement styles removed to prevent layout conflicts and preserve the active hero design. */
+/* ================================================================
+   2026 Homepage Audit Refinement — lightweight luxury layout
+   ================================================================ */
+section.hero .swiper { position: relative; overflow: hidden; background: #07141a; }
+section.hero .swiper .swiper-wrapper {
+  position: relative !important;
+  width: 100% !important;
+  height: clamp(680px, 82vh, 880px) !important;
+  max-height: none !important;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  opacity: 0;
+  visibility: hidden;
+  transform: none;
+  transition: none;
+  pointer-events: none;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .dark-bg {
+  background:
+    linear-gradient(90deg, rgba(5,16,22,.86) 0%, rgba(8,22,30,.70) 44%, rgba(8,22,30,.40) 100%),
+    linear-gradient(180deg, rgba(5,16,22,.12), rgba(5,16,22,.55)) !important;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .container {
+  width: min(1320px, calc(100% - 64px));
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 92px;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .heading {
+  margin: 0 0 34px 0 !important;
+  max-width: 780px !important;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading {
+  font-size: clamp(64px, 7vw, 104px) !important;
+  line-height: .92 !important;
+  letter-spacing: -0.045em !important;
+  text-wrap: balance;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .heading .sub-heading {
+  max-width: 660px;
+  color: rgba(255,255,255,.82);
+  font-size: clamp(18px, 1.4vw, 22px) !important;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a {
+  max-width: 720px;
+  padding: 10px;
+  gap: 10px !important;
+  border-radius: 999px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.16);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box { width: 100% !important; }
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .input-box input {
+  min-height: 64px;
+  border-radius: 999px !important;
+  padding: 0 26px !important;
+  font-size: 18px;
+}
+section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a .pri {
+  min-width: 188px;
+  min-height: 64px;
+  border: 0;
+  color: #fff !important;
+  background: linear-gradient(135deg, #14977f, #22b496) !important;
+  box-shadow: 0 20px 46px rgba(20,151,127,.30);
+}
+.premium-scene,
+.premium-scene::before,
+section.services-alt .container .content .g1 .col.service-tile,
+section.services-alt .container .content .g2 .col.service-tile,
+section.services-alt .container .content .g1 .col.service-tile .service-media img,
+section.services-alt .container .content .g2 .col.service-tile .service-media img,
+section.services-alt .container .content .g1 .col.service-tile .service-copy,
+section.services-alt .container .content .g2 .col.service-tile .service-copy {
+  transform: none !important;
+  opacity: 1 !important;
+  will-change: auto !important;
+}
 .premium-scene::before { display: none !important; }
 section.services-alt .container .content { perspective: none !important; }
 section.services-alt .container .content .g1 .col.service-tile,
@@ -1662,116 +1719,6 @@ section.services-alt .container .content .g2 .col.service-tile .service-media im
   section:not(.hero) .container .heading { margin: 48px auto 2.25rem !important; }
 }
 
-/* Hero layout override to prevent older fixed-size overrides from distorting the premium hero. */
-section.hero {
-  min-height: calc(100vh - 96px) !important;
-  height: auto !important;
-}
-section.hero .swiper {
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-}
-section.hero .swiper .swiper-wrapper {
-  width: 100% !important;
-  min-height: calc(100vh - 96px) !important;
-  height: auto !important;
-}
-section.hero .swiper .swiper-wrapper .swiper-slide {
-  position: relative !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  min-height: calc(100vh - 96px) !important;
-}
-section.hero .swiper .swiper-wrapper .swiper-slide .container {
-  position: relative !important;
-  z-index: 2 !important;
-  width: min(1320px, calc(100% - 64px)) !important;
-  padding-bottom: clamp(82px, 10vh, 116px) !important;
-}
-section.hero .swiper .swiper-wrapper .swiper-slide .heading {
-  margin-bottom: clamp(18px, 2.3vh, 30px) !important;
-}
-section.hero .swiper .swiper-wrapper .swiper-slide .heading .main-heading {
-  font-size: clamp(58px, 6.2vw, 96px) !important;
-  line-height: .95 !important;
-}
-section.hero .swiper .swiper-wrapper .swiper-slide .c-t-a {
-  max-width: 720px !important;
-}
-
-@media (min-width: 761px) {
-  section.hero .swiper .swiper-wrapper {
-    min-height: calc(100svh - 86px) !important;
-    height: calc(100svh - 86px) !important;
-  }
-  section.hero .swiper .swiper-wrapper .swiper-slide {
-    min-height: calc(100svh - 86px) !important;
-  }
-}
-
-@media (max-width: 959px) {
-  section.hero .swiper .swiper-wrapper {
-    height: 680px !important;
-    max-height: 680px !important;
-  }
-}
-
-@media (max-width: 760px) {
-  section.hero .swiper .swiper-wrapper {
-    height: calc(100svh - 82px) !important;
-    min-height: 650px !important;
-  }
-}
-
-/* Strong hero layout normalization to prevent stale slide positioning and height overrides. */
-section.hero {
-  position: relative !important;
-  overflow: hidden !important;
-  min-height: calc(100vh - 96px) !important;
-  height: auto !important;
-}
-section.hero .swiper {
-  position: relative !important;
-  z-index: 1 !important;
-  width: 100% !important;
-  overflow: hidden !important;
-}
-section.hero .swiper .swiper-wrapper {
-  position: relative !important;
-  width: 100% !important;
-  min-height: calc(100vh - 96px) !important;
-  height: auto !important;
-}
-section.hero .swiper .swiper-wrapper .swiper-slide {
-  position: relative !important;
-  inset: auto !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: flex-start !important;
-  min-height: calc(100vh - 96px) !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-}
-section.hero .swiper .swiper-wrapper .swiper-slide .container {
-  position: relative !important;
-  z-index: 2 !important;
-  width: min(1320px, calc(100% - 64px)) !important;
-  padding-bottom: clamp(82px, 10vh, 116px) !important;
-}
-section.hero .hero-animation {
-  z-index: 0 !important;
-}
-section.hero .hero-animation + .custom-shape-divider-bottom-1771138429,
-section.hero .hero-animation + .custom-shape-divider-bottom-1771153755,
-section.hero .hero-animation + .custom-shape-divider-bottom-1771153943 {
-  z-index: 1 !important;
-}
 
 /* ================================================================
    CINEMATIC STORY SECTION — How We Work
