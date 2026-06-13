@@ -1410,7 +1410,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_location_event']) 
     $countryCode = strtoupper(trim((string)($_POST['event_country_code'] ?? 'US')));
     $postalCode = trim((string)($_POST['event_postal_code'] ?? ''));
     $statusText = trim((string)($_POST['event_status_text'] ?? ''));
-    $issueNote = '';
+    $issueNote = trim((string)($_POST['event_issue_note'] ?? ''));
     $paymentAmountRaw = trim((string)($_POST['event_payment_amount'] ?? ''));
     $paymentReason = trim((string)($_POST['event_payment_reason'] ?? ''));
     $transportMode = strtolower(trim((string)($_POST['event_transport_mode'] ?? '')));

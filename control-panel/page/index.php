@@ -171,16 +171,20 @@
                         </div>
                     </div>
 
-                    <!-- Payment Fields (conditional: shown when event type requires payment) -->
-                    <div id="payment-fields" class="cp-location-grid-span4" style="display:none;">
-                        <p class="cp-section-label"><span class="material-symbols-outlined" aria-hidden="true">payments</span> Payment Details</p>
+                    <!-- Negative / Payment Fields (shown when severity=negative OR event type requires payment) -->
+                    <div id="negative-fields" class="cp-location-grid-span4" style="display:none;">
+                        <p class="cp-section-label"><span class="material-symbols-outlined" aria-hidden="true">warning</span> Negative / Exception Details</p>
                         <div class="cp-location-grid">
+                            <div class="cp-location-grid-wide">
+                                <label for="event_issue_note">Issue Note <span class="cp-optional">(shown to customer — describe the problem)</span></label>
+                                <input id="event_issue_note" type="text" name="event_issue_note" placeholder="e.g. Customs hold – additional documentation required from recipient">
+                            </div>
                             <div>
-                                <label for="event_payment_amount">Payment Amount (£)</label>
+                                <label for="event_payment_amount">Payment Amount (£) <span class="cp-optional">(optional)</span></label>
                                 <input id="event_payment_amount" type="number" min="0" step="0.01" name="event_payment_amount" placeholder="e.g. 150.00">
                             </div>
                             <div class="cp-location-grid-wide">
-                                <label for="event_payment_reason">What the Payment Is For</label>
+                                <label for="event_payment_reason">What the Payment Is For <span class="cp-optional">(optional)</span></label>
                                 <input id="event_payment_reason" type="text" name="event_payment_reason" placeholder="e.g. Customs duty, documentation review fee">
                             </div>
                         </div>
@@ -1029,11 +1033,12 @@
     })();
 
     (function () {
-        var modeSelect = document.getElementById('event_transport_mode');
-        var typeSelect = document.getElementById('event_type');
-        var seaFields  = document.getElementById('sea-fields');
-        var payFields  = document.getElementById('payment-fields');
-        var paymentTypes = ['Payment Required', 'Exception'];
+        var modeSelect     = document.getElementById('event_transport_mode');
+        var typeSelect     = document.getElementById('event_type');
+        var severitySelect = document.getElementById('event_severity');
+        var seaFields      = document.getElementById('sea-fields');
+        var negFields      = document.getElementById('negative-fields');
+        var paymentTypes   = ['Payment Required', 'Exception'];
 
         function updateSeaFields() {
             if (modeSelect && seaFields) {
@@ -1041,16 +1046,18 @@
             }
         }
 
-        function updatePaymentFields() {
-            if (typeSelect && payFields) {
-                payFields.style.display = (paymentTypes.indexOf(typeSelect.value) !== -1) ? '' : 'none';
-            }
+        function updateNegativeFields() {
+            if (!negFields) return;
+            var isSeverityNeg = severitySelect && severitySelect.value === 'negative';
+            var isPaymentType = typeSelect && paymentTypes.indexOf(typeSelect.value) !== -1;
+            negFields.style.display = (isSeverityNeg || isPaymentType) ? '' : 'none';
         }
 
-        if (modeSelect) modeSelect.addEventListener('change', updateSeaFields);
-        if (typeSelect) typeSelect.addEventListener('change', updatePaymentFields);
+        if (modeSelect)     modeSelect.addEventListener('change', updateSeaFields);
+        if (typeSelect)     typeSelect.addEventListener('change', updateNegativeFields);
+        if (severitySelect) severitySelect.addEventListener('change', updateNegativeFields);
         updateSeaFields();
-        updatePaymentFields();
+        updateNegativeFields();
     })();
 
     (function () {
