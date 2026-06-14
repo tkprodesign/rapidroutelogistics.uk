@@ -78,6 +78,37 @@ include('app.php');
                         </form>
                     </section>
 
+                    <div class="dash-stat-row">
+                        <div class="dash-stat-card">
+                            <div class="dash-stat-icon dash-icon-teal"><span class="material-symbols-outlined">local_shipping</span></div>
+                            <div class="dash-stat-body">
+                                <div class="dash-stat-number"><?= $dash_stats['total'] ?></div>
+                                <div class="dash-stat-label">Total Shipments</div>
+                            </div>
+                        </div>
+                        <div class="dash-stat-card">
+                            <div class="dash-stat-icon dash-icon-blue"><span class="material-symbols-outlined">inventory_2</span></div>
+                            <div class="dash-stat-body">
+                                <div class="dash-stat-number"><?= $dash_stats['active'] ?></div>
+                                <div class="dash-stat-label">Active</div>
+                            </div>
+                        </div>
+                        <div class="dash-stat-card">
+                            <div class="dash-stat-icon dash-icon-green"><span class="material-symbols-outlined">check_circle</span></div>
+                            <div class="dash-stat-body">
+                                <div class="dash-stat-number"><?= $dash_stats['delivered'] ?></div>
+                                <div class="dash-stat-label">Delivered</div>
+                            </div>
+                        </div>
+                        <div class="dash-stat-card">
+                            <div class="dash-stat-icon dash-icon-red"><span class="material-symbols-outlined">warning</span></div>
+                            <div class="dash-stat-body">
+                                <div class="dash-stat-number"><?= $dash_stats['exceptions'] ?></div>
+                                <div class="dash-stat-label">Exceptions</div>
+                            </div>
+                        </div>
+                    </div>
+
                     <section class="card" id="shipment-activity">
                         <h3>Shipment Activity</h3>
                         <div class="activity-tabs">
@@ -99,7 +130,15 @@ include('app.php');
                                                 <span class="ship-date">Scheduled: <?= htmlspecialchars($ship['date']) ?></span>
                                             </div>
                                             <div class="ship-meta">
-                                                <span class="status-badge-outline"><?= htmlspecialchars($ship['status']) ?></span>
+                                                <?php
+                                                $sc = strtolower(str_replace(' ', '_', $ship['status']));
+                                                $chipClass = 'chip-default';
+                                                if ($sc === 'delivered') $chipClass = 'chip-delivered';
+                                                elseif (in_array($sc, ['in_transit','out_for_delivery','incoming'])) $chipClass = 'chip-active';
+                                                elseif (in_array($sc, ['exception','delayed'])) $chipClass = 'chip-exception';
+                                                elseif (in_array($sc, ['picked_up','outgoing','shipped'])) $chipClass = 'chip-progress';
+                                                ?>
+                                                <span class="ship-status-chip <?= $chipClass ?>"><?= htmlspecialchars($ship['status']) ?></span>
                                                 <i class="material-symbols-outlined">chevron_right</i>
                                             </div>
                                         </a>

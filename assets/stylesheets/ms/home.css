@@ -280,3 +280,16 @@ section.services-alt .container .heading .toggle[role="tablist"] button {
   background: transparent !important;
 }
 section.services-alt .container .content [role="tabpanel"][hidden] { display: none !important; }
+
+/* ── TRUST BAR MOBILE ────────────────────────────────────────── */
+.trust-bar-container { gap: 14px 22px; justify-content: flex-start; }
+.trust-item { font-size: 0.82rem; }
+
+/* ── TESTIMONIALS MOBILE ─────────────────────────────────────── */
+.testimonials-grid { grid-template-columns: 1fr; gap: 18px; }
+.rrl-testimonials { padding: 52px 18px; }
+.rrl-testimonials-heading h2 { font-size: 1.6rem; }
+
+/* ── SCROLL REVEAL: disable delay on mobile ─────────────────── */
+[data-reveal] { transition-delay: 0s !important; }
+.testimonial-card { transition-delay: 0s !important; }

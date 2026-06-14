@@ -169,6 +169,45 @@ document.addEventListener('DOMContentLoaded', function () {
         setActiveTab(btnPersonal.classList.contains('active') ? 'personal' : 'business');
     }
 
+    // ── SECTION SCROLL-REVEAL ─────────────────────────────────────────────
+    if (window.IntersectionObserver) {
+        var revealObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-revealed');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('[data-reveal]').forEach(function (el, i) {
+            el.style.transitionDelay = (i * 0.04) + 's';
+            revealObserver.observe(el);
+        });
+
+        // Stagger testimonial cards
+        document.querySelectorAll('.testimonial-card').forEach(function (card, i) {
+            card.style.transitionDelay = (i * 0.12) + 's';
+        });
+
+        // Stagger why-choose-us cols
+        document.querySelectorAll('.why-choose-us .col').forEach(function (col, i) {
+            col.style.transitionDelay = (i * 0.07) + 's';
+        });
+    }
+
+    // ── SERVICE TILE MICRO-ANIMATIONS ────────────────────────────────────
+    document.querySelectorAll('.service-tile').forEach(function (tile) {
+        tile.addEventListener('mouseenter', function () {
+            var img = tile.querySelector('.service-media img');
+            if (img) img.style.transform = 'scale(1.06)';
+        });
+        tile.addEventListener('mouseleave', function () {
+            var img = tile.querySelector('.service-media img');
+            if (img) img.style.transform = '';
+        });
+    });
+
     // ── IMPORTANT UPDATES ACCORDION ──────────────────────────────────────
     var sectionIM = document.querySelector('.important-updates');
     if (sectionIM) {

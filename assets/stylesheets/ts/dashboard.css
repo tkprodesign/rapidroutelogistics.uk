@@ -30,3 +30,5 @@
 .wallet-layout {
   grid-template-columns: 1fr;
 }/*# sourceMappingURL=dashboard.css.map */
+/* ── STAT ROW TABLET ─────────────────────────────────────────── */
+.dash-stat-row { grid-template-columns: repeat(2, 1fr); gap: 12px; }

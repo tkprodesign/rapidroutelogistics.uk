@@ -2053,4 +2053,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_item']) && !emp
 
     mysqli_query($dbconn, "DELETE FROM items WHERE tracking_id = '$id' AND item_number = $item_number");
 }
+
+// ── ANALYTICS DATA ─────────────────────────────────────────────────────────
+$cp_analytics = [
+    'total_shipments' => 0, 'total_users' => 0,
+    'events_today' => 0, 'open_exceptions' => 0,
+    'shipments_by_day_labels' => [], 'shipments_by_day_data' => [],
+    'status_labels' => [], 'status_data' => []
+];
+$r = $dbconn->query("SELECT COUNT(*) as c FROM shipments");
+if ($r) { $cp_analytics['total_shipments'] = (int)$r->fetch_assoc()['c']; }
+$r = $dbconn->query("SELECT COUNT(*) as c FROM users");
+if ($r) { $cp_analytics['total_users'] = (int)$r->fetch_assoc()['c']; }
+$r = $dbconn->query("SELECT COUNT(*) as c FROM shipments WHERE status IN ('exception','delayed')");
+if ($r) { $cp_analytics['open_exceptions'] = (int)$r->fetch_assoc()['c']; }
+$todayMidnight = mktime(0, 0, 0, (int)date('n'), (int)date('j'), (int)date('Y'));
+$r = @$dbconn->query("SELECT COUNT(*) as c FROM shipment_location_events WHERE event_time >= {$todayMidnight}");
+if ($r) { $cp_analytics['events_today'] = (int)$r->fetch_assoc()['c']; }
+$dayMap = [];
+for ($i = 13; $i >= 0; $i--) {
+    $key = date('Y-m-d', strtotime("-{$i} days"));
+    $cp_analytics['shipments_by_day_labels'][] = date('M j', strtotime("-{$i} days"));
+    $dayMap[$key] = 0;
+}
+$fourteenAgo = strtotime('-13 days', $todayMidnight);
+$r = $dbconn->query("SELECT DATE(FROM_UNIXTIME(date_created)) as d, COUNT(*) as cnt FROM shipments WHERE date_created >= {$fourteenAgo} GROUP BY d");
+if ($r) { while ($row = $r->fetch_assoc()) { if (isset($dayMap[$row['d']])) $dayMap[$row['d']] = (int)$row['cnt']; } }
+$cp_analytics['shipments_by_day_data'] = array_values($dayMap);
+$r = $dbconn->query("SELECT status, COUNT(*) as cnt FROM shipments GROUP BY status ORDER BY cnt DESC LIMIT 8");
+if ($r) {
+    while ($row = $r->fetch_assoc()) {
+        $cp_analytics['status_labels'][] = ucwords(str_replace('_', ' ', $row['status']));
+        $cp_analytics['status_data'][] = (int)$row['cnt'];
+    }
+}
 ?>

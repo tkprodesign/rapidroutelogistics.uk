@@ -338,4 +338,19 @@ if ($page === 'overview') {
 
     $stmtShip->close();
 }
+
+// Dashboard stat counts for overview cards
+$dash_stats = ['total' => 0, 'active' => 0, 'delivered' => 0, 'exceptions' => 0];
+$srResult = $conn->query("SELECT status, COUNT(*) as cnt FROM shipments WHERE user_id = {$user_id} GROUP BY status");
+if ($srResult) {
+    $activeStatuses = ['pending', 'incoming', 'in_transit', 'out_for_delivery', 'outgoing', 'shipped', 'picked_up'];
+    while ($sr = $srResult->fetch_assoc()) {
+        $s = (string)$sr['status'];
+        $cnt = (int)$sr['cnt'];
+        $dash_stats['total'] += $cnt;
+        if (in_array($s, $activeStatuses)) $dash_stats['active'] += $cnt;
+        if ($s === 'delivered') $dash_stats['delivered'] += $cnt;
+        if (in_array($s, ['exception', 'delayed'])) $dash_stats['exceptions'] += $cnt;
+    }
+}
 ?>

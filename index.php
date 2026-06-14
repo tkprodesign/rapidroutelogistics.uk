@@ -152,7 +152,7 @@ include('./app.php');
     <div class="stats-container">
         <div class="stat-item">
             <div class="stat-number-row">
-                <span class="stat-number" data-count="15000">0</span><span class="stat-suffix">+</span>
+                <span class="stat-number" data-count="<?= (int)($homepage_shipment_count ?? 15000) ?>">0</span><span class="stat-suffix">+</span>
             </div>
             <span class="stat-label">Shipments Delivered</span>
         </div>
@@ -177,7 +177,32 @@ include('./app.php');
     </div>
 </section>
 
-<section class="why-choose-us editing premium-scene" data-premium-scene="precision">
+<section class="rrl-trust-bar" data-reveal>
+    <div class="trust-bar-container">
+        <div class="trust-item">
+            <span class="material-symbols-outlined">verified</span>
+            <span>ISO 9001 Certified</span>
+        </div>
+        <div class="trust-item">
+            <span class="material-symbols-outlined">security</span>
+            <span>Fully Insured Shipments</span>
+        </div>
+        <div class="trust-item">
+            <span class="material-symbols-outlined">gpp_good</span>
+            <span>GDPR Compliant</span>
+        </div>
+        <div class="trust-item">
+            <span class="material-symbols-outlined">support_agent</span>
+            <span>24/7 Customer Support</span>
+        </div>
+        <div class="trust-item">
+            <span class="material-symbols-outlined">lock</span>
+            <span>Secure Chain of Custody</span>
+        </div>
+    </div>
+</section>
+
+<section class="why-choose-us editing premium-scene" data-reveal data-premium-scene="precision">
     <div class="container">
         <div class="heading .heading-1">
             <h2>Precision in Motion. Deliveries You Can Count On</h2>
@@ -217,7 +242,52 @@ include('./app.php');
 
 
 
-<section class="tools premium-scene" data-premium-scene="tools">
+<section class="rrl-testimonials" data-reveal>
+    <div class="container">
+        <div class="rrl-testimonials-heading">
+            <p class="rrl-testimonials-kicker">CUSTOMER STORIES</p>
+            <h2>Trusted by Businesses and Families Worldwide</h2>
+            <p>Real feedback from people who count on us for every delivery.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-quote">"We've shipped thousands of corporate documents and time-sensitive packages through Rapid Route. The tracking is excellent and the team is always proactive with updates."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JM</div>
+                    <div class="author-info">
+                        <strong>James M.</strong>
+                        <span>Operations Director, ClearBridge Group</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-quote">"Sent an urgent package to my family overseas. It arrived on time, in perfect condition, and the updates were clear every step of the way. Absolutely fantastic service."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SA</div>
+                    <div class="author-info">
+                        <strong>Sofia A.</strong>
+                        <span>Personal Customer</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-quote">"Our delivery reliability went up significantly after switching to Rapid Route. The bulk shipping coordination is exceptional and the support team is outstanding."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">DL</div>
+                    <div class="author-info">
+                        <strong>David L.</strong>
+                        <span>Supply Chain Manager, NovaTrade Ltd</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="tools premium-scene" data-reveal data-premium-scene="tools">
     <div class="container">
         <div class="left"></div>
         <div class="right">

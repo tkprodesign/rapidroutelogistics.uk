@@ -60,8 +60,18 @@
 
 
 
+    require_once __DIR__ . '/common-sections/globals.php';
+
+    $homepage_shipment_count = 15000;
+    if (!empty($conn)) {
+        $r = $conn->query("SELECT COUNT(*) as c FROM shipments");
+        if ($r) {
+            $row = $r->fetch_assoc();
+            $homepage_shipment_count = max(15000, (int)$row['c']);
+        }
+    }
+
     if ($_SERVER["REQUEST_METHOD"] == "POST"  && isset($_POST['free-quote-button']) && !empty($_POST['free-quote-button'])) {
-        require_once __DIR__ . '/common-sections/globals.php';
 
         // Collect form data
         $name = $_POST['name'];

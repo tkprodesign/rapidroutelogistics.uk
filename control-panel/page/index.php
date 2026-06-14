@@ -19,7 +19,52 @@
         </div>
     </div>
     <div class="container content">
-        
+
+        <section class="cp-analytics-section cp-card">
+            <div class="cp-card-head">
+                <div>
+                    <h2>Analytics Overview</h2>
+                    <p>Live snapshot of shipment activity and platform performance.</p>
+                </div>
+            </div>
+            <div class="cp-kpi-row">
+                <div class="cp-kpi-card">
+                    <span class="material-symbols-outlined cp-kpi-icon">local_shipping</span>
+                    <div class="cp-kpi-value"><?= number_format($cp_analytics['total_shipments']) ?></div>
+                    <div class="cp-kpi-label">Total Shipments</div>
+                </div>
+                <div class="cp-kpi-card">
+                    <span class="material-symbols-outlined cp-kpi-icon">people</span>
+                    <div class="cp-kpi-value"><?= number_format($cp_analytics['total_users']) ?></div>
+                    <div class="cp-kpi-label">Registered Users</div>
+                </div>
+                <div class="cp-kpi-card cp-kpi-danger">
+                    <span class="material-symbols-outlined cp-kpi-icon">warning</span>
+                    <div class="cp-kpi-value"><?= number_format($cp_analytics['open_exceptions']) ?></div>
+                    <div class="cp-kpi-label">Open Exceptions</div>
+                </div>
+                <div class="cp-kpi-card cp-kpi-success">
+                    <span class="material-symbols-outlined cp-kpi-icon">bolt</span>
+                    <div class="cp-kpi-value"><?= number_format($cp_analytics['events_today']) ?></div>
+                    <div class="cp-kpi-label">Events Today</div>
+                </div>
+            </div>
+            <div class="cp-charts-row">
+                <div class="cp-chart-box">
+                    <h3>Shipments Created — Last 14 Days</h3>
+                    <canvas id="cpShipmentsChart"></canvas>
+                </div>
+                <div class="cp-chart-box">
+                    <h3>Status Breakdown</h3>
+                    <?php if (!empty($cp_analytics['status_labels'])): ?>
+                        <canvas id="cpStatusChart"></canvas>
+                    <?php else: ?>
+                        <p class="cp-chart-empty">No shipment data yet.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </section>
+
         <section id="cp-add-location-event" class="cp-card cp-card-action">
             <div class="cp-card-head">
                 <div>
@@ -1138,6 +1183,65 @@
         });
 
         update();
+    })();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script>
+    (function () {
+        var labelsDay = <?= json_encode($cp_analytics['shipments_by_day_labels']) ?>;
+        var dataDay   = <?= json_encode($cp_analytics['shipments_by_day_data']) ?>;
+        var barCtx = document.getElementById('cpShipmentsChart');
+        if (barCtx) {
+            new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: labelsDay,
+                    datasets: [{
+                        label: 'Shipments',
+                        data: dataDay,
+                        backgroundColor: 'rgba(26,155,130,0.72)',
+                        borderColor: '#1A9B82',
+                        borderWidth: 2,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { precision: 0 }, grid: { color: 'rgba(0,0,0,0.05)' } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        var statusLabels = <?= json_encode($cp_analytics['status_labels']) ?>;
+        var statusData   = <?= json_encode($cp_analytics['status_data']) ?>;
+        var doughCtx = document.getElementById('cpStatusChart');
+        if (doughCtx && statusLabels.length) {
+            var palette = ['#1A9B82','#2196f3','#9c27b0','#4caf50','#ff5722','#607d8b','#f44336','#00bcd4'];
+            new Chart(doughCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: statusLabels,
+                    datasets: [{
+                        data: statusData,
+                        backgroundColor: palette.slice(0, statusLabels.length),
+                        borderWidth: 0,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { padding: 14, font: { size: 12 } } }
+                    }
+                }
+            });
+        }
     })();
     </script>
     </body>

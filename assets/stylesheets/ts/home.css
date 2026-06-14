@@ -289,3 +289,7 @@ section.services-alt .container .heading .toggle[role="tablist"] button {
   background: transparent !important;
 }
 section.services-alt .container .content [role="tabpanel"][hidden] { display: none !important; }
+
+/* ── TESTIMONIALS TABLET ─────────────────────────────────────── */
+.testimonials-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+.rrl-testimonials { padding: 64px 20px; }

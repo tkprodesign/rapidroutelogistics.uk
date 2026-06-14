@@ -937,6 +937,90 @@ img[src*="/ups/"] {
   margin: 0;
 }
 
+/* ── DASHBOARD STAT CARDS ────────────────────────────────────────────── */
+.dash-stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.dash-stat-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 12px rgba(20,35,43,0.07);
+  border: 1px solid rgba(20,35,43,0.06);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.dash-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(20,35,43,0.11);
+}
+.dash-stat-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.dash-icon-teal { background: rgba(26,155,130,0.12); color: #1A9B82; }
+.dash-icon-blue { background: rgba(33,150,243,0.12); color: #1976d2; }
+.dash-icon-green { background: rgba(76,175,80,0.12); color: #388e3c; }
+.dash-icon-red { background: rgba(244,67,54,0.12); color: #d32f2f; }
+.dash-stat-icon .material-symbols-outlined { font-size: 1.4rem; }
+.dash-stat-body { min-width: 0; }
+.dash-stat-number {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #14232b;
+  line-height: 1.1;
+}
+.dash-stat-label {
+  font-size: 0.8rem;
+  color: #7a8e96;
+  font-weight: 500;
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── SHIP STATUS CHIPS ───────────────────────────────────────────────── */
+.ship-status-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+.chip-delivered { background: rgba(26,155,130,0.12); color: #0d7a65; }
+.chip-active    { background: rgba(33,150,243,0.12); color: #1565c0; }
+.chip-exception { background: rgba(244,67,54,0.12);  color: #c62828; }
+.chip-progress  { background: rgba(156,39,176,0.10); color: #7b1fa2; }
+.chip-default   { background: rgba(96,125,139,0.12); color: #455a64; }
+
+/* ── SHIPMENT ITEM UPGRADE ───────────────────────────────────────────── */
+.shipment-item {
+  border-radius: 12px;
+  padding: 14px 16px;
+  border: 1px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.shipment-item:hover {
+  background: #f5f8f7 !important;
+  border-color: rgba(26,155,130,0.15) !important;
+  transform: translateX(2px);
+}
+
 /* Quick-grid items: hide icon images, keep text  */
 .quick-grid .q-item img.art-icon-img {
   display: none !important;
